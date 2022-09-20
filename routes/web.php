@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Hash;
 
 Auth::routes();
 Route::get('/test', function () {
-    die;
+    echo Hash::make("123eleduet123");
 });
 Route::get('/auth/confirm_account/{id}', 'UsersController@confirm');
 Route::get('/{catch?}', 'HomeController@index')->name('home')->where('catch', '^(?!api).*$');

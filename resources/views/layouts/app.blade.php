@@ -10,7 +10,7 @@
     <title>{{ $meta_title }}</title>
     <meta name="description" content="{{ $meta_description }}">
 
-    <link rel="icon" href="{{ asset('img/bolt.png') }}" type="image/png">
+    <link rel="icon" href="/storage/img/layout/clef.png" type="image/png">
     <link type="text/css" rel="stylesheet" href="{{ asset('magiczoomplus/magiczoomplus.css') }}" />
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">

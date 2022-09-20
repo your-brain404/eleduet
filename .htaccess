@@ -1,12 +1,16 @@
 Options -Indexes
+RewriteEngine on
+RewriteCond %{REQUEST_URI} !^public
+RewriteRule ^(.*)$ public/$1 [L]
+
 <IfModule mod_headers.c>
-Header always set X-Content-Type-Options "nosniff"
-Header always set X-XSS-Protection "1; mode=block"
-#deny kiedy nie używamy treści w iframeach z innych stron
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set X-XSS-Protection "1; mode=block"
+    #deny kiedy nie używamy treści w iframeach z innych stron
 </IfModule>
 
-<FilesMatch "\.(jpg|jpeg|png|gif|js|css)$"> 
-Header set Cache-Control "max-age=31536000, public"
+<FilesMatch "\.(jpg|jpeg|png|gif|js|css)$">
+    Header set Cache-Control "max-age=31536000, public"
 </FilesMatch>
 
 ExpiresActive On
@@ -33,4 +37,4 @@ ExpiresByType application/x-javascript "access plus 1 year"
 ExpiresByType audio/ogg "access 1 year"
 ExpiresByType video/mp4 "access 1 year"
 ExpiresByType video/ogg "access 1 year"
-ExpiresByType video/webm "access 1 year" 
+ExpiresByType video/webm "access 1 year"
