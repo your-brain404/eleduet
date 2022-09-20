@@ -3,7 +3,7 @@ import VueRouter from "vue-router";
 import Main from "@/views/public/Main";
 import Services from "@/views/public/Services";
 import SolarSystems from "@/views/public/SolarSystems";
-import Realizations from "@/views/public/Realizations";
+import AboutPage from "@/views/public/AboutPage";
 import Contact from "@/views/public/Contact";
 import Service from "@/views/public/Service";
 import Home from "@/views/admin/Home";
@@ -36,11 +36,16 @@ const routes = [
     { path: "/", component: Main, name: "Main" },
     { path: "/uslugi", component: Services, name: "Services" },
     { path: "/uslugi/:title/:id", component: Service, name: "Service" },
-    { path: "/realizacje", component: Realizations, name: "Realizations" },
+    { path: "/o-nas", component: AboutPage, name: "AboutPage" },
     { path: "/fotowoltaika", component: SolarSystems, name: "SolarSystems" },
     { path: "/kontakt", component: Contact, name: "Contact" },
 
-    { path: "/admin-panel/login", component: AdminLogin, name: "AdminLogin" },
+    {
+        path: "/admin-panel/login",
+        component: AdminLogin,
+        name: "AdminLogin",
+        alias: "/admin-panel"
+    },
     { path: "/admin-panel/main", component: Home, name: "AdminHome" },
     { path: "/admin-panel/services", component: Home, name: "AdminServices" },
     { path: "/admin-panel/contact", component: Home, name: "AdminContact" },
@@ -48,6 +53,11 @@ const routes = [
         path: "/admin-panel/solar_system",
         component: Home,
         name: "AdminSolarSystem"
+    },
+    {
+        path: "/admin-panel/about_page",
+        component: Home,
+        name: "AdminAboutPage"
     },
     {
         path: "/admin-panel/realizations",

@@ -18,8 +18,9 @@ import Opinions from "@/components/pages/main/Opinions";
 import ExecutionProcess from "@/components/pages/main/ExecutionProcess";
 import ServicesCallUs from "@/components/pages/services/CallUs";
 import SolarSystemsCallUs from "@/components/pages/solarSystems/CallUs";
-import Realizations from "@/views/public/Realizations";
+import AboutPage from "@/views/public/AboutPage";
 import SolarSystems from "@/views/public/SolarSystems";
+import Realizations from "@/views/public/Realizations";
 
 export default {
     main: [
@@ -150,6 +151,20 @@ export default {
             active: false,
             home_page: false,
             non_editable: true
+        }
+    ],
+    about_page: [
+        {
+            title: "O nas",
+            component: AboutPage,
+            tablename: "about_page",
+            table: [],
+            multiple: false,
+            removable: false,
+            gallery: true,
+            active: false,
+            home_page: false,
+            non_editable: false
         }
     ],
     services: [

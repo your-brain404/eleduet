@@ -26,11 +26,16 @@
       </a>
     </div>
     <div class="position-relative photo-container">
-      <div
+      <img
+        class="photo bg"
+        :src="`${origin}/storage/media/${about.photo}`"
+        :alt="about.photo_alt"
+      />
+      <!-- <div
         class="photo bg"
         title="about.photo_alt"
         v-lazy:background-image="`${origin}/storage/media/${about.photo}`"
-      ></div>
+      ></div> -->
       <img
         class="ellipse"
         v-lazy="`${origin}/storage/img/home/ellipse1.svg`"
@@ -96,10 +101,14 @@ section.about {
   flex-wrap: wrap;
   padding-top: 7rem;
   z-index: 1;
-
+  .content {
+    width: 66%;
+  }
+  .photo-container {
+    width: 33%;
+  }
   .content,
   .photo-container {
-    width: 50%;
     @media (max-width: 992px) {
       width: 100%;
     }
@@ -117,7 +126,7 @@ section.about {
   .photo {
     position: relative;
     z-index: 2;
-    height: 300px;
+    height: auto;
     border-bottom-left-radius: var(--global-border-radius);
     border-top-left-radius: var(--global-border-radius);
     @media (max-width: 992px) {
@@ -127,6 +136,7 @@ section.about {
 
   .content {
     padding-left: var(--global-padding-x-desktop);
+    padding-right: var(--global-padding-x-desktop);
     @media (max-width: 992px) {
       padding-left: var(--global-padding-x-mobile);
       padding-right: var(--global-padding-x-mobile);
