@@ -29,6 +29,7 @@
     },
     "dependencies": {
         "@mdi/font": "^5.3.45",
+        "@tinymce/tinymce-vue": "^3.2.8",
         "core-js": "^3.6.5",
         "owl.carousel": "^2.3.4",
         "vue-axios": "^2.1.5",

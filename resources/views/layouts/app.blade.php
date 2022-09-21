@@ -23,9 +23,7 @@
     <script src="{{ asset('js/owlcarousel/jquery.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('magiczoomplus/magiczoomplus.js') }}"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <script>
 
-    </script>
 </body>
 
 </html>

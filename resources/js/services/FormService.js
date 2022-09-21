@@ -5,7 +5,7 @@ import SnackbarAlerts from "../data/snackbar-alerts.js";
 import url from "../helpers/photo/url.js";
 import TagsInput from "../components/tagsinput/TagsInput.vue";
 import AdminPanelBlocks from "../data/admin-panel-blocks.js";
-import { VueEditor } from "vue2-editor";
+import VueEditor from "@/components/forms/TinyMCE";
 
 export default {
     data: {
