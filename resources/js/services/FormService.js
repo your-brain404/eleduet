@@ -173,7 +173,7 @@ export default {
                         res.data.file !== null
                             ? url(res.data.file)
                             : this.activeFile;
-                    this.currentObject = res.data;
+                    this.currentObject = { ...this.currentObject, ...res.data };
                 });
         }
         if (this.$route.params.parent_id) this.getParent();

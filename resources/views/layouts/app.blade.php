@@ -24,6 +24,14 @@
     <script type="text/javascript" src="{{ asset('magiczoomplus/magiczoomplus.js') }}"></script>
     <script src="{{ mix('js/app.js') }}" defer></script>
 
+    <script>
+        window.global = {
+            config: {
+                settings: @json(@$settings),
+            }
+        }
+    </script>
+
 </body>
 
 </html>

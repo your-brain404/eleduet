@@ -2,7 +2,7 @@
   <v-navigation-drawer
     class="admin-header admin-drawer"
     v-model="drawer"
-    color="primary"
+    :color="$store.getters.settings.first_color"
     left
     :permanent="true"
     expand-on-hover

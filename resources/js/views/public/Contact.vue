@@ -12,7 +12,9 @@
             :target="link.link.includes(`http`) ? `_blank` : ``"
             class="wrapper"
           >
+            <span v-if="link.icon_svg" v-html="link.icon_svg"></span>
             <img
+              v-else
               v-lazy="`${origin}/storage/media/${link.photo}`"
               :alt="link.photo_alt"
             />
@@ -309,9 +311,12 @@ section.contact {
           border-radius: 12px;
           padding: 2rem;
           background-color: #fff;
-          img {
+          ::v-deep :is(img, svg) {
             height: 25px;
             margin-bottom: 1rem;
+          }
+          ::v-deep svg path {
+            fill: var(--first-color);
           }
           .text {
             display: flex;

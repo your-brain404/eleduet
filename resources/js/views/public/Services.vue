@@ -434,7 +434,7 @@ section.services-page {
 <style lang="scss">
 .guarantee {
   h3 {
-    color: #7e71b1;
+    color: var(--first-color);
     font-weight: 700;
     font-size: 2rem;
     margin-bottom: 1rem;
@@ -465,7 +465,7 @@ ul {
 .skills-blocks {
   .block {
     b {
-      color: #7e71b1;
+      color: var(--first-color);
       font-weight: 700;
       font-size: 1.6rem;
       line-height: 25px;

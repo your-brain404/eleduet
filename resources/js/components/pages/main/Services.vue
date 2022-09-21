@@ -151,6 +151,7 @@ section.services {
         font-weight: 700;
         font-size: 1.5rem;
         margin-top: 1rem;
+        color: var(--first-color);
       }
       .description {
         font-weight: 600;
