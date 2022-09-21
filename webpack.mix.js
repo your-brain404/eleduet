@@ -13,10 +13,12 @@ const mix = require("laravel-mix");
 
 mix.js("resources/js/app.js", "public/js")
     .sass("resources/sass/app.scss", "public/css")
+
     .sourceMaps();
 // mix.js('resources/js/app.js', 'public/js').extract(['jQuery', 'vue', 'axios']);
+mix.version();
 
-mix.webpackConfig({
+let base = {
     resolve: {
         modules: [
             path.resolve(__dirname),
@@ -27,4 +29,13 @@ mix.webpackConfig({
             "@": __dirname + "/resources/js"
         }
     }
-});
+};
+if (mix.inProduction()) {
+    mix.webpackConfig({
+        ...base
+    });
+} else {
+    mix.webpackConfig({
+        ...base
+    });
+}

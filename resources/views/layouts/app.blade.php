@@ -13,7 +13,7 @@
     <link rel="icon" href="/storage/img/layout/clef.png" type="image/png">
     <link type="text/css" rel="stylesheet" href="{{ asset('magiczoomplus/magiczoomplus.css') }}" />
 
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>
 
 <body>
@@ -22,7 +22,7 @@
     </div>
     <script src="{{ asset('js/owlcarousel/jquery.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('magiczoomplus/magiczoomplus.js') }}"></script>
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ mix('js/app.js') }}" defer></script>
 
 </body>
 
