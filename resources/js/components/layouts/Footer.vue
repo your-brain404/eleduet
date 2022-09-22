@@ -50,7 +50,9 @@
                 target="_blank"
                 :href="`https://www.google.com/search?tbm=lcl&sxsrf=ALeKk03R-n9i9FnjZJDGGG_KGJOJQtjFRQ%3A1604163272211&ei=yJadX-mpDJKJrwT3w42AAg&q=${contact.address},+${contact.zip_code}+${contact.city}&oq=bilard+&gs_l=psy-ab.3.0.35i39k1j0i67k1j0l8.10333.16284.0.16901.13.13.0.0.0.0.190.1120.0j7.7.0....0...1c.1.64.psy-ab..6.7.1120...46j0i433i131k1j46i67k1j0i433i67k1j0i10k1j0i203k1j0i433k1.0.d23hfgOs4ts#rlfi=hd:;si:9035433236648356783;mv:[[51.390375377319025,16.199153519032567],[51.39001542268097,16.19857668096743]]`"
                 >{{
-                  `${contact.address}, ${contact.zip_code} ${contact.city}`
+                  `${contact.address || ""}, ${contact.zip_code || ""} ${
+                    contact.city || ""
+                  }`
                 }}</a
               >
             </li>

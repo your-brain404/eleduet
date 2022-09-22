@@ -33,7 +33,7 @@
       toolbar:
         'undo redo | casechange blocks | bold italic backcolor | \
            alignleft aligncenter alignright alignjustify | \
-           bullist numlst checklist outdent indent | removeformat | a11ycheck code table help',
+           bullist numlist checklist outdent indent | removeformat | a11ycheck code table help',
     }"
   />
 </template>

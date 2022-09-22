@@ -24,7 +24,10 @@
               />
             </div>
             <div
-              v-if="i !== executionProcess.length - 1 || innerWidth <= 992"
+              v-if="
+                (i !== executionProcess.length - 1 || innerWidth <= 992) &&
+                false
+              "
               class="separator"
             ></div>
           </div>
@@ -111,6 +114,7 @@ section.execution-process {
     .icon-section {
       display: flex;
       align-items: center;
+      justify-content: center;
       width: 100%;
       .icon-container {
         display: flex;
@@ -143,6 +147,7 @@ section.execution-process {
           margin-top: 1rem;
           font-weight: 600;
           font-size: 1rem;
+          text-align: center;
         }
       }
     }

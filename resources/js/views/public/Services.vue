@@ -315,6 +315,7 @@ section.services-page {
 
   .guarantee {
     position: relative;
+    z-index: 1;
     margin-top: 3rem;
     padding-left: var(--global-padding-x-desktop);
     padding-right: var(--global-padding-x-desktop);
