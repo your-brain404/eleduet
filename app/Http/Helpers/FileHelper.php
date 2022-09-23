@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Helpers;
 
 use App\Http\Helpers\WebpHelper;
@@ -8,12 +9,14 @@ use Illuminate\Http\File;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Resources\MediaResource;
 
-class FileHelper {
+class FileHelper
+{
 
 	private static $name;
 	private static $webpTypes = array('image/jpg', 'image/jpeg', 'image/png', 'image/jfif');
 
-	private static function getFileName($file) {
+	private static function getFileName($file)
+	{
 
 		$fileNameWithExt = $file->getClientOriginalName();
 		self::$name = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
@@ -23,10 +26,11 @@ class FileHelper {
 		return $name;
 	}
 
-	private static function storeToMedia($file, $path) {
+	private static function storeToMedia($file, $path)
+	{
 
 		$media = new Media;
-		$media->path = $path;
+		$media->path = str_replace('\\', '/', $path);
 		$media->name = self::$name;
 		$media->size = $file->getSize();
 		$media->type = $file->getClientMimeType();
@@ -36,39 +40,59 @@ class FileHelper {
 		return $media;
 	}
 
-	public static function store($file, $folder = 'media') {
-		
+	public static function store($file, $folder = 'media')
+	{
+
 		$name = self::getFileName($file);
-		$destination = date('Y-m-d') . '/';
+		$date = date('Y-m-d');
+		$destination = $date . '\\';
+		$date_folder = $destination;
 		$full_path = $destination . $name;
-		$destination = "$folder/". $destination;
-		
-		Storage::putFileAs($destination, new File($file), $name);
-		if (in_array($file->getClientMimeType(), self::$webpTypes)) {
-			WebpHelper::convertToWebp($destination, $name);
+		$destination = "$folder\\" . $destination;
+
+		$storageDestinationPath = $_SERVER['DOCUMENT_ROOT'] . "\\storage\\$folder\\$full_path";
+
+		if (!\File::exists($date_folder)) {
+			\File::makeDirectory($date_folder, 0755, true);
 		}
+		if (in_array($file->getClientMimeType(), self::$webpTypes)) {
+			$img = \Image::make($file->getRealPath());
+			if ($img->width() > 1920 && $img->width() > $img->height()) $img->resize(1920, 1080, function ($constraint) {
+				$constraint->aspectRatio();
+				$constraint->upsize();
+			});
+			if ($img->height() > 1080 && $img->width() < $img->height()) $img->resize(1080, 1920, function ($constraint) {
+				$constraint->aspectRatio();
+				$constraint->upsize();
+			});
+
+			$img->save($storageDestinationPath);
+			WebpHelper::convertToWebp($destination, $name);
+		} else Storage::putFileAs($destination, new File($file), $name);
 
 		$media = $folder == 'media' ? self::storeToMedia($file, $full_path) : $full_path;
 
 		return $media;
 	}
 
-	public static function deleteFilesFromStorage($path, $folder){
-		Storage::delete("$folder/". explode('/', $path)[0]. '/'. explode('/', $path)[1]);
-		Storage::delete("$folder/". explode('/', $path)[0]. '/'. explode('/', $path)[1]. '.webp');
+	public static function deleteFilesFromStorage($path, $folder)
+	{
+		$separator = strpos($path, '/') !== FALSE ? '/' : '\\';
+		list($date, $fileName) =  explode($separator, $path);
+		Storage::delete("$folder/$date/$fileName");
+		Storage::delete("$folder/$date/$fileName.webp");
 	}
 
-	public static function delete($id, $folder = 'media'){
+	public static function delete($id, $folder = 'media')
+	{
 
 		$media = Media::find($id);
 
 		if ($media->delete()) {
 			FileHelper::deleteFilesFromStorage($media->path, $folder);
 			return new MediaResource($media);
-		}else{
+		} else {
 			return new MediaResource(['message' => SnackbarAlerts::find(1)->error]);
 		}
-
 	}
-
 }
