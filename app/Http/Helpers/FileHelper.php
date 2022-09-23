@@ -44,13 +44,12 @@ class FileHelper
 	{
 
 		$name = self::getFileName($file);
-		$date = date('Y-m-d');
-		$destination = $date . '\\';
-		$date_folder = $destination;
+		$date_folder = date('Y-m-d');
+		$destination = $date_folder . '/';
 		$full_path = $destination . $name;
-		$destination = "$folder\\" . $destination;
+		$destination = "$folder/" . $destination;
 
-		$storageDestinationPath = $_SERVER['DOCUMENT_ROOT'] . "\\storage\\$folder\\$full_path";
+		$storageDestinationPath = $_SERVER['ROOT'] . "/storage/$folder/$full_path";
 
 		if (!\File::exists($date_folder)) {
 			\File::makeDirectory($date_folder, 0755, true);
@@ -65,7 +64,6 @@ class FileHelper
 				$constraint->aspectRatio();
 				$constraint->upsize();
 			});
-
 			$img->save($storageDestinationPath);
 			WebpHelper::convertToWebp($destination, $name);
 		} else Storage::putFileAs($destination, new File($file), $name);
