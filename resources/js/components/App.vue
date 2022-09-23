@@ -198,14 +198,15 @@ b {
   --global-border-radius: 12px;
 }
 .v-application {
-  button.primary {
+  .primary,
+  :is(div, i, button, span, label).primary {
     background-color: var(--first-color) !important;
     border-color: var(--first-color) !important;
   }
   a {
     color: var(--first-color);
   }
-  div.primary--text {
+  :is(div, i, button, span, label).primary--text {
     color: var(--first-color) !important;
     caret-color: var(--first-color) !important;
   }
