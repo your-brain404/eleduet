@@ -140,6 +140,9 @@ section.footer {
         @media (max-width: 992px) {
           margin-bottom: 1rem;
         }
+        @media (min-width: 992px) {
+          max-width: 300px;
+        }
         h4 {
           font-size: 1.5rem;
           color: white;
