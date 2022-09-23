@@ -29,11 +29,19 @@
                   v-model="currentObject.button_name_1"
                   label="Napis na pierwszym przycisku"
                 ></v-text-field>
+
                 <v-text-field
                   color="primary"
                   v-model="currentObject.button_link_1"
                   label="Link pierwszego przycisku"
                 ></v-text-field>
+                <v-checkbox
+                  color="primary"
+                  label="Przycisk typu 'pobierz'?"
+                  :input-value="currentObject.button_download_1"
+                  :value="currentObject.button_download_1"
+                  @change="currentObject.button_download_1 = $event"
+                ></v-checkbox>
                 <v-text-field
                   color="primary"
                   v-model="currentObject.button_name_2"
@@ -44,6 +52,13 @@
                   v-model="currentObject.button_link_2"
                   label="Link drugiego przycisku"
                 ></v-text-field>
+                <v-checkbox
+                  color="primary"
+                  label="Przycisk typu 'pobierz'?"
+                  :input-value="currentObject.button_download_2"
+                  :value="currentObject.button_download_2"
+                  @change="currentObject.button_download_2 = $event"
+                ></v-checkbox>
               </div>
             </v-col>
 

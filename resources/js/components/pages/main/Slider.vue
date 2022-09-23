@@ -22,12 +22,19 @@
         <div class="content">
           <h2 class="slide-title">{{ slide.title }}</h2>
           <p class="slide-subtitle">{{ slide.subtitle }}</p>
-          <router-link class="mr-2" :to="slide.button_link_1">
+          <router-link
+            class="mr-2"
+            :to="slide.button_link_1"
+            :download="slide.button_download_1"
+          >
             <button class="button first-button">
               {{ slide.button_name_1 }}
             </button>
           </router-link>
-          <router-link :to="slide.button_link_2">
+          <router-link
+            :to="slide.button_link_2"
+            :download="slide.button_download_2"
+          >
             <button class="button second-button">
               {{ slide.button_name_2 }}
             </button>
