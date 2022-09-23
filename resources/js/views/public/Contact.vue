@@ -8,8 +8,8 @@
           :key="`contact-link-${link.id}`"
         >
           <a
-            :href="link.link"
-            :target="link.link.includes(`http`) ? `_blank` : ``"
+            :href="link.link || ''"
+            :target="link.link && link.link.includes(`http`) ? `_blank` : ``"
             class="wrapper"
           >
             <span v-if="link.icon_svg" v-html="link.icon_svg"></span>
