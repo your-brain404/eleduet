@@ -50,9 +50,8 @@ class FileHelper
 		$destination = "$folder/" . $destination;
 
 		$storageDestinationPath = $_SERVER['ROOT'] . "/storage/$folder/$full_path";
-
-		if (!\File::exists($_SERVER['ROOT'] . "/storage/$folder/$date_folder")) {
-			\File::makeDirectory($_SERVER['ROOT'] . "/storage/$folder/$date_folder", 0755, true);
+		if (!\File::exists($_SERVER['ROOT'] . "/storage/$date_folder")) {
+			\File::makeDirectory($_SERVER['ROOT'] . "/storage/$date_folder", 0755, true);
 		}
 		if (in_array($file->getClientMimeType(), self::$webpTypes)) {
 			$img = \Image::make($file->getRealPath());
@@ -64,7 +63,8 @@ class FileHelper
 				$constraint->aspectRatio();
 				$constraint->upsize();
 			});
-			$img->save($storageDestinationPath);
+			$quality = $img->filesize() > 1000000 ? 50 : 90;
+			$img->save($storageDestinationPath, $quality, 'jpg');
 			WebpHelper::convertToWebp($destination, $name);
 		} else Storage::putFileAs($destination, new File($file), $name);
 
