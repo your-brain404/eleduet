@@ -24,14 +24,14 @@ class ServicesService
 		$model = $request->isMethod('put') ? self::$model::where('id', $request->input('id'))->first()->fill($data) : self::$model::create($data);
 
 		$model->save();
-
-		if (is_array($request->service_categories)) self::saveServicesServiceCategories($model, $request->service_categories);
+		if (is_array($request->service_categories)) self::saveServicesServiceCategories($model, array_unique($request->service_categories));
 
 		return $model;
 	}
 
 	private static function saveServicesServiceCategories($model, $requestServiceCategories)
 	{
+		dump($requestServiceCategories);
 		$modelServiceCategories = ServicesServiceCategories::where('service_id', $model->id)->get();
 		foreach ($modelServiceCategories as $row) {
 			if (!in_array($row->service_category_id, $requestServiceCategories)) $row->delete();
