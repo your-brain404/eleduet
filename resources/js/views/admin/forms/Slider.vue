@@ -86,6 +86,11 @@
                   v-model="currentObject.photo_background_position"
                   label="Pozycja zdjęcia"
                 ></v-text-field>
+                <v-text-field
+                  color="primary"
+                  v-model="currentObject.photo_background_size"
+                  label="Wielkość zdjęcia (wartość procentowa np. 95%)"
+                ></v-text-field>
               </div>
             </v-col>
           </v-row>

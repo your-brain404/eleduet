@@ -17,6 +17,7 @@
         :style="{
           'background-image': `url(${origin}/storage/media/${slide.photo})`,
           'background-position': `${slide.photo_background_position}`,
+          'background-size': `${slide.photo_background_size}`,
         }"
       >
         <div class="content">
