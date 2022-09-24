@@ -11,6 +11,9 @@
       v-lazy:background-image="
         `${origin}/storage/media/${servicesCallUs.photo}`
       "
+      :style="{
+        'background-position': servicesCallUs.photo_background_position,
+      }"
     >
       <div class="mask"></div>
       <div class="content">
