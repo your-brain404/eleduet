@@ -25,7 +25,7 @@ class ServicesService
 
 		$model->save();
 
-		if ($request->service_categories) self::saveServicesServiceCategories($model, $request->service_categories);
+		if (is_array($request->service_categories)) self::saveServicesServiceCategories($model, $request->service_categories);
 
 		return $model;
 	}
