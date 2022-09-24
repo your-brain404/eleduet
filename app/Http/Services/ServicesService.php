@@ -31,7 +31,6 @@ class ServicesService
 
 	private static function saveServicesServiceCategories($model, $requestServiceCategories)
 	{
-		dump($requestServiceCategories);
 		$modelServiceCategories = ServicesServiceCategories::where('service_id', $model->id)->get();
 		foreach ($modelServiceCategories as $row) {
 			if (!in_array($row->service_category_id, $requestServiceCategories)) $row->delete();
