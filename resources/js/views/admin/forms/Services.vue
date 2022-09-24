@@ -141,7 +141,6 @@ export default {
     currentObject: {
       deep: true,
       async handler(newValue, oldValue) {
-        console.log(newValue, oldValue);
         if (this.currentObject.id && !oldValue.id) {
           await this.$store.dispatch(
             "currentServiceCategories",
