@@ -3,26 +3,29 @@
     <v-card-text>
       <v-row class="d-flex justify-content-center">
         <v-col lg="4" sm="12" md="4">
-          <v-file-input
-            :color="$store.getters.settings.first_color"
-            id="file"
-            v-model="file"
-            multiple
-            show-size
-            counter
-            label="Pliki"
-            prepend-icon="mdi-files"
-          ></v-file-input>
-          <v-btn
-            :disabled="loading"
-            :loading="loading"
-            @click="submit"
-            class=""
-            color="success"
-          >
-            <v-icon left class="">mdi-check</v-icon>
-            <span>Wyślij</span>
-          </v-btn>
+          <v-form ref="form" v-model="valid" lazy-validation>
+            <v-file-input
+              :color="$store.getters.settings.first_color"
+              id="file"
+              v-model="file"
+              multiple
+              show-size
+              counter
+              label="Pliki"
+              prepend-icon="mdi-files"
+              :rules="rules"
+            ></v-file-input>
+            <v-btn
+              :disabled="loading"
+              :loading="loading"
+              @click="submit"
+              class=""
+              color="success"
+            >
+              <v-icon left class="">mdi-check</v-icon>
+              <span>Wyślij</span>
+            </v-btn>
+          </v-form>
         </v-col>
       </v-row>
     </v-card-text>
@@ -37,11 +40,27 @@ export default {
     return {
       file: [],
       loading: false,
+      valid: true,
+      rules: [
+        (value) => {
+          const MAX_SIZE = 25 * 1000000;
+          let invalidSizeFileNames = [];
+          for (let file of value) {
+            if (file.size > MAX_SIZE) invalidSizeFileNames.push(file.name);
+          }
+          return (
+            invalidSizeFileNames.length === 0 ||
+            `Pliki [${invalidSizeFileNames.join(
+              ", "
+            )}] nie powinny być większe niż 25 MB!`
+          );
+        },
+      ],
     };
   },
   methods: {
     submit() {
-      if (this.file.length == 0) return;
+      if (this.file.length == 0 || !this.valid) return;
       this.loading = true;
       for (let i = 0; i < this.file.length; i++) {
         let formData = new FormData();
