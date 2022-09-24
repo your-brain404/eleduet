@@ -26,13 +26,13 @@ class FileHelper
 		return $name;
 	}
 
-	private static function storeToMedia($file, $path)
+	private static function storeToMedia($file, $path, $file_options = [])
 	{
 
 		$media = new Media;
 		$media->path = str_replace('\\', '/', $path);
 		$media->name = self::$name;
-		$media->size = $file->getSize();
+		$media->size = $file_options['size'] ?? $file->getSize();
 		$media->type = $file->getClientMimeType();
 
 		$media->save();
@@ -48,6 +48,9 @@ class FileHelper
 		$destination = $date_folder . '/';
 		$full_path = $destination . $name;
 		$destination = "$folder/" . $destination;
+		$file_options = [
+			'size' => $file->getSize()
+		];
 
 		$storageDestinationPath = $_SERVER['ROOT'] . "/storage/$folder/$full_path";
 		if (!\File::exists($_SERVER['ROOT'] . "/storage/$date_folder")) {
@@ -65,10 +68,11 @@ class FileHelper
 			});
 			$quality = $img->filesize() > 1000000 ? 50 : 90;
 			$img->save($storageDestinationPath, $quality, 'jpg');
+			$file_options['size'] = $img->filesize();
 			WebpHelper::convertToWebp($destination, $name);
 		} else Storage::putFileAs($destination, new File($file), $name);
 
-		$media = $folder == 'media' ? self::storeToMedia($file, $full_path) : $full_path;
+		$media = $folder == 'media' ? self::storeToMedia($file, $full_path, $file_options) : $full_path;
 
 		return $media;
 	}
