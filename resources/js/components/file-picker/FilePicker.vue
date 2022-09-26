@@ -1,6 +1,6 @@
 <template>
   <v-row justify="center" class="mt-5 mb-2 px-3">
-    <v-dialog v-model="dialog" persistent>
+    <v-dialog content-class="file-picker" v-model="dialog" persistent>
       <template v-slot:activator="{ on, attrs }">
         <v-btn
           :color="$store.getters.settings.first_color"
@@ -13,95 +13,176 @@
         </v-btn>
       </template>
       <v-card>
-        <v-card-title class="d-flex justify-content-between position-relative">
-          <div class="d-flex align-items-center">
-            <div>Dodaj plik</div>
-            <div class="ml-3">
-              <v-text-field
-                label="Szukaj"
-                prepend-icon="mdi-magnify"
-                v-model="search"
-                @change="searchPhoto"
-              ></v-text-field>
-            </div>
-          </div>
-          <v-icon class="file-picker-close" @click="dialog = false"
-            >mdi-close</v-icon
+        <div class="file-picker-menu">
+          <v-card-title
+            class="d-flex justify-content-between position-relative"
           >
-        </v-card-title>
-        <v-tabs v-model="tab" background-color="primary" dark>
-          <v-tab v-for="tab in tabs" :key="tab">
-            {{ tab }}
-          </v-tab>
-        </v-tabs>
+            <div class="d-flex align-items-center flex-wrap">
+              <div>Dodaj plik</div>
+              <div class="ml-3">
+                <v-text-field
+                  label="Szukaj"
+                  prepend-icon="mdi-magnify"
+                  v-model="search"
+                  @change="searchPhoto"
+                ></v-text-field>
+              </div>
+            </div>
+            <v-icon class="file-picker-close" @click="dialog = false"
+              >mdi-close</v-icon
+            >
+          </v-card-title>
+          <v-tabs v-model="tab" background-color="primary" dark>
+            <v-tab v-for="tab in tabs" :key="tab">
+              {{ tab }}
+            </v-tab>
+          </v-tabs>
+        </div>
 
         <v-tabs-items v-model="tab">
           <v-tab-item>
             <v-card flat>
-              <v-card-text>
-                <v-container>
-                  <v-row class="d-flex align-items-center">
+              <v-card-text class="p-0">
+                <div class="mx-0">
+                  <div
+                    class="row mx-0 choose-file-row"
+                    style="align-items: end"
+                  >
                     <v-col
-                      @mouseout="closeIcon = 0"
-                      @mouseover="showCloseIcon(file.id)"
-                      class="
-                        d-flex
-                        file-picker-col
-                        align-items-between
-                        flex-column
-                      "
-                      lg="2"
-                      md="3"
-                      sm="4"
-                      v-for="file in filteredFiles"
-                      :key="file.id"
+                      cols="12"
+                      lg="8"
+                      md="8"
+                      style="align-items: flex-end; display: flex"
                     >
-                      <div class="d-flex justify-content-between">
-                        <v-icon
-                          class="check-icon"
-                          :color="activeFile == file.id ? 'success' : 'white'"
-                          >mdi-check</v-icon
+                      <v-row
+                        class="d-flex align-items-center py-5 files-container"
+                      >
+                        <v-col
+                          @mouseout="closeIcon = 0"
+                          @mouseover="showCloseIcon(file.id)"
+                          class="
+                            d-flex
+                            file-picker-col
+                            align-items-between
+                            flex-column
+                          "
+                          lg="2"
+                          md="3"
+                          sm="4"
+                          cols="6"
+                          v-for="file in filteredFiles"
+                          :key="file.id"
                         >
+                          <img
+                            v-if="file.type.split('/')[0] == 'image'"
+                            loading="lazy"
+                            @click="setFileClass(file.id)"
+                            class="image-picker-photo"
+                            :src="url(file.path)"
+                          />
+
+                          <a
+                            v-else
+                            target="_blank"
+                            class="text-center"
+                            :href="url(file.path)"
+                          >
+                            <v-btn :color="$store.getters.settings.first_color">
+                              <v-icon left>mdi-file</v-icon>
+                              <span>Podgląd</span>
+                            </v-btn>
+                          </a>
+                          <div
+                            @click="setFileClass(file.id)"
+                            class="file-picker-file"
+                          >
+                            {{ file.path.split("/")[1] }}
+                          </div>
+                        </v-col>
+                        <v-col cols="12">
+                          <v-pagination
+                            class="file-picker-pagination"
+                            v-model="page"
+                            :length="Math.ceil(files.length / 12)"
+                          ></v-pagination>
+                        </v-col>
+                      </v-row>
+                      <v-row> </v-row>
+                    </v-col>
+                    <v-col
+                      class="chosen-file-col"
+                      :class="{ 'mobile-show': chosenFileColumnShow }"
+                      lg="4"
+                      cols="12"
+                      md="4"
+                    >
+                      <div v-if="chosenFile" class="chosen-file-container">
                         <v-icon
-                          @click="deleteFile(file.id)"
-                          :color="closeIcon == file.id ? 'black' : 'white'"
-                          class="close-icon"
+                          @click="chosenFileColumnShow = false"
+                          :color="'black'"
+                          class="close-file-details-icon"
                           >mdi-close</v-icon
                         >
-                      </div>
-                      <v-lazy
-                        v-if="file.type.split('/')[0] == 'image'"
-                        :options="{ threshold: 0.5 }"
-                        transition="fade-transition"
-                        min-height="100px"
-                        v-model="lazyFiles[i]"
-                      >
+                        <div
+                          class="
+                            d-flex
+                            justify-content-between
+                            align-items-center
+                          "
+                        >
+                          <h4>Wybrany plik:</h4>
+                          <u
+                            @click="deleteFile(chosenFile.id)"
+                            class="text-danger"
+                            style="cursor: pointer"
+                            >Usuń</u
+                          >
+                        </div>
+
                         <img
-                          @click="setFileClass(file.id)"
-                          class="image-picker-photo"
-                          :src="url(file.path)"
+                          class="img-fluid chosen-img-placeholder"
+                          v-if="isPhoto(chosenFile.type)"
+                          :src="url(chosenFile.path)"
+                          alt=""
                         />
-                      </v-lazy>
-                      <a
-                        v-if="file.type.split('/')[0] != 'image'"
-                        target="_blank"
-                        class="text-center"
-                        :href="url(file.path)"
-                      >
-                        <v-btn :color="$store.getters.settings.first_color">
-                          <v-icon left>mdi-file</v-icon>
-                          <span>Podgląd</span>
+                        <v-btn
+                          class="w-100 mt-2 mb-5"
+                          @click="dialog = false"
+                          color="success"
+                        >
+                          <v-icon left class="check-icon" :color="'white'"
+                            >mdi-check</v-icon
+                          >
+                          Zatwierdź
                         </v-btn>
-                      </a>
-                      <div
-                        @click="setFileClass(file.id)"
-                        class="file-picker-file"
-                      >
-                        {{ file.path.split("/")[1] }}
+                        <ul>
+                          <li>Nazwa: {{ chosenFile.name }}</li>
+                          <li style="word-break: break-all">
+                            Ścieżka: {{ chosenFile.path }}
+                          </li>
+                          <li>
+                            Rozmiar: {{ formatFileSize(chosenFile.size) }}
+                          </li>
+                          <li>Typ: {{ chosenFile.type }}</li>
+                          <li>
+                            Data utworzenia:
+                            {{
+                              new Date(chosenFile.created_at).toLocaleString()
+                            }}
+                          </li>
+                          <li>
+                            <v-btn
+                              @click="copyToClipboard(url(chosenFile.path))"
+                              class="white--text"
+                              :color="$store.getters.settings.first_color"
+                              >KOPIUJ LINK</v-btn
+                            >
+                          </li>
+                        </ul>
                       </div>
                     </v-col>
-                  </v-row>
-                </v-container>
+                  </div>
+                </div>
               </v-card-text>
             </v-card>
           </v-tab-item>
@@ -118,6 +199,9 @@
 import axios from "axios";
 import AddFiles from "./AddFiles.vue";
 import url from "@/helpers/photo/url";
+import isPhoto from "@/helpers/files/is-photo";
+import formatFileSize from "@/helpers/files/format-file-size";
+import copyToClipboard from "@/helpers/copy/copy-to-clipboard";
 
 export default {
   props: ["activeFilePath", "title", "loadFlag"],
@@ -132,7 +216,9 @@ export default {
       closeIcon: 0,
       search: "",
       lazyFiles: [],
+      page: 1,
       url,
+      chosenFileColumnShow: false,
     };
   },
   components: {
@@ -146,7 +232,13 @@ export default {
           filteredFiles.push(file);
         }
       }
-      return filteredFiles;
+      return filteredFiles.slice(
+        (this.page - 1) * 12,
+        (this.page - 1) * 12 + 12
+      );
+    },
+    chosenFile() {
+      return this.files.find((file) => file.id == this.activeFile);
     },
   },
   watch: {
@@ -159,6 +251,11 @@ export default {
     },
   },
   methods: {
+    isPhoto,
+    formatFileSize,
+    copyToClipboard(text) {
+      copyToClipboard(text);
+    },
     showCloseIcon(id) {
       this.closeIcon = id;
     },
@@ -166,7 +263,7 @@ export default {
       if (this.activeFilePath != null) {
         for (let file of this.files) {
           if (file.id == id && id == this.activeFile) {
-            this.$emit("loadedFile", "placeholder");
+            this.$emit("loadedFile", "");
             this.$emit("updateDeletedFile");
           }
         }
@@ -216,6 +313,7 @@ export default {
     },
     setFileClass(id) {
       this.activeFile = id;
+      this.chosenFileColumnShow = true;
 
       this.sendFileIdToPlaceholder();
     },
@@ -225,14 +323,108 @@ export default {
   },
 };
 </script>
-<style>
+<style lang="scss">
+.file-picker {
+  @media (min-width: 992px) {
+    overflow-y: unset !important;
+  }
+}
+.file-picker-pagination {
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  li::before {
+    display: none;
+  }
+}
+.choose-file-row {
+  @media (min-width: 992px) {
+    height: 80vh;
+  }
+  @media (max-width: 992px) {
+    padding-top: 25px;
+  }
+}
+.close-file-details-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(-100%, -100%);
+  z-index: 1;
+  @media (min-width: 992px) {
+    display: none !important;
+  }
+  @media (max-width: 576px) {
+    transform: translate(-50%, -50%);
+  }
+}
 .file-picker-file {
   cursor: pointer;
+  word-break: break-all;
+}
+.files-container {
+  @media (min-width: 992px) {
+    overflow-y: auto;
+    height: calc(80vh - 162px);
+  }
 }
 
+.file-picker-menu {
+  position: fixed;
+  width: calc(100% - 24px * 2);
+  z-index: 1;
+  background: white;
+  @media (max-width: 992px) {
+    position: sticky;
+    width: unset;
+    top: 0;
+  }
+}
 .file-picker-close {
   position: absolute !important;
   top: 14%;
   right: 2%;
+}
+.chosen-file-col {
+  padding: 3rem !important;
+  @media (min-width: 992px) {
+    border-left: 1px solid #ebebeb;
+    overflow-y: auto;
+    height: calc(80vh - 162px);
+  }
+  @media (max-width: 992px) {
+    position: fixed;
+    right: 0;
+    top: 5vh;
+    z-index: 1;
+    background: white;
+    width: 50% !important;
+    max-width: unset !important;
+    flex: unset !important;
+    overflow-y: auto;
+    height: 90vh;
+    box-shadow: 1px 1px 10px black;
+    transition: transform 0.5s ease;
+    transform: translateX(100%);
+    &.mobile-show {
+      transform: translateX(0%);
+    }
+  }
+  @media (max-width: 576px) {
+    width: 280px !important;
+    padding: 1rem !important;
+  }
+}
+.chosen-img-placeholder {
+  border: 2px solid #ebebeb;
+  padding: 1rem;
+}
+.chosen-file-container {
+  position: relative;
+  ul {
+    padding-left: 0 !important;
+    padding-top: 1rem;
+  }
 }
 </style>

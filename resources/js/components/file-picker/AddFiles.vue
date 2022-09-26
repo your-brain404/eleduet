@@ -83,3 +83,11 @@ export default {
   },
 };
 </script>
+
+<style scoped lang="scss">
+.add-files-row {
+  @media (min-width: 992px) {
+    padding-top: 150px;
+  }
+}
+</style>
