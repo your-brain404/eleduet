@@ -61,10 +61,6 @@
             <v-col cols="12" md="4">
               <div class="pa-5 d-flex flex-column justify-content-between">
                 <div>
-                  <v-img
-                    :src="activePhoto"
-                    :alt="currentObject.photo_alt"
-                  ></v-img>
                   <ImagePicker
                     @updateDeletedPhoto="updateDeletedPhoto"
                     :activePhotoPath="currentObject.photo"

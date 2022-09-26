@@ -114,12 +114,12 @@ export default {
                     this.$store.commit("setSnackbar", SnackbarAlerts.error);
                 });
         },
-        edit(formData) {
+        edit(formData, options = { redirect: true }) {
             axios
                 .put(`/api/${this.$route.path.split("/")[2]}/edit`, formData)
                 .then(res => {
                     this.$store.commit("setSnackbar", SnackbarAlerts.success);
-                    this.redirect();
+                    if (options.redirect) this.redirect();
                 })
                 .catch(err => {
                     this.$store.commit("setSnackbar", SnackbarAlerts.error);
@@ -131,10 +131,12 @@ export default {
             this.$route.params.id ? this.edit(formData) : this.add(formData);
         },
         updateDeletedPhoto() {
-            this.edit(this.getFormData());
+            if (this.$route.params.id)
+                this.edit(this.getFormData(), { redirect: false });
         },
         updateDeletedFile() {
-            this.edit(this.getFormData());
+            if (this.$route.params.id)
+                this.edit(this.getFormData(), { redirect: false });
         },
         secureRoutes() {
             let user = JSON.parse(localStorage.getItem("user"));
