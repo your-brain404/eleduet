@@ -1,7 +1,7 @@
 <template>
   <v-card flat>
     <v-card-text>
-      <v-row class="d-flex justify-content-center">
+      <v-row class="d-flex justify-content-center add-files-row">
         <v-col lg="4" sm="12" md="4">
           <v-form ref="form" v-model="valid" lazy-validation>
             <v-file-input

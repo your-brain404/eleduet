@@ -76,38 +76,11 @@
                 ></v-text-field>
               </div>
               <div class="pa-5 d-flex flex-column justify-content-between">
-                <div>
-                  <div
-                    v-if="currentObject.privace_policy"
-                    class="
-                      w-100
-                      d-flex
-                      justify-content-between
-                      align-items-center
-                    "
-                  >
-                    <a target="_blank" :href="activeFile">
-                      <div>
-                        {{
-                          currentObject.privace_policy.split("/")[
-                            currentObject.privace_policy.split("/").length - 1
-                          ]
-                        }}
-                      </div>
-                    </a>
-                    <v-btn @click="currentObject.privace_policy = ''" icon>
-                      <v-icon>mdi-close</v-icon>
-                    </v-btn>
-                  </div>
-                  <FilePicker
-                    @loadFiles="fetchFiles"
-                    :loadFlag="loadFlag"
-                    :title="'Polityka prywatności'"
-                    @updateDeletedFile="updateDeletedFile"
-                    :activeFilePath="currentObject.privace_policy"
-                    @loadedFile="currentObject.privace_policy = $event"
-                  />
-                </div>
+                <FilePicker
+                  v-model="currentObject.privace_policy"
+                  :title="'Polityka prywatności'"
+                  @updateDeletedFile="updateDeletedFile"
+                />
               </div>
             </v-col>
           </v-row>
@@ -147,7 +120,6 @@ export default {
   data() {
     return {
       ...data,
-      loadFlag: false,
       currentObject: {
         company: "",
         rodo_1: "",
@@ -167,10 +139,6 @@ export default {
   ...vueComponents,
   methods: {
     ...vueComponents.methods,
-    fetchFiles(e) {
-      this.loadFlag = true;
-      setTimeout(() => (this.loadFlag = false), 200);
-    },
   },
 };
 </script>

@@ -1,5 +1,18 @@
 <template>
   <v-row justify="center" class="mt-5 mb-2 px-3">
+    <v-col
+      v-if="value"
+      class="w-100 d-flex justify-content-between align-items-center"
+    >
+      <a target="_blank" :href="value">
+        <div>
+          {{ value.split("/")[value.split("/").length - 1] }}
+        </div>
+      </a>
+      <v-btn @click="clearActiveFile" icon>
+        <v-icon>mdi-close</v-icon>
+      </v-btn>
+    </v-col>
     <v-dialog content-class="file-picker" v-model="dialog" persistent>
       <template v-slot:activator="{ on, attrs }">
         <v-btn
@@ -38,7 +51,6 @@
             </v-tab>
           </v-tabs>
         </div>
-
         <v-tabs-items v-model="tab">
           <v-tab-item>
             <v-card flat>
@@ -58,8 +70,6 @@
                         class="d-flex align-items-center py-5 files-container"
                       >
                         <v-col
-                          @mouseout="closeIcon = 0"
-                          @mouseover="showCloseIcon(file.id)"
                           class="
                             d-flex
                             file-picker-col
@@ -80,7 +90,6 @@
                             class="image-picker-photo"
                             :src="url(file.path)"
                           />
-
                           <a
                             v-else
                             target="_blank"
@@ -138,7 +147,6 @@
                             >Usuń</u
                           >
                         </div>
-
                         <img
                           class="img-fluid chosen-img-placeholder"
                           v-if="isPhoto(chosenFile.type)"
@@ -204,7 +212,7 @@ import formatFileSize from "@/helpers/files/format-file-size";
 import copyToClipboard from "@/helpers/copy/copy-to-clipboard";
 
 export default {
-  props: ["activeFilePath", "title", "loadFlag"],
+  props: ["value", "title"],
   data() {
     return {
       dialog: false,
@@ -213,9 +221,7 @@ export default {
       files: [],
       activeFile: 0,
       multiple: false,
-      closeIcon: 0,
       search: "",
-      lazyFiles: [],
       page: 1,
       url,
       chosenFileColumnShow: false,
@@ -243,40 +249,34 @@ export default {
   },
   watch: {
     files() {
-      if (this.files != undefined && this.activeFilePath)
-        this.activeFile = this.getFileByPath(this.activeFilePath).id;
-    },
-    loadFlag() {
-      if (this.loadFlag) this.loadFiles();
+      if (this.files != undefined && this.value)
+        this.activeFile = this.getFileByPath(this.value)?.id;
     },
   },
   methods: {
     isPhoto,
     formatFileSize,
-    copyToClipboard(text) {
-      copyToClipboard(text);
+    copyToClipboard,
+    clearActiveFile() {
+      this.activeFile = 0;
+      this.$emit("input", "");
     },
-    showCloseIcon(id) {
-      this.closeIcon = id;
-    },
+
     isActiveFileDeleted(id) {
-      if (this.activeFilePath != null) {
-        for (let file of this.files) {
-          if (file.id == id && id == this.activeFile) {
-            this.$emit("loadedFile", "");
-            this.$emit("updateDeletedFile");
-          }
-        }
+      if (!this.value) return;
+      let activeFile = this.files.find(
+        (file) => file.id == id && id == this.activeFile
+      );
+
+      if (activeFile) {
+        this.$emit("input", "");
+        this.$emit("updateDeletedFile");
       }
     },
 
     loadFiles() {
-      this.$emit("loadFiles");
       axios.get("/api/media/get_all").then((res) => {
         this.files = res.data;
-        for (let file of this.files) {
-          this.lazyFiles.push(false);
-        }
       });
     },
 
@@ -291,31 +291,20 @@ export default {
           .catch((err) => console.log(err));
       }
     },
-    getFileById(id) {
-      for (let i = 0; i < this.files.length; i++) {
-        if (this.files[i].id == id) {
-          return this.files[i];
-        }
-      }
-    },
-    getFileByPath(path) {
-      for (let i = 0; i < this.files.length; i++) {
-        if (this.files[i].path == path) {
-          return this.files[i];
-        }
-      }
-    },
-    sendFileIdToPlaceholder() {
-      let data = [];
-      data = this.getFileById(this.activeFile).path;
 
-      this.$emit("loadedFile", data);
+    getFileByPath(path) {
+      return this.files.find((file) => file.path === path);
+    },
+    sendFilePathToPlaceholder() {
+      let data = this.chosenFile?.path;
+
+      if (data) this.$emit("input", data);
     },
     setFileClass(id) {
       this.activeFile = id;
       this.chosenFileColumnShow = true;
 
-      this.sendFileIdToPlaceholder();
+      this.sendFilePathToPlaceholder();
     },
   },
   created() {
