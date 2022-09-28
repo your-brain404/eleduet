@@ -23,32 +23,34 @@
         <div class="content">
           <h2 class="slide-title">{{ slide.title }}</h2>
           <p class="slide-subtitle">{{ slide.subtitle }}</p>
-          <router-link
+
+          <custom-link
             class="mr-2"
-            :to="slide.button_link_1"
+            :path="slide.button_link_1"
             :download="slide.button_download_1"
           >
             <button class="button first-button">
               {{ slide.button_name_1 }}
             </button>
-          </router-link>
-          <router-link
-            :to="slide.button_link_2"
+          </custom-link>
+          <custom-link
+            :path="slide.button_link_2"
             :download="slide.button_download_2"
           >
             <button class="button second-button">
               {{ slide.button_name_2 }}
             </button>
-          </router-link>
+          </custom-link>
         </div>
         <div class="mask"></div>
       </div>
     </carousel>
   </section>
 </template>
-
+ 
 <script>
 import carousel from "vue-owl-carousel2";
+import CustomLink from "@/components/custom-link/CustomLink";
 
 export default {
   props: ["reloadFlag"],
@@ -68,6 +70,7 @@ export default {
   },
   components: {
     carousel,
+    CustomLink,
   },
   methods: {
     emitData() {

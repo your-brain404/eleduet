@@ -9,6 +9,7 @@ import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel";
 import VueMeta from "vue-meta";
 import VueLazyload from "vue-lazyload";
+import isExternal from "@/helpers/links/is-external";
 
 Vue.component("app", require("./components/App.vue").default);
 Vue.use(Vuelidate);
@@ -19,6 +20,7 @@ Vue.use(VueMeta, {
 Vue.use(VueLazyload);
 
 Vue.prototype.$vueMeta = VueMeta;
+Vue.prototype.$isLinkExternal = isExternal;
 
 const ignoreWarnMessage =
     "The .native modifier for v-on is only valid on components but it was used on <div>.";
