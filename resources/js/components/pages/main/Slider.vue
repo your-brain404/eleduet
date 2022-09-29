@@ -105,7 +105,7 @@ export default {
 <style scoped lang="scss">
 section.slider {
   .slide {
-    height: 500px;
+    min-height: 500px;
     background-position: 50% 50%;
     display: flex;
     align-items: center;

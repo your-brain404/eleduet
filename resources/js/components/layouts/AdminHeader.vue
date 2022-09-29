@@ -18,7 +18,10 @@
         <v-list-item-content>
           <v-list-item-title>Panel Administracyjny</v-list-item-title>
           <router-link to="/">
-            <v-list-item-subtitle>{{ settings.company }}</v-list-item-subtitle>
+            <v-list-item-subtitle
+              style="overflow: unset; text-overflow: unset; white-space: unset"
+              >{{ settings.company }}</v-list-item-subtitle
+            >
           </router-link>
           <v-btn
             class="mt-5"
