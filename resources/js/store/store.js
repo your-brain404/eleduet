@@ -38,6 +38,7 @@ import Vue from "vue";
 import SolarSystemCallUs from "@/store/modules/solarSystemCallUs/solarSystemCallUsModule.js";
 import ContactLinks from "@/store/modules/contactLinks/contactLinksModule.js";
 import AboutPage from "@/store/modules/aboutPage/aboutPageModule.js";
+import FormService from "@/store/modules/formService/formServiceModule.js";
 
 
 Vue.use(Vuex);
@@ -82,6 +83,7 @@ export default new Vuex.Store({
 				SolarSystem,
 				SolarSystemCallUs,
 				ContactLinks,
-				AboutPage
+				AboutPage,
+				FormService
             }
         });

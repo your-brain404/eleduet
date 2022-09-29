@@ -53,12 +53,7 @@
             </v-col>
             <v-col cols="12" md="4">
               <div class="pa-5">
-                <ImagePicker
-                  @updateDeletedPhoto="updateDeletedPhoto"
-                  :activePhotoPath="currentObject.photo"
-                  @loadedImage="setImagePlaceholder"
-                  :img="currentObject.photo"
-                />
+                <FilePicker v-model="currentObject.photo" images-only />
 
                 <v-text-field
                   color="primary"
@@ -92,32 +87,9 @@
 </template>
 
 <script>
-import FormService from "../../../services/FormService.js";
-let data = {};
-let vueComponents = {};
-
-Object.entries(FormService).forEach((form) =>
-  form[0] != "data" ? (vueComponents[form[0]] = form[1]) : (data = form[1])
-);
+import FormService from "@/mixins/FormService.js";
 
 export default {
-  data() {
-    return {
-      ...data,
-      currentObject: {
-        active: false,
-        order_number: 0,
-        title: "",
-        subtitle: "",
-        short_description: "",
-        description: "",
-        photo: "",
-        photo_alt: "",
-        button_name: "",
-        link: "",
-      },
-    };
-  },
-  ...vueComponents,
+  mixins: [FormService],
 };
 </script>

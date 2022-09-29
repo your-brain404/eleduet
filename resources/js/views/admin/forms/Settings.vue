@@ -60,14 +60,11 @@
 
             <v-col cols="12" md="4">
               <div class="pa-5 d-flex flex-column justify-content-between">
-                <div>
-                  <ImagePicker
-                    @updateDeletedPhoto="updateDeletedPhoto"
-                    :activePhotoPath="currentObject.photo"
-                    @loadedImage="setImagePlaceholder"
-                    :img="currentObject.photo"
-                  />
-                </div>
+                <FilePicker
+                  v-model="currentObject.photo"
+                  :title="'Logo'"
+                  images-only
+                />
 
                 <v-text-field
                   color="primary"
@@ -79,7 +76,6 @@
                 <FilePicker
                   v-model="currentObject.privace_policy"
                   :title="'Polityka prywatności'"
-                  @updateDeletedFile="updateDeletedFile"
                 />
               </div>
             </v-col>
@@ -108,37 +104,9 @@
 </template>
 
 <script>
-import FormService from "../../../services/FormService.js";
-let data = {};
-let vueComponents = {};
-
-Object.entries(FormService).forEach((form) =>
-  form[0] != "data" ? (vueComponents[form[0]] = form[1]) : (data = form[1])
-);
+import FormService from "@/mixins/FormService.js";
 
 export default {
-  data() {
-    return {
-      ...data,
-      currentObject: {
-        company: "",
-        rodo_1: "",
-        rodo_2: "",
-        photo: "",
-        photo_alt: "",
-        privace_policy: "",
-        shop_regulations: "",
-        description: "",
-        cookies: "",
-        cookies_button: "",
-        cookies_privace_button: "",
-        first_color: "",
-      },
-    };
-  },
-  ...vueComponents,
-  methods: {
-    ...vueComponents.methods,
-  },
+  mixins: [FormService],
 };
 </script>
