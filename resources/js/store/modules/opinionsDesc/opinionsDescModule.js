@@ -2,7 +2,7 @@ import axios from "axios";
 
 export default {
     state: {
-        opinionsDesc: {}
+        opinionsDesc: window.global.cms.homePage.opinionsDesc || {}
     },
     getters: {
         opinionsDesc: state => state.opinionsDesc

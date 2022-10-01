@@ -2,13 +2,15 @@ import axios from "axios";
 
 export default {
     state: {
-        serviceCategories: {},
+        serviceCategories:
+            window.global.cms.servicesPage.serviceCategories || []
     },
     getters: {
         serviceCategories: state => state.serviceCategories
     },
     mutations: {
-        serviceCategories: (state, serviceCategories) => state.serviceCategories = serviceCategories
+        serviceCategories: (state, serviceCategories) =>
+            (state.serviceCategories = serviceCategories)
     },
     actions: {
         async serviceCategories({ commit }) {
@@ -19,8 +21,11 @@ export default {
                 })
                 .catch(err => {
                     console.log(err);
-                    commit('setSnackbar', 'Przepraszamy, nie udało się załadować danych usługi...');
+                    commit(
+                        "setSnackbar",
+                        "Przepraszamy, nie udało się załadować danych usługi..."
+                    );
                 });
         }
     }
-}
+};

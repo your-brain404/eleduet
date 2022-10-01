@@ -2,7 +2,7 @@ import axios from "axios";
 
 export default {
     state: {
-        homeServicesDesc: {}
+        homeServicesDesc: window.global.cms.homePage.homeServicesDesc || {}
     },
     getters: {
         homeServicesDesc: state => state.homeServicesDesc

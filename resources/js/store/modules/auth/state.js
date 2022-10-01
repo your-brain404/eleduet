@@ -1,4 +1,7 @@
+import parseJwt from "@/helpers/auth/tokenDecoder.js";
+import getCookie from "@/helpers/cookies/get-cookie";
+
 export default {
-	user: {},
-	token: ''
-}
+    user: window.global.auth || {},
+    token: parseJwt(getCookie("token"))?.sub || ""
+};

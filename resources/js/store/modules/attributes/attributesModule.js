@@ -2,7 +2,7 @@ import axios from "axios";
 
 export default {
     state: {
-        attributes: []
+        attributes: window.global.cms.homePage.attributes || []
     },
     getters: {
         attributes: state => state.attributes

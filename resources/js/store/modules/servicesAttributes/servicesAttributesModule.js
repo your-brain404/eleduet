@@ -2,13 +2,15 @@ import axios from "axios";
 
 export default {
     state: {
-        servicesAttributes: []
+        servicesAttributes:
+            window.global.cms.servicesPage.servicesAttributes || []
     },
     getters: {
         servicesAttributes: state => state.servicesAttributes
     },
     mutations: {
-        servicesAttributes: (state, servicesAttributes) => (state.servicesAttributes = servicesAttributes)
+        servicesAttributes: (state, servicesAttributes) =>
+            (state.servicesAttributes = servicesAttributes)
     },
     actions: {
         async servicesAttributes({ commit }) {

@@ -2,7 +2,8 @@ import axios from "axios";
 
 export default {
     state: {
-        homeSolarSystemDesc: {}
+        homeSolarSystemDesc:
+            window.global.cms.homePage.homeSolarSystemDesc || {}
     },
     getters: {
         homeSolarSystemDesc: state => state.homeSolarSystemDesc

@@ -1,4 +1,4 @@
 export default {
-	subpages: [],
-	currentSubpage: {}
-}
+    subpages: window.global.config.subpages || [],
+    currentSubpage: window.global.config.currentSubpage
+};

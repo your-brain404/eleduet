@@ -2,13 +2,14 @@ import axios from "axios";
 
 export default {
     state: {
-        contactLinks: []
+        contactLinks: window.global.cms.contactPage.contactLinks || []
     },
     getters: {
         contactLinks: state => state.contactLinks
     },
     mutations: {
-        contactLinks: (state, contactLinks) => (state.contactLinks = contactLinks)
+        contactLinks: (state, contactLinks) =>
+            (state.contactLinks = contactLinks)
     },
     actions: {
         async contactLinks({ commit }) {

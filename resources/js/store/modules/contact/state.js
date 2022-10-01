@@ -1,3 +1,3 @@
 export default {
-	contact: {}
-}
+    contact: window.global.config.contact || {}
+};

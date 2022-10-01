@@ -2,7 +2,7 @@ import axios from "axios";
 
 export default {
     state: {
-        slider: []
+        slider: window.global.cms.homePage.slider || []
     },
     mutations: {
         slider: (state, slider) => (state.slider = slider)

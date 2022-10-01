@@ -2,7 +2,7 @@ import axios from "axios";
 
 export default {
     state: {
-        executionProcess: []
+        executionProcess: window.global.cms.homePage.executionProcess || []
     },
     getters: {
         executionProcess: state => state.executionProcess

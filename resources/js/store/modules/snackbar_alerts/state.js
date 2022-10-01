@@ -1,3 +1,3 @@
 export default {
-	snackbarAlerts: {},
-}
+    snackbarAlerts: window.global.config.snackbarAlerts || {}
+};

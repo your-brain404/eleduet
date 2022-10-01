@@ -3,7 +3,7 @@ import router from "@/router/routes.js";
 
 export default {
     state: {
-        about: {}
+        about: window.global.cms.homePage.about || {}
     },
     getters: {
         about: state => state.about

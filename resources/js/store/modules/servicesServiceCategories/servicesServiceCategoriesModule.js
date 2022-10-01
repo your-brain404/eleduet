@@ -2,7 +2,8 @@ import axios from "axios";
 
 export default {
     state: {
-        servicesServiceCategories: []
+        servicesServiceCategories:
+            window.global.cms.servicesPage.servicesServiceCategories || []
     },
     getters: {
         servicesServiceCategories: state => state.servicesServiceCategories

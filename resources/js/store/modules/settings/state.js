@@ -1,3 +1,3 @@
 export default {
-	settings: {},
-}
+    settings: window.global.config.settings || {}
+};

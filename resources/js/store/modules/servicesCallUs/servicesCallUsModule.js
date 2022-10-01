@@ -2,7 +2,7 @@ import axios from "axios";
 
 export default {
     state: {
-        servicesCallUs: {}
+        servicesCallUs: window.global.cms.servicesPage.servicesCallUs || {}
     },
     getters: {
         servicesCallUs: state => state.servicesCallUs

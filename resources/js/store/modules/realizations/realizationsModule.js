@@ -3,7 +3,7 @@ import router from "@/router/routes.js";
 
 export default {
     state: {
-        realizations: []
+        realizations: window.global.cms.realizationsPage.realizations || []
     },
     getters: {
         realizations: state => state.realizations
