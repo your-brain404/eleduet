@@ -32,7 +32,8 @@ export default {
             .catch(err => console.log(err));
     },
     async authAutoLogin({ commit }) {
-        let userId = parseJwt(getCookie("token")).sub;
+        let userId = parseJwt(getCookie("token"))?.sub;
+        if (!userId) return;
         await axios.post("api/auth/auto_login/", { id: userId });
         await axios
             .get("api/users/get_one/" + userId)
