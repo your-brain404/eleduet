@@ -179,7 +179,7 @@ export default {
 </style>
 <style>
 * {
-  font-family: "Candara" !important;
+  /* font-family: "Candara" !important; */
 }
 
 .nav-drawer {

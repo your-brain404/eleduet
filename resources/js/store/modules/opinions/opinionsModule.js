@@ -2,7 +2,7 @@ import axios from "axios";
 
 export default {
     state: {
-        opinions: window.global.cms.homePage.opinions || []
+        opinions: window.global.cms.homePage.opinions
     },
     getters: {
         opinions: state => state.opinions

@@ -112,8 +112,7 @@ export default {
   },
   computed: {
     isPathAdmin() {
-      const pathSegments = this.$route.path.split("/");
-      return pathSegments[1] == "admin-panel" ? true : false;
+      return this.$route.meta.adminRoute;
     },
     loading() {
       return this.$store.getters.loading;
@@ -133,6 +132,18 @@ export default {
       this.openLogin = true;
       setTimeout(() => (this.openLogin = false), 20);
     },
+    setCurrentSubpage() {
+      let currentSubpage = this.subpages.find(
+        (subpage) => subpage.page === this.$route.path
+      );
+
+      if (this.$route.name === "Service") {
+        currentSubpage = this.subpages.find(
+          (subpage) => subpage.page === "/uslugi"
+        );
+      }
+      this.$store.commit("currentSubpage", currentSubpage);
+    },
     checkSubpageEntry() {
       for (let subpage of this.subpages) {
         if (subpage.page == "/" + this.$route.path.split("/")[1]) {
@@ -147,38 +158,15 @@ export default {
       else this.title = this.currentSubpage ? this.currentSubpage.title : "";
     },
 
-    autoLogin() {
-      if (localStorage.getItem("fbLogin")) {
-        this.$store.dispatch("fbLogin");
-      }
-
-      if (localStorage.getItem("authLogin")) {
-        this.$store.dispatch("authAutoLogin");
-      }
-    },
     setCart() {
       if (localStorage.getItem("cart") != null) {
         this.$store.commit("cart", JSON.parse(localStorage.getItem("cart")));
       }
     },
-    setCurrentSubpage() {
-      this.$store.commit(
-        "currentSubpage",
-        this.subpages.find(
-          (subpage) => subpage.page == "/" + this.$route.path.split("/")[1]
-        )
-      );
-    },
   },
   async created() {
-    this.autoLogin();
     this.setCart();
     this.setMetaTitle();
-    this.$store.dispatch("settings");
-    this.$store.dispatch("contact");
-    this.$store.dispatch("snackbarAlerts");
-    await this.$store.dispatch("fetchSubpages");
-    this.setCurrentSubpage();
 
     if (window.location.hash && window.location.hash == "#_=_") {
       window.location.href = window.location.origin;
@@ -186,7 +174,7 @@ export default {
   },
 };
 </script>
-
+  
 <style lang="scss">
 * {
   font-family: "Josefin Sans" !important;
@@ -194,6 +182,23 @@ export default {
 *::selection {
   color: white;
   background-color: var(--first-color);
+}
+ul li {
+  display: flex;
+  font-weight: 500;
+  align-items: center;
+  font-size: 1.2rem;
+  &::before {
+    content: "....";
+    color: white;
+    display: block;
+    background-image: url("/storage/img/layout/clef.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 9px;
+    height: 21px;
+    margin-right: 1rem;
+  }
 }
 body {
   overflow-x: hidden;

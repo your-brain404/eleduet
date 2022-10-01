@@ -49,6 +49,10 @@ const Service = () =>
     import(
         /* webpackPrefetch: true */ /* webpackChunkName: 'service-page' */ "@/views/public/Service"
     );
+const AboutPage = () =>
+    import(
+        /* webpackPrefetch: true */ /* webpackChunkName: 'service-page' */ "@/views/public/AboutPage"
+    );
 
 import getPrefixes from "@/helpers/languages/get-prefixes";
 import snakeToPascal from "@/helpers/string/snake-to-pascal";
@@ -138,6 +142,11 @@ let frontRoutes = [
         component: SolarSystems,
         name: "SolarSystems"
     },
+    {
+        path: "/o-nas",
+        component: AboutPage,
+        name: "AboutPage"
+    },
     { path: "/kontakt", component: Contact, name: "Contact" }
 ].reduce((total, route) => {
     total.push(route);
@@ -156,10 +165,10 @@ const routes = [
     ...frontRoutes,
 
     {
-        path: "/admin-panel/login",
+        path: "/admin-panel",
         component: AdminLogin,
         name: "AdminLogin",
-        alias: "/admin-panel"
+        alias: "/admin-panel/login"
     },
 
     {

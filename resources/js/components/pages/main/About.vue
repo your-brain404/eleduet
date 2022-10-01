@@ -56,19 +56,11 @@
 </template>
 
 <script>
+import adminTableComponent from "@/mixins/admin-table-component";
+
 export default {
-  props: ["reloadFlag"],
-  watch: {
-    reloadFlag() {
-      if (this.reloadFlag) this.reloadData();
-    },
-    about: {
-      deep: true,
-      handler() {
-        if (this.about.id) this.emitData();
-      },
-    },
-  },
+  mixins: [adminTableComponent],
+
   data() {
     return {
       origin: window.location.origin,
@@ -76,6 +68,9 @@ export default {
     };
   },
   computed: {
+    tableData() {
+      return [this.about];
+    },
     about() {
       return this.$store.getters.about;
     },
@@ -87,20 +82,6 @@ export default {
     prepareTitle(title) {
       return title.replace("{", "<span>").replace("}", "</span>");
     },
-    emitData() {
-      this.$emit("blockDataEmit", [this.about]);
-    },
-    fetchData() {
-      this.$store.dispatch(this.table);
-    },
-    async reloadData() {
-      this.$store.commit(this.table, {});
-      await this.fetchData();
-      this.emitData();
-    },
-  },
-  created() {
-    this.fetchData();
   },
 };
 </script>

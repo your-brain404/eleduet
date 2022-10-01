@@ -14,11 +14,12 @@
         <div class="short-description" v-html="service.short_description"></div>
       </div>
       <div class="position-relative photo-container">
-        <div
-          class="photo bg"
-          :title="service.photo_alt"
-          v-lazy:background-image="`${origin}/storage/media/${service.photo}`"
-        ></div>
+        <img
+          class="img-fluid photo"
+          :src="`${origin}/storage/media/${service.photo}`"
+          :alt="service.photo_alt"
+          :style="{ objectPosition: service.photo_background_position }"
+        />
       </div>
 
       <div class="description" v-html="service.description"></div>
@@ -166,6 +167,8 @@ section.service {
     position: relative;
     z-index: 2;
     height: 200px;
+    width: 100%;
+    object-fit: cover;
     border-bottom-left-radius: var(--global-border-radius);
     border-top-left-radius: var(--global-border-radius);
     @media (max-width: 992px) {

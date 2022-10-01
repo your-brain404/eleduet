@@ -32,19 +32,26 @@
 </template>
 
 <script>
+import adminTableComponent from "@/mixins/admin-table-component";
 export default {
+  mixins: [adminTableComponent],
   data() {
     return {
       origin: window.location.origin,
+      table: "homeSolarSystemDesc",
     };
   },
   computed: {
     homeSolarSystemDesc() {
       return this.$store.getters.homeSolarSystemDesc;
     },
+    tableData() {
+      return [this.homeSolarSystemDesc];
+    },
   },
   created() {
-    this.$store.dispatch("homeSolarSystemDesc");
+    if (Object.values(this.homeSolarSystemDesc).length === 0)
+      this.$store.dispatch("homeSolarSystemDesc");
   },
 };
 </script>

@@ -51,14 +51,12 @@
 <script>
 import carousel from "vue-owl-carousel2";
 import CustomLink from "@/components/custom-link/CustomLink";
+import adminTableComponent from "@/mixins/admin-table-component";
 
 export default {
-  props: ["reloadFlag"],
+  mixins: [adminTableComponent],
   watch: {
-    reloadFlag() {
-      if (this.reloadFlag) this.reloadData();
-    },
-    data() {
+    slider() {
       this.emitData();
     },
   },
@@ -72,32 +70,17 @@ export default {
     carousel,
     CustomLink,
   },
-  methods: {
-    emitData() {
-      this.$emit("blockDataEmit", this.data);
-    },
-    fetchData() {
-      this.$store.dispatch(this.table);
-    },
-    async reloadData() {
-      this.$store.commit(this.table, []);
-      await this.fetchData();
-      this.emitData();
-    },
-    update(data) {
-      console.log(data);
-    },
-  },
+
   computed: {
-    data() {
+    tableData() {
+      return this.slider;
+    },
+    slider() {
       return this.$store.getters[this.table];
     },
     slides() {
-      return this.data.filter((slide) => slide.active);
+      return this.slider?.filter((slide) => slide.active);
     },
-  },
-  created() {
-    this.fetchData();
   },
 };
 </script>

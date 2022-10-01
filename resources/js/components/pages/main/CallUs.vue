@@ -37,22 +37,15 @@
 </template>
 
 <script>
+import adminTableComponent from "@/mixins/admin-table-component";
+
 export default {
-  props: ["reloadFlag"],
-  watch: {
-    reloadFlag() {
-      if (this.reloadFlag) this.reloadData();
-    },
-    homeCallUs: {
-      deep: true,
-      handler() {
-        if (this.homeCallUs?.id) this.emitData();
-      },
-    },
-  },
+  mixins: [adminTableComponent],
+
   data() {
     return {
       origin: window.location.origin,
+      table: "homeCallUs",
     };
   },
   computed: {
@@ -62,22 +55,12 @@ export default {
     contact() {
       return this.$store.getters["contact"];
     },
-  },
-  methods: {
-    emitData() {
-      this.$emit("blockDataEmit", this.homeCallUs);
-    },
-    fetchData() {
-      this.$store.dispatch("homeCallUs");
-    },
-    async reloadData() {
-      this.$store.commit("homeCallUs", {});
-      await this.fetchData();
-      this.emitData();
+    tableData() {
+      return [this.homeCallUs];
     },
   },
   created() {
-    this.fetchData();
+    if (Object.values(this.homeCallUs).length === 0) this.fetchData();
   },
 };
 </script>

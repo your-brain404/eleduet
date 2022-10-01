@@ -39,19 +39,10 @@
 </template>
 
 <script>
+import adminTableComponent from "@/mixins/admin-table-component";
+
 export default {
-  props: ["reloadFlag"],
-  watch: {
-    reloadFlag() {
-      if (this.reloadFlag) this.reloadData();
-    },
-    executionProcess: {
-      deep: true,
-      handler() {
-        if (this.executionProcess.length > 0) this.emitData();
-      },
-    },
-  },
+  mixins: [adminTableComponent],
   data() {
     return {
       origin: window.location.origin,
@@ -66,23 +57,15 @@ export default {
     executionProcessDesc() {
       return this.$store.getters.executionProcessDesc;
     },
-  },
-  methods: {
-    emitData() {
-      this.$emit("blockDataEmit", this.executionProcess);
-    },
-    fetchData() {
-      this.$store.dispatch(this.table);
-    },
-    async reloadData() {
-      this.$store.commit(this.table, []);
-      await this.fetchData();
-      this.emitData();
+    tableData() {
+      return this.executionProcess;
     },
   },
+
   created() {
-    this.fetchData();
-    this.$store.dispatch(this.table + "Desc");
+    if (this.executionProcess.length === 0) this.fetchData();
+    if (Object.values(this.executionProcessDesc).length === 0)
+      this.$store.dispatch(this.table + "Desc");
   },
 };
 </script>

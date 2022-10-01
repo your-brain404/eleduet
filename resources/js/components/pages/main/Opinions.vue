@@ -1,5 +1,5 @@
 <template>
-  <section v-if="opinions.length > 0" class="opinions">
+  <section v-if="opinions && opinions.length > 0" class="opinions">
     <img
       v-lazy="`${origin}/storage/img/stock/opinions-ellipse.svg`"
       alt="elipsa"
@@ -83,42 +83,19 @@
 </template>
 
 <script>
+import adminTableComponent from "@/mixins/admin-table-component";
+
 export default {
-  props: ["reloadFlag"],
-  watch: {
-    reloadFlag() {
-      if (this.reloadFlag) this.reloadData();
-    },
-    opinions: {
-      deep: true,
-      handler() {
-        if (this.opinions.length > 0) this.emitData();
-      },
-    },
-  },
+  mixins: [adminTableComponent],
   data() {
     return {
       origin: window.location.origin,
+      table: "opinions",
     };
-  },
-  created() {
-    this.fetchData();
-    this.$store.dispatch("opinionsDesc");
   },
   methods: {
     prepareTitle: (title) =>
       title?.replaceAll("{", "<span>").replaceAll("}", "</span>"),
-    emitData() {
-      this.$emit("blockDataEmit", this.opinions);
-    },
-    fetchData() {
-      this.$store.dispatch("opinions");
-    },
-    async reloadData() {
-      this.$store.commit("opinions", []);
-      await this.fetchData();
-      this.emitData();
-    },
   },
   computed: {
     opinions() {
@@ -127,40 +104,14 @@ export default {
     opinionsDesc() {
       return this.$store.getters.opinionsDesc;
     },
-    opinions_old() {
-      return [
-        {
-          photo: "opinion-1.png",
-          photo_alt: "opinion 1",
-          first_name: "Jan",
-          last_name: "Kowalski",
-          stars: 5,
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sollicitudin rhoncus ante eget iaculis. Integer placerat sed dolor quis pharetra.",
-          created_at: "2021-09-12 18:00:23",
-        },
-        {
-          photo: "opinion-2.png",
-          photo_alt: "opinion 2",
-          first_name: "Jan",
-          last_name: "Kowalski",
-          stars: 4,
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sollicitudin rhoncus ante eget iaculis. Integer placerat sed dolor quis pharetra.",
-          created_at: "2021-09-12 18:00:23",
-        },
-        {
-          photo: "opinion-3.png",
-          photo_alt: "opinion 3",
-          first_name: "Jan",
-          last_name: "Kowalski",
-          stars: 5,
-          description:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sollicitudin rhoncus ante eget iaculis. Integer placerat sed dolor quis pharetra.",
-          created_at: "2021-09-12 18:00:23",
-        },
-      ];
+    tableData() {
+      return this.opinions;
     },
+  },
+  created() {
+    if (!this.opinions) this.fetchData();
+    if (Object.values(this.opinionsDesc).length === 0)
+      this.$store.dispatch("opinionsDesc");
   },
 };
 </script>

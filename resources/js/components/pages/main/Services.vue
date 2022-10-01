@@ -57,8 +57,10 @@
 <script>
 import carousel from "vue-owl-carousel2";
 import slug from "@/helpers/links/slug";
+import adminTableComponent from "@/mixins/admin-table-component";
 
 export default {
+  mixins: [adminTableComponent],
   components: {
     carousel,
   },
@@ -67,6 +69,7 @@ export default {
       origin: window.location.origin,
       carouselItems: 3.5,
       screenWidth: window.innerWidth,
+      table: "homeServices",
     };
   },
   computed: {
@@ -75,6 +78,9 @@ export default {
     },
     homeServicesDesc() {
       return this.$store.getters.homeServicesDesc;
+    },
+    tableData() {
+      return this.homeServices;
     },
   },
   methods: {
@@ -86,8 +92,9 @@ export default {
   },
   created() {
     this.setCarouselItems();
-    this.$store.dispatch("homeServices");
-    this.$store.dispatch("homeServicesDesc");
+    if (this.homeServices.length === 0) this.$store.dispatch("homeServices");
+    if (Object.values(this.homeServicesDesc).length === 0)
+      this.$store.dispatch("homeServicesDesc");
   },
 };
 </script>

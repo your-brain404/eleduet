@@ -46,7 +46,7 @@ class HomeHelper
 		$data['settings'] = Settings::find(1);
 		$data['contact'] = Contact::find(1);
 		$data['snackbar_alerts'] = SnackbarAlerts::find(1);
-		$data['subpages'] = Subpages::all();
+		$data['subpages'] = Subpages::where('active', 1)->get();
 		$data['meta_title'] = 'Panel administracyjny - ' . $data['settings']->company;
 		$data['meta_description'] = 'Panel administracyjny';
 		$authUserId = @TokenDecoder::decode(@$_COOKIE['token'])->sub;
@@ -71,7 +71,7 @@ class HomeHelper
 			$data['attributes'] = Attributes::all() ?? [];
 			$data['attributes_desc'] = AttributesDesc::find(1) ?? new stdClass;
 			$data['home_call_us'] = HomeCallUs::find(1) ?? new stdClass;
-			$data['opinions'] = Opinions::all() ?? [];
+			$data['opinions'] = Opinions::all() || null;
 			$data['opinions_desc'] = OpinionsDesc::find(1) ?? new stdClass;
 			$data['about'] = About::find(1) ?? new stdClass;
 		}

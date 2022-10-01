@@ -45,7 +45,7 @@
             class="d-flex justify-content-between position-relative"
           >
             <div class="d-flex align-items-center flex-wrap">
-              <div>FilePicker - {{ title }}</div>
+              <div>FilePicker{{ title ? ` - ${title}` : "" }}</div>
               <div class="ml-3">
                 <v-text-field
                   label="Szukaj"
