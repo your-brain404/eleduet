@@ -106,18 +106,12 @@
                             >mdi-close</v-icon
                           >
                         </div>
-                        <v-lazy
-                          :options="{ threshold: 0.5 }"
-                          transition="fade-transition"
-                          min-height="100px"
-                          v-model="lazyPhotos[i]"
-                        >
-                          <img
-                            @click="setPhotoClass(photo.id)"
-                            class="image-picker-photo"
-                            :src="url(photo.path)"
-                          />
-                        </v-lazy>
+                        <img
+                          loading="lazy"
+                          @click="setPhotoClass(photo.id)"
+                          class="image-picker-photo"
+                          :src="url(photo.path)"
+                        />
                         <div>{{ photo.path }}</div>
                       </v-col>
                     </v-row>
@@ -148,10 +142,9 @@ export default {
       tab: null,
       tabs: ["Wybierz zdjęcie", "Dodaj Nowe Zdjęcie"],
       photos: [],
-      lazyPhotos: [],
       activePhotos: [],
       activePhoto: 0,
-      multiple: this.$route.path.split("/")[3] == "gallery" ? true : false,
+      multiple: true,
       closeIcon: 0,
       placeholder: "/storage/img/placeholder/250.png",
       search: "",
@@ -219,9 +212,6 @@ export default {
     loadPhotos() {
       axios.get("/api/media/get_photos").then((res) => {
         this.photos = res.data;
-        for (let photo of this.photos) {
-          this.lazyPhotos.push(false);
-        }
 
         this.setApiGallery();
         if (this.activePhotoPath) this.setActivePhotoPath();
