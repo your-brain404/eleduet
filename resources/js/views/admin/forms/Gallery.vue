@@ -57,7 +57,7 @@
             <v-col cols="12" md="4">
               <div class="pa-5 d-flex flex-column justify-content-between">
                 <div>
-                  <ImagePicker
+                  <GalleryPicker
                     @updateDeletedPhoto="updateDeletedPhoto"
                     :activePhotoPath="currentObject.photo"
                     @loadedImage="setImagePlaceholder"
@@ -88,11 +88,14 @@
 
 <script>
 import axios from "axios";
-import ImagePicker from "../../../components/image-picker/ImagePicker";
-import SnackbarAlerts from "../../../data/snackbar-alerts.js";
-import url from "../../../helpers/photo/url.js";
+import GalleryPicker from "@/components/gallery-picker/GalleryPicker";
+import SnackbarAlerts from "@/data/snackbar-alerts.js";
+import url from "@/helpers/photo/url.js";
 
 export default {
+  components: {
+    GalleryPicker,
+  },
   data: () => ({
     name: "",
     rules: {
@@ -234,9 +237,7 @@ export default {
         });
     },
   },
-  components: {
-    ImagePicker,
-  },
+
   created() {
     if (this.$route.path.split("/")[2] != "realizations")
       this.loadCurrentObject();

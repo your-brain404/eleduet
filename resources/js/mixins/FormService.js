@@ -1,12 +1,16 @@
 import axios from "axios";
-import ImagePicker from "../components/image-picker/ImagePicker";
-import FilePicker from "../components/file-picker/FilePicker";
-import url from "../helpers/photo/url.js";
-import TagsInput from "../components/tagsinput/TagsInput.vue";
-import AdminPanelBlocks from "../data/admin-panel-blocks.js";
+import FilePicker from "@/components/file-picker/FilePicker";
+import url from "@/helpers/photo/url.js";
+import TagsInput from "@/components/tagsinput/TagsInput.vue";
+import AdminPanelBlocks from "@/data/admin-panel-blocks.js";
 import VueEditor from "@/components/forms/TinyMCE";
 
 export default {
+    components: {
+        TagsInput,
+        VueEditor,
+        FilePicker
+    },
     data() {
         return {
             valid: true,
@@ -99,12 +103,7 @@ export default {
                 );
         }
     },
-    components: {
-        ImagePicker,
-        TagsInput,
-        VueEditor,
-        FilePicker
-    },
+
     created() {
         if (this.$route.params.id) {
             axios
