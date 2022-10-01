@@ -59,9 +59,7 @@
                 <div>
                   <GalleryPicker
                     @updateDeletedPhoto="updateDeletedPhoto"
-                    :activePhotoPath="currentObject.photo"
                     @loadedImage="setImagePlaceholder"
-                    :img="img"
                     :apiGallery="apiGallery"
                   />
                 </div>
@@ -70,7 +68,12 @@
           </v-row>
           <v-divider class="mb-0"></v-divider>
           <v-card-actions class="pa-4">
-            <v-btn color="primary" class="mr-2" @click="send">
+            <v-btn
+              :disabled="gallery.length === 0"
+              color="primary"
+              class="mr-2"
+              @click="send"
+            >
               <v-icon left>mdi-check</v-icon>
               <span>Zatwierdź</span>
             </v-btn>
@@ -189,7 +192,7 @@ export default {
         });
     },
     destroy(id) {
-      if (!confirm("Czy na pewno chcesz usunąć to zdjęcie?")) return;
+      if (!confirm("Czy na pewno chcesz usunąć to zdjęcie z galerii?")) return;
       this.setLoading(true);
       axios
         .delete("/api/gallery/delete/" + id)
@@ -209,8 +212,10 @@ export default {
       for (let photo of this.getFormData())
         photo.id ? this.edit(photo) : this.add(photo);
     },
-    updateDeletedPhoto() {
-      this.edit(this.getFormData());
+    updateDeletedPhoto(path) {
+      this.gallery.splice(
+        this.gallery.findIndex((photo) => photo.path == path)
+      );
     },
     loadCurrentObject() {
       axios

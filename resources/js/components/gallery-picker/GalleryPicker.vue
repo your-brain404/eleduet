@@ -1,76 +1,42 @@
 <template>
   <v-row>
-    <v-col cols="12" v-if="!multiple">
-      <div v-if="activePhotoPath" class="d-flex justify-content-end">
-        <v-btn @click="resetImage" icon>
-          <v-icon>mdi-close</v-icon>
-        </v-btn>
-      </div>
-      <img
-        width="100%"
-        :src="activePhotoPath ? url(activePhotoPath) : placeholder"
-      />
-    </v-col>
-    <v-row justify="center" class="mt-5 mb-2 px-3 image-picker">
+    <v-row justify="center" class="mt-5 mb-2 px-3 gallery-picker">
       <v-dialog
         v-model="dialog"
         persistent
         style="background-color: white !important"
       >
         <template v-slot:activator="{ on, attrs }">
-          <v-btn
-            v-if="!title"
-            color="primary"
-            dark
-            v-bind="attrs"
-            v-on="on"
-            class="w-100"
-          >
-            Dodaj
-            {{
-              multiple
-                ? "zdjęcia"
-                : $route.path.split("/")[2] == "settings"
-                ? "logo"
-                : "zdjęcie"
-            }}
-            {{ banner ? "banerowe" : "" }}
-          </v-btn>
-          <v-btn
-            v-else
-            color="primary"
-            dark
-            v-bind="attrs"
-            v-on="on"
-            class="w-100"
-          >
-            Dodaj {{ title }}
+          <v-btn color="primary" dark v-bind="attrs" v-on="on" class="w-100">
+            {{ title || "Dodaj galerię" }}
           </v-btn>
         </template>
         <v-card>
-          <v-card-title
-            class="d-flex justify-content-between position-relative"
-          >
-            <div class="d-flex align-items-center">
-              <div>Dodaj zdjęcia</div>
-              <div class="ml-3">
-                <v-text-field
-                  label="Szukaj"
-                  prepend-icon="mdi-magnify"
-                  v-model="search"
-                  @change="searchPhoto"
-                ></v-text-field>
-              </div>
-            </div>
-            <v-icon class="image-picker-close" @click="dialog = false"
-              >mdi-close</v-icon
+          <div class="gallery-picker-menu">
+            <v-card-title
+              class="d-flex justify-content-between position-relative"
             >
-          </v-card-title>
-          <v-tabs v-model="tab" background-color="primary" dark>
-            <v-tab v-for="tab in tabs" :key="tab">
-              {{ tab }}
-            </v-tab>
-          </v-tabs>
+              <div class="d-flex align-items-center flex-wrap">
+                <div>GalleryPicker</div>
+                <div class="ml-3">
+                  <v-text-field
+                    label="Szukaj"
+                    prepend-icon="mdi-magnify"
+                    v-model="search"
+                    @change="searchPhoto"
+                  ></v-text-field>
+                </div>
+              </div>
+              <v-icon class="gallery-picker-close" @click="dialog = false"
+                >mdi-close</v-icon
+              >
+            </v-card-title>
+            <v-tabs v-model="tab" background-color="primary" dark>
+              <v-tab v-for="tab in tabs" :key="tab">
+                {{ tab }}
+              </v-tab>
+            </v-tabs>
+          </div>
           <v-tabs-items v-model="tab">
             <v-tab-item>
               <v-card flat>
@@ -88,17 +54,7 @@
                         v-for="photo in filteredPhotos"
                         :key="photo.id"
                       >
-                        <div class="d-flex justify-content-between">
-                          <v-icon
-                            class="check-icon"
-                            :color="
-                              activePhotos.includes(photo.id) ||
-                              activePhoto == photo.id
-                                ? 'success'
-                                : 'white'
-                            "
-                            >mdi-check</v-icon
-                          >
+                        <div class="d-flex justify-content-end">
                           <v-icon
                             @click="deletePhoto(photo.id)"
                             :color="closeIcon == photo.id ? 'black' : 'white'"
@@ -106,13 +62,27 @@
                             >mdi-close</v-icon
                           >
                         </div>
-                        <img
-                          loading="lazy"
-                          @click="setPhotoClass(photo.id)"
-                          class="image-picker-photo"
-                          :src="url(photo.path)"
-                        />
-                        <div>{{ photo.path }}</div>
+                        <v-tooltip top>
+                          <template v-slot:activator="{ on, attrs }">
+                            <div
+                              @click="setPhotoClass(photo.id)"
+                              v-on="on"
+                              v-bind="attrs"
+                              class="position-relative"
+                            >
+                              <div
+                                v-if="activePhotos.includes(photo.id)"
+                                class="mask gallery-picker-photo-mask"
+                              ></div>
+                              <img
+                                loading="lazy"
+                                class="gallery-picker-photo"
+                                :src="url(photo.path)"
+                              />
+                            </div>
+                          </template>
+                          <span>{{ photo.path }}</span>
+                        </v-tooltip>
                       </v-col>
                       <v-col cols="12">
                         <v-pagination
@@ -138,19 +108,18 @@
 
 <script>
 import axios from "axios";
-import AddPhotos from "./AddPhotos.vue";
-import url from "../../helpers/photo/url.js";
+import AddPhotos from "@/components/gallery-picker/AddPhotos.vue";
+import url from "@/helpers/photo/url.js";
 
 export default {
-  props: ["activePhotoPath", "banner", "apiGallery", "title"],
+  props: ["apiGallery", "title"],
   data() {
     return {
       dialog: false,
       tab: null,
-      tabs: ["Wybierz zdjęcie", "Dodaj Nowe Zdjęcie"],
+      tabs: ["Wybierz zdjęcia", "Dodaj Nowe Zdjęcie"],
       photos: [],
       activePhotos: [],
-      activePhoto: 0,
       multiple: true,
       closeIcon: 0,
       placeholder: "/storage/img/placeholder/250.png",
@@ -182,28 +151,15 @@ export default {
   },
 
   methods: {
-    resetImage() {
-      this.$emit("loadedImage", "placeholder");
-      this.activePhoto = 0;
-    },
     url,
-    setActivePhotoPath() {
-      for (let photo of this.photos) {
-        if (photo.path == this.activePhotoPath) {
-          this.activePhoto = photo.id;
-        }
-      }
-    },
     showCloseIcon(id) {
       this.closeIcon = id;
     },
     isActivePhotoDeleted(id) {
       if (this.activePhotoPath !== null) {
         for (let photo of this.photos) {
-          if (photo.id == id && id == this.activePhoto) {
-            this.$emit("loadedImage", "placeholder");
-            this.$emit("updateDeletedPhoto");
-            this.activePhoto = 0;
+          if (photo.id == id && this.activePhotos.includes(id)) {
+            this.$emit("updateDeletedPhoto", photo.path);
           }
         }
       }
@@ -224,7 +180,6 @@ export default {
         this.photos = res.data;
 
         this.setApiGallery();
-        if (this.activePhotoPath) this.setActivePhotoPath();
       });
     },
 
@@ -252,21 +207,15 @@ export default {
     },
     sendImageIdToPlaceholder() {
       let data = [];
-      if (this.multiple) {
-        for (let activePhoto of this.activePhotos) {
-          data.push(this.getPhotoById(activePhoto));
-        }
-      } else data = this.getPhotoById(this.activePhoto);
+      for (let activePhoto of this.activePhotos) {
+        data.push(this.getPhotoById(activePhoto));
+      }
 
       this.$emit("loadedImage", data);
     },
     setPhotoClass(id) {
-      if (this.multiple) {
-        if (!this.activePhotos.includes(id)) this.activePhotos.push(id);
-        else this.activePhotos.splice(this.activePhotos.indexOf(id), 1);
-      } else {
-        this.activePhoto = id;
-      }
+      if (!this.activePhotos.includes(id)) this.activePhotos.push(id);
+      else this.activePhotos.splice(this.activePhotos.indexOf(id), 1);
 
       this.sendImageIdToPlaceholder();
     },
@@ -283,13 +232,36 @@ export default {
   },
 };
 </script>
-<style>
-.image-picker-photo {
+<style lang="scss">
+.gallery-picker-menu {
+  position: sticky;
+  width: 100%;
+  z-index: 1;
+  background: white;
+  top: 0;
+  @media (max-width: 992px) {
+    position: sticky;
+    width: unset;
+  }
+}
+.gallery-picker-photo {
   cursor: pointer;
   height: auto;
   width: 100%;
+  &-mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-color: var(--first-color);
+    opacity: 0.7;
+    cursor: pointer;
+    filter: drop-shadow(2px 4px 6px black);
+  }
 }
-.image-picker-close {
+.gallery-picker-close {
   position: absolute !important;
   top: 14%;
   right: 2%;
