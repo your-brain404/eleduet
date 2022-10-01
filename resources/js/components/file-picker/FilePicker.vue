@@ -195,6 +195,12 @@
                           <li>
                             Rozmiar: {{ formatFileSize(chosenFile.size) }}
                           </li>
+                          <li v-if="chosenFile.width">
+                            Szerokość: {{ chosenFile.width }}px
+                          </li>
+                          <li v-if="chosenFile.height">
+                            Wysokość: {{ chosenFile.height }}px
+                          </li>
                           <li>Typ: {{ chosenFile.type }}</li>
                           <li>
                             Data utworzenia:
@@ -325,9 +331,10 @@ export default {
       if (confirm("Czy na pewno?")) {
         axios
           .delete("/api/media/delete/" + id)
-          .then((res) => {
+          .then(() => {
             this.isActiveFileDeleted(id);
             this.loadFiles();
+            this.chosenFileColumnShow = false;
           })
           .catch((err) => console.log(err));
       }
