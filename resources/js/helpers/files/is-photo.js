@@ -1,11 +1,5 @@
+import photoTypes from "@/helpers/files/photo-types";
+
 export default function isPhoto(mime) {
-    return [
-        "image/jpeg",
-        "image/jpg",
-        "image/png",
-        "image/svg",
-        "image/jfif",
-        "image/webp",
-        "image/svg+xml"
-    ].includes(mime);
+    return photoTypes.includes(mime);
 }

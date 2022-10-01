@@ -2,7 +2,7 @@
   <v-card flat>
     <v-card-text>
       <v-row class="d-flex justify-content-center add-files-row">
-        <v-col lg="4" sm="12" md="4">
+        <v-col lg="4" sm="12" md="6">
           <v-form ref="form" v-model="valid" lazy-validation>
             <v-file-input
               :color="$store.getters.settings.first_color"
@@ -14,12 +14,13 @@
               label="Pliki"
               prepend-icon="mdi-files"
               :rules="rules"
+              :accept="imagesOnly ? photoTypes : ''"
             ></v-file-input>
             <v-btn
-              :disabled="loading"
+              :disabled="loading || !valid || file.length === 0"
               :loading="loading"
               @click="submit"
-              class=""
+              class="mt-3"
               color="success"
             >
               <v-icon left class="">mdi-check</v-icon>
@@ -34,8 +35,16 @@
 
 <script>
 import axios from "axios";
+import isPhoto from "@/helpers/files/is-photo";
+import photoTypes from "@/helpers/files/photo-types";
 
 export default {
+  props: {
+    imagesOnly: {
+      type: Boolean,
+      default: false,
+    },
+  },
   data() {
     return {
       file: [],
@@ -55,8 +64,25 @@ export default {
             )}] nie powinny być większe niż 25 MB!`
           );
         },
+        (value) => {
+          if (!this.imagesOnly) return true;
+
+          let invalidSizeFileTypes = [];
+          for (let file of value) {
+            if (!isPhoto(file.type)) invalidSizeFileTypes.push(file.name);
+          }
+          return (
+            invalidSizeFileTypes.length === 0 ||
+            `Pliki [${invalidSizeFileTypes.join(", ")}] powinny być zdjęciami!`
+          );
+        },
       ],
     };
+  },
+  computed: {
+    photoTypes() {
+      return photoTypes.join(", ");
+    },
   },
   methods: {
     submit() {
@@ -88,6 +114,8 @@ export default {
 .add-files-row {
   @media (min-width: 992px) {
     padding-top: 150px;
+    overflow-y: auto;
+    max-height: 80vh;
   }
 }
 </style>

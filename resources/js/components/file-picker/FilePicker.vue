@@ -45,7 +45,7 @@
             class="d-flex justify-content-between position-relative"
           >
             <div class="d-flex align-items-center flex-wrap">
-              <div>FilePicker</div>
+              <div>FilePicker - {{ title }}</div>
               <div class="ml-3">
                 <v-text-field
                   label="Szukaj"
@@ -221,7 +221,7 @@
             </v-card>
           </v-tab-item>
           <v-tab-item>
-            <AddFiles @loadFiles="loadFiles" />
+            <AddFiles @loadFiles="loadFiles" :images-only="imagesOnly" />
           </v-tab-item>
         </v-tabs-items>
       </v-card>
@@ -369,6 +369,7 @@ export default {
   }
   &__photo {
     cursor: pointer;
+    width: 100%;
   }
 }
 .file-picker-pagination {
@@ -414,7 +415,7 @@ export default {
 
 .file-picker-menu {
   position: fixed;
-  width: 100%;
+  width: calc(100% - 24px * 2);
   z-index: 1;
   background: white;
   @media (max-width: 992px) {
