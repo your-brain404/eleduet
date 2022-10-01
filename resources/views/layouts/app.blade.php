@@ -11,7 +11,6 @@
     <meta name="description" content="{{ $meta_description }}">
 
     <link rel="icon" href="/storage/img/layout/clef.png" type="image/png">
-    <link type="text/css" rel="stylesheet" href="{{ asset('magiczoomplus/magiczoomplus.css') }}" />
 
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>
@@ -21,7 +20,7 @@
         @yield('content')
     </div>
     <script src="{{ asset('js/owlcarousel/jquery.min.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('magiczoomplus/magiczoomplus.js') }}"></script>
+
     <script src="{{ mix('js/app.js') }}" defer></script>
 
     <script>
