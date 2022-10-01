@@ -12,7 +12,7 @@
 
     <link rel="icon" href="/storage/media/{{ $settings->favicon }}" type="image/png">
 
-    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    <link async href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>
 
 <body>
@@ -27,6 +27,44 @@
         window.global = {
             config: {
                 settings: @json(@$settings),
+                contact: @json(@$contact),
+                snackbarAlerts: @json(@$snackbar_alerts),
+                subpages: @json(@$subpages),
+                currentSubpage: @json(@$current_subpage),
+                languages: @json(@$languages),
+                currentLanguage: @json(@$current_language),
+            },
+            translations: @json(@$translations),
+            auth: @json(@$auth),
+            cms: {
+                homePage: {
+                    slider: @json(@$slider),
+                    homeServices: @json(@$home_services),
+                    homeServicesDesc: @json(@$home_services_desc),
+                    homeSolarSystemDesc: @json(@$home_solar_system_desc),
+                    executionProcess: @json(@$execution_process),
+                    executionProcessDesc: @json(@$execution_process_desc),
+                    attributes: @json(@$attributes),
+                    attributesDesc: @json(@$attributes_desc),
+                    homeCallUs: @json(@$home_call_us),
+                    opinions: @json(@$opinions),
+                    opinionsDesc: @json(@$opinions_desc),
+                    about: @json(@$about)
+                },
+                servicesPage: {
+                    services: @json(@$services),
+                    serviceCategories: @json(@$service_categories),
+                    servicesServiceCategories: @json(@$services_service_categories),
+                    servicesCallUs: @json(@$services_call_us),
+                    servicesPageDesc: @json(@$services_page_desc),
+                    servicesAttributes: @json(@$services_attributes)
+                },
+                realizationsPage: {
+                    realizations: @json(@$realizations)
+                },
+                contactPage: {
+                    contactLinks: @json(@$contact_links)
+                }
             }
         }
     </script>

@@ -165,7 +165,7 @@ class CmsModuleBuilder extends Command
 
         if (empty(array_filter($imports, function ($import) use ($formName) {
             return strpos($import, $formName) !== FALSE;
-        }))) $imports[] = "import $formName from $componentPath";
+        }))) $imports[] = "const $formName = () => import (/* webpackPrefetch: true */ /* webpackChunkName: 'cms' */ $componentPath)";
 
 
         if (empty(array_filter($modules, function ($module) use ($formName) {
