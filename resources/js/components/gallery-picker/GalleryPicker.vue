@@ -85,7 +85,7 @@
                         md="3"
                         cols="6"
                         sm="4"
-                        v-for="(photo, i) in filteredPhotos"
+                        v-for="photo in filteredPhotos"
                         :key="photo.id"
                       >
                         <div class="d-flex justify-content-between">
@@ -113,6 +113,13 @@
                           :src="url(photo.path)"
                         />
                         <div>{{ photo.path }}</div>
+                      </v-col>
+                      <v-col cols="12">
+                        <v-pagination
+                          class="file-picker-pagination"
+                          v-model="page"
+                          :length="Math.ceil(photos.length / 12)"
+                        ></v-pagination>
                       </v-col>
                     </v-row>
                   </v-container>
@@ -148,6 +155,7 @@ export default {
       closeIcon: 0,
       placeholder: "/storage/img/placeholder/250.png",
       search: "",
+      page: 1,
     };
   },
   components: {
@@ -167,7 +175,9 @@ export default {
           filteredPhotos.push(photo);
         }
       }
-      return filteredPhotos;
+      return filteredPhotos
+        .reverse()
+        .slice((this.page - 1) * 12, (this.page - 1) * 12 + 12);
     },
   },
 
