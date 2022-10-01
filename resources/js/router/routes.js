@@ -1,163 +1,165 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Main from "@/views/public/Main";
-import Services from "@/views/public/Services";
-import SolarSystems from "@/views/public/SolarSystems";
-import AboutPage from "@/views/public/AboutPage";
-import Contact from "@/views/public/Contact";
-import Service from "@/views/public/Service";
-import Home from "@/views/admin/Home";
-import SubpagesForm from "@/views/admin/forms/Subpages";
-import ServicesForm from "@/views/admin/forms/Services";
-import ServiceCategoriesForm from "@/views/admin/forms/ServiceCategories";
-import MailsForm from "@/views/admin/forms/Mails";
-import MailsAnswerForm from "@/views/admin/forms/MailsAnswer";
-import GalleryForm from "@/views/admin/forms/Gallery";
-import SettingsForm from "@/views/admin/forms/Settings";
-import SliderForm from "@/views/admin/forms/Slider";
-import AboutForm from "@/views/admin/forms/About";
-import ContactForm from "@/views/admin/forms/Contact";
-import LayoutElementsForm from "@/views/admin/forms/LayoutElements";
-import SnackbarAlertsForm from "@/views/admin/forms/SnackbarAlerts";
-import ValidationRulesForm from "@/views/admin/forms/ValidationRules";
-import AdminLogin from "@/views/admin/auth/AdminLogin";
-import cmsRoutes from "@/router/cmsRoutes.js";
+import storeBuilderRoutes from "@/router/cmsRoutes.js";
 
-let newCmsRoutes = cmsRoutes.map(route => ({
+const Home = () =>
+    import(
+        /* webpackPrefetch: true */ /* webpackChunkName: 'cms' */ "@/views/admin/Home"
+    );
+
+const MailsForm = () =>
+    import(
+        /* webpackPrefetch: true */ /* webpackChunkName: 'cms' */ "@/views/admin/forms/Mails"
+    );
+const MailsAnswerForm = () =>
+    import(
+        /* webpackPrefetch: true */ /* webpackChunkName: 'cms' */ "@/views/admin/forms/MailsAnswer"
+    );
+const GalleryForm = () =>
+    import(
+        /* webpackPrefetch: true */ /* webpackChunkName: 'cms' */ "@/views/admin/forms/Gallery"
+    );
+
+const AdminLogin = () =>
+    import(
+        /* webpackPrefetch: true */ /* webpackChunkName: 'admin-login' */ "@/views/admin/auth/AdminLogin"
+    );
+
+const Main = () =>
+    import(
+        /* webpackPrefetch: true */ /* webpackChunkName: 'main-page' */ "@/views/public/Main"
+    );
+const Services = () =>
+    import(
+        /* webpackPrefetch: true */ /* webpackChunkName: 'services-page' */ "@/views/public/Services"
+    );
+const SolarSystems = () =>
+    import(
+        /* webpackPrefetch: true */ /* webpackChunkName: 'solar-systems-page' */ "@/views/public/SolarSystems"
+    );
+const Realizations = () =>
+    import(
+        /* webpackPrefetch: true */ /* webpackChunkName: 'realizations-page' */ "@/views/public/Realizations"
+    );
+const Contact = () =>
+    import(
+        /* webpackPrefetch: true */ /* webpackChunkName: 'contact-page' */ "@/views/public/Contact"
+    );
+const Service = () =>
+    import(
+        /* webpackPrefetch: true */ /* webpackChunkName: 'service-page' */ "@/views/public/Service"
+    );
+
+import getPrefixes from "@/helpers/languages/get-prefixes";
+import snakeToPascal from "@/helpers/string/snake-to-pascal";
+
+const newStoreBuilderRoutes = storeBuilderRoutes.map(route => ({
     path: route["component-path"],
     component: route["component-name"],
     name: route["route-name"]
 }));
 
-Vue.use(VueRouter);
+const tableCmsRoutes = [
+    "main",
+    "services",
+    "contact",
+    "solar_system",
+    "realizations",
+    "subpages",
+    "mails",
+    "users",
+    "gallery_page",
+    "settings",
+    "descriptions",
+    "about_page"
+].map(route => ({
+    path: `/admin-panel/${route}`,
+    component: Home,
+    name: `Admin${snakeToPascal(route)}`
+}));
 
-const routes = [
-    ...newCmsRoutes,
+const formsCmsRoutes = [
+    "settings",
+    "slider",
+    "services",
+    "service_categories",
+    "about",
+    "contact",
+    "validation_rules",
+    "snackbar_alerts",
+    "layout_elements",
+    "subpages",
+    "about_page"
+].reduce((total, route) => {
+    const pascalRoute = snakeToPascal(route);
+    const component = () =>
+        import(
+            /* webpackPrefetch: true */ /* webpackChunkName: 'cms' */ `@/views/admin/forms/${pascalRoute}.vue`
+        );
+    // const component = {};
+    total.push({
+        path: `/admin-panel/${route}/form`,
+        component,
+        name: `${pascalRoute}Form`
+    });
+    total.push({
+        path: `/admin-panel/${route}/form/:id`,
+        component,
+        name: `${pascalRoute}FormEdit`
+    });
+
+    return total;
+}, []);
+
+const cmsRoutes = [
+    ...newStoreBuilderRoutes,
+    ...tableCmsRoutes,
+    ...formsCmsRoutes
+].map(route => ({
+    ...route,
+    meta: {
+        adminRoute: true
+    }
+}));
+
+Vue.use(VueRouter);
+const prefixes = getPrefixes();
+let frontRoutes = [
     { path: "/", component: Main, name: "Main" },
     { path: "/uslugi", component: Services, name: "Services" },
     { path: "/uslugi/:title/:id", component: Service, name: "Service" },
-    { path: "/o-nas", component: AboutPage, name: "AboutPage" },
-    { path: "/fotowoltaika", component: SolarSystems, name: "SolarSystems" },
-    { path: "/kontakt", component: Contact, name: "Contact" },
+    {
+        path: "/realizacje",
+        component: Realizations,
+        name: "Realizations"
+    },
+    {
+        path: "/fotowoltaika",
+        component: SolarSystems,
+        name: "SolarSystems"
+    },
+    { path: "/kontakt", component: Contact, name: "Contact" }
+].reduce((total, route) => {
+    total.push(route);
+    for (let i = 0; i < prefixes.length; i++) {
+        total.push({
+            ...route,
+            path: `/${prefixes[i]}${route.path}`,
+            name: `${route.name}-${prefixes[i]}`
+        });
+    }
+    return total;
+}, []);
+
+const routes = [
+    ...cmsRoutes,
+    ...frontRoutes,
 
     {
         path: "/admin-panel/login",
         component: AdminLogin,
         name: "AdminLogin",
         alias: "/admin-panel"
-    },
-    { path: "/admin-panel/main", component: Home, name: "AdminHome" },
-    { path: "/admin-panel/services", component: Home, name: "AdminServices" },
-    { path: "/admin-panel/contact", component: Home, name: "AdminContact" },
-    {
-        path: "/admin-panel/solar_system",
-        component: Home,
-        name: "AdminSolarSystem"
-    },
-    {
-        path: "/admin-panel/about_page",
-        component: Home,
-        name: "AdminAboutPage"
-    },
-    {
-        path: "/admin-panel/realizations",
-        component: Home,
-        name: "AdminRealizations"
-    },
-    { path: "/admin-panel/subpages", component: Home, name: "AdminSubpages" },
-    { path: "/admin-panel/mails", component: Home, name: "AdminMails" },
-    { path: "/admin-panel/users", component: Home, name: "AdminUsers" },
-    {
-        path: "/admin-panel/gallery_page",
-        component: Home,
-        name: "AdminGalleryPage"
-    },
-    {
-        path: "/admin-panel/settings",
-        component: Home,
-        name: "AdminSettingsPage"
-    },
-    {
-        path: "/admin-panel/descriptions",
-        component: Home,
-        name: "AdminDescriptionsPage"
-    },
-
-    {
-        path: "/admin-panel/settings/form/:id",
-        component: SettingsForm,
-        name: "SettingsFormEdit"
-    },
-    {
-        path: "/admin-panel/slider/form",
-        component: SliderForm,
-        name: "SliderForm"
-    },
-    {
-        path: "/admin-panel/slider/form/:id",
-        component: SliderForm,
-        name: "SliderFormEdit"
-    },
-    {
-        path: "/admin-panel/services/form",
-        component: ServicesForm,
-        name: "ServicesForm"
-    },
-    {
-        path: "/admin-panel/services/form/:id",
-        component: ServicesForm,
-        name: "ServicesFormEdit"
-    },
-    {
-        path: "/admin-panel/service_categories/form",
-        component: ServiceCategoriesForm,
-        name: "ServiceCategoriesForm"
-    },
-    {
-        path: "/admin-panel/service_categories/form/:id",
-        component: ServiceCategoriesForm,
-        name: "ServiceCategoriesFormEdit"
-    },
-
-    {
-        path: "/admin-panel/about/form/:id",
-        component: AboutForm,
-        name: "AboutFormEdit"
-    },
-
-    {
-        path: "/admin-panel/contact/form/:id",
-        component: ContactForm,
-        name: "ContactFormEdit"
-    },
-
-    {
-        path: "/admin-panel/validation_rules/form/:id",
-        component: ValidationRulesForm,
-        name: "ValidationRulesFormEdit"
-    },
-
-    {
-        path: "/admin-panel/snackbar_alerts/form/:id",
-        component: SnackbarAlertsForm,
-        name: "SnackbarAlertsFormEdit"
-    },
-
-    {
-        path: "/admin-panel/layout_elements/form/:id",
-        component: LayoutElementsForm,
-        name: "LayoutElementsFormEdit"
-    },
-
-    {
-        path: "/admin-panel/subpages/form",
-        component: SubpagesForm,
-        name: "SubpagesForm"
-    },
-    {
-        path: "/admin-panel/subpages/form/:id",
-        component: SubpagesForm,
-        name: "SubpagesFormEdit"
     },
 
     {
@@ -176,7 +178,6 @@ const routes = [
         component: GalleryForm,
         name: "GalleryForm"
     },
-
     { path: "*", redirect: "/" }
 ];
 

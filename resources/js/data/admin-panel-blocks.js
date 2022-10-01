@@ -1,26 +1,97 @@
-import Subpages from "../components/emit-data-blocks/Subpages";
-import Mails from "../components/emit-data-blocks/Mails";
-import Settings from "@/components/emit-data-blocks/Settings";
-import Contact from "@/components/emit-data-blocks/Contact";
-import SnackbarAlerts from "@/components/emit-data-blocks/SnackbarAlerts";
-import ServiceCategories from "@/components/emit-data-blocks/ServiceCategories";
-import ServicesAttributes from "@/components/emit-data-blocks/ServicesAttributes";
-import ContactLinks from "@/components/emit-data-blocks/ContactLinks";
-import Services from "@/components/emit-data-blocks/Services";
-
-import Slider from "@/components/pages/main/Slider";
-import About from "@/components/pages/main/About";
-import HomeServices from "@/components/pages/main/Services";
-import HomeSolarSystem from "@/components/pages/main/SolarSystem";
-import HomeCallUs from "@/components/pages/main/CallUs";
-import Attributes from "@/components/pages/main/Attributes";
-import Opinions from "@/components/pages/main/Opinions";
-import ExecutionProcess from "@/components/pages/main/ExecutionProcess";
-import ServicesCallUs from "@/components/pages/services/CallUs";
-import SolarSystemsCallUs from "@/components/pages/solarSystems/CallUs";
-import AboutPage from "@/views/public/AboutPage";
-import SolarSystems from "@/views/public/SolarSystems";
-import Realizations from "@/views/public/Realizations";
+const Subpages = () =>
+    import(
+        /* webpackPrefetch: true */ /* webpackChunkName: 'cms' */ "@/components/emit-data-blocks/Subpages"
+    );
+// const Languages = () =>
+//     import(
+//         /* webpackPrefetch: true */ /* webpackChunkName: 'cms' */ "@/components/emit-data-blocks/Languages"
+//     );
+const Mails = () =>
+    import(
+        /* webpackPrefetch: true */ /* webpackChunkName: 'cms' */ "@/components/emit-data-blocks/Mails"
+    );
+const Settings = () =>
+    import(
+        /* webpackPrefetch: true */ /* webpackChunkName: 'cms' */ "@/components/emit-data-blocks/Settings"
+    );
+const Contact = () =>
+    import(
+        /* webpackPrefetch: true */ /* webpackChunkName: 'cms' */ "@/components/emit-data-blocks/Contact"
+    );
+const SnackbarAlerts = () =>
+    import(
+        /* webpackPrefetch: true */ /* webpackChunkName: 'cms' */ "@/components/emit-data-blocks/SnackbarAlerts"
+    );
+const ServiceCategories = () =>
+    import(
+        /* webpackPrefetch: true */ /* webpackChunkName: 'cms' */ "@/components/emit-data-blocks/ServiceCategories"
+    );
+const ServicesAttributes = () =>
+    import(
+        /* webpackPrefetch: true */ /* webpackChunkName: 'cms' */ "@/components/emit-data-blocks/ServicesAttributes"
+    );
+const ContactLinks = () =>
+    import(
+        /* webpackPrefetch: true */ /* webpackChunkName: 'cms' */ "@/components/emit-data-blocks/ContactLinks"
+    );
+const Services = () =>
+    import(
+        /* webpackPrefetch: true */ /* webpackChunkName: 'cms' */ "@/components/emit-data-blocks/Services"
+    );
+// const Translations = () =>
+//     import(
+//         /* webpackPrefetch: true */ /* webpackChunkName: 'cms' */ "@/components/emit-data-blocks/Translations"
+//     );
+const Slider = () =>
+    import(
+        /* webpackChunkName: 'main-page' */ "@/components/pages/main/Slider"
+    );
+const About = () =>
+    import(/* webpackChunkName: 'main-page' */ "@/components/pages/main/About");
+const HomeServices = () =>
+    import(
+        /* webpackChunkName: 'main-page' */ "@/components/pages/main/Services"
+    );
+const HomeSolarSystem = () =>
+    import(
+        /* webpackChunkName: 'main-page' */ "@/components/pages/main/SolarSystem"
+    );
+const HomeCallUs = () =>
+    import(
+        /* webpackChunkName: 'main-page' */ "@/components/pages/main/CallUs"
+    );
+const Attributes = () =>
+    import(
+        /* webpackChunkName: 'main-page' */ "@/components/pages/main/Attributes"
+    );
+const Opinions = () =>
+    import(
+        /* webpackChunkName: 'main-page' */ /* webpackMode: "lazy" */ "@/components/pages/main/Opinions"
+    );
+const ExecutionProcess = () =>
+    import(
+        /* webpackChunkName: 'main-page' */ "@/components/pages/main/ExecutionProcess"
+    );
+const ServicesCallUs = () =>
+    import(
+        /* webpackPrefetch: true */ /* webpackChunkName: 'services-call-us' */ "@/components/pages/services/CallUs"
+    );
+const SolarSystemsCallUs = () =>
+    import(
+        /* webpackPrefetch: true */ /* webpackChunkName: 'solar-systems-call-us' */ "@/components/pages/solarSystems/CallUs"
+    );
+const SolarSystems = () =>
+    import(
+        /* webpackPrefetch: true */ /* webpackChunkName: 'solar-systems-page' */ "@/views/public/SolarSystems"
+    );
+const Realizations = () =>
+    import(
+        /* webpackPrefetch: true */ /* webpackChunkName: 'realizations-page' */ "@/views/public/Realizations"
+    );
+const AboutPage = () =>
+    import(
+        /* webpackPrefetch: true */ /* webpackChunkName: 'about-page' */ "@/views/public/AboutPage"
+    );
 
 export default {
     main: [

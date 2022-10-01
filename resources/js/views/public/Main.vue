@@ -1,41 +1,59 @@
 <template>
-    <section class="main">
-        <Slider />
-        <About />
-        <Services />
-        <SolarSystem />
-        <ExecutionProcess />
-        <Attributes />
-        <CallUs />
-        <Opinions />
-    </section>
+  <section class="main">
+    <Slider />
+    <About />
+    <Services />
+    <SolarSystem />
+    <ExecutionProcess />
+    <Attributes />
+    <CallUs />
+    <Opinions />
+  </section>
 </template>
 
 <script>
 import url from "@/helpers/photo/url";
-import Slider from "@/components/pages/main/Slider";
-import About from "@/components/pages/main/About";
-import Services from "@/components/pages/main/Services";
-import SolarSystem from "@/components/pages/main/SolarSystem";
-import ExecutionProcess from "@/components/pages/main/ExecutionProcess";
-import Attributes from "@/components/pages/main/Attributes";
-import CallUs from "@/components/pages/main/CallUs";
-import Opinions from "@/components/pages/main/Opinions.vue";
+const Slider = () =>
+  import(/* webpackChunkName: 'main-page' */ "@/components/pages/main/Slider");
+const About = () =>
+  import(/* webpackChunkName: 'main-page' */ "@/components/pages/main/About");
+const Services = () =>
+  import(
+    /* webpackChunkName: 'main-page' */ "@/components/pages/main/Services"
+  );
+const SolarSystem = () =>
+  import(
+    /* webpackChunkName: 'main-page' */ "@/components/pages/main/SolarSystem"
+  );
+const ExecutionProcess = () =>
+  import(
+    /* webpackChunkName: 'main-page' */ "@/components/pages/main/ExecutionProcess"
+  );
+const Attributes = () =>
+  import(
+    /* webpackChunkName: 'main-page' */ "@/components/pages/main/Attributes"
+  );
+const CallUs = () =>
+  import(/* webpackChunkName: 'main-page' */ "@/components/pages/main/CallUs");
+const Opinions = () =>
+  import(
+    /* webpackChunkName: 'main-page' */ /* webpackMode: "lazy" */ "@/components/pages/main/Opinions"
+  );
 
 export default {
-    components: {
-        Slider,
-        About,
-        Attributes,
-        CallUs,
-        ExecutionProcess,
-        SolarSystem,
-        Services,
-        Opinions
-    },
-    methods: {
-        url
-    }
+  components: {
+    Slider,
+    About,
+    Attributes,
+    CallUs,
+    ExecutionProcess,
+    SolarSystem,
+    Services,
+    Opinions,
+  },
+  methods: {
+    url,
+  },
 };
 </script>
 

@@ -31,13 +31,8 @@
 </template>
 
 <script>
-import HeaderComponent from "./layouts/Header";
-import FooterComponent from "./layouts/Footer";
-import Banner from "./layouts/Banner";
-import AdminHeader from "./layouts/AdminHeader";
 import AdminSnackbar from "./snackbar/AdminSnackbar";
 import Loader from "./loader/Loader";
-import Cookies from "@/components/cookies/Cookies";
 import "@/font/JosefinSans/stylesheet.css";
 
 function recaptcha() {
@@ -60,13 +55,28 @@ export default {
     };
   },
   components: {
-    HeaderComponent,
-    FooterComponent,
-    AdminHeader,
+    HeaderComponent: () =>
+      import(
+        /* webpackPrefetch: true */ /* webpackChunkName: 'front-layout' */ "./layouts/Header"
+      ),
+    FooterComponent: () =>
+      import(
+        /* webpackPrefetch: true */ /* webpackChunkName: 'front-layout' */ "./layouts/Footer"
+      ),
+    AdminHeader: () =>
+      import(
+        /* webpackPrefetch: true */ /* webpackChunkName: 'cms-layout' */ "./layouts/AdminHeader"
+      ),
     AdminSnackbar,
     Loader,
-    Cookies,
-    Banner,
+    Cookies: () =>
+      import(
+        /* webpackPrefetch: true */ /* webpackChunkName: 'front-layout' */ "@/components/cookies/Cookies"
+      ),
+    Banner: () =>
+      import(
+        /* webpackPrefetch: true */ /* webpackChunkName: 'front-layout' */ "./layouts/Banner"
+      ),
   },
   data() {
     return {
