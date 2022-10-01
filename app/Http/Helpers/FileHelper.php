@@ -34,6 +34,8 @@ class FileHelper
 		$media->name = self::$name;
 		$media->size = $file_options['size'] ?? $file->getSize();
 		$media->type = $file->getClientMimeType();
+		$media->width = $file_options['width'];
+		$media->height = $file_options['height'];
 
 		$media->save();
 
@@ -49,7 +51,9 @@ class FileHelper
 		$full_path = $destination . $name;
 		$destination = "$folder/" . $destination;
 		$file_options = [
-			'size' => $file->getSize()
+			'size' => $file->getSize(),
+			'width' =>  null,
+			'height' =>  null,
 		];
 
 		$storageDestinationPath = $_SERVER['ROOT'] . "/storage/$folder/$full_path";
@@ -67,11 +71,16 @@ class FileHelper
 				$constraint->upsize();
 			});
 			$quality = $img->filesize() > 1000000 ? 50 : 90;
-			$img->save($storageDestinationPath, $quality, 'jpg');
+
+			$img->save($storageDestinationPath, $quality, $file->getClientOriginalExtension());
 			$file_options['size'] = $img->filesize();
 			WebpHelper::convertToWebp($destination, $name);
 		} else Storage::putFileAs($destination, new File($file), $name);
-
+		$sizes = getimagesize($storageDestinationPath);
+		if ($sizes) {
+			$file_options['width'] = $sizes[0];
+			$file_options['height'] = $sizes[1];
+		}
 		$media = $folder == 'media' ? self::storeToMedia($file, $full_path, $file_options) : $full_path;
 
 		return $media;

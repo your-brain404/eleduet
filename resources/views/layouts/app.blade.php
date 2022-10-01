@@ -10,7 +10,7 @@
     <title>{{ $meta_title }}</title>
     <meta name="description" content="{{ $meta_description }}">
 
-    <link rel="icon" href="/storage/img/layout/clef.png" type="image/png">
+    <link rel="icon" href="/storage/media/{{ $settings->favicon }}" type="image/png">
 
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>

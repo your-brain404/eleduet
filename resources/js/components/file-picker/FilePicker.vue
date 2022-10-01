@@ -101,7 +101,7 @@
                             v-if="file.type.split('/')[0] == 'image'"
                             loading="lazy"
                             @click="setFileClass(file.id)"
-                            class="image-picker-photo"
+                            class="file-picker__photo"
                             :src="url(file.path)"
                           />
 
@@ -367,6 +367,9 @@ export default {
       overflow: hidden;
     }
   }
+  &__photo {
+    cursor: pointer;
+  }
 }
 .file-picker-pagination {
   ul {
@@ -411,7 +414,7 @@ export default {
 
 .file-picker-menu {
   position: fixed;
-  width: calc(100% - 24px * 2);
+  width: 100%;
   z-index: 1;
   background: white;
   @media (max-width: 992px) {
