@@ -1,10 +1,21 @@
 <template>
   <section v-if="Object.entries(homeCallUs).length > 0" class="call-us">
-    <div
-      class="bg"
-      :title="homeCallUs.photo_alt"
-      v-lazy:background-image="`${origin}/storage/media/${homeCallUs.photo}`"
-    >
+    <component :is="'style'">
+      .call-us-container { height: {{ homeCallUs.min_height }}px; }
+      @media(min-width: 768px) { .call-us-container { height:
+      {{ homeCallUs.min_height_md }}px; } } @media(min-width: 992px) {
+      .call-us-container { height: {{ homeCallUs.min_height_lg }}px; } }
+    </component>
+    <div class="call-us-container">
+      <Picture
+        class="w-100 h-100"
+        :src="`${origin}/storage/media/${homeCallUs.photo}`"
+        :alt="homeCallUs.photo_alt"
+        :width="homeCallUs.photo_sizes.width"
+        :height="homeCallUs.photo_sizes.height"
+        :classImg="'bg'"
+        :styleImg="{ 'object-position': homeCallUs.photo_background_position }"
+      />
       <div class="mask"></div>
       <div class="content">
         <h3 class="section-title">{{ homeCallUs.title }}</h3>
@@ -38,8 +49,12 @@
 
 <script>
 import adminTableComponent from "@/mixins/admin-table-component";
+import Picture from "@/components/picture/Picture";
 
 export default {
+  components: {
+    Picture,
+  },
   mixins: [adminTableComponent],
 
   data() {
@@ -66,32 +81,40 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@mixin borders-radius {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+::v-deep .bg {
+  @include borders-radius;
+  position: relative;
+  object-fit: cover;
+  object-position: 50% 50%;
+}
 section.call-us {
-  @mixin borders-radius {
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
-  }
-  .bg {
-    @include borders-radius;
+  .call-us-container {
     position: relative;
-    .mask {
-      @include borders-radius;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: transparent
-        linear-gradient(90deg, #00000073 0%, #00000000 38%) 0% 0% no-repeat
-        padding-box;
-    }
+  }
+  .mask {
+    @include borders-radius;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent linear-gradient(90deg, #00000073 0%, #00000000 38%)
+      0% 0% no-repeat padding-box;
   }
   .content {
     padding: 3rem var(--global-padding-x-desktop);
     display: flex;
+    width: 100%;
     justify-content: space-between;
     align-items: center;
-    position: relative;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
     @media (max-width: 992px) {
       padding-left: var(--global-padding-x-mobile);
       padding-right: var(--global-padding-x-mobile);

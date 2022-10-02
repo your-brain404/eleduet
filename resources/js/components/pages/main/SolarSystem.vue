@@ -5,16 +5,17 @@
       v-lazy="`${origin}/storage/img/home/solar-system-ellipse.svg`"
       alt="elipsa"
     />
-    <div
-      class="bg"
-      :title="homeSolarSystemDesc.photo_alt"
-      v-lazy:background-image="
-        `${origin}/storage/media/${homeSolarSystemDesc.photo}`
-      "
-      :style="{
-        'background-position': homeSolarSystemDesc.photo_background_position,
-      }"
-    >
+    <div class="position-relative">
+      <Picture
+        :width="homeSolarSystemDesc.photo_sizes.width"
+        :height="homeSolarSystemDesc.photo_sizes.height"
+        :alt="homeSolarSystemDesc.photo_alt"
+        :classImg="'bg solar-system-bg'"
+        :src="`${origin}/storage/media/${homeSolarSystemDesc.photo}`"
+        :styleImg="{
+          'background-position': homeSolarSystemDesc.photo_background_position,
+        }"
+      />
       <div class="content">
         <h3 class="section-title">{{ homeSolarSystemDesc.title }}</h3>
         <div
@@ -33,7 +34,12 @@
 
 <script>
 import adminTableComponent from "@/mixins/admin-table-component";
+import Picture from "@/components/picture/Picture";
+
 export default {
+  components: {
+    Picture,
+  },
   mixins: [adminTableComponent],
   data() {
     return {
@@ -57,6 +63,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+::v-deep .solar-system-bg {
+  min-height: 435px;
+  object-fit: cover;
+}
 section.solar-system {
   position: relative;
   z-index: 1;
@@ -76,7 +86,11 @@ section.solar-system {
   .content {
     padding: var(--global-padding-x-desktop);
     width: 50%;
-
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    z-index: 1;
     @media (max-width: 992px) {
       padding-left: var(--global-padding-x-mobile);
       padding-right: var(--global-padding-x-mobile);

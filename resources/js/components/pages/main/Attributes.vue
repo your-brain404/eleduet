@@ -21,11 +21,14 @@
           class="attribute"
         >
           <div class="attribute-content">
-            <img
-              v-lazy="`${origin}/storage/media/${attribute.photo}`"
+            <Picture
+              width="150"
+              height="65"
               :alt="attribute.photo_alt"
-              class="icon"
+              :classImg="'icon'"
+              :src="`${origin}/storage/media/${attribute.photo}`"
             />
+
             <div
               class="description"
               v-html="prepareTitle(attribute.title)"
@@ -39,8 +42,12 @@
 
 <script>
 import adminTableComponent from "@/mixins/admin-table-component";
+import Picture from "@/components/picture/Picture";
 
 export default {
+  components: {
+    Picture,
+  },
   mixins: [adminTableComponent],
 
   data() {
@@ -73,6 +80,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+::v-deep .attribute .icon {
+  height: 65px;
+  padding-right: 1.5rem;
+  width: auto;
+}
 section.attributes {
   .content {
     padding: var(--global-padding-x-desktop);
@@ -136,10 +148,6 @@ section.attributes {
             .description {
               text-align: center;
             }
-          }
-          .icon {
-            height: 65px;
-            padding-right: 1.5rem;
           }
         }
       }

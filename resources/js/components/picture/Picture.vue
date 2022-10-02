@@ -1,6 +1,6 @@
 <template>
-  <picture>
-    <source v-if="!error && webp" :srcset="webp" type="image/webp" />
+  <picture v-if="!error">
+    <source v-if="webp" :srcset="webp" type="image/webp" />
     <source :srcset="srcEncode" />
     <img
       :loading="loading"
@@ -41,7 +41,7 @@ export default {
   computed: {
     webp() {
       return (
-        this.srcEncode.match(/.(jpg|png|jpeg|jfif)$/) &&
+        this.srcEncode.match(/.(jpg|png|jpeg|jfif)$/i) &&
         `${this.srcEncode}.webp`
       );
     },

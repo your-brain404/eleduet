@@ -29,16 +29,35 @@
             </v-col>
             <v-col cols="12" md="4">
               <div class="pa-5">
-                <v-img
-                  :src="activePhoto"
-                  :alt="currentObject.photo_alt"
-                ></v-img>
                 <FilePicker v-model="currentObject.photo" images-only />
 
                 <v-text-field
                   color="primary"
                   v-model="currentObject.photo_alt"
                   label="Tekst alternatywny zdjęcia"
+                ></v-text-field>
+                <v-text-field
+                  color="primary"
+                  v-model="currentObject.photo_background_position"
+                  label="Pozycja zdjęcia"
+                ></v-text-field>
+                <v-text-field
+                  color="primary"
+                  type="number"
+                  v-model="currentObject.min_height"
+                  label="Minimalna wysokość (mobile) w pikselach"
+                ></v-text-field>
+                <v-text-field
+                  color="primary"
+                  type="number"
+                  v-model="currentObject.min_height_md"
+                  label="Minimalna wysokość (tablet) w pikselach"
+                ></v-text-field>
+                <v-text-field
+                  color="primary"
+                  type="number"
+                  v-model="currentObject.min_height_lg"
+                  label="Minimalna wysokość (desktop) w pikselach"
                 ></v-text-field>
               </div>
             </v-col>

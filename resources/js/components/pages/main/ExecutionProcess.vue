@@ -17,10 +17,12 @@
         >
           <div class="icon-section">
             <div class="icon-container">
-              <img
-                class="icon"
-                v-lazy="`${origin}/storage/media/${step.photo}`"
+              <Picture
+                width="60"
+                height="60"
                 :alt="step.photo_alt"
+                :classImg="'icon'"
+                :src="`${origin}/storage/media/${step.photo}`"
               />
             </div>
             <div
@@ -40,8 +42,12 @@
 
 <script>
 import adminTableComponent from "@/mixins/admin-table-component";
+import Picture from "@/components/picture/Picture";
 
 export default {
+  components: {
+    Picture,
+  },
   mixins: [adminTableComponent],
   data() {
     return {
