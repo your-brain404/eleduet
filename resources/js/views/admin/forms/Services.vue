@@ -106,41 +106,31 @@ export default {
       return this.$store.getters.serviceCategories;
     },
     currentServiceCategories() {
-      return this.$store.getters.currentServiceCategories.reduce(
-        (total, row) => [...total, row.service_category_id],
-        []
+      return this.$store.getters.currentServiceCategories.map(
+        (row) => row.service_category_id
       );
     },
   },
-  watch: {
-    currentObject: {
-      deep: true,
-      async handler(newValue, oldValue) {
-        if (this.currentObject.id && !oldValue.id) {
-          await this.$store.dispatch(
-            "currentServiceCategories",
-            this.currentObject.id
-          );
-          this.currentObject.service_categories = this.currentServiceCategories;
-        }
-      },
-    },
-  },
+
   methods: {
     serviceCategoryChange(categoryId, state) {
+      let currentObject = this.currentObject;
       state
-        ? this.currentObject.service_categories.push(categoryId)
-        : this.currentObject.service_categories.splice(
-            this.currentObject.service_categories.indexOf(categoryId),
+        ? currentObject.service_categories.push(categoryId)
+        : currentObject.service_categories.splice(
+            currentObject.service_categories.indexOf(categoryId),
             1
           );
+      this.$store.commit("FormService/setCurrentObject", currentObject);
     },
     setCheckboxState(categoryId) {
       return this.currentServiceCategories.includes(categoryId);
     },
   },
-  mounted() {
+
+  created() {
     this.$store.dispatch("serviceCategories");
+    this.$store.dispatch("currentServiceCategories", this.$route.params.id);
   },
   destroyed() {
     this.$store.commit("currentServiceCategories", []);

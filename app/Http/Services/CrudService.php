@@ -22,6 +22,7 @@ class CrudService
 	{
 		$table =  Str::snake(last(explode('\\', self::$model)));
 		foreach ($data as $key => $value) {
+			if (is_integer($key) || in_array($key, (new self::$model)->getHidden())) continue;
 			if (!Schema::hasColumn($table, $key)) {
 				Schema::table($table, function (Blueprint $table) use ($key, $value) {
 					$columnType = is_integer($value) ? 'integer' : 'text';

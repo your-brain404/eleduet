@@ -165,10 +165,10 @@ const routes = [
     ...frontRoutes,
 
     {
-        path: "/admin-panel",
+        path: "/admin-panel/login",
         component: AdminLogin,
         name: "AdminLogin",
-        alias: "/admin-panel/login"
+        alias: "/admin-panel"
     },
 
     {

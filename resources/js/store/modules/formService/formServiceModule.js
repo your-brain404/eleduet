@@ -41,6 +41,11 @@ export default {
             router.push(`/admin-panel${redirect}${hash}`);
         },
         async add({ commit, dispatch }, formData) {
+            if (Object.keys(formData).some(key => Number.isInteger(key))) {
+                console.error(`Obiekt formData ma numeryczne klucze!!!`);
+                this.$store.commit("setSnackbar", SnackbarAlerts.error);
+                return;
+            }
             await router;
             axios
                 .post(
@@ -63,6 +68,11 @@ export default {
             { commit, dispatch },
             { formData, options = { redirect: true } }
         ) {
+            if (Object.keys(formData).some(key => Number.isInteger(key))) {
+                console.error(`Obiekt formData ma numeryczne klucze!!!`);
+                this.$store.commit("setSnackbar", SnackbarAlerts.error);
+                return;
+            }
             await router;
             axios
                 .put(
