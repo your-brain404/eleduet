@@ -17,6 +17,7 @@
       </div>
       <div class="position-relative photo-container">
         <Picture
+          v-if="service.photo_sizes"
           :width="service.photo_sizes.width"
           :height="service.photo_sizes.height"
           :alt="service.photo_alt"
@@ -109,6 +110,13 @@ export default {
 
 <style lang="scss" scoped>
 ::v-deep {
+  .bolt {
+    height: 75px;
+    padding-right: 1.3rem;
+    @media (max-width: 400px) {
+      margin-bottom: 0.5rem;
+    }
+  }
   .service-photo {
     position: relative;
     z-index: 2;
@@ -200,13 +208,6 @@ section.service {
       align-items: center;
       @media (max-width: 400px) {
         flex-direction: column;
-      }
-      .bolt {
-        height: 75px;
-        padding-right: 1.3rem;
-        @media (max-width: 400px) {
-          margin-bottom: 0.5rem;
-        }
       }
     }
 
