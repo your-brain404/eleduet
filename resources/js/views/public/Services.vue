@@ -34,6 +34,7 @@
           }"
         />
         <Picture
+          v-if="servicesPageDesc.photo"
           :width="170"
           :height="170"
           :alt="'elipsa'"
