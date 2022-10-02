@@ -56,3 +56,10 @@ export default {
   },
 };
 </script>
+
+<style>
+picture {
+  display: block;
+  position: relative;
+}
+</style>

@@ -36,16 +36,14 @@
       </a>
     </div>
     <div class="position-relative photo-container">
-      <img
-        class="photo bg"
-        :src="`${origin}/storage/media/${about.photo}`"
+      <Picture
+        :width="about.photo_sizes.width"
+        :height="about.photo_sizes.height"
         :alt="about.photo_alt"
-      />
-      <!-- <div
-        class="photo bg"
-        title="about.photo_alt"
-        v-lazy:background-image="`${origin}/storage/media/${about.photo}`"
-      ></div> -->
+        :classImg="'photo bg'"
+        :src="`${origin}/storage/media/${about.photo}`"
+      >
+      </Picture>
       <img
         class="ellipse"
         v-lazy="`${origin}/storage/img/home/ellipse1.svg`"
@@ -57,8 +55,12 @@
 
 <script>
 import adminTableComponent from "@/mixins/admin-table-component";
+import Picture from "@/components/picture/Picture";
 
 export default {
+  components: {
+    Picture,
+  },
   mixins: [adminTableComponent],
 
   data() {
@@ -87,6 +89,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+::v-deep .photo-container .photo {
+  position: relative;
+  z-index: 2;
+  height: auto;
+  width: 100%;
+  border-bottom-left-radius: var(--global-border-radius);
+  border-top-left-radius: var(--global-border-radius);
+  @media (max-width: 992px) {
+    margin-top: 3rem;
+  }
+}
 section.about {
   display: flex;
   flex-wrap: wrap;
@@ -97,6 +110,7 @@ section.about {
   }
   .photo-container {
     width: 33%;
+    height: fit-content;
   }
   .content,
   .photo-container {
@@ -111,17 +125,6 @@ section.about {
       transform: translate(-50%, 50%);
       height: 170px;
       z-index: 0;
-    }
-  }
-
-  .photo {
-    position: relative;
-    z-index: 2;
-    height: auto;
-    border-bottom-left-radius: var(--global-border-radius);
-    border-top-left-radius: var(--global-border-radius);
-    @media (max-width: 992px) {
-      margin-top: 3rem;
     }
   }
 

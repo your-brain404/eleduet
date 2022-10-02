@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Http\Helpers\PhotoSizesHelper;
 use Illuminate\Database\Eloquent\Model;
 
 class Slider extends Model
@@ -14,7 +15,6 @@ class Slider extends Model
 
 	public function getPhotoSizesAttribute()
 	{
-		$media = Media::where('path', $this->photo)->first()->toArray();
-		return ['width' => $media['width'], 'height' => $media['height']];
+		return PhotoSizesHelper::getPhotoSizes($this->photo);
 	}
 }
