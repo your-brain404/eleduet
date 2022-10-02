@@ -9,17 +9,19 @@
       :autoplay="true"
       :autoplaySpeed="2000"
     >
-      <div
-        v-for="(slide, i) in slides"
-        :key="`slide-${i}`"
-        class="slide bg"
-        :title="slide.photo_alt"
-        :style="{
-          'background-image': `url(${origin}/storage/media/${slide.photo})`,
-          'background-position': `${slide.photo_background_position}`,
-          'background-size': `${slide.photo_background_size}`,
-        }"
-      >
+      <div v-for="(slide, i) in slides" :key="`slide-${i}`" class="slide">
+        <Picture
+          class="w-100"
+          :src="url(slide.photo)"
+          :alt="slide.photo_alt"
+          :width="slide.photo_sizes.width"
+          :height="slide.photo_sizes.height"
+          :classImg="'slide-photo'"
+          :styleImg="{
+            'object-size': slide.photo_background_size,
+            'object-position': slide.photo_background_position,
+          }"
+        />
         <div class="content">
           <h2 class="slide-title">{{ slide.title }}</h2>
           <p class="slide-subtitle">{{ slide.subtitle }}</p>
@@ -52,8 +54,15 @@
 import carousel from "vue-owl-carousel2";
 import CustomLink from "@/components/custom-link/CustomLink";
 import adminTableComponent from "@/mixins/admin-table-component";
+import Picture from "@/components/picture/Picture";
+import url from "@/helpers/photo/url";
 
 export default {
+  components: {
+    carousel,
+    CustomLink,
+    Picture,
+  },
   mixins: [adminTableComponent],
   watch: {
     slider() {
@@ -65,10 +74,6 @@ export default {
       origin: window.location.origin,
       table: "slider",
     };
-  },
-  components: {
-    carousel,
-    CustomLink,
   },
 
   computed: {
@@ -82,19 +87,30 @@ export default {
       return this.slider?.filter((slide) => slide.active);
     },
   },
+  methods: {
+    url,
+  },
 };
 </script>
 
 <style scoped lang="scss">
+::v-deep .slide-photo {
+  object-fit: cover;
+  min-height: 500px;
+  max-height: 500px;
+}
 section.slider {
   .slide {
-    min-height: 500px;
     background-position: 50% 50%;
     display: flex;
     align-items: center;
     position: relative;
+
     .content {
-      position: relative;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      left: 0;
       z-index: 1;
       padding-left: var(--global-padding-x-desktop);
       width: 50%;
