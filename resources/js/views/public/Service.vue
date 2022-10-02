@@ -3,12 +3,12 @@
     <section class="service">
       <div class="content">
         <div class="section-content">
-          <img
-            class="bolt"
-            v-lazy="
-              `${origin}/storage/media/${$store.state.Settings.settings.li_marker}`
-            "
-            alt=""
+          <Picture
+            :width="'auto'"
+            :height="75"
+            :alt="'marker'"
+            :src="`${origin}/storage/media/${$store.state.Settings.settings.li_marker}`"
+            :classImg="'bolt'"
           />
           <h3 class="section-title" v-html="prepareTitle(service.title)"></h3>
         </div>
@@ -16,11 +16,13 @@
         <div class="short-description" v-html="service.short_description"></div>
       </div>
       <div class="position-relative photo-container">
-        <img
-          class="img-fluid photo"
-          :src="`${origin}/storage/media/${service.photo}`"
+        <Picture
+          :width="service.photo_sizes.width"
+          :height="service.photo_sizes.height"
           :alt="service.photo_alt"
-          :style="{ objectPosition: service.photo_background_position }"
+          :src="`${origin}/storage/media/${service.photo}`"
+          :classImg="'img-fluid photo service-photo'"
+          :styleImg="{ 'object-position': service.photo_background_position }"
         />
       </div>
 
@@ -41,10 +43,13 @@
           class="photo-container"
           @click="index = i"
         >
-          <div
-            class="photo"
-            v-lazy:background-image="`${origin}/storage/media/${photo.path}`"
-          ></div>
+          <Picture
+            :width="photo.photo_sizes.width"
+            :height="photo.photo_sizes.height"
+            :alt="photo.photo_alt"
+            :src="`${origin}/storage/media/${photo.path}`"
+            :classImg="'photo'"
+          />
         </div>
       </div>
     </section>
@@ -55,10 +60,12 @@
 import axios from "axios";
 import CoolLightBox from "vue-cool-lightbox";
 import "vue-cool-lightbox/dist/vue-cool-lightbox.min.css";
+import Picture from "@/components/picture/Picture";
 
 export default {
   components: {
     CoolLightBox,
+    Picture,
   },
   data() {
     return {
@@ -101,6 +108,31 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+::v-deep {
+  .service-photo {
+    position: relative;
+    z-index: 2;
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+    border-bottom-left-radius: var(--global-border-radius);
+    border-top-left-radius: var(--global-border-radius);
+    @media (max-width: 992px) {
+      margin-bottom: 3rem;
+    }
+  }
+  .gallery {
+    .photo {
+      border-radius: 12px;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+  }
+}
 @mixin mircel-padding {
   padding-left: var(--global-padding-x-desktop);
   @media (max-width: 992px) {
@@ -134,14 +166,6 @@ section.service {
         width: 100%;
       }
       padding: 0.3rem;
-      .photo {
-        border-radius: 12px;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        width: 100%;
-        height: 200px;
-      }
     }
   }
   .description {
@@ -162,19 +186,6 @@ section.service {
     @media (max-width: 992px) {
       width: 100%;
       order: 1;
-    }
-  }
-
-  .photo {
-    position: relative;
-    z-index: 2;
-    height: 200px;
-    width: 100%;
-    object-fit: cover;
-    border-bottom-left-radius: var(--global-border-radius);
-    border-top-left-radius: var(--global-border-radius);
-    @media (max-width: 992px) {
-      margin-bottom: 3rem;
     }
   }
 

@@ -14,11 +14,13 @@
         :key="`photo-${photo.id}`"
         class="photo"
       >
-        <img
+        <Picture
           @click="index = i"
-          :src="`${origin}/storage/media/${photo.path}`"
+          :width="photo.photo_sizes.width"
+          :height="photo.photo_sizes.height"
           :alt="photo.photo_alt"
-          class="img"
+          :src="`${origin}/storage/media/${photo.path}`"
+          :classImg="'img'"
         />
       </div>
     </div>
@@ -29,10 +31,12 @@
 import axios from "axios";
 import CoolLightBox from "vue-cool-lightbox";
 import "vue-cool-lightbox/dist/vue-cool-lightbox.min.css";
+import Picture from "@/components/picture/Picture";
 
 export default {
   components: {
     CoolLightBox,
+    Picture,
   },
   props: ["reloadFlag"],
   watch: {
@@ -96,6 +100,13 @@ export default {
     padding-right: var(--global-padding-x-mobile);
   }
 }
+::v-deep {
+  .img {
+    max-width: 100%;
+    height: auto;
+    cursor: pointer;
+  }
+}
 section.about-page {
   @include mircel-padding();
   padding-top: 7rem;
@@ -109,11 +120,6 @@ section.about-page {
       width: 33%;
       @media (max-width: 992px) {
         width: 100%;
-      }
-      .img {
-        max-width: 100%;
-        height: auto;
-        cursor: pointer;
       }
     }
   }
