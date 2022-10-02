@@ -1,7 +1,7 @@
 <template>
   <section v-if="opinions && opinions.length > 0" class="opinions">
     <img
-      v-lazy="`${origin}/storage/img/stock/opinions-ellipse.svg`"
+      v-lazy="`/storage/img/stock/opinions-ellipse.svg`"
       alt="elipsa"
       class="ellipse"
     />
@@ -9,7 +9,7 @@
       <div class="section-content">
         <img
           class="bolt"
-          v-lazy="`${origin}/storage/img/layout/clef.png`"
+          v-lazy="`/storage/media/${settings.li_marker}`"
           alt=""
         />
         <h3

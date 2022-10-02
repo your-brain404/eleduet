@@ -13,10 +13,13 @@
     <div class="content">
       <section class="descriptions">
         <router-link :to="{ name: 'Main' }">
-          <img
-            class="logo"
+          <Picture
             :src="`${origin}/storage/media/${settings.photo}`"
-            alt="settings.photo_alt"
+            :alt="settings.photo_alt"
+            :width="settings.photo_sizes.width"
+            :height="settings.photo_sizes.height"
+            :classImg="'logo'"
+            :webp="false"
           />
         </router-link>
         <hr class="footer-logo-separator" />
@@ -68,7 +71,12 @@
 </template>
 
 <script>
+import Picture from "@/components/picture/Picture";
+
 export default {
+  components: {
+    Picture,
+  },
   data() {
     return {
       origin: window.location.origin,
@@ -113,6 +121,7 @@ section.footer {
       }
       .logo {
         height: 80px;
+        width: auto;
         filter: invert(1);
         margin-bottom: 0.7rem;
       }

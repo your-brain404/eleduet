@@ -1,11 +1,13 @@
 <template>
   <section class="header">
     <router-link to="/" style="min-width: 139px">
-      <img
-        v-if="settings.photo"
-        class="logo"
+      <Picture
+        :width="settings.photo_sizes.width"
+        :height="settings.photo_sizes.height"
+        :alt="settings.photo_alt"
+        :classImg="'logo'"
         :src="`${origin}/storage/media/${settings.photo}`"
-        alt=""
+        :webp="false"
       />
     </router-link>
     <ul v-show="showCollapseMenuClasses">
@@ -25,26 +27,37 @@
       class="phone"
       :href="`tel:${contact.phone_1}`"
     >
-      <img
-        class="phone-icon"
+      <Picture
+        width="37"
+        height="18"
+        :alt="'phone-icon'"
+        :classImg="'phone-icon'"
         :src="`${origin}/storage/img/layout/phone.svg`"
-        alt=""
+        :webp="false"
       />
+
       {{ contact.phone_1 }}
     </a>
-    <img
+    <Picture
       @click="showMobileMenuHandler"
-      class="hamburger-menu"
+      width="17"
+      height="20"
+      :alt="'hamburger-menu'"
+      :class="'hamburger-menu'"
       :src="`${origin}/storage/img/layout/hamburger-menu.svg`"
-      alt=""
+      :webp="false"
     />
   </section>
 </template>
 
 <script>
 import url from "@/helpers/photo/url.js";
+import Picture from "@/components/picture/Picture";
 
 export default {
+  components: {
+    Picture,
+  },
   data() {
     return {
       origin: window.location.origin,
@@ -106,6 +119,7 @@ section.header {
   }
   .logo {
     height: 60px;
+    width: auto;
     @media (max-width: 992px) {
       order: 1;
     }

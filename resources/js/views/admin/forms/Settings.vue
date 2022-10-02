@@ -85,6 +85,13 @@
                   images-only
                 />
               </div>
+              <div class="pa-5 d-flex flex-column justify-content-between">
+                <FilePicker
+                  v-model="currentObject.li_marker"
+                  :title="'Punktor listy'"
+                  images-only
+                />
+              </div>
             </v-col>
           </v-row>
           <v-divider class="mb-0"></v-divider>

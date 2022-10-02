@@ -41,6 +41,24 @@
                   v-model="currentObject.photo_background_position"
                   label="Pozycja zdjęcia"
                 ></v-text-field>
+                <v-text-field
+                  color="primary"
+                  type="number"
+                  v-model="currentObject.height"
+                  label="Wysokość (mobile) w pikselach"
+                ></v-text-field>
+                <v-text-field
+                  color="primary"
+                  type="number"
+                  v-model="currentObject.height_md"
+                  label="Wysokość (tablet) w pikselach"
+                ></v-text-field>
+                <v-text-field
+                  color="primary"
+                  type="number"
+                  v-model="currentObject.height_lg"
+                  label="Wysokość (desktop) w pikselach"
+                ></v-text-field>
               </div>
             </v-col>
           </v-row>

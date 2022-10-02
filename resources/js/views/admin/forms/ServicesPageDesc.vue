@@ -41,6 +41,11 @@
                   v-model="currentObject.photo_alt"
                   label="Tekst alternatywny zdjęcia"
                 ></v-text-field>
+                <v-text-field
+                  color="primary"
+                  v-model="currentObject.photo_background_position"
+                  label="Pozycja zdjęcia"
+                ></v-text-field>
               </div>
             </v-col>
           </v-row>

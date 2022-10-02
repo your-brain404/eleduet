@@ -45,19 +45,19 @@
                   color="primary"
                   type="number"
                   v-model="currentObject.min_height"
-                  label="Minimalna wysokość (mobile) w pikselach"
+                  label="Wysokość (mobile) w pikselach"
                 ></v-text-field>
                 <v-text-field
                   color="primary"
                   type="number"
                   v-model="currentObject.min_height_md"
-                  label="Minimalna wysokość (tablet) w pikselach"
+                  label="Wysokość (tablet) w pikselach"
                 ></v-text-field>
                 <v-text-field
                   color="primary"
                   type="number"
                   v-model="currentObject.min_height_lg"
-                  label="Minimalna wysokość (desktop) w pikselach"
+                  label="Wysokość (desktop) w pikselach"
                 ></v-text-field>
               </div>
             </v-col>

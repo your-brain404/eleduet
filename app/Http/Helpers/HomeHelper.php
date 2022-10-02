@@ -71,7 +71,8 @@ class HomeHelper
 			$data['attributes'] = Attributes::all() ?? [];
 			$data['attributes_desc'] = AttributesDesc::find(1) ?? new stdClass;
 			$data['home_call_us'] = HomeCallUs::find(1) ?? new stdClass;
-			$data['opinions'] = Opinions::all() || null;
+			$opinions = Opinions::all();
+			$data['opinions'] = $opinions->count() > 0 ? $opinions : null;
 			$data['opinions_desc'] = OpinionsDesc::find(1) ?? new stdClass;
 			$data['about'] = About::find(1) ?? new stdClass;
 		}

@@ -4,7 +4,9 @@
       <div class="section-content">
         <img
           class="bolt"
-          v-lazy="`${origin}/storage/img/layout/clef.png`"
+          v-lazy="
+            `${origin}/storage/media/${$store.state.Settings.settings.li_marker}`
+          "
           alt=""
         />
         <h3 class="section-title" v-html="prepareTitle(about.title)"></h3>
@@ -43,10 +45,13 @@
         :classImg="'photo bg'"
         :src="`${origin}/storage/media/${about.photo}`"
       />
-      <img
-        class="ellipse"
-        v-lazy="`${origin}/storage/img/home/ellipse1.svg`"
-        alt="elipsa"
+      <Picture
+        :width="170"
+        :height="170"
+        :alt="'elipsa'"
+        :classImg="'ellipse'"
+        :src="`${origin}/storage/img/home/ellipse1.svg`"
+        :webp="false"
       />
     </div>
   </section>
@@ -88,15 +93,25 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-::v-deep .photo-container .photo {
-  position: relative;
-  z-index: 2;
-  height: auto;
-  width: 100%;
-  border-bottom-left-radius: var(--global-border-radius);
-  border-top-left-radius: var(--global-border-radius);
-  @media (max-width: 992px) {
-    margin-top: 3rem;
+::v-deep {
+  .ellipse {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transform: translate(-50%, 50%);
+    height: 170px;
+    z-index: 0;
+  }
+  .photo-container .photo {
+    position: relative;
+    z-index: 2;
+    height: auto;
+    width: 100%;
+    border-bottom-left-radius: var(--global-border-radius);
+    border-top-left-radius: var(--global-border-radius);
+    @media (max-width: 992px) {
+      margin-top: 3rem;
+    }
   }
 }
 section.about {
@@ -115,15 +130,6 @@ section.about {
   .photo-container {
     @media (max-width: 992px) {
       width: 100%;
-    }
-
-    .ellipse {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      transform: translate(-50%, 50%);
-      height: 170px;
-      z-index: 0;
     }
   }
 

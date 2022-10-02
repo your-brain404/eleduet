@@ -3,11 +3,14 @@
     <section class="about" v-if="Object.entries(servicesPageDesc).length > 0">
       <div class="content">
         <div class="section-content">
-          <img
-            class="bolt"
-            v-lazy="`${origin}/storage/img/layout/clef.png`"
-            alt=""
+          <Picture
+            :width="'auto'"
+            :height="75"
+            :alt="'marker'"
+            :src="`${origin}/storage/media/${$store.state.Settings.settings.li_marker}`"
+            :classImg="'bolt'"
           />
+
           <h3
             class="section-title"
             v-html="prepareTitle(servicesPageDesc.title)"
@@ -20,17 +23,23 @@
         ></div>
       </div>
       <div class="position-relative photo-container">
-        <div
-          class="photo bg"
-          :title="servicesPageDesc.photo_alt"
-          v-lazy:background-image="
-            `${origin}/storage/media/${servicesPageDesc.photo}`
-          "
-        ></div>
-        <img
-          class="ellipse"
-          v-lazy="`${origin}/storage/img/home/ellipse1.svg`"
-          alt="elipsa"
+        <Picture
+          :width="servicesPageDesc.photo_sizes.width"
+          :height="servicesPageDesc.photo_sizes.height"
+          :alt="servicesPageDesc.photo_alt"
+          :src="`${origin}/storage/media/${servicesPageDesc.photo}`"
+          :classImg="'photo bg'"
+          :styleImg="{
+            'object-position': servicesPageDesc.photo_background_position,
+          }"
+        />
+        <Picture
+          :width="170"
+          :height="170"
+          :alt="'elipsa'"
+          :src="`${origin}/storage/img/home/ellipse1.svg`"
+          :classImg="'ellipse'"
+          :webp="false"
         />
       </div>
     </section>
@@ -54,10 +63,12 @@
     >
       <div class="content">
         <div class="section-content">
-          <img
-            class="bolt"
-            v-lazy="`${origin}/storage/img/layout/clef.png`"
-            alt=""
+          <Picture
+            :width="'auto'"
+            :height="75"
+            :alt="'marker'"
+            :src="`${origin}/storage/media/${$store.state.Settings.settings.li_marker}`"
+            :classImg="'bolt'"
           />
           <h3
             class="section-title"
@@ -82,13 +93,16 @@
             }"
             class="wrapper"
           >
-            <div
-              class="photo"
-              v-lazy:background-image="
-                `${origin}/storage/media/${service.photo}`
-              "
+            <Picture
+              :width="240"
+              :height="200"
               :alt="service.photo_alt"
-            ></div>
+              :src="`${origin}/storage/media/${service.photo}`"
+              :classImg="'photo'"
+              :styleImg="{
+                'object-position': service.photo_background_position,
+              }"
+            />
             <div class="service-title">
               {{ service.title }}
             </div>
@@ -110,10 +124,12 @@
 <script>
 import CallUs from "@/components/pages/services/CallUs";
 import slug from "@/helpers/links/slug";
+import Picture from "@/components/picture/Picture";
 
 export default {
   components: {
     CallUs,
+    Picture,
   },
   data() {
     return {
@@ -170,6 +186,53 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+::v-deep {
+  section.about {
+    .photo-container {
+      .ellipse {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        transform: translate(-50%, 50%);
+        height: 170px;
+        z-index: 0;
+      }
+    }
+    .photo {
+      position: relative;
+      z-index: 2;
+      height: 160px;
+      object-fit: cover;
+      border-bottom-left-radius: var(--global-border-radius);
+      border-top-left-radius: var(--global-border-radius);
+      @media (max-width: 992px) {
+        margin-top: 3rem;
+      }
+    }
+  }
+
+  .section-content {
+    .bolt {
+      height: 75px;
+      padding-right: 1.3rem;
+      @media (max-width: 400px) {
+        margin-bottom: 0.5rem;
+      }
+    }
+  }
+  .services-blocks {
+    .photo {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      border-radius: 12px;
+      margin-bottom: 1rem;
+    }
+  }
+}
 section.services-page {
   @mixin mircel-padding {
     padding-left: var(--global-padding-x-desktop);
@@ -184,13 +247,6 @@ section.services-page {
     @media (max-width: 400px) {
       flex-direction: column;
     }
-    .bolt {
-      height: 75px;
-      padding-right: 1.3rem;
-      @media (max-width: 400px) {
-        margin-bottom: 0.5rem;
-      }
-    }
   }
   section.about {
     display: flex;
@@ -201,28 +257,9 @@ section.services-page {
     .content,
     .photo-container {
       width: 50%;
+      height: fit-content;
       @media (max-width: 992px) {
         width: 100%;
-      }
-
-      .ellipse {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        transform: translate(-50%, 50%);
-        height: 170px;
-        z-index: 0;
-      }
-    }
-
-    .photo {
-      position: relative;
-      z-index: 2;
-      height: 160px;
-      border-bottom-left-radius: var(--global-border-radius);
-      border-top-left-radius: var(--global-border-radius);
-      @media (max-width: 992px) {
-        margin-top: 3rem;
       }
     }
 
@@ -402,15 +439,7 @@ section.services-page {
           padding: 1rem;
           background-color: white;
           display: block;
-          .photo {
-            width: 100%;
-            height: 200px;
-            background-position: center;
-            background-size: cover;
-            background-repeat: no-repeat;
-            border-radius: 12px;
-            margin-bottom: 1rem;
-          }
+
           .service-title {
             font-weight: 900;
             color: black;

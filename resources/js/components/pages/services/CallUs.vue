@@ -1,20 +1,32 @@
 <template>
   <section class="call-us" v-if="Object.entries(servicesCallUs).length > 0">
-    <img
-      v-lazy="`${origin}/storage/img/services/solar-system-ellipse.svg`"
-      alt="elipsa"
-      class="ellipse"
+    <Picture
+      :width="700"
+      :height="700"
+      :alt="'elipsa'"
+      :src="`${origin}/storage/img/services/solar-system-ellipse.svg`"
+      :classImg="'ellipse'"
+      :webp="false"
     />
-    <div
-      class="bg"
-      :title="servicesCallUs.photo_alt"
-      v-lazy:background-image="
-        `${origin}/storage/media/${servicesCallUs.photo}`
-      "
-      :style="{
-        'background-position': servicesCallUs.photo_background_position,
-      }"
-    >
+
+    <div class="position-relative call-us-bg-container">
+      <component :is="'style'">
+        .call-us-bg-container { height: {{ servicesCallUs.height }}px; }
+        @media(min-width: 768px) { .call-us-bg-container { height:
+        {{ servicesCallUs.height_md }}px; } } @media(min-width: 992px) {
+        .call-us-bg-container { height: {{ servicesCallUs.height_lg }}px; } }
+      </component>
+      <Picture
+        class="w-100 h-100"
+        :width="servicesCallUs.photo_sizes.width"
+        :height="servicesCallUs.photo_sizes.width"
+        :alt="servicesCallUs.photo_alt"
+        :src="`${origin}/storage/media/${servicesCallUs.photo}`"
+        :classImg="'bg call-us-bg'"
+        :styleImg="{
+          'object-position': servicesCallUs.photo_background_position,
+        }"
+      />
       <div class="mask"></div>
       <div class="content">
         <h3 class="section-title" v-html="servicesCallUs.title"></h3>
@@ -47,7 +59,12 @@
 </template>
 
 <script>
+import Picture from "@/components/picture/Picture";
+
 export default {
+  components: {
+    Picture,
+  },
   data() {
     return {
       origin: window.location.origin,
@@ -68,11 +85,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-section.call-us {
-  position: relative;
-  @mixin borders-radius {
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
+::v-deep.call-us {
+  .call-us-bg {
+    object-fit: cover;
   }
   .ellipse {
     position: absolute;
@@ -83,6 +98,14 @@ section.call-us {
       display: none;
     }
   }
+}
+section.call-us {
+  position: relative;
+  @mixin borders-radius {
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+  }
+
   .bg {
     @include borders-radius;
     position: relative;
@@ -103,7 +126,10 @@ section.call-us {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    position: relative;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
     @media (max-width: 992px) {
       padding-left: var(--global-padding-x-mobile);
       padding-right: var(--global-padding-x-mobile);

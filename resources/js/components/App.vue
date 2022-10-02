@@ -2,6 +2,9 @@
   <v-app class="app">
     <component :is="'style'">
       :root { --first-color: {{ $store.state.Settings.settings.first_color }}; }
+      ul li::before { background-image: url("{{
+        `/storage/media/${$store.state.Settings.settings.li_marker}`
+      }}");}
     </component>
     <header>
       <HeaderComponent

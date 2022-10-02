@@ -1,6 +1,6 @@
 <template>
   <picture v-if="!error">
-    <source v-if="webp" :srcset="webp" type="image/webp" />
+    <source v-if="webp" :srcset="webpSrc" type="image/webp" />
     <source :srcset="srcEncode" />
     <img
       :loading="loading"
@@ -28,6 +28,10 @@ export default {
       type: String,
       default: "",
     },
+    webp: {
+      type: Boolean,
+      default: true,
+    },
     loading: {
       type: String,
       default: "lazy",
@@ -39,7 +43,7 @@ export default {
     height: String,
   },
   computed: {
-    webp() {
+    webpSrc() {
       return (
         this.srcEncode.match(/.(jpg|png|jpeg|jfif)$/i) &&
         `${this.srcEncode}.webp`
@@ -60,6 +64,5 @@ export default {
 <style>
 picture {
   display: block;
-  position: relative;
 }
 </style>

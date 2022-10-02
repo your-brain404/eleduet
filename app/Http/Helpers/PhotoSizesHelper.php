@@ -6,9 +6,14 @@ use App\Media;
 
 class PhotoSizesHelper
 {
-    public static function getPhotoSizes(string $path): array
+    public static function getPhotoSizes(?string $path): array
     {
-        $media = Media::where('path', $path)->first()->toArray();
+        $photoSizes = ['width' => 0, 'height' => 0];
+        if (!$path) return $photoSizes;
+        $media = Media::where('path', $path)->first();
+        if (!$media) return $photoSizes;
+        $media = $media->toArray();
+
         return ['width' => $media['width'], 'height' => $media['height']];
     }
 }

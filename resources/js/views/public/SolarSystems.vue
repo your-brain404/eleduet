@@ -8,7 +8,9 @@
         <div class="section-content">
           <img
             class="bolt"
-            v-lazy="`${origin}/storage/img/layout/clef.png`"
+            v-lazy="
+              `${origin}/storage/media/${$store.state.Settings.settings.li_marker}`
+            "
             alt=""
           />
           <h3

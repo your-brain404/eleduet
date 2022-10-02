@@ -1,11 +1,20 @@
 <template>
   <section v-if="homeSolarSystemDesc.id" class="solar-system">
-    <img
-      class="ellipse"
-      v-lazy="`${origin}/storage/img/home/solar-system-ellipse.svg`"
-      alt="elipsa"
+    <Picture
+      :width="'auto'"
+      :height="'142%'"
+      :alt="'elipsa'"
+      :classImg="'ellipse'"
+      :src="`${origin}/storage/img/home/solar-system-ellipse.svg`"
     />
+
     <div class="position-relative">
+      <component :is="'style'">
+        .solar-system-bg { height: {{ homeSolarSystemDesc.height }}px; }
+        @media(min-width: 768px) { .solar-system-bg { height:
+        {{ homeSolarSystemDesc.height_md }}px; } } @media(min-width: 992px) {
+        .solar-system-bg { height: {{ homeSolarSystemDesc.height_lg }}px; } }
+      </component>
       <Picture
         :width="homeSolarSystemDesc.photo_sizes.width"
         :height="homeSolarSystemDesc.photo_sizes.height"
@@ -63,15 +72,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-::v-deep .solar-system-bg {
-  min-height: 435px;
-  object-fit: cover;
-}
-section.solar-system {
-  position: relative;
-  z-index: 1;
-  margin: 8rem 0;
-  padding-bottom: 3rem;
+::v-deep {
   .ellipse {
     position: absolute;
     z-index: -1;
@@ -79,10 +80,20 @@ section.solar-system {
     left: 50%;
     transform: translate(-50%, -50%);
     height: 142%;
+    width: auto;
   }
-  .bg {
+  .solar-system-bg {
+    min-height: 435px;
+    object-fit: cover;
     border-radius: var(--global-border-radius);
   }
+}
+section.solar-system {
+  position: relative;
+  z-index: 1;
+  margin: 8rem 0;
+  padding-bottom: 3rem;
+
   .content {
     padding: var(--global-padding-x-desktop);
     width: 50%;
