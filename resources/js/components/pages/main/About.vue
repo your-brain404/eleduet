@@ -42,8 +42,7 @@
         :alt="about.photo_alt"
         :classImg="'photo bg'"
         :src="`${origin}/storage/media/${about.photo}`"
-      >
-      </Picture>
+      />
       <img
         class="ellipse"
         v-lazy="`${origin}/storage/img/home/ellipse1.svg`"

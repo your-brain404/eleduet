@@ -31,10 +31,14 @@
             },
           }"
         >
-          <img
-            v-lazy="origin + '/storage/media/' + service.photo"
+          <Picture
+            :width="service.photo_sizes.width"
+            :height="service.photo_sizes.height"
             :alt="service.photo_alt"
+            :classImg="'photo bg'"
+            :src="origin + '/storage/media/' + service.photo"
           />
+
           <h4 class="service-title">{{ service.title }}</h4>
           <div v-if="service.short_description" class="description">
             {{
@@ -58,11 +62,13 @@
 import carousel from "vue-owl-carousel2";
 import slug from "@/helpers/links/slug";
 import adminTableComponent from "@/mixins/admin-table-component";
+import Picture from "@/components/picture/Picture";
 
 export default {
   mixins: [adminTableComponent],
   components: {
     carousel,
+    Picture,
   },
   data() {
     return {
@@ -100,6 +106,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+::v-deep .service {
+  img {
+    height: 200px;
+    border-radius: var(--global-border-radius);
+    object-fit: cover;
+  }
+}
 section.services {
   margin-top: 7rem;
   padding-bottom: 3rem;
@@ -149,11 +162,7 @@ section.services {
           color: white !important;
         }
       }
-      img {
-        height: 200px;
-        border-radius: var(--global-border-radius);
-        object-fit: cover;
-      }
+
       .service-title {
         font-weight: 700;
         font-size: 1.5rem;
