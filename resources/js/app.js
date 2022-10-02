@@ -8,7 +8,6 @@ import Vuelidate from "vuelidate";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel";
 import VueMeta from "vue-meta";
-import VueLazyload from "vue-lazyload";
 import isExternal from "@/helpers/links/is-external";
 
 Vue.component("app", require("./components/App.vue").default);
@@ -17,7 +16,6 @@ Vue.use(VueAxios, axios);
 Vue.use(VueMeta, {
     refreshOnceOnNavigation: true
 });
-Vue.use(VueLazyload);
 
 Vue.prototype.$vueMeta = VueMeta;
 Vue.prototype.$isLinkExternal = isExternal;
