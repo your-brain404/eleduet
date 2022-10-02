@@ -41,8 +41,8 @@ export default {
   computed: {
     webp() {
       return (
-        this.srcEncode.match(/.(jpg|png)$/) &&
-        this.srcEncode.replace(/.(jpg|png)$/, ".webp")
+        this.srcEncode.match(/.(jpg|png|jpeg|jfif)$/) &&
+        `${this.srcEncode}.webp`
       );
     },
     srcEncode() {
@@ -50,7 +50,7 @@ export default {
     },
   },
   methods: {
-    imgError(src) {
+    imgError() {
       if (this.error === false) this.error = true;
     },
   },
