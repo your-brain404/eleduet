@@ -13,19 +13,26 @@
             class="wrapper"
           >
             <span v-if="link.icon_svg" v-html="link.icon_svg"></span>
-            <img
+            <Picture
               v-else
-              v-lazy="`${origin}/storage/media/${link.photo}`"
+              :width="'auto'"
+              :height="25"
               :alt="link.photo_alt"
+              :src="`${origin}/storage/media/${link.photo}`"
+              :classImg="'img'"
             />
+
             <div class="text" v-html="prepareBlockHtml(link.title)"></div>
           </a>
         </div>
       </div>
-      <img
-        class="ellipse"
-        v-lazy="`${origin}/storage/img/home/ellipse1.svg`"
-        alt="elipsa"
+      <Picture
+        :width="125"
+        :height="125"
+        :alt="'elipsa'"
+        :src="`${origin}/storage/img/home/ellipse1.svg`"
+        :classImg="'ellipse'"
+        :webp="false"
       />
     </div>
 
@@ -62,10 +69,13 @@
         <div class="checkbox" @click="formData.rodo1 = !formData.rodo1">
           <div class="square-container">
             <div class="square">
-              <img
-                :class="{ show: formData.rodo1 }"
-                v-lazy="`${origin}/storage/img/stock/white-check.svg`"
-                alt=""
+              <Picture
+                :width="15"
+                :height="15"
+                :alt="'check'"
+                :src="`/storage/img/stock/white-check.svg`"
+                :classImg="{ show: formData.rodo1 }"
+                :webp="false"
               />
             </div>
           </div>
@@ -77,10 +87,13 @@
         <div class="checkbox" @click="formData.rodo2 = !formData.rodo2">
           <div class="square-container">
             <div class="square">
-              <img
-                :class="{ show: formData.rodo2 }"
-                v-lazy="`${origin}/storage/img/stock/white-check.svg`"
-                alt=""
+              <Picture
+                :width="15"
+                :height="15"
+                :alt="'check'"
+                :src="`/storage/img/stock/white-check.svg`"
+                :classImg="{ show: formData.rodo2 }"
+                :webp="false"
               />
             </div>
           </div>
@@ -96,10 +109,13 @@
         </button>
       </div>
     </form>
-    <img
-      v-lazy="`${origin}/storage/img/contact/form-ellipse.svg`"
-      alt=""
-      class="form-ellipse"
+    <Picture
+      :width="800"
+      :height="800"
+      :alt="'ellipsa'"
+      :src="`/storage/img/contact/form-ellipse.svg`"
+      :classImg="'form-ellipse'"
+      :webp="false"
     />
   </section>
 </template>
@@ -108,8 +124,12 @@
 import axios from "axios";
 import Vue from "vue";
 import { VueReCaptcha } from "vue-recaptcha-v3";
+import Picture from "@/components/picture/Picture";
 
 export default {
+  components: {
+    Picture,
+  },
   data() {
     return {
       origin: window.location.origin,
@@ -261,9 +281,24 @@ export default {
     margin-right: var(--global-padding-x-mobile);
   }
 }
-section.contact {
-  margin-bottom: 7rem;
-  position: relative;
+::v-deep {
+  .ellipse {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    height: 125px;
+    transform: translate(50%, calc(50% - 0.3rem));
+    z-index: 1;
+  }
+  .square {
+    img {
+      height: 100%;
+      width: 100%;
+      &:not(.show) {
+        display: none;
+      }
+    }
+  }
   .form-ellipse {
     position: absolute;
     bottom: -51%;
@@ -275,6 +310,11 @@ section.contact {
       bottom: -800px;
     }
   }
+}
+section.contact {
+  margin-bottom: 7rem;
+  position: relative;
+
   .links-container {
     position: relative;
     @include mircel-margin;
@@ -332,14 +372,6 @@ section.contact {
           }
         }
       }
-    }
-    .ellipse {
-      position: absolute;
-      right: 0;
-      bottom: 0;
-      height: 125px;
-      transform: translate(50%, calc(50% - 0.3rem));
-      z-index: 1;
     }
   }
 
@@ -432,13 +464,6 @@ section.contact {
             align-items: center;
             justify-content: center;
             height: 60%;
-            img {
-              height: 100%;
-              width: 100%;
-              &:not(.show) {
-                display: none;
-              }
-            }
           }
         }
         .text {
