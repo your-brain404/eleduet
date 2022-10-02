@@ -64,17 +64,24 @@ class FileHelper
 			$img = \Image::make($file->getRealPath());
 			if ($img->width() > 1920 && $img->width() > $img->height()) $img->resize(1920, 1080, function ($constraint) {
 				$constraint->aspectRatio();
-				$constraint->upsize();
+				// $constraint->upsize();
 			});
 			if ($img->height() > 1080 && $img->width() < $img->height()) $img->resize(1080, 1920, function ($constraint) {
 				$constraint->aspectRatio();
-				$constraint->upsize();
+				// $constraint->upsize();
 			});
 			$quality = $img->filesize() > 1000000 ? 50 : 90;
 
 			$img->save($storageDestinationPath, $quality, $file->getClientOriginalExtension());
 			$file_options['size'] = $img->filesize();
 			WebpHelper::convertToWebp($destination, $name);
+
+			$img->resize(576, null, function ($constraint) {
+				$constraint->aspectRatio();
+			});
+			$mobilePath = $_SERVER['ROOT'] . "/storage/$folder/$date_folder/width_576_$name";
+			$img->save($mobilePath);
+			WebpHelper::convertToWebp($destination, "width_576_$name");
 		} else Storage::putFileAs($destination, new File($file), $name);
 		$sizes = getimagesize($storageDestinationPath);
 		if ($sizes) {
@@ -92,6 +99,10 @@ class FileHelper
 		list($date, $fileName) =  explode($separator, $path);
 		Storage::delete("$folder/$date/$fileName");
 		Storage::delete("$folder/$date/$fileName.webp");
+		$mobilePath = "$folder/$date/width_576_$fileName";
+		$mobilePathWebp = "$folder/$date/width_576_{$fileName}.webp";
+		if (file_exists($_SERVER['ROOT'] . "/storage/" . $mobilePath)) Storage::delete($mobilePath);
+		if (file_exists($_SERVER['ROOT'] . "/storage/" . $mobilePathWebp)) Storage::delete($mobilePathWebp);
 	}
 
 	public static function delete($id, $folder = 'media')
