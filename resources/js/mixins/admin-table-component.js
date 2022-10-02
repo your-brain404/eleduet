@@ -29,17 +29,12 @@ export default {
                 `Brakuje zmiennej 'tableData' w komponencie ${this.$options._parentVnode.tag}!`
             );
         }
-        if (
-            this.tableData === null ||
-            this.tableData === undefined ||
-            !this.$route.meta.adminRoute
-        )
-            return;
+        if (this.$route.meta.adminRoute) this.fetchData();
+        if (this.tableData === null || this.tableData === undefined) return;
         if (this.tableData.constructor === Array) {
             if (this.tableData.length === 0) this.fetchData();
         } else if (this.tableData.constructor === Object) {
-            if (this.tableData.some(row => Object.values(row).length === 0))
-                this.fetchData();
+            if (Object.values(this.tableData).length === 0) this.fetchData();
         }
     }
 };
