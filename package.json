@@ -9,7 +9,7 @@
         "prod": "npm run production",
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
         "lint": "eslint --ext .js,.vue resources/js/",
-        "dist-push": "npm run prod && git add . && git commit -am 'gendist' && git push"
+        "gendist": "npm run prod && git add . && git commit -am 'gendist' && git push"
     },
     "devDependencies": {
         "@babel/plugin-proposal-class-properties": "^7.10.4",
