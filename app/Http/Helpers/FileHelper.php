@@ -84,10 +84,13 @@ class FileHelper
 			WebpHelper::convertToWebp($destination, "width_576_$name");
 		} else Storage::putFileAs($destination, new File($file), $name);
 
-		$sizes = getimagesize(file_exists($storageDestinationPath) ? $storageDestinationPath : "$storageDestinationPath.webp");
+		$primalPath = file_exists($storageDestinationPath) ? $storageDestinationPath : "$storageDestinationPath.webp";
+		$sizes = getimagesize($primalPath);
+
 		if ($sizes) {
 			$file_options['width'] = $sizes[0];
 			$file_options['height'] = $sizes[1];
+			$file_options['size'] = filesize($primalPath);
 		}
 		$media = $folder == 'media' ? self::storeToMedia($file, $full_path, $file_options) : $full_path;
 
