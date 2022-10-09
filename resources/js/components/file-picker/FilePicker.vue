@@ -305,7 +305,7 @@ export default {
         .slice((this.page - 1) * 12, (this.page - 1) * 12 + 12);
     },
     chosenFile() {
-      return this.files.find((file) => file.id == this.activeFile);
+      return this.files.find((file) => file.id == this.activeFile) || {};
     },
   },
   watch: {
