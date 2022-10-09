@@ -15,12 +15,20 @@
     <source
       v-if="srcEncodeExtension != 'webp'"
       :srcset="srcEncode"
-      :media="mobileVersion ? `(min-width: ${mobileVersion + 1}px)` : ''"
+      :media="
+        mobileVersion && webpExtensions.includes(srcEncodeExtension)
+          ? `(min-width: ${mobileVersion + 1}px)`
+          : ''
+      "
     />
     <source
       v-if="mobileVersion && srcEncodeExtension != 'webp'"
       :srcset="srcEncodeCustomWidth(mobileVersion)"
-      :media="mobileVersion ? `(max-width: ${mobileVersion}px)` : ''"
+      :media="
+        mobileVersion && webpExtensions.includes(srcEncodeExtension)
+          ? `(max-width: ${mobileVersion}px)`
+          : ''
+      "
     />
     <img
       :loading="loading"
