@@ -83,7 +83,8 @@ class FileHelper
 			$img->save($mobilePath);
 			WebpHelper::convertToWebp($destination, "width_576_$name");
 		} else Storage::putFileAs($destination, new File($file), $name);
-		$sizes = getimagesize($storageDestinationPath);
+
+		$sizes = getimagesize(file_exists($storageDestinationPath) ? $storageDestinationPath : "$storageDestinationPath.webp");
 		if ($sizes) {
 			$file_options['width'] = $sizes[0];
 			$file_options['height'] = $sizes[1];
@@ -97,12 +98,26 @@ class FileHelper
 	{
 		$separator = strpos($path, '/') !== FALSE ? '/' : '\\';
 		list($date, $fileName) =  explode($separator, $path);
-		Storage::delete("$folder/$date/$fileName");
-		Storage::delete("$folder/$date/$fileName.webp");
+
+		$primalPath = "$folder/$date/$fileName";
+		if (file_exists("{$_SERVER['ROOT']}/storage/$primalPath")) {
+			Storage::delete($primalPath);
+		}
+
+		$primalPathWebp = "$primalPath.webp";
+		if (file_exists("{$_SERVER['ROOT']}/storage/$primalPathWebp")) {
+			Storage::delete($primalPathWebp);
+		}
+
 		$mobilePath = "$folder/$date/width_576_$fileName";
+		if (file_exists("{$_SERVER['ROOT']}/storage/$mobilePath")) {
+			Storage::delete($mobilePath);
+		}
+
 		$mobilePathWebp = "$folder/$date/width_576_{$fileName}.webp";
-		if (file_exists($_SERVER['ROOT'] . "/storage/" . $mobilePath)) Storage::delete($mobilePath);
-		if (file_exists($_SERVER['ROOT'] . "/storage/" . $mobilePathWebp)) Storage::delete($mobilePathWebp);
+		if (file_exists("{$_SERVER['ROOT']}/storage/$mobilePathWebp")) {
+			Storage::delete($mobilePathWebp);
+		}
 	}
 
 	public static function delete($id, $folder = 'media')

@@ -29,10 +29,9 @@
                       md="4"
                     >
                       <div class="position-relative">
-                        <img
-                          class="img-fluid"
+                        <Picture
+                          classImg="img-fluid"
                           :src="getUrl(photo.path)"
-                          alt=""
                         />
                         <div class="close-icon-container">
                           <v-icon
@@ -94,10 +93,12 @@ import axios from "axios";
 import GalleryPicker from "@/components/gallery-picker/GalleryPicker";
 import SnackbarAlerts from "@/data/snackbar-alerts.js";
 import url from "@/helpers/photo/url.js";
+import Picture from "@/components/picture/Picture.vue";
 
 export default {
   components: {
     GalleryPicker,
+    Picture,
   },
   data: () => ({
     name: "",

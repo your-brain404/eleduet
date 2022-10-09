@@ -11,11 +11,12 @@
         px-0
       "
     >
-      <img
+      <Picture
         v-if="isPhoto(chosenFile.type)"
         width="100%"
         :src="value ? url(value) : placeholder"
       />
+
       <div class="d-flex align-items-center justify-content-between w-100">
         <a target="_blank" :href="value">
           <div>
@@ -97,11 +98,10 @@
                           v-for="file in filteredFiles"
                           :key="file.id"
                         >
-                          <img
+                          <Picture
                             v-if="file.type.split('/')[0] == 'image'"
-                            loading="lazy"
                             @click="setFileClass(file.id)"
-                            class="file-picker__photo"
+                            classImg="file-picker__photo"
                             :src="url(file.path)"
                           />
 
@@ -160,11 +160,12 @@
                             >Usuń</u
                           >
                         </div>
-                        <img
-                          class="img-fluid chosen-img-placeholder"
+
+                        <Picture
+                          classImg="img-fluid chosen-img-placeholder"
                           v-if="isPhoto(chosenFile.type)"
+                          width="100%"
                           :src="url(chosenFile.path)"
-                          alt=""
                         />
                         <v-btn
                           class="w-100 mt-2 mb-5"
@@ -190,7 +191,7 @@
                           </li>
                           <li>Nazwa: {{ chosenFile.name }}</li>
                           <li style="word-break: break-all">
-                            Ścieżka: {{ chosenFile.path }}
+                            Ścieżka: {{ existingPhotoPath(chosenFile.path) }}
                           </li>
                           <li>
                             Rozmiar: {{ formatFileSize(chosenFile.size) }}
@@ -210,7 +211,11 @@
                           </li>
                           <li>
                             <v-btn
-                              @click="copyToClipboard(url(chosenFile.path))"
+                              @click="
+                                copyToClipboard(
+                                  url(existingPhotoPath(chosenFile.path))
+                                )
+                              "
                               class="white--text"
                               :color="$store.getters.settings.first_color"
                             >
@@ -242,8 +247,14 @@ import url from "@/helpers/photo/url";
 import isPhoto from "@/helpers/files/is-photo";
 import formatFileSize from "@/helpers/files/format-file-size";
 import copyToClipboard from "@/helpers/copy/copy-to-clipboard";
+import Picture from "@/components/picture/Picture";
+import existingPhotoPath from "@/helpers/links/existing-photo-path";
 
 export default {
+  components: {
+    AddFiles,
+    Picture,
+  },
   props: {
     value: {
       type: String,
@@ -270,9 +281,7 @@ export default {
       placeholder: "/storage/img/placeholder/250.png",
     };
   },
-  components: {
-    AddFiles,
-  },
+
   computed: {
     filteredFiles() {
       let filteredFiles = [];
@@ -298,6 +307,7 @@ export default {
     isPhoto,
     formatFileSize,
     copyToClipboard,
+    existingPhotoPath,
     setInitialActiveFile() {
       if (this.files.length > 0 && this.value)
         this.activeFile = this.getFileByPath(this.value)?.id;

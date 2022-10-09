@@ -2,13 +2,14 @@
   <section v-if="about.id && contact.id" class="about">
     <div class="content">
       <div class="section-content">
-        <img
-          class="bolt"
-          v-lazy="
-            `${origin}/storage/media/${$store.state.Settings.settings.li_marker}`
-          "
-          alt=""
+        <Picture
+          :src="`${origin}/storage/media/${$store.state.Settings.settings.li_marker}`"
+          :alt="$store.state.Settings.settings.li_marker_alt"
+          :width="48"
+          :height="75"
+          :classImg="'bolt'"
         />
+
         <h3 class="section-title" v-html="prepareTitle(about.title)"></h3>
       </div>
 
@@ -44,6 +45,7 @@
         :alt="about.photo_alt"
         :classImg="'photo bg'"
         :src="`${origin}/storage/media/${about.photo}`"
+        :mobile-version="576"
       />
       <Picture
         :width="170"
@@ -51,7 +53,6 @@
         :alt="'elipsa'"
         :classImg="'ellipse'"
         :src="`${origin}/storage/img/home/ellipse1.svg`"
-        :webp="false"
       />
     </div>
   </section>
@@ -113,6 +114,13 @@ export default {
       margin-top: 3rem;
     }
   }
+  .bolt {
+    height: 75px;
+    padding-right: 1.3rem;
+    @media (max-width: 400px) {
+      margin-bottom: 0.5rem;
+    }
+  }
 }
 section.about {
   display: flex;
@@ -146,13 +154,6 @@ section.about {
       align-items: center;
       @media (max-width: 400px) {
         flex-direction: column;
-      }
-      .bolt {
-        height: 75px;
-        padding-right: 1.3rem;
-        @media (max-width: 400px) {
-          margin-bottom: 0.5rem;
-        }
       }
     }
 

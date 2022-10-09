@@ -6,12 +6,12 @@
     >
       <div class="content">
         <div class="section-content">
-          <img
-            class="bolt"
-            v-lazy="
-              `${origin}/storage/media/${$store.state.Settings.settings.li_marker}`
-            "
-            alt=""
+          <Picture
+            :src="`${origin}/storage/media/${$store.state.Settings.settings.li_marker}`"
+            :alt="$store.state.Settings.settings.li_marker_alt"
+            :width="48"
+            :height="75"
+            :classImg="'bolt'"
           />
           <h3
             class="section-title"
@@ -46,10 +46,6 @@ export default {
   data() {
     return {
       origin: window.location.origin,
-      solarSystems: {
-        photo: "img/stock/solar-systems.jpg",
-        photo_alt: "fotowoltaika",
-      },
     };
   },
   methods: {

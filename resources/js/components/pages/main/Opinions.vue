@@ -7,10 +7,12 @@
     />
     <div class="content">
       <div class="section-content">
-        <img
-          class="bolt"
-          v-lazy="`/storage/media/${settings.li_marker}`"
-          alt=""
+        <Picture
+          :src="`${origin}/storage/media/${$store.state.Settings.settings.li_marker}`"
+          :alt="$store.state.Settings.settings.li_marker_alt"
+          :width="48"
+          :height="75"
+          :classImg="'bolt'"
         />
         <h3
           class="section-title"
@@ -117,6 +119,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+::v-deep {
+  .bolt {
+    padding-right: 1.3rem;
+    @media (max-width: 400px) {
+      margin-bottom: 0.5rem;
+    }
+  }
+}
 section.opinions {
   position: relative;
   z-index: 1;
@@ -146,13 +156,6 @@ section.opinions {
       .section-title {
         span {
           font-weight: 700;
-        }
-      }
-
-      .bolt {
-        padding-right: 1.3rem;
-        @media (max-width: 400px) {
-          margin-bottom: 0.5rem;
         }
       }
     }

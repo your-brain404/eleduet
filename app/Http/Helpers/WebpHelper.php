@@ -1,12 +1,27 @@
 <?php
+
 namespace App\Http\Helpers;
 
 use Illuminate\Support\Facades\Storage;
+use App\Settings;
 
-class WebpHelper {
+class WebpHelper
+{
+	/*
+	   $destroyPrimalPhoto - flaga, która ustawiona na true usuwa pierwotne zdjęcie, z którego powstało webp
 
-	public static function convertToWebp($destination, $path) {
-		$image = imagecreatefromstring(file_get_contents(storage_path() . '/app/public/' . $destination . $path));
+	  */
+	private static $destroyPrimalPhoto = true;
+
+	public function __construct()
+	{
+		self::$destroyPrimalPhoto = Settings::find(1)->destroy_primal_photo ?? true;
+	}
+
+	public static function convertToWebp($destination, $path)
+	{
+		$primalPhoto = storage_path() . '/app/public/' . $destination . $path;
+		$image = imagecreatefromstring(file_get_contents($primalPhoto));
 		ob_start();
 		imagejpeg($image, NULL, 100);
 		$cont = ob_get_contents();
@@ -16,6 +31,9 @@ class WebpHelper {
 		$output = storage_path() . '/app/public/' . $destination . $path . '.webp';
 		imagewebp($content, $output);
 		imagedestroy($content);
-	}
 
+		if (self::$destroyPrimalPhoto) {
+			Storage::delete("$destination/$path");
+		}
+	}
 }

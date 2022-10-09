@@ -185,7 +185,10 @@ const routes = [
     {
         path: "/admin-panel/:table/gallery/:id",
         component: GalleryForm,
-        name: "GalleryForm"
+        name: "GalleryForm",
+        meta: {
+            adminRoute: true
+        }
     },
     { path: "*", redirect: "/" }
 ];

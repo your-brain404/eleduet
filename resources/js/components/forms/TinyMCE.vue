@@ -52,3 +52,9 @@ export default {
   },
 };
 </script>
+
+<style>
+.tox-notifications-container {
+  display: none !important;
+}
+</style>

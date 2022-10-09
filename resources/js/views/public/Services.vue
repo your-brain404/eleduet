@@ -4,10 +4,10 @@
       <div class="content">
         <div class="section-content">
           <Picture
-            :width="'auto'"
-            :height="75"
-            :alt="'marker'"
             :src="`${origin}/storage/media/${$store.state.Settings.settings.li_marker}`"
+            :alt="$store.state.Settings.settings.li_marker_alt"
+            :width="48"
+            :height="75"
             :classImg="'bolt'"
           />
 
@@ -40,7 +40,6 @@
           :alt="'elipsa'"
           :src="`${origin}/storage/img/home/ellipse1.svg`"
           :classImg="'ellipse'"
-          :webp="false"
         />
       </div>
     </section>

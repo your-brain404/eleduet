@@ -74,9 +74,9 @@
                                 v-if="activePhotos.includes(photo.id)"
                                 class="mask gallery-picker-photo-mask"
                               ></div>
-                              <img
-                                loading="lazy"
-                                class="gallery-picker-photo"
+
+                              <Picture
+                                classImg="gallery-picker-photo"
                                 :src="url(photo.path)"
                               />
                             </div>
@@ -110,6 +110,7 @@
 import axios from "axios";
 import AddPhotos from "@/components/gallery-picker/AddPhotos.vue";
 import url from "@/helpers/photo/url.js";
+import Picture from "@/components/picture/Picture";
 
 export default {
   props: ["apiGallery", "title"],
@@ -129,6 +130,7 @@ export default {
   },
   components: {
     AddPhotos,
+    Picture,
   },
   watch: {
     apiGallery() {

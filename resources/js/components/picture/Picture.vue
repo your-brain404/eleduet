@@ -1,19 +1,27 @@
 <template>
-  <picture v-if="!error">
+  <picture>
     <source
-      v-if="webp"
+      v-if="webp && isWebpType"
       :srcset="webpSrc"
       type="image/webp"
-      media="(min-width: 577px)"
+      :media="mobileVersion ? `(min-width: ${mobileVersion + 1}px)` : ''"
     />
     <source
-      v-if="webp"
-      :srcset="webpSrcCustomWidth(576)"
-      media="(max-width: 576px)"
+      v-if="webp && isWebpType && mobileVersion"
+      :srcset="webpSrcCustomWidth(mobileVersion)"
+      :media="mobileVersion ? `(max-width: ${mobileVersion}px)` : ''"
       type="image/webp"
     />
-    <source :srcset="srcEncode" media="(min-width: 577px)" />
-    <source :srcset="srcEncodeCustomWidth(576)" media="(max-width: 576px)" />
+    <source
+      v-if="srcEncodeExtension != 'webp'"
+      :srcset="srcEncode"
+      :media="mobileVersion ? `(min-width: ${mobileVersion + 1}px)` : ''"
+    />
+    <source
+      v-if="mobileVersion && srcEncodeExtension != 'webp'"
+      :srcset="srcEncodeCustomWidth(mobileVersion)"
+      :media="mobileVersion ? `(max-width: ${mobileVersion}px)` : ''"
+    />
     <img
       :loading="loading"
       @click="$emit('click')"
@@ -29,6 +37,10 @@
 </template>
 
 <script>
+import webpExtensions from "@/helpers/files/webp-extensions";
+import existingPhotoPath from "@/helpers/links/existing-photo-path";
+import getExtensionFromPath from "@/helpers/files/get-extension-from-path";
+
 export default {
   data() {
     return {
@@ -36,6 +48,10 @@ export default {
     };
   },
   props: {
+    mobileVersion: {
+      type: [String, Number],
+      default: "",
+    },
     src: {
       type: String,
       default: "",
@@ -56,16 +72,24 @@ export default {
   },
   computed: {
     isWebpType() {
-      return this.srcEncode.match(/.(jpg|png|jpeg|jfif)$/i);
+      const regex = new RegExp(`.(${webpExtensions.join("|")})$`, "i");
+      return this.src.match(regex);
     },
     webpSrc() {
-      return this.isWebpType && `${this.srcEncode}.webp`;
+      return this.isWebpType && `${this.src}.webp`;
+    },
+    srcEncodeExtension() {
+      return this.getExtensionFromPath(this.srcEncode);
     },
     srcEncode() {
-      return encodeURI(this.src);
+      return this.webp
+        ? existingPhotoPath(encodeURI(this.src))
+        : encodeURI(this.src);
     },
   },
   methods: {
+    existingPhotoPath,
+    getExtensionFromPath,
     imgError() {
       if (this.error === false) this.error = true;
     },

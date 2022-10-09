@@ -32,7 +32,6 @@
         :alt="'elipsa'"
         :src="`${origin}/storage/img/home/ellipse1.svg`"
         :classImg="'ellipse'"
-        :webp="false"
       />
     </div>
 
@@ -75,7 +74,6 @@
                 :alt="'check'"
                 :src="`/storage/img/stock/white-check.svg`"
                 :classImg="{ show: formData.rodo1 }"
-                :webp="false"
               />
             </div>
           </div>
@@ -93,7 +91,6 @@
                 :alt="'check'"
                 :src="`/storage/img/stock/white-check.svg`"
                 :classImg="{ show: formData.rodo2 }"
-                :webp="false"
               />
             </div>
           </div>
@@ -115,7 +112,6 @@
       :alt="'ellipsa'"
       :src="`/storage/img/contact/form-ellipse.svg`"
       :classImg="'form-ellipse'"
-      :webp="false"
     />
   </section>
 </template>

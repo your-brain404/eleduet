@@ -2,12 +2,12 @@
   <section class="attributes">
     <div class="content">
       <div class="section-content">
-        <img
-          class="bolt"
-          v-lazy="
-            `${origin}/storage/media/${$store.state.Settings.settings.li_marker}`
-          "
-          alt=""
+        <Picture
+          :src="`${origin}/storage/media/${$store.state.Settings.settings.li_marker}`"
+          :alt="$store.state.Settings.settings.li_marker_alt"
+          :width="48"
+          :height="75"
+          :classImg="'bolt'"
         />
         <h3
           v-if="attributesDesc.id"
@@ -82,10 +82,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-::v-deep .attribute .icon {
-  height: 65px;
-  padding-right: 1.5rem;
-  width: auto;
+::v-deep {
+  .attribute .icon {
+    height: 65px;
+    padding-right: 1.5rem;
+    width: auto;
+  }
+  .bolt {
+    padding-right: 1.3rem;
+
+    @media (max-width: 400px) {
+      margin-bottom: 0.5rem;
+    }
+  }
 }
 section.attributes {
   .content {
@@ -106,13 +115,6 @@ section.attributes {
       .section-title {
         span {
           font-weight: 700;
-        }
-      }
-
-      .bolt {
-        padding-right: 1.3rem;
-        @media (max-width: 400px) {
-          margin-bottom: 0.5rem;
         }
       }
     }

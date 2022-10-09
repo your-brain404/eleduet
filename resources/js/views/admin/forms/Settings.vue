@@ -91,6 +91,11 @@
                   :title="'Punktor listy'"
                   images-only
                 />
+                <v-text-field
+                  color="primary"
+                  v-model="currentObject.li_marker_alt"
+                  label="Tekst alternatywny punktora listy"
+                ></v-text-field>
               </div>
             </v-col>
           </v-row>

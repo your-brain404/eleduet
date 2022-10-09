@@ -6,7 +6,6 @@
       :alt="'elipsa'"
       :src="`${origin}/storage/img/services/solar-system-ellipse.svg`"
       :classImg="'ellipse'"
-      :webp="false"
     />
 
     <div class="position-relative call-us-bg-container">
