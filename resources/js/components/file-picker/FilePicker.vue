@@ -98,12 +98,22 @@
                           v-for="file in filteredFiles"
                           :key="file.id"
                         >
-                          <Picture
+                          <div
                             v-if="file.type.split('/')[0] == 'image'"
                             @click="setFileClass(file.id)"
-                            classImg="file-picker__photo"
-                            :src="url(file.path)"
-                          />
+                            class="position-relative"
+                          >
+                            <Transition name="fade">
+                              <div
+                                v-if="chosenFile.id === file.id"
+                                class="mask file-picker__photo-mask"
+                              ></div>
+                            </Transition>
+                            <Picture
+                              classImg="file-picker__photo"
+                              :src="url(file.path)"
+                            />
+                          </div>
 
                           <v-tooltip top v-else>
                             <template v-slot:activator="{ on, attrs }">
@@ -371,6 +381,21 @@ export default {
 };
 </script>
 <style lang="scss">
+.fade-enter-active {
+  animation: fade 0.2s;
+}
+.fade-leave-active {
+  animation: fade 0.2s reverse;
+}
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0.7;
+  }
+}
 .file-picker {
   @media (min-width: 992px) {
     overflow-y: unset !important;
@@ -387,6 +412,18 @@ export default {
   &__photo {
     cursor: pointer;
     width: 100%;
+    &-mask {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      background-color: var(--first-color);
+      opacity: 0.7;
+      cursor: pointer;
+      filter: drop-shadow(2px 4px 6px black);
+    }
   }
 }
 .file-picker-pagination {

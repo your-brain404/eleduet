@@ -70,10 +70,12 @@
                               v-bind="attrs"
                               class="position-relative"
                             >
-                              <div
-                                v-if="activePhotos.includes(photo.id)"
-                                class="mask gallery-picker-photo-mask"
-                              ></div>
+                              <Transition name="fade">
+                                <div
+                                  v-if="activePhotos.includes(photo.id)"
+                                  class="mask gallery-picker-photo-mask"
+                                ></div>
+                              </Transition>
 
                               <Picture
                                 classImg="gallery-picker-photo"
@@ -235,6 +237,21 @@ export default {
 };
 </script>
 <style lang="scss">
+.fade-enter-active {
+  animation: fade 0.2s;
+}
+.fade-leave-active {
+  animation: fade 0.2s reverse;
+}
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 0.7;
+  }
+}
 .gallery-picker-menu {
   position: sticky;
   width: 100%;
