@@ -1,7 +1,7 @@
 <template>
   <v-row justify="center" class="mt-5 mb-2 px-3">
     <v-col
-      v-if="chosenFile.id || value"
+      v-if="Boolean(chosenFile.id) || Boolean(value)"
       class="
         w-100
         d-flex
@@ -148,7 +148,7 @@
                       cols="12"
                       md="4"
                     >
-                      <div v-if="chosenFile" class="chosen-file-container">
+                      <div v-if="chosenFile.id" class="chosen-file-container">
                         <v-icon
                           @click="chosenFileColumnShow = false"
                           :color="'black'"
