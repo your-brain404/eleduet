@@ -105,7 +105,7 @@
                           >
                             <Transition name="fade">
                               <div
-                                v-if="chosenFile.id === file.id"
+                                v-if="chosenFile && chosenFile.id === file.id"
                                 class="mask file-picker__photo-mask"
                               ></div>
                             </Transition>
