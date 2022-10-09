@@ -39,6 +39,7 @@
             :alt="service.photo_alt"
             :classImg="'photo bg'"
             :src="origin + '/storage/media/' + service.photo"
+            :mobile-version="576"
           />
 
           <h4 class="service-title">{{ service.title }}</h4>

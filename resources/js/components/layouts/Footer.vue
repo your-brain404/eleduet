@@ -20,6 +20,7 @@
             :height="settings.photo_sizes.height"
             :classImg="'logo'"
             :webp="false"
+            :mobile-version="576"
           />
         </router-link>
         <hr class="footer-logo-separator" />

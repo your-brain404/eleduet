@@ -1,8 +1,8 @@
 <template>
   <section v-if="homeSolarSystemDesc.id" class="solar-system">
     <Picture
-      :width="'auto'"
-      :height="'142%'"
+      :width="'680'"
+      :height="'680'"
       :alt="'elipsa'"
       :classImg="'ellipse'"
       :src="`${origin}/storage/img/home/solar-system-ellipse.svg`"
@@ -24,6 +24,7 @@
         :styleImg="{
           'background-position': homeSolarSystemDesc.photo_background_position,
         }"
+        :mobile-version="576"
       />
       <div class="content">
         <h3 class="section-title">{{ homeSolarSystemDesc.title }}</h3>

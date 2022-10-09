@@ -21,6 +21,7 @@
             'object-size': slide.photo_background_size,
             'object-position': slide.photo_background_position,
           }"
+          :mobile-version="576"
         />
         <div class="content">
           <h2 class="slide-title">{{ slide.title }}</h2>

@@ -1,9 +1,11 @@
 <template>
   <section v-if="opinions && opinions.length > 0" class="opinions">
-    <img
-      v-lazy="`/storage/img/stock/opinions-ellipse.svg`"
-      alt="elipsa"
-      class="ellipse"
+    <Picture
+      :src="`/storage/img/stock/opinions-ellipse.svg`"
+      :alt="'elipsa'"
+      :width="1461"
+      :height="1461"
+      :classImg="'ellipse'"
     />
     <div class="content">
       <div class="section-content">
@@ -28,10 +30,12 @@
         >
           <div class="opinion-container">
             <div class="author">
-              <img
-                class="avatar"
-                v-lazy="`${origin}/storage/media/${opinion.photo}`"
+              <Picture
+                :src="`${origin}/storage/media/${opinion.photo}`"
                 :alt="opinion.photo_alt"
+                :width="60"
+                :height="60"
+                :classImg="'avatar'"
               />
               <div>
                 <b class="name">{{ opinion.title }}</b>
@@ -86,8 +90,12 @@
 
 <script>
 import adminTableComponent from "@/mixins/admin-table-component";
+import Picture from "@/components/picture/Picture.vue";
 
 export default {
+  components: {
+    Picture,
+  },
   mixins: [adminTableComponent],
   data() {
     return {
@@ -126,17 +134,22 @@ export default {
       margin-bottom: 0.5rem;
     }
   }
+  .ellipse {
+    position: absolute;
+    left: 50%;
+    top: 0;
+  }
+  .avatar {
+    height: 60px;
+    border-radius: 100%;
+    margin-right: 1rem;
+  }
 }
 section.opinions {
   position: relative;
   z-index: 1;
   overflow: hidden;
 
-  .ellipse {
-    position: absolute;
-    left: 50%;
-    top: 0;
-  }
   .content {
     position: relative;
     padding: var(--global-padding-x-desktop);
@@ -186,11 +199,7 @@ section.opinions {
           .author {
             display: flex;
             align-items: center;
-            .avatar {
-              height: 60px;
-              border-radius: 100%;
-              margin-right: 1rem;
-            }
+
             .name {
               font-weight: 700;
               font-size: 1.1rem;
