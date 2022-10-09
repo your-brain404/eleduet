@@ -1,7 +1,7 @@
 <template>
   <v-row justify="center" class="mt-5 mb-2 px-3">
     <v-col
-      v-if="chosenFile"
+      v-if="chosenFile.id || value"
       class="
         w-100
         d-flex
