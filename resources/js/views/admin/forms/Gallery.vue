@@ -1,5 +1,5 @@
 <template>
-  <v-content class="">
+  <v-content>
     <v-container>
       <v-card>
         <v-card-title class="justify-content-center">
@@ -17,7 +17,7 @@
         <v-divider class="mt-0"></v-divider>
         <v-form ref="form">
           <v-row>
-            <v-col class="" cols="12" md="8">
+            <v-col cols="12" md="8">
               <div class="pa-5">
                 <div class="gallery-container">
                   <v-row>

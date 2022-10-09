@@ -22,7 +22,7 @@
               class="mt-3"
               color="success"
             >
-              <v-icon left class="">mdi-check</v-icon>
+              <v-icon left>mdi-check</v-icon>
               <span>Wyślij</span>
             </v-btn>
           </v-form>

@@ -1,5 +1,5 @@
 <template>
-  <v-main class="">
+  <v-main>
     <v-container
       :id="block.tablename"
       :ref="block.tablename"
@@ -7,7 +7,7 @@
       :key="i"
       class="pa-5"
     >
-      <v-card raised class="">
+      <v-card raised>
         <Title :block="block" :parentData="parentData" />
         <v-divider></v-divider>
         <component

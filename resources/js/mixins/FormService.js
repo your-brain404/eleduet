@@ -4,16 +4,20 @@ import url from "@/helpers/photo/url.js";
 import TagsInput from "@/components/tagsinput/TagsInput.vue";
 import AdminPanelBlocks from "@/data/admin-panel-blocks.js";
 import VueEditor from "@/components/forms/TinyMCE";
+import FormFooter from "@/components/layouts/FormFooter";
+import { mapState } from "vuex";
+import { get } from "jquery";
+import { set } from "lodash";
 
 export default {
     components: {
         TagsInput,
         VueEditor,
-        FilePicker
+        FilePicker,
+        FormFooter
     },
     data() {
         return {
-            valid: true,
             name: "",
             rules: {
                 titleRules: [v => !!v || "To pole jest wymagane!"],
@@ -36,7 +40,22 @@ export default {
             parent: {}
         };
     },
+    watch: {
+        validateFlag(newValue) {
+            if (newValue) this.validate();
+        }
+    },
     computed: {
+        ...mapState("FormService", ["validateFlag"]),
+        valid: {
+            get() {
+                return this.$store.state.FormService.valid;
+            },
+            set(newValue) {
+                this.$store.state.FormService.valid = newValue;
+            }
+        },
+
         currentObject: {
             get() {
                 return this.$store.state.FormService.currentObject;
@@ -83,6 +102,10 @@ export default {
             this.$store.dispatch("FormService/edit", { formData, options });
         },
         validate() {
+            if (!this.$refs.form.validate()) {
+                this.$store.commit("setSnackbar", "Formularz zawiera błędy!");
+                return;
+            }
             this[this.$route.params.id ? "edit" : "add"](this.currentObject);
         },
         updateDeletedPhoto() {

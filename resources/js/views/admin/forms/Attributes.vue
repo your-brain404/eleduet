@@ -1,5 +1,5 @@
 <template>
-  <v-content class="">
+  <v-content>
     <v-container>
       <v-card>
         <v-card-title class="justify-content-center">
@@ -8,9 +8,9 @@
           </h2>
         </v-card-title>
         <v-divider class="mt-0"></v-divider>
-        <v-form ref="form" v-model="valid" lazy-validation>
+        <v-form ref="form" v-model="valid">
           <v-row>
-            <v-col class="" cols="12" md="8">
+            <v-col cols="12" md="8">
               <div class="pa-5">
                 <v-text-field
                   color="primary"
@@ -34,22 +34,7 @@
             </v-col>
           </v-row>
           <v-divider class="mb-0"></v-divider>
-          <v-card-actions class="pa-4">
-            <v-btn
-              :disabled="!valid || currentObject.title == ''"
-              color="primary"
-              class="mr-2"
-              @click="validate"
-            >
-              <v-icon left>mdi-check</v-icon>
-              <span>Zatwierdź</span>
-            </v-btn>
-
-            <v-btn color="error" class="mr-2" @click="$router.go(-1)">
-              <v-icon left>mdi-close</v-icon>
-              <span>Anuluj</span>
-            </v-btn>
-          </v-card-actions>
+          <form-footer></form-footer>
         </v-form>
       </v-card>
     </v-container>

@@ -1,5 +1,5 @@
 <template>
-  <v-card shaped class="">
+  <v-card shaped>
     <v-card-title class="align-items-center pt-5 search-container">
       <h2 class="table-title first-color ma-0">Akcje</h2>
       <v-spacer></v-spacer>
@@ -19,7 +19,7 @@
         }form`"
       >
         <v-btn class="first-bgc white--text add-button">
-          <v-icon left class="">{{
+          <v-icon left>{{
             block.add_button_icon ? block.add_button_icon : "mdi-plus"
           }}</v-icon>
           <span>{{
@@ -103,7 +103,7 @@
             :to="`/admin-panel/${block.list}/${item.id}`"
           >
             <v-btn small color="primary" class="white--text mr-2">
-              <v-icon left class="">mdi-format-list-bulleted</v-icon>
+              <v-icon left>mdi-format-list-bulleted</v-icon>
               <span>Lista</span>
             </v-btn>
           </router-link>
@@ -113,7 +113,7 @@
             :to="`/admin-panel/${block.tablename}/gallery/${item.id}`"
           >
             <v-btn small color="warning" class="white--text mr-2">
-              <v-icon left class="">mdi-image-multiple</v-icon>
+              <v-icon left>mdi-image-multiple</v-icon>
               <span>Galeria</span>
             </v-btn>
           </router-link>
@@ -125,7 +125,7 @@
             }form/${item.id}`"
           >
             <v-btn small color="primary" class="white--text mr-2">
-              <v-icon left class="">{{
+              <v-icon left>{{
                 block.edit_button_icon ? block.edit_button_icon : "mdi-pencil"
               }}</v-icon>
               <span>{{
@@ -140,7 +140,7 @@
             color="error"
             class="white--text"
           >
-            <v-icon left class="">mdi-close</v-icon>
+            <v-icon left>mdi-close</v-icon>
             <span>Usuń</span>
           </v-btn>
         </div>

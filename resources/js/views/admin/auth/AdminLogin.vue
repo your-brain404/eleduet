@@ -1,5 +1,5 @@
 <template>
-  <v-content class="">
+  <v-content>
     <v-container>
       <v-card>
         <v-card-title class="justify-content-center">

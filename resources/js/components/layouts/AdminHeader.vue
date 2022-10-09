@@ -12,7 +12,7 @@
     <v-list dense nav class="py-0">
       <v-list-item two-line :class="'px-0'">
         <v-list-item-avatar>
-          <img class="avatar" v-lazy="placeholder" />
+          <Picture classImg="avatar" :src="placeholder" :webp="false" />
         </v-list-item-avatar>
 
         <v-list-item-content>
@@ -65,9 +65,13 @@
 </template>
 
 <script>
-import avatar from "../../helpers/photo/avatar.js";
+import avatar from "@/helpers/photo/avatar.js";
+import Picture from "@/components/picture/Picture.vue";
 
 export default {
+  components: {
+    Picture,
+  },
   data() {
     return {
       avatar,
@@ -169,8 +173,13 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.avatar {
-  object-fit: cover;
+::v-deep {
+  .avatar {
+    object-fit: cover;
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+  }
 }
 
 .admin-drawer {

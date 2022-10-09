@@ -6,7 +6,9 @@ import AdminPanelBlocks from "@/data/admin-panel-blocks.js";
 export default {
     namespaced: true,
     state: {
-        currentObject: {}
+        currentObject: {},
+        valid: false,
+        validateFlag: false
     },
     mutations: {
         setCurrentObject(state, payload) {
@@ -14,6 +16,10 @@ export default {
         },
         resetCurrentObject(state) {
             state.currentObject = {};
+        },
+        validate(state) {
+            state.validateFlag = true;
+            setTimeout(() => (state.validateFlag = false), 10);
         }
     },
     getters: {
@@ -48,15 +54,14 @@ export default {
             }
             await router;
             axios
-                .post(
-                    `/api/${router.history.current.path.split("/")[2]}/add`,
-                    formData
-                )
+                .post(`/api/${router.history.current.path.split("/")[2]}/add`, {
+                    ...formData.formData
+                })
                 .then(() => {
                     commit("setSnackbar", SnackbarAlerts.success, {
                         root: true
                     });
-                    dispatch("resetCurrentObject");
+                    commit("resetCurrentObject");
                     dispatch("redirect");
                 })
                 .catch(err => {
