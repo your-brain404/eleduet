@@ -56,57 +56,5 @@ class CmsStoreModuleBuilder extends Command
         $newModuleFile = fopen("$newModuleFolder/{$this->variable}Module.js", "w");
         fwrite($newModuleFile, $newModuleContent);
         fclose($newModuleFile);
-
-        $storePath = __DIR__ . "/../../../resources/js/store/store.js";
-
-        $storeFile = file_get_contents($storePath);
-
-        $lines = explode(';', $storeFile);
-        $imports = array_filter($lines, function ($item) {
-            return strpos($item, 'import') !== FALSE;
-        });
-        $imports = array_map(function ($import) {
-            return preg_replace('/\n/', '', $import);
-        }, $imports);
-
-
-        $vueUses = array_filter($lines, function ($item) {
-            return strpos($item, 'Vue.use') !== FALSE;
-        });
-        $vueUses = array_map(function ($use) {
-            return preg_replace('/\n/', '', $use);
-        }, $vueUses);
-
-        $exportDefault = array_values(array_filter($lines, function ($item) {
-            return strpos($item, 'export default') !== FALSE;
-        }))[0];
-
-        $exportDefault = preg_replace('/\s+/', '', $exportDefault);
-
-
-        preg_match('/modules:{(.*?)}/', $exportDefault, $match);
-
-        $modules = explode(',', str_replace("}", "", $match[1]));
-
-        if (empty(array_filter($imports, function ($import) {
-            return strpos($import, $this->variable) !== FALSE;
-        }))) $imports[] = "import $variableFirstUpper from \"@/store/modules/{$this->variable}/{$this->variable}Module.js\"";
-
-
-        if (empty(array_filter($modules, function ($module) use ($variableFirstUpper) {
-            return $module == $variableFirstUpper;
-        }))) $modules[] = "$variableFirstUpper";
-
-        $newExportDefault = "export default new Vuex.Store({
-            modules: {
-                " . implode(",\n\t\t\t\t", $modules) . "
-            }
-        });";
-
-        $newStoreContent = implode(";\n", $imports) . ";\n\n\n" . implode(";\n", $vueUses) . ";\n\n\n" . $newExportDefault;
-
-        $newStoreFile = fopen($storePath, "w");
-        fwrite($newStoreFile, $newStoreContent);
-        fclose($newStoreFile);
     }
 }
