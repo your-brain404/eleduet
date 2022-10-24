@@ -2,6 +2,7 @@
   <section class="header">
     <router-link to="/" style="min-width: 139px">
       <Picture
+        @click="showMobileMenu = false"
         :width="settings.photo_sizes.width"
         :height="settings.photo_sizes.height"
         :alt="settings.photo_alt"
@@ -16,7 +17,7 @@
         v-for="(subpage, i) in subpages.filter((page) => page.page !== '/')"
         :key="`subpage-${i}`"
       >
-        <li>
+        <li @click="showMobileMenu = false">
           <div class="border-line"></div>
           {{ subpage.title }}
         </li>
@@ -64,6 +65,11 @@ export default {
       showMobileMenu: false,
       windowWidth: window.innerWidth,
     };
+  },
+  watch: {
+    "$route.path"() {
+      this.showMobileMenu = false;
+    },
   },
   computed: {
     subpages() {

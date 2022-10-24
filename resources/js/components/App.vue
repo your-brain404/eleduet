@@ -248,6 +248,7 @@ b {
 }
 .section-content {
   .bolt {
+    width: auto;
     height: 75px !important;
     @media (max-width: 400px) {
       padding-right: 0 !important;

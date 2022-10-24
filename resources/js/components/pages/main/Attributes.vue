@@ -143,9 +143,9 @@ section.attributes {
           align-items: center;
           border-radius: 12px;
           height: 100%;
-          @media (max-width: 320px) {
+          @media (max-width: 576px) {
             flex-direction: column;
-            .icon {
+            &::v-deep .icon {
               padding-right: 0 !important;
               margin-bottom: 0.9rem;
             }
