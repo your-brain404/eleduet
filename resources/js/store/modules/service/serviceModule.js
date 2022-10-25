@@ -1,14 +1,15 @@
 import axios from "axios";
 
 export default {
+    namespaced: true,
     state: {
-        service: {},
+        service: window.global.cms.servicePage.service || {}
     },
     getters: {
         service: state => state.service
     },
     mutations: {
-        service: (state, service) => state.service = service
+        service: (state, service) => (state.service = service)
     },
     actions: {
         async service({ commit }, id) {
@@ -19,8 +20,11 @@ export default {
                 })
                 .catch(err => {
                     console.log(err);
-                    commit('setSnackbar', 'Przepraszamy, nie udało się załadować danych usługi...');
+                    commit(
+                        "setSnackbar",
+                        "Przepraszamy, nie udało się załadować danych usługi..."
+                    );
                 });
         }
     }
-}
+};

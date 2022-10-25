@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export default {
+    namespaced: true,
     state: {
         opinionsDesc: window.global.cms.homePage.opinionsDesc || {}
     },

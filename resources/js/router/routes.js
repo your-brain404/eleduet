@@ -168,7 +168,10 @@ const routes = [
         path: "/admin-panel/login",
         component: AdminLogin,
         name: "AdminLogin",
-        alias: "/admin-panel"
+        alias: "/admin-panel",
+        meta: {
+            adminRoute: true
+        }
     },
 
     {

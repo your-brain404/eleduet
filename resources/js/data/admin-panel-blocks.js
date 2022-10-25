@@ -76,14 +76,7 @@ const ServicesCallUs = () =>
     import(
         /* webpackPrefetch: true */ /* webpackChunkName: 'services-call-us' */ "@/components/pages/services/CallUs"
     );
-const SolarSystemsCallUs = () =>
-    import(
-        /* webpackPrefetch: true */ /* webpackChunkName: 'solar-systems-call-us' */ "@/components/pages/solarSystems/CallUs"
-    );
-const SolarSystems = () =>
-    import(
-        /* webpackPrefetch: true */ /* webpackChunkName: 'solar-systems-page' */ "@/views/public/SolarSystems"
-    );
+
 const Realizations = () =>
     import(
         /* webpackPrefetch: true */ /* webpackChunkName: 'realizations-page' */ "@/views/public/Realizations"
@@ -291,32 +284,6 @@ export default {
         }
     ],
 
-    solar_system: [
-        {
-            title: "Fotowoltaika",
-            component: SolarSystems,
-            tablename: "solar_system",
-            table: [{ id: 1, title: "Opisy" }],
-            multiple: false,
-            removable: false,
-            gallery: false,
-            active: false,
-            home_page: false,
-            order: false
-        },
-        {
-            title: "Zadzwoń i zapytaj!",
-            component: SolarSystemsCallUs,
-            tablename: "solar_system_call_us",
-            table: [{ id: 1, title: "Opisy" }],
-            multiple: false,
-            removable: false,
-            gallery: false,
-            active: false,
-            home_page: false,
-            order: false
-        }
-    ],
     contact: [
         {
             title: "Kontakt linki",

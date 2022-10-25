@@ -1,10 +1,14 @@
 <template>
   <section class="about-page">
-    <div class="content" v-html="data.description"></div>
+    <div class="content" v-html="aboutPage.description"></div>
 
     <div class="gallery">
       <CoolLightBox
-        :items="gallery.map((photo) => `${origin}/storage/media/${photo.path}`)"
+        :items="
+          gallery.map((photo) =>
+            existingPhotoPath(`${origin}/storage/media/${photo.path}`)
+          )
+        "
         :index="index"
         @close="index = null"
       >
@@ -32,46 +36,37 @@ import axios from "axios";
 import CoolLightBox from "vue-cool-lightbox";
 import "vue-cool-lightbox/dist/vue-cool-lightbox.min.css";
 import Picture from "@/components/picture/Picture";
+import adminTableComponent from "@/mixins/admin-table-component";
+import existingPhotoPath from "@/helpers/links/existing-photo-path";
 
 export default {
   components: {
     CoolLightBox,
     Picture,
   },
-  props: ["reloadFlag"],
-  watch: {
-    reloadFlag() {
-      if (this.reloadFlag) this.reloadData();
-    },
-  },
+  mixins: [adminTableComponent],
+
   data() {
     return {
       origin: window.location.origin,
-      table: "about_page",
+      table: "aboutPage",
       index: null,
-      gallery: [],
+      gallery: window.global.cms.aboutPage.aboutPageGallery || [],
     };
   },
   computed: {
-    data() {
-      return this.$store.getters.aboutPage;
+    aboutPage() {
+      return this.$store.state.AboutPage?.aboutPage || {};
+    },
+    tableData() {
+      return [this.aboutPage];
     },
   },
   methods: {
-    emitData() {
-      this.$emit("blockDataEmit", [this.data]);
-    },
-    async fetchData() {
-      await this.$store.dispatch("aboutPage");
-      this.emitData();
-    },
-    async reloadData() {
-      this.$store.commit("aboutPage", []);
-      await this.fetchData();
-    },
+    existingPhotoPath,
     async fetchGallery() {
       await axios
-        .get(`/api/gallery/get_photos/${this.table}/1`)
+        .get(`/api/gallery/get_photos/about_page/1`)
         .then((res) => {
           this.gallery = res.data;
         })
@@ -84,9 +79,9 @@ export default {
         });
     },
   },
+
   created() {
-    this.fetchData();
-    this.fetchGallery();
+    if (this.gallery.length === 0) this.fetchGallery();
   },
 };
 </script>

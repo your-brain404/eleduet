@@ -1,6 +1,8 @@
 import axios from "axios";
+import router from "@/router/routes";
 
 export default {
+    namespaced: true,
     state: {
         slider: window.global.cms.homePage.slider || []
     },
@@ -11,15 +13,21 @@ export default {
         slider: state => state.slider
     },
     actions: {
-        slider: async ({ commit }) => {
+        slider: async function({ commit }) {
+            await router;
+            let endpoint = `/api/slider/${
+                router.history.current.meta.adminRoute
+                    ? "get_all"
+                    : "get_where?active=1"
+            }`;
             axios
-                .get(`/api/slider/get_all`)
+                .get(endpoint)
                 .then(res => {
-                    commit("loading", false);
+                    commit("loading", false, { root: true });
                     commit("slider", res.data);
                 })
                 .catch(err => {
-                    commit("loading", false);
+                    commit("loading", false, { root: true });
                     console.log(err);
                 });
         }

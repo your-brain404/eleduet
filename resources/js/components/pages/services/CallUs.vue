@@ -59,26 +59,33 @@
 
 <script>
 import Picture from "@/components/picture/Picture";
+import adminTableComponent from "@/mixins/admin-table-component";
 
 export default {
+  mixins: [adminTableComponent],
   components: {
     Picture,
   },
   data() {
     return {
       origin: window.location.origin,
+      table: "servicesCallUs",
     };
   },
   computed: {
     servicesCallUs() {
-      return this.$store.getters.servicesCallUs;
+      return this.$store.state.ServicesCallUs?.servicesCallUs || {};
     },
     contact() {
       return this.$store.getters["contact"];
     },
+    tableData() {
+      return this.contact;
+    },
   },
   created() {
-    this.$store.dispatch("servicesCallUs");
+    if (Object.values(this.servicesCallUs).length === 0)
+      this.$store.dispatch("servicesCallUs");
   },
 };
 </script>
@@ -129,6 +136,7 @@ section.call-us {
     top: 50%;
     left: 0;
     transform: translateY(-50%);
+    width: 100%;
     @media (max-width: 992px) {
       padding-left: var(--global-padding-x-mobile);
       padding-right: var(--global-padding-x-mobile);

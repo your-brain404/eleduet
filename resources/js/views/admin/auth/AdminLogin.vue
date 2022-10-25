@@ -13,6 +13,7 @@
           ref="form"
           v-model="valid"
           lazy-validation
+          @submit.prevent="login"
         >
           <v-row>
             <v-col cols="12">
@@ -37,6 +38,7 @@
                   class="mr-2"
                   @click="login"
                   :loading="loading"
+                  type="submit"
                 >
                   <v-icon left>mdi-check</v-icon>
                   <span class="button-name">Zaloguj</span>
@@ -51,6 +53,7 @@
 </template>
 
 <script>
+import getModule from "@/helpers/store/get-module";
 export default {
   data() {
     return {
@@ -88,6 +91,14 @@ export default {
     },
   },
   async created() {
+    if (!this.$store.hasModule("validationRules"))
+      this.$store.registerModule(
+        "validationRules",
+        getModule("validationRules")
+      );
+    if (!this.$store.hasModule("snackbarAlerts"))
+      this.$store.registerModule("snackbarAlerts", getModule("snackbarAlerts"));
+
     if (localStorage.getItem("user"))
       this.$router.push({
         name: "AdminMain",
@@ -105,3 +116,4 @@ export default {
   color: white;
 }
 </style>
+

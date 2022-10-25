@@ -102,16 +102,6 @@ export default {
     subpages() {
       if (this.subpages.length > 0) this.checkSubpageEntry();
     },
-    "$store.getters.snackbarAlerts.id"() {
-      if (this.$store.getters.snackbarAlerts.id) {
-        if (this.$route.query.aktywacja == "1") {
-          this.$store.commit(
-            "setSnackbar",
-            this.$store.getters.snackbarAlerts.activated_account_success
-          );
-        }
-      }
-    },
   },
   computed: {
     isPathAdmin() {

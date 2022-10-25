@@ -37,23 +37,27 @@
 
 <script>
 import Picture from "../../picture/Picture.vue";
+import adminTableComponent from "@/mixins/admin-table-component";
+
 export default {
+  mixins: [adminTableComponent],
   components: { Picture },
   data() {
     return {
       origin: window.location.origin,
+      table: "solarSystemCallUs",
     };
   },
   computed: {
     solarSystemCallUs() {
       return this.$store.getters.solarSystemCallUs;
     },
+    tableData() {
+      return [this.solarSystemCallUs];
+    },
     contact() {
       return this.$store.getters["contact"];
     },
-  },
-  created() {
-    this.$store.dispatch("solarSystemCallUs");
   },
 };
 </script>

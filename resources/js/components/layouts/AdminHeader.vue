@@ -100,11 +100,7 @@ export default {
           icon: "mdi-violin",
           path: "/admin-panel/about_page",
         },
-        {
-          title: "Fotowoltaika",
-          icon: "mdi-solar-panel",
-          path: "/admin-panel/solar_system",
-        },
+
         {
           title: "Kontakt",
           icon: "mdi-phone",

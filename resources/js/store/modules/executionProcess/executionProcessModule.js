@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export default {
+    namespaced: true,
     state: {
         executionProcess: window.global.cms.homePage.executionProcess || []
     },

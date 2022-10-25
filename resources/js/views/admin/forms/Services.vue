@@ -81,19 +81,21 @@
 </template>
 
 <script>
-import FormService from "@/mixins/FormService.js";
+import FormServiceMixin from "@/mixins/FormService.js";
+import getModule from "@/helpers/store/get-module";
 
 export default {
-  mixins: [FormService],
+  mixins: [FormServiceMixin],
 
   computed: {
     serviceCategories() {
-      return this.$store.getters.serviceCategories;
+      return this.$store.state.ServiceCategories?.serviceCategories || [];
     },
     currentServiceCategories() {
-      return this.$store.getters.currentServiceCategories.map(
-        (row) => row.service_category_id
-      );
+      return (
+        this.$store.state.CurrentServiceCategories?.currentServiceCategories ||
+        []
+      ).map((row) => row.service_category_id);
     },
   },
 
@@ -114,11 +116,26 @@ export default {
   },
 
   created() {
-    this.$store.dispatch("serviceCategories");
-    this.$store.dispatch("currentServiceCategories", this.$route.params.id);
+    if (!this.$store.hasModule("serviceCategories")) {
+      this.$store.registerModule(
+        "serviceCategories",
+        getModule("serviceCategories")
+      );
+    }
+    if (!this.$store.hasModule("currentServiceCategories")) {
+      this.$store.registerModule(
+        "currentServiceCategories",
+        getModule("currentServiceCategories")
+      );
+    }
+    this.$store.dispatch("ServiceCategories/serviceCategories");
+    this.$store.dispatch(
+      "CurrentServiceCategories/currentServiceCategories",
+      this.$route.params.id
+    );
   },
   destroyed() {
-    this.$store.commit("currentServiceCategories", []);
+    this.$store.commit("CurrentServiceCategories/currentServiceCategories", []);
   },
 };
 </script>

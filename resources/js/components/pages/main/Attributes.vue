@@ -47,10 +47,10 @@ import adminTableComponent from "@/mixins/admin-table-component";
 import Picture from "@/components/picture/Picture";
 
 export default {
+  mixins: [adminTableComponent],
   components: {
     Picture,
   },
-  mixins: [adminTableComponent],
 
   data() {
     return {
@@ -60,10 +60,18 @@ export default {
   },
   computed: {
     attributes() {
-      return this.$store.getters[this.table];
+      return (
+        this.$store.state.Attributes?.attributes ||
+        window.global.cms.homePage.attributes ||
+        []
+      );
     },
     attributesDesc() {
-      return this.$store.getters[this.table + "Desc"];
+      return (
+        this.$store.state.AttributeDesc?.attributesDesc ||
+        window.global.cms.homePage.attributesDesc ||
+        {}
+      );
     },
     tableData() {
       return this.attributes;
@@ -74,9 +82,10 @@ export default {
       title.replaceAll("{", "<span>").replaceAll("}", "</span>"),
   },
   created() {
+    this.registerModule("AttributesDesc");
     if (this.attributes.length === 0) this.fetchData();
     if (Object.values(this.attributesDesc).length === 0)
-      this.$store.dispatch(this.table + "Desc");
+      this.$store.dispatch("AttributesDesc/attributesDesc");
   },
 };
 </script>

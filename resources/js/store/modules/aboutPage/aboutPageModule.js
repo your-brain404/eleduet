@@ -1,8 +1,9 @@
 import axios from "axios";
 
 export default {
+    namespaced: false,
     state: {
-        aboutPage: {}
+        aboutPage: window.global.cms.aboutPage.aboutPage || {}
     },
     getters: {
         aboutPage: state => state.aboutPage

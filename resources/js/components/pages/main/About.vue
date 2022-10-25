@@ -79,7 +79,7 @@ export default {
       return [this.about];
     },
     about() {
-      return this.$store.getters.about;
+      return this.$store.state.About?.about;
     },
     contact() {
       return this.$store.getters.contact;

@@ -47,9 +47,9 @@
 </template>
 
 <script>
-import FormService from "@/mixins/FormService.js";
+import FormServiceMixin from "@/mixins/FormService.js";
 
 export default {
-  mixins: [FormService],
+  mixins: [FormServiceMixin],
 };
 </script>

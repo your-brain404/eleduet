@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export default {
+    namespaced: true,
     state: {
         homeCallUs: window.global.cms.homePage.homeCallUs || {}
     },

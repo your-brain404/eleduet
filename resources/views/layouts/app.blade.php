@@ -59,11 +59,18 @@
                     servicesPageDesc: @json(@$services_page_desc),
                     servicesAttributes: @json(@$services_attributes)
                 },
+                servicePage: {
+                    service: @json(@$service)
+                },
                 realizationsPage: {
                     realizations: @json(@$realizations)
                 },
                 contactPage: {
                     contactLinks: @json(@$contact_links)
+                },
+                aboutPage: {
+                    aboutPage: @json(@$about_page),
+                    aboutPageGallery: @json(@$about_page_gallery),
                 }
             }
         }

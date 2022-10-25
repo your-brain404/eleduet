@@ -8,7 +8,177 @@
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ \"./node_modules/axios/index.js\");\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _helpers_attachments_link_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../helpers/attachments/link.js */ \"./resources/js/helpers/attachments/link.js\");\n/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ \"./node_modules/vue/dist/vue.common.js\");\n/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var vue_recaptcha_v3__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-recaptcha-v3 */ \"./node_modules/vue-recaptcha-v3/dist/ReCaptchaVuePlugin.js\");\n/* harmony import */ var vue_recaptcha_v3__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue_recaptcha_v3__WEBPACK_IMPORTED_MODULE_3__);\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n//\n\n\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = ({\n  data: function data() {\n    return {\n      mail: {},\n      loading: false,\n      answer: {\n        answer_message: \"\",\n        answer: 1,\n        id: this.$route.params.id,\n        subject: \"\",\n        email: \"\"\n      },\n      files: [],\n      rules: {\n        titleRules: [function (v) {\n          return !!v || \"To pole jest wymagane!\";\n        }]\n      },\n      valid: true,\n      attachments: []\n    };\n  },\n  watch: {\n    mail: function mail() {\n      this.answer.subject = this.mail.subject;\n      this.answer.email = this.mail.email;\n    }\n  },\n  methods: {\n    getMail: function getMail() {\n      var _this = this;\n\n      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(\"/api/mails/get_one/\".concat(this.$route.params.id)).then(function (res) {\n        _this.mail = res.data;\n      });\n    },\n    getAttachment: function getAttachment(src) {\n      return Object(_helpers_attachments_link_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"])(src);\n    },\n    sendMail: function sendMail(mail) {\n      var _this2 = this;\n\n      mail[\"delete\"] = 1;\n      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(\"/api/mails/send\", mail).then(function (res) {\n        console.log(res);\n        _this2.loading = false;\n        if (res.data.error != undefined) _this2.$store.commit(\"setSnackbar\", res.data.error.message);else if (res.data.success != undefined) _this2.$store.commit(\"setSnackbar\", res.data.success.message);\n\n        _this2.$store.commit(\"setSnackbar\", \"Pomyślnie wysłano odpowiedź!\");\n      })[\"catch\"](function (err) {\n        console.log(err);\n        _this2.loading = false;\n\n        _this2.$store.commit(\"setSnackbar\", \"Przepraszamy, nie udało się wysłać maila...\");\n      });\n    },\n    editMail: function editMail() {\n      var _this3 = this;\n\n      if (!this.valid) return;\n      this.loading = true;\n      axios__WEBPACK_IMPORTED_MODULE_0___default.a.put(\"/api/mails/answer\", this.answer).then(function (res) {\n        _this3.sendMail(res.data);\n      })[\"catch\"](function (err) {\n        _this3.loading = false;\n\n        _this3.$store.commit(\"setSnackbar\", \"Nie udało się zapisać wiadomości, skontaktuj się z Danielem\");\n      });\n    }\n  },\n  created: function created() {\n    this.getMail();\n    vue__WEBPACK_IMPORTED_MODULE_2___default.a.use(vue_recaptcha_v3__WEBPACK_IMPORTED_MODULE_3__[\"VueReCaptcha\"], {\n      siteKey: \"6Lfdvf0cAAAAAAMO211eYJE2wG8AlbWfQZQwbIS5\"\n    });\n  }\n});//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vcmVzb3VyY2VzL2pzL3ZpZXdzL2FkbWluL2Zvcm1zL01haWxzQW5zd2VyLnZ1ZT82ODA1Il0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OztBQW1GQTtBQUNBO0FBQ0E7QUFDQTtBQUVBO0FBQ0EsTUFEQSxrQkFDQTtBQUNBO0FBQ0EsY0FEQTtBQUVBLG9CQUZBO0FBR0E7QUFDQSwwQkFEQTtBQUVBLGlCQUZBO0FBR0EsaUNBSEE7QUFJQSxtQkFKQTtBQUtBO0FBTEEsT0FIQTtBQVVBLGVBVkE7QUFXQTtBQUNBO0FBQUE7QUFBQTtBQURBLE9BWEE7QUFjQSxpQkFkQTtBQWVBO0FBZkE7QUFpQkEsR0FuQkE7QUFvQkE7QUFDQSxRQURBLGtCQUNBO0FBQ0E7QUFDQTtBQUNBO0FBSkEsR0FwQkE7QUEwQkE7QUFDQSxXQURBLHFCQUNBO0FBQUE7O0FBQ0E7QUFDQTtBQUNBLE9BRkE7QUFHQSxLQUxBO0FBTUEsaUJBTkEseUJBTUEsR0FOQSxFQU1BO0FBQ0E7QUFDQSxLQVJBO0FBU0EsWUFUQSxvQkFTQSxJQVRBLEVBU0E7QUFBQTs7QUFDQTtBQUNBLG1EQUNBLElBREEsQ0FDQSxpQkFEQSxFQUNBLElBREEsRUFFQSxJQUZBLENBRUE7QUFDQTtBQUNBO0FBQ0EseUNBQ0EsNERBREEsS0FFQSxtQ0FDQTs7QUFFQTtBQUNBLE9BWEEsV0FZQTtBQUNBO0FBQ0E7O0FBQ0EsNkJBQ0EsYUFEQSxFQUVBLDZDQUZBO0FBSUEsT0FuQkE7QUFvQkEsS0EvQkE7QUFpQ0EsWUFqQ0Esc0JBaUNBO0FBQUE7O0FBQ0E7QUFDQTtBQUNBLG1EQUNBLEdBREEsQ0FDQSxtQkFEQSxFQUNBLFdBREEsRUFFQSxJQUZBLENBRUE7QUFDQTtBQUNBLE9BSkEsV0FLQTtBQUNBOztBQUNBLDZCQUNBLGFBREEsRUFFQSw2REFGQTtBQUlBLE9BWEE7QUFZQTtBQWhEQSxHQTFCQTtBQTRFQSxTQTVFQSxxQkE0RUE7QUFDQTtBQUNBO0FBQ0E7QUFEQTtBQUdBO0FBakZBIiwiZmlsZSI6Ii4vbm9kZV9tb2R1bGVzL2JhYmVsLWxvYWRlci9saWIvaW5kZXguanM/IS4vbm9kZV9tb2R1bGVzL3Z1ZS1sb2FkZXIvbGliL2luZGV4LmpzPyEuL3Jlc291cmNlcy9qcy92aWV3cy9hZG1pbi9mb3Jtcy9NYWlsc0Fuc3dlci52dWU/dnVlJnR5cGU9c2NyaXB0Jmxhbmc9anMmLmpzIiwic291cmNlc0NvbnRlbnQiOlsiPHRlbXBsYXRlPlxyXG4gIDx2LW1haW4+XHJcbiAgICA8di1jb250YWluZXI+XHJcbiAgICAgIDx2LWNhcmQ+XHJcbiAgICAgICAgPHYtY2FyZC10aXRsZSBjbGFzcz1cImp1c3RpZnktY29udGVudC1jZW50ZXJcIj5cclxuICAgICAgICAgIDxoMiBjbGFzcz1cInB0LTQgZm9udC13ZWlnaHQtYm9sZCBwYW5lbC10aXRsZS1oZWFkZXIgZmlyc3QtY29sb3JcIj5cclxuICAgICAgICAgICAgT2Rwb3dpZWTFuiBuYSBtYWlsIG8gdGVtYWNpZSAne3sgbWFpbC5zdWJqZWN0IH19J1xyXG4gICAgICAgICAgPC9oMj5cclxuICAgICAgICA8L3YtY2FyZC10aXRsZT5cclxuICAgICAgICA8di1kaXZpZGVyIGNsYXNzPVwibXQtMFwiPjwvdi1kaXZpZGVyPlxyXG4gICAgICAgIDx2LWZvcm0gcmVmPVwiZm9ybVwiIHYtbW9kZWw9XCJ2YWxpZFwiPlxyXG4gICAgICAgICAgPHYtcm93IGNsYXNzPVwicHgtNVwiPlxyXG4gICAgICAgICAgICA8di1jb2wgY29scz1cIjEyXCIgbWQ9XCI4XCI+XHJcbiAgICAgICAgICAgICAgPHYtdGV4dGFyZWFcclxuICAgICAgICAgICAgICAgIGNvbG9yPVwicHJpbWFyeVwiXHJcbiAgICAgICAgICAgICAgICA6cnVsZXM9XCJydWxlcy50aXRsZVJ1bGVzXCJcclxuICAgICAgICAgICAgICAgIHJvd3M9XCI1XCJcclxuICAgICAgICAgICAgICAgIHYtbW9kZWw9XCJhbnN3ZXIuYW5zd2VyX21lc3NhZ2VcIlxyXG4gICAgICAgICAgICAgICAgbGFiZWw9XCJUd29qYSB3aWFkb21vxZvEh1wiXHJcbiAgICAgICAgICAgICAgPjwvdi10ZXh0YXJlYT5cclxuICAgICAgICAgICAgPC92LWNvbD5cclxuICAgICAgICAgICAgPHYtY29sIGNvbHM9XCIxMlwiIG1kPVwiNFwiPlxyXG4gICAgICAgICAgICAgIDxkaXYgY2xhc3M9XCJwYS01XCI+XHJcbiAgICAgICAgICAgICAgICA8di10ZXh0LWZpZWxkXHJcbiAgICAgICAgICAgICAgICAgIGNvbG9yPVwicHJpbWFyeVwiXHJcbiAgICAgICAgICAgICAgICAgIGRpc2FibGVkXHJcbiAgICAgICAgICAgICAgICAgIHYtbW9kZWw9XCJtYWlsLm5hbWVcIlxyXG4gICAgICAgICAgICAgICAgICBsYWJlbD1cIkltacSZIGkgbmF6d2lza29cIlxyXG4gICAgICAgICAgICAgICAgPjwvdi10ZXh0LWZpZWxkPlxyXG4gICAgICAgICAgICAgICAgPHYtdGV4dC1maWVsZFxyXG4gICAgICAgICAgICAgICAgICBjb2xvcj1cInByaW1hcnlcIlxyXG4gICAgICAgICAgICAgICAgICBkaXNhYmxlZFxyXG4gICAgICAgICAgICAgICAgICB2LW1vZGVsPVwibWFpbC5lbWFpbFwiXHJcbiAgICAgICAgICAgICAgICAgIGxhYmVsPVwiRS1tYWlsXCJcclxuICAgICAgICAgICAgICAgID48L3YtdGV4dC1maWVsZD5cclxuICAgICAgICAgICAgICAgIDx2LXRleHQtZmllbGRcclxuICAgICAgICAgICAgICAgICAgY29sb3I9XCJwcmltYXJ5XCJcclxuICAgICAgICAgICAgICAgICAgZGlzYWJsZWRcclxuICAgICAgICAgICAgICAgICAgdi1tb2RlbD1cIm1haWwucGhvbmVcIlxyXG4gICAgICAgICAgICAgICAgICBsYWJlbD1cIlRlbGVmb25cIlxyXG4gICAgICAgICAgICAgICAgPjwvdi10ZXh0LWZpZWxkPlxyXG4gICAgICAgICAgICAgICAgPHYtdGV4dC1maWVsZFxyXG4gICAgICAgICAgICAgICAgICBjb2xvcj1cInByaW1hcnlcIlxyXG4gICAgICAgICAgICAgICAgICBkaXNhYmxlZFxyXG4gICAgICAgICAgICAgICAgICB2LW1vZGVsPVwibWFpbC5zdWJqZWN0XCJcclxuICAgICAgICAgICAgICAgICAgbGFiZWw9XCJUZW1hdFwiXHJcbiAgICAgICAgICAgICAgICA+PC92LXRleHQtZmllbGQ+XHJcbiAgICAgICAgICAgICAgICA8di10ZXh0YXJlYVxyXG4gICAgICAgICAgICAgICAgICBjb2xvcj1cInByaW1hcnlcIlxyXG4gICAgICAgICAgICAgICAgICByb3dzPVwiNVwiXHJcbiAgICAgICAgICAgICAgICAgIGRpc2FibGVkXHJcbiAgICAgICAgICAgICAgICAgIHYtbW9kZWw9XCJtYWlsLm1lc3NhZ2VcIlxyXG4gICAgICAgICAgICAgICAgICBsYWJlbD1cIldpYWRvbW/Fm8SHXCJcclxuICAgICAgICAgICAgICAgID48L3YtdGV4dGFyZWE+XHJcbiAgICAgICAgICAgICAgPC9kaXY+XHJcbiAgICAgICAgICAgIDwvdi1jb2w+XHJcbiAgICAgICAgICA8L3Ytcm93PlxyXG5cclxuICAgICAgICAgIDx2LWRpdmlkZXIgY2xhc3M9XCJtYi0wXCI+PC92LWRpdmlkZXI+XHJcblxyXG4gICAgICAgICAgPHYtY2FyZC1hY3Rpb25zIGNsYXNzPVwicGEtNFwiPlxyXG4gICAgICAgICAgICA8di1idG5cclxuICAgICAgICAgICAgICA6bG9hZGluZz1cImxvYWRpbmdcIlxyXG4gICAgICAgICAgICAgIDpkaXNhYmxlZD1cIiF2YWxpZFwiXHJcbiAgICAgICAgICAgICAgY29sb3I9XCJwcmltYXJ5XCJcclxuICAgICAgICAgICAgICBjbGFzcz1cIm1yLTJcIlxyXG4gICAgICAgICAgICAgIEBjbGljaz1cImVkaXRNYWlsXCJcclxuICAgICAgICAgICAgPlxyXG4gICAgICAgICAgICAgIDx2LWljb24gbGVmdD5tZGktY2hlY2s8L3YtaWNvbj5cclxuICAgICAgICAgICAgICA8c3Bhbj5XecWbbGlqPC9zcGFuPlxyXG4gICAgICAgICAgICA8L3YtYnRuPlxyXG5cclxuICAgICAgICAgICAgPHYtYnRuIGNvbG9yPVwiZXJyb3JcIiBjbGFzcz1cIm1yLTJcIiBAY2xpY2s9XCIkcm91dGVyLmdvKC0xKVwiPlxyXG4gICAgICAgICAgICAgIDx2LWljb24gbGVmdD5tZGktY2xvc2U8L3YtaWNvbj5cclxuICAgICAgICAgICAgICA8c3Bhbj5XcsOzxIc8L3NwYW4+XHJcbiAgICAgICAgICAgIDwvdi1idG4+XHJcbiAgICAgICAgICA8L3YtY2FyZC1hY3Rpb25zPlxyXG4gICAgICAgIDwvdi1mb3JtPlxyXG4gICAgICA8L3YtY2FyZD5cclxuICAgIDwvdi1jb250YWluZXI+XHJcbiAgPC92LW1haW4+XHJcbjwvdGVtcGxhdGU+XHJcbjxzY3JpcHQ+XHJcbmltcG9ydCBheGlvcyBmcm9tIFwiYXhpb3NcIjtcclxuaW1wb3J0IGF0dGFjaG1lbnQgZnJvbSBcIi4uLy4uLy4uL2hlbHBlcnMvYXR0YWNobWVudHMvbGluay5qc1wiO1xyXG5pbXBvcnQgVnVlIGZyb20gXCJ2dWVcIjtcclxuaW1wb3J0IHsgVnVlUmVDYXB0Y2hhIH0gZnJvbSBcInZ1ZS1yZWNhcHRjaGEtdjNcIjtcclxuXHJcbmV4cG9ydCBkZWZhdWx0IHtcclxuICBkYXRhKCkge1xyXG4gICAgcmV0dXJuIHtcclxuICAgICAgbWFpbDoge30sXHJcbiAgICAgIGxvYWRpbmc6IGZhbHNlLFxyXG4gICAgICBhbnN3ZXI6IHtcclxuICAgICAgICBhbnN3ZXJfbWVzc2FnZTogXCJcIixcclxuICAgICAgICBhbnN3ZXI6IDEsXHJcbiAgICAgICAgaWQ6IHRoaXMuJHJvdXRlLnBhcmFtcy5pZCxcclxuICAgICAgICBzdWJqZWN0OiBcIlwiLFxyXG4gICAgICAgIGVtYWlsOiBcIlwiLFxyXG4gICAgICB9LFxyXG4gICAgICBmaWxlczogW10sXHJcbiAgICAgIHJ1bGVzOiB7XHJcbiAgICAgICAgdGl0bGVSdWxlczogWyh2KSA9PiAhIXYgfHwgXCJUbyBwb2xlIGplc3Qgd3ltYWdhbmUhXCJdLFxyXG4gICAgICB9LFxyXG4gICAgICB2YWxpZDogdHJ1ZSxcclxuICAgICAgYXR0YWNobWVudHM6IFtdLFxyXG4gICAgfTtcclxuICB9LFxyXG4gIHdhdGNoOiB7XHJcbiAgICBtYWlsKCkge1xyXG4gICAgICB0aGlzLmFuc3dlci5zdWJqZWN0ID0gdGhpcy5tYWlsLnN1YmplY3Q7XHJcbiAgICAgIHRoaXMuYW5zd2VyLmVtYWlsID0gdGhpcy5tYWlsLmVtYWlsO1xyXG4gICAgfSxcclxuICB9LFxyXG4gIG1ldGhvZHM6IHtcclxuICAgIGdldE1haWwoKSB7XHJcbiAgICAgIGF4aW9zLmdldChgL2FwaS9tYWlscy9nZXRfb25lLyR7dGhpcy4kcm91dGUucGFyYW1zLmlkfWApLnRoZW4oKHJlcykgPT4ge1xyXG4gICAgICAgIHRoaXMubWFpbCA9IHJlcy5kYXRhO1xyXG4gICAgICB9KTtcclxuICAgIH0sXHJcbiAgICBnZXRBdHRhY2htZW50KHNyYykge1xyXG4gICAgICByZXR1cm4gYXR0YWNobWVudChzcmMpO1xyXG4gICAgfSxcclxuICAgIHNlbmRNYWlsKG1haWwpIHtcclxuICAgICAgbWFpbC5kZWxldGUgPSAxO1xyXG4gICAgICBheGlvc1xyXG4gICAgICAgIC5wb3N0KFwiL2FwaS9tYWlscy9zZW5kXCIsIG1haWwpXHJcbiAgICAgICAgLnRoZW4oKHJlcykgPT4ge1xyXG4gICAgICAgICAgY29uc29sZS5sb2cocmVzKTtcclxuICAgICAgICAgIHRoaXMubG9hZGluZyA9IGZhbHNlO1xyXG4gICAgICAgICAgaWYgKHJlcy5kYXRhLmVycm9yICE9IHVuZGVmaW5lZClcclxuICAgICAgICAgICAgdGhpcy4kc3RvcmUuY29tbWl0KFwic2V0U25hY2tiYXJcIiwgcmVzLmRhdGEuZXJyb3IubWVzc2FnZSk7XHJcbiAgICAgICAgICBlbHNlIGlmIChyZXMuZGF0YS5zdWNjZXNzICE9IHVuZGVmaW5lZClcclxuICAgICAgICAgICAgdGhpcy4kc3RvcmUuY29tbWl0KFwic2V0U25hY2tiYXJcIiwgcmVzLmRhdGEuc3VjY2Vzcy5tZXNzYWdlKTtcclxuXHJcbiAgICAgICAgICB0aGlzLiRzdG9yZS5jb21taXQoXCJzZXRTbmFja2JhclwiLCBcIlBvbXnFm2xuaWUgd3lzxYJhbm8gb2Rwb3dpZWTFuiFcIik7XHJcbiAgICAgICAgfSlcclxuICAgICAgICAuY2F0Y2goKGVycikgPT4ge1xyXG4gICAgICAgICAgY29uc29sZS5sb2coZXJyKTtcclxuICAgICAgICAgIHRoaXMubG9hZGluZyA9IGZhbHNlO1xyXG4gICAgICAgICAgdGhpcy4kc3RvcmUuY29tbWl0KFxyXG4gICAgICAgICAgICBcInNldFNuYWNrYmFyXCIsXHJcbiAgICAgICAgICAgIFwiUHJ6ZXByYXN6YW15LCBuaWUgdWRhxYJvIHNpxJkgd3lzxYJhxIcgbWFpbGEuLi5cIlxyXG4gICAgICAgICAgKTtcclxuICAgICAgICB9KTtcclxuICAgIH0sXHJcblxyXG4gICAgZWRpdE1haWwoKSB7XHJcbiAgICAgIGlmICghdGhpcy52YWxpZCkgcmV0dXJuO1xyXG4gICAgICB0aGlzLmxvYWRpbmcgPSB0cnVlO1xyXG4gICAgICBheGlvc1xyXG4gICAgICAgIC5wdXQoXCIvYXBpL21haWxzL2Fuc3dlclwiLCB0aGlzLmFuc3dlcilcclxuICAgICAgICAudGhlbigocmVzKSA9PiB7XHJcbiAgICAgICAgICB0aGlzLnNlbmRNYWlsKHJlcy5kYXRhKTtcclxuICAgICAgICB9KVxyXG4gICAgICAgIC5jYXRjaCgoZXJyKSA9PiB7XHJcbiAgICAgICAgICB0aGlzLmxvYWRpbmcgPSBmYWxzZTtcclxuICAgICAgICAgIHRoaXMuJHN0b3JlLmNvbW1pdChcclxuICAgICAgICAgICAgXCJzZXRTbmFja2JhclwiLFxyXG4gICAgICAgICAgICBcIk5pZSB1ZGHFgm8gc2nEmSB6YXBpc2HEhyB3aWFkb21vxZtjaSwgc2tvbnRha3R1aiBzacSZIHogRGFuaWVsZW1cIlxyXG4gICAgICAgICAgKTtcclxuICAgICAgICB9KTtcclxuICAgIH0sXHJcbiAgfSxcclxuICBjcmVhdGVkKCkge1xyXG4gICAgdGhpcy5nZXRNYWlsKCk7XHJcbiAgICBWdWUudXNlKFZ1ZVJlQ2FwdGNoYSwge1xyXG4gICAgICBzaXRlS2V5OiBcIjZMZmR2ZjBjQUFBQUFBTU8yMTFlWUpFMndHOEFsYldmUVpRd2JJUzVcIixcclxuICAgIH0pO1xyXG4gIH0sXHJcbn07XHJcbjwvc2NyaXB0PlxyXG4iXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/admin/forms/MailsAnswer.vue?vue&type=script&lang=js&\n");
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _helpers_attachments_link_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../helpers/attachments/link.js */ "./resources/js/helpers/attachments/link.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var vue_recaptcha_v3__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-recaptcha-v3 */ "./node_modules/vue-recaptcha-v3/dist/ReCaptchaVuePlugin.js");
+/* harmony import */ var vue_recaptcha_v3__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue_recaptcha_v3__WEBPACK_IMPORTED_MODULE_3__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      mail: {},
+      loading: false,
+      answer: {
+        answer_message: "",
+        answer: 1,
+        id: this.$route.params.id,
+        subject: "",
+        email: ""
+      },
+      files: [],
+      rules: {
+        titleRules: [function (v) {
+          return !!v || "To pole jest wymagane!";
+        }]
+      },
+      valid: true,
+      attachments: []
+    };
+  },
+  watch: {
+    mail: function mail() {
+      this.answer.subject = this.mail.subject;
+      this.answer.email = this.mail.email;
+    }
+  },
+  methods: {
+    getMail: function getMail() {
+      var _this = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/mails/get_one/".concat(this.$route.params.id)).then(function (res) {
+        _this.mail = res.data;
+      });
+    },
+    getAttachment: function getAttachment(src) {
+      return Object(_helpers_attachments_link_js__WEBPACK_IMPORTED_MODULE_1__["default"])(src);
+    },
+    sendMail: function sendMail(mail) {
+      var _this2 = this;
+
+      mail["delete"] = 1;
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post("/api/mails/send", mail).then(function (res) {
+        console.log(res);
+        _this2.loading = false;
+        if (res.data.error != undefined) _this2.$store.commit("setSnackbar", res.data.error.message);else if (res.data.success != undefined) _this2.$store.commit("setSnackbar", res.data.success.message);
+
+        _this2.$store.commit("setSnackbar", "Pomyślnie wysłano odpowiedź!");
+      })["catch"](function (err) {
+        console.log(err);
+        _this2.loading = false;
+
+        _this2.$store.commit("setSnackbar", "Przepraszamy, nie udało się wysłać maila...");
+      });
+    },
+    editMail: function editMail() {
+      var _this3 = this;
+
+      if (!this.valid) return;
+      this.loading = true;
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.put("/api/mails/answer", this.answer).then(function (res) {
+        _this3.sendMail(res.data);
+      })["catch"](function (err) {
+        _this3.loading = false;
+
+        _this3.$store.commit("setSnackbar", "Nie udało się zapisać wiadomości, skontaktuj się z Danielem");
+      });
+    }
+  },
+  created: function created() {
+    this.getMail();
+    vue__WEBPACK_IMPORTED_MODULE_2___default.a.use(vue_recaptcha_v3__WEBPACK_IMPORTED_MODULE_3__["VueReCaptcha"], {
+      siteKey: "6Lfdvf0cAAAAAAMO211eYJE2wG8AlbWfQZQwbIS5"
+    });
+  }
+});
 
 /***/ }),
 
@@ -20,7 +190,236 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var axio
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return render; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return staticRenderFns; });\nvar render = function() {\n  var _vm = this\n  var _h = _vm.$createElement\n  var _c = _vm._self._c || _h\n  return _c(\n    \"v-main\",\n    [\n      _c(\n        \"v-container\",\n        [\n          _c(\n            \"v-card\",\n            [\n              _c(\"v-card-title\", { staticClass: \"justify-content-center\" }, [\n                _c(\n                  \"h2\",\n                  {\n                    staticClass:\n                      \"pt-4 font-weight-bold panel-title-header first-color\"\n                  },\n                  [\n                    _vm._v(\n                      \"\\n          Odpowiedź na mail o temacie '\" +\n                        _vm._s(_vm.mail.subject) +\n                        \"'\\n        \"\n                    )\n                  ]\n                )\n              ]),\n              _vm._v(\" \"),\n              _c(\"v-divider\", { staticClass: \"mt-0\" }),\n              _vm._v(\" \"),\n              _c(\n                \"v-form\",\n                {\n                  ref: \"form\",\n                  model: {\n                    value: _vm.valid,\n                    callback: function($$v) {\n                      _vm.valid = $$v\n                    },\n                    expression: \"valid\"\n                  }\n                },\n                [\n                  _c(\n                    \"v-row\",\n                    { staticClass: \"px-5\" },\n                    [\n                      _c(\n                        \"v-col\",\n                        { attrs: { cols: \"12\", md: \"8\" } },\n                        [\n                          _c(\"v-textarea\", {\n                            attrs: {\n                              color: \"primary\",\n                              rules: _vm.rules.titleRules,\n                              rows: \"5\",\n                              label: \"Twoja wiadomość\"\n                            },\n                            model: {\n                              value: _vm.answer.answer_message,\n                              callback: function($$v) {\n                                _vm.$set(_vm.answer, \"answer_message\", $$v)\n                              },\n                              expression: \"answer.answer_message\"\n                            }\n                          })\n                        ],\n                        1\n                      ),\n                      _vm._v(\" \"),\n                      _c(\"v-col\", { attrs: { cols: \"12\", md: \"4\" } }, [\n                        _c(\n                          \"div\",\n                          { staticClass: \"pa-5\" },\n                          [\n                            _c(\"v-text-field\", {\n                              attrs: {\n                                color: \"primary\",\n                                disabled: \"\",\n                                label: \"Imię i nazwisko\"\n                              },\n                              model: {\n                                value: _vm.mail.name,\n                                callback: function($$v) {\n                                  _vm.$set(_vm.mail, \"name\", $$v)\n                                },\n                                expression: \"mail.name\"\n                              }\n                            }),\n                            _vm._v(\" \"),\n                            _c(\"v-text-field\", {\n                              attrs: {\n                                color: \"primary\",\n                                disabled: \"\",\n                                label: \"E-mail\"\n                              },\n                              model: {\n                                value: _vm.mail.email,\n                                callback: function($$v) {\n                                  _vm.$set(_vm.mail, \"email\", $$v)\n                                },\n                                expression: \"mail.email\"\n                              }\n                            }),\n                            _vm._v(\" \"),\n                            _c(\"v-text-field\", {\n                              attrs: {\n                                color: \"primary\",\n                                disabled: \"\",\n                                label: \"Telefon\"\n                              },\n                              model: {\n                                value: _vm.mail.phone,\n                                callback: function($$v) {\n                                  _vm.$set(_vm.mail, \"phone\", $$v)\n                                },\n                                expression: \"mail.phone\"\n                              }\n                            }),\n                            _vm._v(\" \"),\n                            _c(\"v-text-field\", {\n                              attrs: {\n                                color: \"primary\",\n                                disabled: \"\",\n                                label: \"Temat\"\n                              },\n                              model: {\n                                value: _vm.mail.subject,\n                                callback: function($$v) {\n                                  _vm.$set(_vm.mail, \"subject\", $$v)\n                                },\n                                expression: \"mail.subject\"\n                              }\n                            }),\n                            _vm._v(\" \"),\n                            _c(\"v-textarea\", {\n                              attrs: {\n                                color: \"primary\",\n                                rows: \"5\",\n                                disabled: \"\",\n                                label: \"Wiadomość\"\n                              },\n                              model: {\n                                value: _vm.mail.message,\n                                callback: function($$v) {\n                                  _vm.$set(_vm.mail, \"message\", $$v)\n                                },\n                                expression: \"mail.message\"\n                              }\n                            })\n                          ],\n                          1\n                        )\n                      ])\n                    ],\n                    1\n                  ),\n                  _vm._v(\" \"),\n                  _c(\"v-divider\", { staticClass: \"mb-0\" }),\n                  _vm._v(\" \"),\n                  _c(\n                    \"v-card-actions\",\n                    { staticClass: \"pa-4\" },\n                    [\n                      _c(\n                        \"v-btn\",\n                        {\n                          staticClass: \"mr-2\",\n                          attrs: {\n                            loading: _vm.loading,\n                            disabled: !_vm.valid,\n                            color: \"primary\"\n                          },\n                          on: { click: _vm.editMail }\n                        },\n                        [\n                          _c(\"v-icon\", { attrs: { left: \"\" } }, [\n                            _vm._v(\"mdi-check\")\n                          ]),\n                          _vm._v(\" \"),\n                          _c(\"span\", [_vm._v(\"Wyślij\")])\n                        ],\n                        1\n                      ),\n                      _vm._v(\" \"),\n                      _c(\n                        \"v-btn\",\n                        {\n                          staticClass: \"mr-2\",\n                          attrs: { color: \"error\" },\n                          on: {\n                            click: function($event) {\n                              return _vm.$router.go(-1)\n                            }\n                          }\n                        },\n                        [\n                          _c(\"v-icon\", { attrs: { left: \"\" } }, [\n                            _vm._v(\"mdi-close\")\n                          ]),\n                          _vm._v(\" \"),\n                          _c(\"span\", [_vm._v(\"Wróć\")])\n                        ],\n                        1\n                      )\n                    ],\n                    1\n                  )\n                ],\n                1\n              )\n            ],\n            1\n          )\n        ],\n        1\n      )\n    ],\n    1\n  )\n}\nvar staticRenderFns = []\nrender._withStripped = true\n\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvanMvdmlld3MvYWRtaW4vZm9ybXMvTWFpbHNBbnN3ZXIudnVlP2M0ODAiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7QUFBQTtBQUFBO0FBQUE7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQSxrQ0FBa0Msd0NBQXdDO0FBQzFFO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQSxtQkFBbUI7QUFDbkI7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQSwrQkFBK0Isc0JBQXNCO0FBQ3JEO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBLHFCQUFxQjtBQUNyQjtBQUNBO0FBQ0EsaUJBQWlCO0FBQ2pCO0FBQ0E7QUFDQTtBQUNBLHFCQUFxQixzQkFBc0I7QUFDM0M7QUFDQTtBQUNBO0FBQ0EseUJBQXlCLFNBQVMsc0JBQXNCLEVBQUU7QUFDMUQ7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQSw2QkFBNkI7QUFDN0I7QUFDQTtBQUNBO0FBQ0E7QUFDQSwrQkFBK0I7QUFDL0I7QUFDQTtBQUNBLDJCQUEyQjtBQUMzQjtBQUNBO0FBQ0E7QUFDQTtBQUNBLG1DQUFtQyxTQUFTLHNCQUFzQixFQUFFO0FBQ3BFO0FBQ0E7QUFDQSwyQkFBMkIsc0JBQXNCO0FBQ2pEO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBLCtCQUErQjtBQUMvQjtBQUNBO0FBQ0E7QUFDQTtBQUNBLGlDQUFpQztBQUNqQztBQUNBO0FBQ0EsNkJBQTZCO0FBQzdCO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBLCtCQUErQjtBQUMvQjtBQUNBO0FBQ0E7QUFDQTtBQUNBLGlDQUFpQztBQUNqQztBQUNBO0FBQ0EsNkJBQTZCO0FBQzdCO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBLCtCQUErQjtBQUMvQjtBQUNBO0FBQ0E7QUFDQTtBQUNBLGlDQUFpQztBQUNqQztBQUNBO0FBQ0EsNkJBQTZCO0FBQzdCO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBLCtCQUErQjtBQUMvQjtBQUNBO0FBQ0E7QUFDQTtBQUNBLGlDQUFpQztBQUNqQztBQUNBO0FBQ0EsNkJBQTZCO0FBQzdCO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0EsK0JBQStCO0FBQy9CO0FBQ0E7QUFDQTtBQUNBO0FBQ0EsaUNBQWlDO0FBQ2pDO0FBQ0E7QUFDQSw2QkFBNkI7QUFDN0I7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBLG1DQUFtQyxzQkFBc0I7QUFDekQ7QUFDQTtBQUNBO0FBQ0EscUJBQXFCLHNCQUFzQjtBQUMzQztBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQSwyQkFBMkI7QUFDM0IsK0JBQStCO0FBQy9CLHlCQUF5QjtBQUN6QjtBQUNBLHdDQUF3QyxTQUFTLFdBQVcsRUFBRTtBQUM5RDtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQSxrQ0FBa0MsaUJBQWlCO0FBQ25EO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQSx5QkFBeUI7QUFDekI7QUFDQSx3Q0FBd0MsU0FBUyxXQUFXLEVBQUU7QUFDOUQ7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0EiLCJmaWxlIjoiLi9ub2RlX21vZHVsZXMvdnVlLWxvYWRlci9saWIvbG9hZGVycy90ZW1wbGF0ZUxvYWRlci5qcz8hLi9ub2RlX21vZHVsZXMvdnVlLWxvYWRlci9saWIvaW5kZXguanM/IS4vcmVzb3VyY2VzL2pzL3ZpZXdzL2FkbWluL2Zvcm1zL01haWxzQW5zd2VyLnZ1ZT92dWUmdHlwZT10ZW1wbGF0ZSZpZD03MDNiZDkwYiYuanMiLCJzb3VyY2VzQ29udGVudCI6WyJ2YXIgcmVuZGVyID0gZnVuY3Rpb24oKSB7XG4gIHZhciBfdm0gPSB0aGlzXG4gIHZhciBfaCA9IF92bS4kY3JlYXRlRWxlbWVudFxuICB2YXIgX2MgPSBfdm0uX3NlbGYuX2MgfHwgX2hcbiAgcmV0dXJuIF9jKFxuICAgIFwidi1tYWluXCIsXG4gICAgW1xuICAgICAgX2MoXG4gICAgICAgIFwidi1jb250YWluZXJcIixcbiAgICAgICAgW1xuICAgICAgICAgIF9jKFxuICAgICAgICAgICAgXCJ2LWNhcmRcIixcbiAgICAgICAgICAgIFtcbiAgICAgICAgICAgICAgX2MoXCJ2LWNhcmQtdGl0bGVcIiwgeyBzdGF0aWNDbGFzczogXCJqdXN0aWZ5LWNvbnRlbnQtY2VudGVyXCIgfSwgW1xuICAgICAgICAgICAgICAgIF9jKFxuICAgICAgICAgICAgICAgICAgXCJoMlwiLFxuICAgICAgICAgICAgICAgICAge1xuICAgICAgICAgICAgICAgICAgICBzdGF0aWNDbGFzczpcbiAgICAgICAgICAgICAgICAgICAgICBcInB0LTQgZm9udC13ZWlnaHQtYm9sZCBwYW5lbC10aXRsZS1oZWFkZXIgZmlyc3QtY29sb3JcIlxuICAgICAgICAgICAgICAgICAgfSxcbiAgICAgICAgICAgICAgICAgIFtcbiAgICAgICAgICAgICAgICAgICAgX3ZtLl92KFxuICAgICAgICAgICAgICAgICAgICAgIFwiXFxuICAgICAgICAgIE9kcG93aWVkxbogbmEgbWFpbCBvIHRlbWFjaWUgJ1wiICtcbiAgICAgICAgICAgICAgICAgICAgICAgIF92bS5fcyhfdm0ubWFpbC5zdWJqZWN0KSArXG4gICAgICAgICAgICAgICAgICAgICAgICBcIidcXG4gICAgICAgIFwiXG4gICAgICAgICAgICAgICAgICAgIClcbiAgICAgICAgICAgICAgICAgIF1cbiAgICAgICAgICAgICAgICApXG4gICAgICAgICAgICAgIF0pLFxuICAgICAgICAgICAgICBfdm0uX3YoXCIgXCIpLFxuICAgICAgICAgICAgICBfYyhcInYtZGl2aWRlclwiLCB7IHN0YXRpY0NsYXNzOiBcIm10LTBcIiB9KSxcbiAgICAgICAgICAgICAgX3ZtLl92KFwiIFwiKSxcbiAgICAgICAgICAgICAgX2MoXG4gICAgICAgICAgICAgICAgXCJ2LWZvcm1cIixcbiAgICAgICAgICAgICAgICB7XG4gICAgICAgICAgICAgICAgICByZWY6IFwiZm9ybVwiLFxuICAgICAgICAgICAgICAgICAgbW9kZWw6IHtcbiAgICAgICAgICAgICAgICAgICAgdmFsdWU6IF92bS52YWxpZCxcbiAgICAgICAgICAgICAgICAgICAgY2FsbGJhY2s6IGZ1bmN0aW9uKCQkdikge1xuICAgICAgICAgICAgICAgICAgICAgIF92bS52YWxpZCA9ICQkdlxuICAgICAgICAgICAgICAgICAgICB9LFxuICAgICAgICAgICAgICAgICAgICBleHByZXNzaW9uOiBcInZhbGlkXCJcbiAgICAgICAgICAgICAgICAgIH1cbiAgICAgICAgICAgICAgICB9LFxuICAgICAgICAgICAgICAgIFtcbiAgICAgICAgICAgICAgICAgIF9jKFxuICAgICAgICAgICAgICAgICAgICBcInYtcm93XCIsXG4gICAgICAgICAgICAgICAgICAgIHsgc3RhdGljQ2xhc3M6IFwicHgtNVwiIH0sXG4gICAgICAgICAgICAgICAgICAgIFtcbiAgICAgICAgICAgICAgICAgICAgICBfYyhcbiAgICAgICAgICAgICAgICAgICAgICAgIFwidi1jb2xcIixcbiAgICAgICAgICAgICAgICAgICAgICAgIHsgYXR0cnM6IHsgY29sczogXCIxMlwiLCBtZDogXCI4XCIgfSB9LFxuICAgICAgICAgICAgICAgICAgICAgICAgW1xuICAgICAgICAgICAgICAgICAgICAgICAgICBfYyhcInYtdGV4dGFyZWFcIiwge1xuICAgICAgICAgICAgICAgICAgICAgICAgICAgIGF0dHJzOiB7XG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICBjb2xvcjogXCJwcmltYXJ5XCIsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICBydWxlczogX3ZtLnJ1bGVzLnRpdGxlUnVsZXMsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICByb3dzOiBcIjVcIixcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGxhYmVsOiBcIlR3b2phIHdpYWRvbW/Fm8SHXCJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICB9LFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgIG1vZGVsOiB7XG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICB2YWx1ZTogX3ZtLmFuc3dlci5hbnN3ZXJfbWVzc2FnZSxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNhbGxiYWNrOiBmdW5jdGlvbigkJHYpIHtcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgX3ZtLiRzZXQoX3ZtLmFuc3dlciwgXCJhbnN3ZXJfbWVzc2FnZVwiLCAkJHYpXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICB9LFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZXhwcmVzc2lvbjogXCJhbnN3ZXIuYW5zd2VyX21lc3NhZ2VcIlxuICAgICAgICAgICAgICAgICAgICAgICAgICAgIH1cbiAgICAgICAgICAgICAgICAgICAgICAgICAgfSlcbiAgICAgICAgICAgICAgICAgICAgICAgIF0sXG4gICAgICAgICAgICAgICAgICAgICAgICAxXG4gICAgICAgICAgICAgICAgICAgICAgKSxcbiAgICAgICAgICAgICAgICAgICAgICBfdm0uX3YoXCIgXCIpLFxuICAgICAgICAgICAgICAgICAgICAgIF9jKFwidi1jb2xcIiwgeyBhdHRyczogeyBjb2xzOiBcIjEyXCIsIG1kOiBcIjRcIiB9IH0sIFtcbiAgICAgICAgICAgICAgICAgICAgICAgIF9jKFxuICAgICAgICAgICAgICAgICAgICAgICAgICBcImRpdlwiLFxuICAgICAgICAgICAgICAgICAgICAgICAgICB7IHN0YXRpY0NsYXNzOiBcInBhLTVcIiB9LFxuICAgICAgICAgICAgICAgICAgICAgICAgICBbXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgX2MoXCJ2LXRleHQtZmllbGRcIiwge1xuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgYXR0cnM6IHtcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgY29sb3I6IFwicHJpbWFyeVwiLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBkaXNhYmxlZDogXCJcIixcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgbGFiZWw6IFwiSW1pxJkgaSBuYXp3aXNrb1wiXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICB9LFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgbW9kZWw6IHtcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgdmFsdWU6IF92bS5tYWlsLm5hbWUsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNhbGxiYWNrOiBmdW5jdGlvbigkJHYpIHtcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBfdm0uJHNldChfdm0ubWFpbCwgXCJuYW1lXCIsICQkdilcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfSxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZXhwcmVzc2lvbjogXCJtYWlsLm5hbWVcIlxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfVxuICAgICAgICAgICAgICAgICAgICAgICAgICAgIH0pLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgIF92bS5fdihcIiBcIiksXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgX2MoXCJ2LXRleHQtZmllbGRcIiwge1xuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgYXR0cnM6IHtcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgY29sb3I6IFwicHJpbWFyeVwiLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBkaXNhYmxlZDogXCJcIixcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgbGFiZWw6IFwiRS1tYWlsXCJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIH0sXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICBtb2RlbDoge1xuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB2YWx1ZTogX3ZtLm1haWwuZW1haWwsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNhbGxiYWNrOiBmdW5jdGlvbigkJHYpIHtcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBfdm0uJHNldChfdm0ubWFpbCwgXCJlbWFpbFwiLCAkJHYpXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIH0sXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGV4cHJlc3Npb246IFwibWFpbC5lbWFpbFwiXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICB9XG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgfSksXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgX3ZtLl92KFwiIFwiKSxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICBfYyhcInYtdGV4dC1maWVsZFwiLCB7XG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICBhdHRyczoge1xuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBjb2xvcjogXCJwcmltYXJ5XCIsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGRpc2FibGVkOiBcIlwiLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBsYWJlbDogXCJUZWxlZm9uXCJcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIH0sXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICBtb2RlbDoge1xuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB2YWx1ZTogX3ZtLm1haWwucGhvbmUsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNhbGxiYWNrOiBmdW5jdGlvbigkJHYpIHtcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBfdm0uJHNldChfdm0ubWFpbCwgXCJwaG9uZVwiLCAkJHYpXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIH0sXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGV4cHJlc3Npb246IFwibWFpbC5waG9uZVwiXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICB9XG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgfSksXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgX3ZtLl92KFwiIFwiKSxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICBfYyhcInYtdGV4dC1maWVsZFwiLCB7XG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICBhdHRyczoge1xuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBjb2xvcjogXCJwcmltYXJ5XCIsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGRpc2FibGVkOiBcIlwiLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBsYWJlbDogXCJUZW1hdFwiXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICB9LFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgbW9kZWw6IHtcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgdmFsdWU6IF92bS5tYWlsLnN1YmplY3QsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNhbGxiYWNrOiBmdW5jdGlvbigkJHYpIHtcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBfdm0uJHNldChfdm0ubWFpbCwgXCJzdWJqZWN0XCIsICQkdilcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfSxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZXhwcmVzc2lvbjogXCJtYWlsLnN1YmplY3RcIlxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfVxuICAgICAgICAgICAgICAgICAgICAgICAgICAgIH0pLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgIF92bS5fdihcIiBcIiksXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgX2MoXCJ2LXRleHRhcmVhXCIsIHtcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGF0dHJzOiB7XG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNvbG9yOiBcInByaW1hcnlcIixcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcm93czogXCI1XCIsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGRpc2FibGVkOiBcIlwiLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBsYWJlbDogXCJXaWFkb21vxZvEh1wiXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICB9LFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgbW9kZWw6IHtcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgdmFsdWU6IF92bS5tYWlsLm1lc3NhZ2UsXG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNhbGxiYWNrOiBmdW5jdGlvbigkJHYpIHtcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBfdm0uJHNldChfdm0ubWFpbCwgXCJtZXNzYWdlXCIsICQkdilcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfSxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgZXhwcmVzc2lvbjogXCJtYWlsLm1lc3NhZ2VcIlxuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfVxuICAgICAgICAgICAgICAgICAgICAgICAgICAgIH0pXG4gICAgICAgICAgICAgICAgICAgICAgICAgIF0sXG4gICAgICAgICAgICAgICAgICAgICAgICAgIDFcbiAgICAgICAgICAgICAgICAgICAgICAgIClcbiAgICAgICAgICAgICAgICAgICAgICBdKVxuICAgICAgICAgICAgICAgICAgICBdLFxuICAgICAgICAgICAgICAgICAgICAxXG4gICAgICAgICAgICAgICAgICApLFxuICAgICAgICAgICAgICAgICAgX3ZtLl92KFwiIFwiKSxcbiAgICAgICAgICAgICAgICAgIF9jKFwidi1kaXZpZGVyXCIsIHsgc3RhdGljQ2xhc3M6IFwibWItMFwiIH0pLFxuICAgICAgICAgICAgICAgICAgX3ZtLl92KFwiIFwiKSxcbiAgICAgICAgICAgICAgICAgIF9jKFxuICAgICAgICAgICAgICAgICAgICBcInYtY2FyZC1hY3Rpb25zXCIsXG4gICAgICAgICAgICAgICAgICAgIHsgc3RhdGljQ2xhc3M6IFwicGEtNFwiIH0sXG4gICAgICAgICAgICAgICAgICAgIFtcbiAgICAgICAgICAgICAgICAgICAgICBfYyhcbiAgICAgICAgICAgICAgICAgICAgICAgIFwidi1idG5cIixcbiAgICAgICAgICAgICAgICAgICAgICAgIHtcbiAgICAgICAgICAgICAgICAgICAgICAgICAgc3RhdGljQ2xhc3M6IFwibXItMlwiLFxuICAgICAgICAgICAgICAgICAgICAgICAgICBhdHRyczoge1xuICAgICAgICAgICAgICAgICAgICAgICAgICAgIGxvYWRpbmc6IF92bS5sb2FkaW5nLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgIGRpc2FibGVkOiAhX3ZtLnZhbGlkLFxuICAgICAgICAgICAgICAgICAgICAgICAgICAgIGNvbG9yOiBcInByaW1hcnlcIlxuICAgICAgICAgICAgICAgICAgICAgICAgICB9LFxuICAgICAgICAgICAgICAgICAgICAgICAgICBvbjogeyBjbGljazogX3ZtLmVkaXRNYWlsIH1cbiAgICAgICAgICAgICAgICAgICAgICAgIH0sXG4gICAgICAgICAgICAgICAgICAgICAgICBbXG4gICAgICAgICAgICAgICAgICAgICAgICAgIF9jKFwidi1pY29uXCIsIHsgYXR0cnM6IHsgbGVmdDogXCJcIiB9IH0sIFtcbiAgICAgICAgICAgICAgICAgICAgICAgICAgICBfdm0uX3YoXCJtZGktY2hlY2tcIilcbiAgICAgICAgICAgICAgICAgICAgICAgICAgXSksXG4gICAgICAgICAgICAgICAgICAgICAgICAgIF92bS5fdihcIiBcIiksXG4gICAgICAgICAgICAgICAgICAgICAgICAgIF9jKFwic3BhblwiLCBbX3ZtLl92KFwiV3nFm2xpalwiKV0pXG4gICAgICAgICAgICAgICAgICAgICAgICBdLFxuICAgICAgICAgICAgICAgICAgICAgICAgMVxuICAgICAgICAgICAgICAgICAgICAgICksXG4gICAgICAgICAgICAgICAgICAgICAgX3ZtLl92KFwiIFwiKSxcbiAgICAgICAgICAgICAgICAgICAgICBfYyhcbiAgICAgICAgICAgICAgICAgICAgICAgIFwidi1idG5cIixcbiAgICAgICAgICAgICAgICAgICAgICAgIHtcbiAgICAgICAgICAgICAgICAgICAgICAgICAgc3RhdGljQ2xhc3M6IFwibXItMlwiLFxuICAgICAgICAgICAgICAgICAgICAgICAgICBhdHRyczogeyBjb2xvcjogXCJlcnJvclwiIH0sXG4gICAgICAgICAgICAgICAgICAgICAgICAgIG9uOiB7XG4gICAgICAgICAgICAgICAgICAgICAgICAgICAgY2xpY2s6IGZ1bmN0aW9uKCRldmVudCkge1xuICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgcmV0dXJuIF92bS4kcm91dGVyLmdvKC0xKVxuICAgICAgICAgICAgICAgICAgICAgICAgICAgIH1cbiAgICAgICAgICAgICAgICAgICAgICAgICAgfVxuICAgICAgICAgICAgICAgICAgICAgICAgfSxcbiAgICAgICAgICAgICAgICAgICAgICAgIFtcbiAgICAgICAgICAgICAgICAgICAgICAgICAgX2MoXCJ2LWljb25cIiwgeyBhdHRyczogeyBsZWZ0OiBcIlwiIH0gfSwgW1xuICAgICAgICAgICAgICAgICAgICAgICAgICAgIF92bS5fdihcIm1kaS1jbG9zZVwiKVxuICAgICAgICAgICAgICAgICAgICAgICAgICBdKSxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgX3ZtLl92KFwiIFwiKSxcbiAgICAgICAgICAgICAgICAgICAgICAgICAgX2MoXCJzcGFuXCIsIFtfdm0uX3YoXCJXcsOzxIdcIildKVxuICAgICAgICAgICAgICAgICAgICAgICAgXSxcbiAgICAgICAgICAgICAgICAgICAgICAgIDFcbiAgICAgICAgICAgICAgICAgICAgICApXG4gICAgICAgICAgICAgICAgICAgIF0sXG4gICAgICAgICAgICAgICAgICAgIDFcbiAgICAgICAgICAgICAgICAgIClcbiAgICAgICAgICAgICAgICBdLFxuICAgICAgICAgICAgICAgIDFcbiAgICAgICAgICAgICAgKVxuICAgICAgICAgICAgXSxcbiAgICAgICAgICAgIDFcbiAgICAgICAgICApXG4gICAgICAgIF0sXG4gICAgICAgIDFcbiAgICAgIClcbiAgICBdLFxuICAgIDFcbiAgKVxufVxudmFyIHN0YXRpY1JlbmRlckZucyA9IFtdXG5yZW5kZXIuX3dpdGhTdHJpcHBlZCA9IHRydWVcblxuZXhwb3J0IHsgcmVuZGVyLCBzdGF0aWNSZW5kZXJGbnMgfSJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/admin/forms/MailsAnswer.vue?vue&type=template&id=703bd90b&\n");
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "v-main",
+    [
+      _c(
+        "v-container",
+        [
+          _c(
+            "v-card",
+            [
+              _c("v-card-title", { staticClass: "justify-content-center" }, [
+                _c(
+                  "h2",
+                  {
+                    staticClass:
+                      "pt-4 font-weight-bold panel-title-header first-color"
+                  },
+                  [
+                    _vm._v(
+                      "\n          Odpowiedź na mail o temacie '" +
+                        _vm._s(_vm.mail.subject) +
+                        "'\n        "
+                    )
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("v-divider", { staticClass: "mt-0" }),
+              _vm._v(" "),
+              _c(
+                "v-form",
+                {
+                  ref: "form",
+                  model: {
+                    value: _vm.valid,
+                    callback: function($$v) {
+                      _vm.valid = $$v
+                    },
+                    expression: "valid"
+                  }
+                },
+                [
+                  _c(
+                    "v-row",
+                    { staticClass: "px-5" },
+                    [
+                      _c(
+                        "v-col",
+                        { attrs: { cols: "12", md: "8" } },
+                        [
+                          _c("v-textarea", {
+                            attrs: {
+                              color: "primary",
+                              rules: _vm.rules.titleRules,
+                              rows: "5",
+                              label: "Twoja wiadomość"
+                            },
+                            model: {
+                              value: _vm.answer.answer_message,
+                              callback: function($$v) {
+                                _vm.$set(_vm.answer, "answer_message", $$v)
+                              },
+                              expression: "answer.answer_message"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("v-col", { attrs: { cols: "12", md: "4" } }, [
+                        _c(
+                          "div",
+                          { staticClass: "pa-5" },
+                          [
+                            _c("v-text-field", {
+                              attrs: {
+                                color: "primary",
+                                disabled: "",
+                                label: "Imię i nazwisko"
+                              },
+                              model: {
+                                value: _vm.mail.name,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.mail, "name", $$v)
+                                },
+                                expression: "mail.name"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("v-text-field", {
+                              attrs: {
+                                color: "primary",
+                                disabled: "",
+                                label: "E-mail"
+                              },
+                              model: {
+                                value: _vm.mail.email,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.mail, "email", $$v)
+                                },
+                                expression: "mail.email"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("v-text-field", {
+                              attrs: {
+                                color: "primary",
+                                disabled: "",
+                                label: "Telefon"
+                              },
+                              model: {
+                                value: _vm.mail.phone,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.mail, "phone", $$v)
+                                },
+                                expression: "mail.phone"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("v-text-field", {
+                              attrs: {
+                                color: "primary",
+                                disabled: "",
+                                label: "Temat"
+                              },
+                              model: {
+                                value: _vm.mail.subject,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.mail, "subject", $$v)
+                                },
+                                expression: "mail.subject"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c("v-textarea", {
+                              attrs: {
+                                color: "primary",
+                                rows: "5",
+                                disabled: "",
+                                label: "Wiadomość"
+                              },
+                              model: {
+                                value: _vm.mail.message,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.mail, "message", $$v)
+                                },
+                                expression: "mail.message"
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ])
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("v-divider", { staticClass: "mb-0" }),
+                  _vm._v(" "),
+                  _c(
+                    "v-card-actions",
+                    { staticClass: "pa-4" },
+                    [
+                      _c(
+                        "v-btn",
+                        {
+                          staticClass: "mr-2",
+                          attrs: {
+                            loading: _vm.loading,
+                            disabled: !_vm.valid,
+                            color: "primary"
+                          },
+                          on: { click: _vm.editMail }
+                        },
+                        [
+                          _c("v-icon", { attrs: { left: "" } }, [
+                            _vm._v("mdi-check")
+                          ]),
+                          _vm._v(" "),
+                          _c("span", [_vm._v("Wyślij")])
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-btn",
+                        {
+                          staticClass: "mr-2",
+                          attrs: { color: "error" },
+                          on: {
+                            click: function($event) {
+                              return _vm.$router.go(-1)
+                            }
+                          }
+                        },
+                        [
+                          _c("v-icon", { attrs: { left: "" } }, [
+                            _vm._v("mdi-close")
+                          ]),
+                          _vm._v(" "),
+                          _c("span", [_vm._v("Wróć")])
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
 
 /***/ }),
 
@@ -32,7 +431,11 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return attachment; });\nfunction attachment(url) {\n  return window.location.origin + '/storage/attachments/' + url;\n}//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvanMvaGVscGVycy9hdHRhY2htZW50cy9saW5rLmpzPzc3YTMiXSwibmFtZXMiOlsiYXR0YWNobWVudCIsInVybCIsIndpbmRvdyIsImxvY2F0aW9uIiwib3JpZ2luIl0sIm1hcHBpbmdzIjoiQUFBQTtBQUFBO0FBQWUsU0FBU0EsVUFBVCxDQUFvQkMsR0FBcEIsRUFBd0I7QUFDdEMsU0FBT0MsTUFBTSxDQUFDQyxRQUFQLENBQWdCQyxNQUFoQixHQUF5Qix1QkFBekIsR0FBbURILEdBQTFEO0FBQ0EiLCJmaWxlIjoiLi9yZXNvdXJjZXMvanMvaGVscGVycy9hdHRhY2htZW50cy9saW5rLmpzLmpzIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IGRlZmF1bHQgZnVuY3Rpb24gYXR0YWNobWVudCh1cmwpe1xyXG5cdHJldHVybiB3aW5kb3cubG9jYXRpb24ub3JpZ2luICsgJy9zdG9yYWdlL2F0dGFjaG1lbnRzLycgKyB1cmw7XHJcbn0gIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./resources/js/helpers/attachments/link.js\n");
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return attachment; });
+function attachment(url) {
+  return window.location.origin + '/storage/attachments/' + url;
+}
 
 /***/ }),
 
@@ -44,7 +447,32 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _MailsAnswer_vue_vue_type_template_id_703bd90b___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MailsAnswer.vue?vue&type=template&id=703bd90b& */ \"./resources/js/views/admin/forms/MailsAnswer.vue?vue&type=template&id=703bd90b&\");\n/* harmony import */ var _MailsAnswer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MailsAnswer.vue?vue&type=script&lang=js& */ \"./resources/js/views/admin/forms/MailsAnswer.vue?vue&type=script&lang=js&\");\n/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ \"./node_modules/vue-loader/lib/runtime/componentNormalizer.js\");\n\n\n\n\n\n/* normalize component */\n\nvar component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__[\"default\"])(\n  _MailsAnswer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[\"default\"],\n  _MailsAnswer_vue_vue_type_template_id_703bd90b___WEBPACK_IMPORTED_MODULE_0__[\"render\"],\n  _MailsAnswer_vue_vue_type_template_id_703bd90b___WEBPACK_IMPORTED_MODULE_0__[\"staticRenderFns\"],\n  false,\n  null,\n  null,\n  null\n  \n)\n\n/* hot reload */\nif (false) { var api; }\ncomponent.options.__file = \"resources/js/views/admin/forms/MailsAnswer.vue\"\n/* harmony default export */ __webpack_exports__[\"default\"] = (component.exports);//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvanMvdmlld3MvYWRtaW4vZm9ybXMvTWFpbHNBbnN3ZXIudnVlP2M3NzIiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7QUFBQTtBQUFBO0FBQUE7QUFBMEY7QUFDM0I7QUFDTDs7O0FBRzFEO0FBQ21HO0FBQ25HLGdCQUFnQiwyR0FBVTtBQUMxQixFQUFFLGlGQUFNO0FBQ1IsRUFBRSxzRkFBTTtBQUNSLEVBQUUsK0ZBQWU7QUFDakI7QUFDQTtBQUNBO0FBQ0E7O0FBRUE7O0FBRUE7QUFDQSxJQUFJLEtBQVUsRUFBRSxZQWlCZjtBQUNEO0FBQ2UsZ0YiLCJmaWxlIjoiLi9yZXNvdXJjZXMvanMvdmlld3MvYWRtaW4vZm9ybXMvTWFpbHNBbnN3ZXIudnVlLmpzIiwic291cmNlc0NvbnRlbnQiOlsiaW1wb3J0IHsgcmVuZGVyLCBzdGF0aWNSZW5kZXJGbnMgfSBmcm9tIFwiLi9NYWlsc0Fuc3dlci52dWU/dnVlJnR5cGU9dGVtcGxhdGUmaWQ9NzAzYmQ5MGImXCJcbmltcG9ydCBzY3JpcHQgZnJvbSBcIi4vTWFpbHNBbnN3ZXIudnVlP3Z1ZSZ0eXBlPXNjcmlwdCZsYW5nPWpzJlwiXG5leHBvcnQgKiBmcm9tIFwiLi9NYWlsc0Fuc3dlci52dWU/dnVlJnR5cGU9c2NyaXB0Jmxhbmc9anMmXCJcblxuXG4vKiBub3JtYWxpemUgY29tcG9uZW50ICovXG5pbXBvcnQgbm9ybWFsaXplciBmcm9tIFwiIS4uLy4uLy4uLy4uLy4uL25vZGVfbW9kdWxlcy92dWUtbG9hZGVyL2xpYi9ydW50aW1lL2NvbXBvbmVudE5vcm1hbGl6ZXIuanNcIlxudmFyIGNvbXBvbmVudCA9IG5vcm1hbGl6ZXIoXG4gIHNjcmlwdCxcbiAgcmVuZGVyLFxuICBzdGF0aWNSZW5kZXJGbnMsXG4gIGZhbHNlLFxuICBudWxsLFxuICBudWxsLFxuICBudWxsXG4gIFxuKVxuXG4vKiBob3QgcmVsb2FkICovXG5pZiAobW9kdWxlLmhvdCkge1xuICB2YXIgYXBpID0gcmVxdWlyZShcIkU6XFxcXFByb2dyYW1vd2FuaWVcXFxcQ29kZW5uZWN0aW9uXFxcXGVsZWR1ZXRcXFxcbm9kZV9tb2R1bGVzXFxcXHZ1ZS1ob3QtcmVsb2FkLWFwaVxcXFxkaXN0XFxcXGluZGV4LmpzXCIpXG4gIGFwaS5pbnN0YWxsKHJlcXVpcmUoJ3Z1ZScpKVxuICBpZiAoYXBpLmNvbXBhdGlibGUpIHtcbiAgICBtb2R1bGUuaG90LmFjY2VwdCgpXG4gICAgaWYgKCFhcGkuaXNSZWNvcmRlZCgnNzAzYmQ5MGInKSkge1xuICAgICAgYXBpLmNyZWF0ZVJlY29yZCgnNzAzYmQ5MGInLCBjb21wb25lbnQub3B0aW9ucylcbiAgICB9IGVsc2Uge1xuICAgICAgYXBpLnJlbG9hZCgnNzAzYmQ5MGInLCBjb21wb25lbnQub3B0aW9ucylcbiAgICB9XG4gICAgbW9kdWxlLmhvdC5hY2NlcHQoXCIuL01haWxzQW5zd2VyLnZ1ZT92dWUmdHlwZT10ZW1wbGF0ZSZpZD03MDNiZDkwYiZcIiwgZnVuY3Rpb24gKCkge1xuICAgICAgYXBpLnJlcmVuZGVyKCc3MDNiZDkwYicsIHtcbiAgICAgICAgcmVuZGVyOiByZW5kZXIsXG4gICAgICAgIHN0YXRpY1JlbmRlckZuczogc3RhdGljUmVuZGVyRm5zXG4gICAgICB9KVxuICAgIH0pXG4gIH1cbn1cbmNvbXBvbmVudC5vcHRpb25zLl9fZmlsZSA9IFwicmVzb3VyY2VzL2pzL3ZpZXdzL2FkbWluL2Zvcm1zL01haWxzQW5zd2VyLnZ1ZVwiXG5leHBvcnQgZGVmYXVsdCBjb21wb25lbnQuZXhwb3J0cyJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./resources/js/views/admin/forms/MailsAnswer.vue\n");
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _MailsAnswer_vue_vue_type_template_id_703bd90b___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MailsAnswer.vue?vue&type=template&id=703bd90b& */ "./resources/js/views/admin/forms/MailsAnswer.vue?vue&type=template&id=703bd90b&");
+/* harmony import */ var _MailsAnswer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MailsAnswer.vue?vue&type=script&lang=js& */ "./resources/js/views/admin/forms/MailsAnswer.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _MailsAnswer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _MailsAnswer_vue_vue_type_template_id_703bd90b___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _MailsAnswer_vue_vue_type_template_id_703bd90b___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/views/admin/forms/MailsAnswer.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
@@ -56,7 +484,9 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _Mai
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MailsAnswer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./MailsAnswer.vue?vue&type=script&lang=js& */ \"./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/admin/forms/MailsAnswer.vue?vue&type=script&lang=js&\");\n/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__[\"default\"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MailsAnswer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__[\"default\"]); //# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvanMvdmlld3MvYWRtaW4vZm9ybXMvTWFpbHNBbnN3ZXIudnVlPzc4NDEiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7QUFBQTtBQUFBLHdDQUF1TSxDQUFnQix1UEFBRyxFQUFDIiwiZmlsZSI6Ii4vcmVzb3VyY2VzL2pzL3ZpZXdzL2FkbWluL2Zvcm1zL01haWxzQW5zd2VyLnZ1ZT92dWUmdHlwZT1zY3JpcHQmbGFuZz1qcyYuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgbW9kIGZyb20gXCItIS4uLy4uLy4uLy4uLy4uL25vZGVfbW9kdWxlcy9iYWJlbC1sb2FkZXIvbGliL2luZGV4LmpzPz9yZWYtLTQtMCEuLi8uLi8uLi8uLi8uLi9ub2RlX21vZHVsZXMvdnVlLWxvYWRlci9saWIvaW5kZXguanM/P3Z1ZS1sb2FkZXItb3B0aW9ucyEuL01haWxzQW5zd2VyLnZ1ZT92dWUmdHlwZT1zY3JpcHQmbGFuZz1qcyZcIjsgZXhwb3J0IGRlZmF1bHQgbW9kOyBleHBvcnQgKiBmcm9tIFwiLSEuLi8uLi8uLi8uLi8uLi9ub2RlX21vZHVsZXMvYmFiZWwtbG9hZGVyL2xpYi9pbmRleC5qcz8/cmVmLS00LTAhLi4vLi4vLi4vLi4vLi4vbm9kZV9tb2R1bGVzL3Z1ZS1sb2FkZXIvbGliL2luZGV4LmpzPz92dWUtbG9hZGVyLW9wdGlvbnMhLi9NYWlsc0Fuc3dlci52dWU/dnVlJnR5cGU9c2NyaXB0Jmxhbmc9anMmXCIiXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./resources/js/views/admin/forms/MailsAnswer.vue?vue&type=script&lang=js&\n");
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MailsAnswer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./MailsAnswer.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/admin/forms/MailsAnswer.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MailsAnswer_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -68,7 +498,13 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _nod
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MailsAnswer_vue_vue_type_template_id_703bd90b___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./MailsAnswer.vue?vue&type=template&id=703bd90b& */ \"./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/admin/forms/MailsAnswer.vue?vue&type=template&id=703bd90b&\");\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"render\", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MailsAnswer_vue_vue_type_template_id_703bd90b___WEBPACK_IMPORTED_MODULE_0__[\"render\"]; });\n\n/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, \"staticRenderFns\", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MailsAnswer_vue_vue_type_template_id_703bd90b___WEBPACK_IMPORTED_MODULE_0__[\"staticRenderFns\"]; });\n\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvanMvdmlld3MvYWRtaW4vZm9ybXMvTWFpbHNBbnN3ZXIudnVlPzIzNjYiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7QUFBQTtBQUFBO0FBQUE7QUFBQTtBQUFBIiwiZmlsZSI6Ii4vcmVzb3VyY2VzL2pzL3ZpZXdzL2FkbWluL2Zvcm1zL01haWxzQW5zd2VyLnZ1ZT92dWUmdHlwZT10ZW1wbGF0ZSZpZD03MDNiZDkwYiYuanMiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgKiBmcm9tIFwiLSEuLi8uLi8uLi8uLi8uLi9ub2RlX21vZHVsZXMvdnVlLWxvYWRlci9saWIvbG9hZGVycy90ZW1wbGF0ZUxvYWRlci5qcz8/dnVlLWxvYWRlci1vcHRpb25zIS4uLy4uLy4uLy4uLy4uL25vZGVfbW9kdWxlcy92dWUtbG9hZGVyL2xpYi9pbmRleC5qcz8/dnVlLWxvYWRlci1vcHRpb25zIS4vTWFpbHNBbnN3ZXIudnVlP3Z1ZSZ0eXBlPXRlbXBsYXRlJmlkPTcwM2JkOTBiJlwiIl0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./resources/js/views/admin/forms/MailsAnswer.vue?vue&type=template&id=703bd90b&\n");
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MailsAnswer_vue_vue_type_template_id_703bd90b___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./MailsAnswer.vue?vue&type=template&id=703bd90b& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/views/admin/forms/MailsAnswer.vue?vue&type=template&id=703bd90b&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MailsAnswer_vue_vue_type_template_id_703bd90b___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MailsAnswer_vue_vue_type_template_id_703bd90b___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
 
 /***/ })
 

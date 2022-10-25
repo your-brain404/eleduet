@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export default {
+    namespaced: true,
     state: {
         contactLinks: window.global.cms.contactPage.contactLinks || []
     },

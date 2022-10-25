@@ -3,6 +3,7 @@
 namespace App\Http\Helpers;
 
 use App\About;
+use App\AboutPage;
 use App\Attributes;
 use App\AttributesDesc;
 use App\Contact;
@@ -62,7 +63,7 @@ class HomeHelper
 			//
 		}
 		if (LangHelper::getRouteSegment(1) == '') {
-			$data['slider'] = Slider::all() ?? [];
+			$data['slider'] = Slider::where('active', 1)->get() ?? [];
 			$data['home_services'] = Services::where('home_page', 1)->orderBy('id', 'ASC')->get() ?? [];
 			$data['home_services_desc'] = HomeServicesDesc::find(1) ?? new stdClass;
 			$data['home_solar_system_desc'] = HomeSolarSystemDesc::find(1) ?? new stdClass;
@@ -84,9 +85,16 @@ class HomeHelper
 			$data['services_page_desc'] = ServicesPageDesc::find(1) ?? new stdClass;
 			$data['services_attributes'] = ServicesAttributes::all() ?? [];
 		}
+		if (LangHelper::getRouteSegment(1) == 'uslugi' && LangHelper::getRouteSegment(3)) {
+			$data['service'] = Services::find(LangHelper::getRouteSegment(3)) ?? new stdClass;
+		}
 
 		if (LangHelper::getRouteSegment(1) == 'realizacje') {
 			$data['realizations'] = GalleryHelper::getPhotos('realizations', 1) ?? [];
+		}
+		if (LangHelper::getRouteSegment(1) == 'o-nas') {
+			$data['about_page'] = AboutPage::find(1);
+			$data['about_page_gallery'] = GalleryHelper::getPhotos('about_page', $data['about_page']->id);
 		}
 		if (LangHelper::getRouteSegment(1) == 'kontakt') {
 			$data['contact_links'] = ContactLinks::all() ?? [];

@@ -2,6 +2,7 @@ import axios from "axios";
 import router from "@/router/routes.js";
 
 export default {
+    namespaced: true,
     state: {
         about: window.global.cms.homePage.about || {}
     },

@@ -125,8 +125,10 @@
 import CallUs from "@/components/pages/services/CallUs";
 import slug from "@/helpers/links/slug";
 import Picture from "@/components/picture/Picture";
+import adminTableComponent from "@/mixins/admin-table-component";
 
 export default {
+  mixins: [adminTableComponent],
   components: {
     CallUs,
     Picture,
@@ -134,7 +136,7 @@ export default {
   data() {
     return {
       origin: window.location.origin,
-
+      table: "services",
       styleText: `.guarantee ul li::before { background-image:
                 url(${origin}/storage/img/layout/clef.png) }`,
     };
@@ -159,28 +161,43 @@ export default {
   },
   computed: {
     services() {
-      return this.$store.getters.services;
+      return this.$store.state.Services?.services || [];
+    },
+    tableData() {
+      return this.services;
     },
     servicesPageDesc() {
-      return this.$store.getters.servicesPageDesc;
+      return this.$store.state.ServicesPageDesc?.servicesPageDesc || {};
     },
     servicesAttributes() {
-      return this.$store.getters.servicesAttributes;
+      return this.$store.state.ServicesAttributes?.servicesAttributes || [];
     },
 
     serviceCategories() {
-      return this.$store.getters.serviceCategories;
+      return this.$store.state.ServiceCategories?.serviceCategories || [];
     },
     servicesServiceCategories() {
-      return this.$store.getters.servicesServiceCategories;
+      return (
+        this.$store.state.ServicesServiceCategories
+          ?.servicesServiceCategories || []
+      );
     },
   },
   created() {
-    this.$store.dispatch("services");
-    this.$store.dispatch("serviceCategories");
-    this.$store.dispatch("servicesServiceCategories");
-    this.$store.dispatch("servicesPageDesc");
-    this.$store.dispatch("servicesAttributes");
+    this.registerModule("serviceCategories");
+    this.registerModule("servicesServiceCategories");
+    this.registerModule("servicesPageDesc");
+    this.registerModule("servicesAttributes");
+    if (this.serviceCategories.length === 0)
+      this.$store.dispatch("ServiceCategories/serviceCategories");
+    if (this.servicesServiceCategories.length === 0)
+      this.$store.dispatch(
+        "ServicesServiceCategories/servicesServiceCategories"
+      );
+    if (Object.values(this.servicesPageDesc).length === 0)
+      this.$store.dispatch("ServicesPageDesc/servicesPageDesc");
+    if (this.servicesAttributes.length === 0)
+      this.$store.dispatch("ServicesAttributes/servicesAttributes");
   },
 };
 </script>

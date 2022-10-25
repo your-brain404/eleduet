@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export default {
+    namespaced: true,
     state: {
         serviceCategories:
             window.global.cms.servicesPage.serviceCategories || []

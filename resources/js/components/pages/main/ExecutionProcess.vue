@@ -45,6 +45,7 @@
 <script>
 import adminTableComponent from "@/mixins/admin-table-component";
 import Picture from "@/components/picture/Picture";
+import ExecutionProcessDescModule from "@/store/modules/executionProcessDesc/executionProcessDescModule";
 
 export default {
   components: {
@@ -60,10 +61,10 @@ export default {
   },
   computed: {
     executionProcess() {
-      return this.$store.getters.executionProcess;
+      return this.$store.state.ExecutionProcess?.executionProcess;
     },
     executionProcessDesc() {
-      return this.$store.getters.executionProcessDesc;
+      return this.$store.state.ExecutionProcessDesc?.executionProcessDesc;
     },
     tableData() {
       return this.executionProcess;
@@ -71,9 +72,10 @@ export default {
   },
 
   created() {
+    this.registerModule("ExecutionProcessDesc", ExecutionProcessDescModule);
     if (this.executionProcess.length === 0) this.fetchData();
     if (Object.values(this.executionProcessDesc).length === 0)
-      this.$store.dispatch(this.table + "Desc");
+      this.$store.dispatch("ExecutionProcessDesc/executionProcessDesc");
   },
 };
 </script>

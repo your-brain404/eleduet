@@ -83,10 +83,10 @@ export default {
   },
   computed: {
     homeServices() {
-      return this.$store.getters.homeServices;
+      return this.$store.state.HomeServices?.homeServices || [];
     },
     homeServicesDesc() {
-      return this.$store.getters.homeServicesDesc;
+      return this.$store.state.HomeServicesDesc?.homeServicesDesc || {};
     },
     tableData() {
       return this.homeServices;
@@ -100,10 +100,12 @@ export default {
     slug,
   },
   created() {
+    this.registerModule("HomeServicesDesc");
     this.setCarouselItems();
-    if (this.homeServices.length === 0) this.$store.dispatch("homeServices");
+    if (this.homeServices.length === 0)
+      this.$store.dispatch("HomeServices/homeServices");
     if (Object.values(this.homeServicesDesc).length === 0)
-      this.$store.dispatch("homeServicesDesc");
+      this.$store.dispatch("HomeServicesDesc/homeServicesDesc");
   },
 };
 </script>

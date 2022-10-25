@@ -121,6 +121,7 @@ import axios from "axios";
 import Vue from "vue";
 import { VueReCaptcha } from "vue-recaptcha-v3";
 import Picture from "@/components/picture/Picture";
+import getModule from "@/helpers/store/get-module";
 
 export default {
   components: {
@@ -155,7 +156,7 @@ export default {
       return this.$store.getters.settings;
     },
     contactLinks() {
-      return this.$store.getters.contactLinks;
+      return this.$store.state.ContactLinks?.contactLinks || [];
     },
   },
   methods: {
@@ -257,7 +258,12 @@ export default {
     },
   },
   created() {
-    this.$store.dispatch("contactLinks");
+    if (!this.$store.hasModule("contactLinks"))
+      this.$store.registerModule("ContactLinks", getModule("contactLinks"));
+    if (!this.$store.hasModule("snackbarAlerts"))
+      this.$store.registerModule("snackbarAlerts", getModule("snackbarAlerts"));
+    if (this.contactLinks.length === 0)
+      this.$store.dispatch("ContactLinks/contactLinks");
     let siteKey = this.$route.path.includes("localhost")
       ? "6Lf3c-AUAAAAAFZvqKdtC2NCcYG_wVDSBccSYJBP"
       : "6LeyGAsiAAAAAKPkdvmjIaVmMc3VLtez7v4Exj_L";

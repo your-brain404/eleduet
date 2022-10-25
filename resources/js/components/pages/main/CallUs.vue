@@ -65,7 +65,7 @@ export default {
   },
   computed: {
     homeCallUs() {
-      return this.$store.getters["homeCallUs"];
+      return this.$store.state.HomeCallUs?.homeCallUs;
     },
     contact() {
       return this.$store.getters["contact"];

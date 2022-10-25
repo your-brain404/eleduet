@@ -5,9 +5,7 @@ import TagsInput from "@/components/tagsinput/TagsInput.vue";
 import AdminPanelBlocks from "@/data/admin-panel-blocks.js";
 import VueEditor from "@/components/forms/TinyMCE";
 import FormFooter from "@/components/layouts/FormFooter";
-import { mapState } from "vuex";
-import { get } from "jquery";
-import { set } from "lodash";
+import FormService from "@/store/modules/formService/formServiceModule.js";
 
 export default {
     components: {
@@ -46,7 +44,9 @@ export default {
         }
     },
     computed: {
-        ...mapState("FormService", ["validateFlag"]),
+        validateFlag() {
+            return this.$store.state.FormService?.validateFlag || false;
+        },
         valid: {
             get() {
                 return this.$store.state.FormService.valid;
@@ -128,6 +128,9 @@ export default {
     },
 
     created() {
+        if (!this.$store.hasModule("FormService")) {
+            this.$store.registerModule("FormService", FormService);
+        }
         if (this.$route.params.id) {
             axios
                 .get(

@@ -1,6 +1,7 @@
 <template>
-  <section v-if="slides.length > 0" class="slider">
+  <section v-if="slider.length > 0" class="slider">
     <carousel
+      v-if="carousel"
       class="slider-carousel"
       :items="1"
       :nav="false"
@@ -9,7 +10,7 @@
       :autoplay="true"
       :autoplaySpeed="2000"
     >
-      <div v-for="(slide, i) in slides" :key="`slide-${i}`" class="slide">
+      <div v-for="(slide, i) in slider" :key="`slide-${i}`" class="slide">
         <Picture
           class="w-100"
           :src="url(slide.photo)"
@@ -68,24 +69,24 @@ export default {
   watch: {
     slider() {
       this.emitData();
+      this.carousel = false;
+      setTimeout(() => (this.carousel = true), 1);
     },
   },
   data() {
     return {
       origin: window.location.origin,
       table: "slider",
+      carousel: true,
     };
   },
 
   computed: {
+    slider() {
+      return this.$store.state.Slider?.slider || [];
+    },
     tableData() {
       return this.slider;
-    },
-    slider() {
-      return this.$store.getters[this.table];
-    },
-    slides() {
-      return this.slider?.filter((slide) => slide.active);
     },
   },
   methods: {
@@ -101,6 +102,8 @@ export default {
   max-height: 500px;
 }
 section.slider {
+  min-height: 500px;
+  max-height: 500px;
   .slide {
     background-position: 50% 50%;
     display: flex;

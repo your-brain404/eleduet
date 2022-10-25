@@ -109,19 +109,27 @@ export default {
   },
   computed: {
     opinions() {
-      return this.$store.getters.opinions;
+      return (
+        this.$store.state.Opinions?.opinions ||
+        window.global.cms.homePage.opinions
+      );
     },
     opinionsDesc() {
-      return this.$store.getters.opinionsDesc;
+      return (
+        this.$store.state.OpinionsDesc?.opinionsDesc ||
+        window.global.cms.homePage.opinionsDesc
+      );
     },
     tableData() {
       return this.opinions;
     },
   },
   created() {
-    if (!this.opinions) this.fetchData();
+    this.registerModule("OpinionsDesc");
+    if (this.opinions?.constructor === Array && this.opinions.length === 0)
+      this.fetchData();
     if (Object.values(this.opinionsDesc).length === 0)
-      this.$store.dispatch("opinionsDesc");
+      this.$store.dispatch("OpinionsDesc/opinionsDesc");
   },
 };
 </script>

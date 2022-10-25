@@ -1,4 +1,5 @@
 const mix = require("laravel-mix");
+const path = require("path");
 
 /*
  |--------------------------------------------------------------------------
@@ -11,31 +12,24 @@ const mix = require("laravel-mix");
  |
  */
 
-mix.js("resources/js/app.js", "public/js")
-    .sass("resources/sass/app.scss", "public/css")
+mix.js("resources/js/app.js", "public/js").vue({
+    version: 2
+});
+mix.sass("resources/sass/app.scss", "public/css");
 
-    .sourceMaps();
+// .sourceMaps();
 // mix.js('resources/js/app.js', 'public/js').extract(['jQuery', 'vue', 'axios']);
 mix.version();
+mix.override(config => {
+    delete config.watchOptions;
+});
 
-let base = {
-    resolve: {
-        modules: [
-            path.resolve(__dirname),
-            path.resolve("./node_modules/"),
-            path.resolve("./resources/")
-        ],
-        alias: {
-            "@": __dirname + "/resources/js"
-        }
-    }
-};
+mix.alias({
+    "@": path.join(__dirname, "resources/js")
+});
+
 if (mix.inProduction()) {
-    mix.webpackConfig({
-        ...base
-    });
+    // mix.webpackConfig({});
 } else {
-    mix.webpackConfig({
-        ...base
-    });
+    // mix.webpackConfig({});
 }

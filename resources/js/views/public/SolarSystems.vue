@@ -40,12 +40,15 @@
 
 <script>
 import CallUs from "@/components/pages/solarSystems/CallUs";
+import adminTableComponent from "@/mixins/admin-table-component";
 
 export default {
+  mixins: [adminTableComponent],
   components: { CallUs },
   data() {
     return {
       origin: window.location.origin,
+      table: "solarSystem",
     };
   },
   methods: {
@@ -55,11 +58,11 @@ export default {
   },
   computed: {
     solarSystem() {
-      return this.$store.getters.solarSystem;
+      return this.$store.state.SolarSystem?.solarSystem;
     },
-  },
-  created() {
-    this.$store.dispatch("solarSystem");
+    tableData() {
+      return [this.solarSystem];
+    },
   },
 };
 </script>

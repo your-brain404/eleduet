@@ -32,7 +32,9 @@
       <div v-if="gallery.length > 0" class="gallery">
         <CoolLightBox
           :items="
-            gallery.map((photo) => `${origin}/storage/media/${photo.path}`)
+            gallery.map((photo) =>
+              existingPhotoPath(`${origin}/storage/media/${photo.path}`)
+            )
           "
           :index="index"
           @close="index = null"
@@ -62,6 +64,8 @@ import axios from "axios";
 import CoolLightBox from "vue-cool-lightbox";
 import "vue-cool-lightbox/dist/vue-cool-lightbox.min.css";
 import Picture from "@/components/picture/Picture";
+import getModule from "@/helpers/store/get-module";
+import existingPhotoPath from "@/helpers/links/existing-photo-path";
 
 export default {
   components: {
@@ -77,12 +81,13 @@ export default {
   },
   computed: {
     service() {
-      return this.$store.getters.service;
+      return this.$store.state.Service?.service || {};
     },
   },
   methods: {
+    existingPhotoPath,
     async fetchData() {
-      await this.$store.dispatch("service", this.$route.params.id);
+      await this.$store.dispatch("Service/service", this.$route.params.id);
       this.$emit("metaTitle", this.service.title);
     },
     fetchGallery() {
@@ -90,7 +95,7 @@ export default {
         .get(`/api/gallery/get_photos/services/${this.$route.params.id}/`)
         .then((res) => (this.gallery = res.data))
         .catch((err) => {
-          console.log(err);
+          console.error(err);
           this.$store.commit(
             "setSnackbar",
             "Przepraszamy nie udało się załadować galerii..."
@@ -102,8 +107,9 @@ export default {
     },
   },
   created() {
-    this.fetchData();
-    this.fetchGallery();
+    this.$store.registerModule("Service", getModule("service"));
+    if (Object.values(this.service).length === 0) this.fetchData();
+    if (this.gallery.length === 0) this.fetchGallery();
   },
 };
 </script>

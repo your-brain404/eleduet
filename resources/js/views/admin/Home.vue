@@ -34,6 +34,7 @@ import Table from "@/components/panel-home/Table";
 import Title from "@/components/panel-home/Title";
 import panelBlocks from "@/data/admin-panel-blocks.js";
 import fillBaseHeaders from "@/helpers/panel-table/fill-base-headers.js";
+import getModule from "@/helpers/store/get-module";
 
 export default {
   data() {
@@ -78,6 +79,8 @@ export default {
     this.secureRoutes();
     this.setBlocks();
     this.$store.dispatch("fetchAllUsers");
+    if (!this.$store.hasModule("snackbarAlerts"))
+      this.$store.registerModule("snackbarAlerts", getModule("snackbarAlerts"));
   },
 };
 </script>

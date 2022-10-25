@@ -59,7 +59,7 @@ export default {
   },
   computed: {
     homeSolarSystemDesc() {
-      return this.$store.getters.homeSolarSystemDesc;
+      return this.$store.state.HomeSolarSystemDesc?.homeSolarSystemDesc;
     },
     tableData() {
       return [this.homeSolarSystemDesc];
