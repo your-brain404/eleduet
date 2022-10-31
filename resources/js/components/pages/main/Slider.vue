@@ -12,7 +12,7 @@
     >
       <div v-for="(slide, i) in slider" :key="`slide-${i}`" class="slide">
         <Picture
-          class="w-100"
+          class="slide-picture"
           :src="url(slide.photo)"
           :alt="slide.photo_alt"
           :width="slide.photo_sizes.width"
@@ -165,6 +165,11 @@ section.slider {
 
 <style lang="scss">
 section.slider {
+  .slide {
+    &-picture {
+      width: 100%;
+    }
+  }
   .slider-carousel {
     .owl-dots {
       position: absolute !important;

@@ -9,10 +9,8 @@
     <meta name="author" content="Daniel Lewicki">
     <title>{{ $meta_title }}</title>
     <meta name="description" content="{{ $meta_description }}">
-
     <link rel="icon" href="/storage/media/{{ $settings->favicon }}" type="image/png">
 
-    <link async href="{{ mix('css/app.css') }}" rel="stylesheet">
 </head>
 
 <body>

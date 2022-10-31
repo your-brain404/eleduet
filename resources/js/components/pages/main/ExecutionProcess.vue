@@ -20,6 +20,7 @@
           <div class="icon-section">
             <div class="icon-container">
               <Picture
+                class="icon-picture"
                 width="60"
                 height="60"
                 :alt="step.photo_alt"
@@ -87,6 +88,9 @@ export default {
     @media (max-width: 400px) {
       margin-bottom: 0.5rem;
     }
+  }
+  .icon-picture {
+    display: flex;
   }
 }
 section.execution-process {

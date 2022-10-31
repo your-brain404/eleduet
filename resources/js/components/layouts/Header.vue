@@ -139,11 +139,13 @@ section.header {
     color: black;
     font-size: 1.4rem;
     font-weight: 500;
+    text-decoration: none;
     @media (max-width: 992px) {
       order: 4;
       width: fit-content;
       justify-content: center;
     }
+
     .phone-icon {
       height: 18px;
       padding-right: 1.2rem;
@@ -174,6 +176,7 @@ section.header {
     }
     & > a {
       height: 100%;
+      text-decoration: none;
     }
     li {
       padding-left: 0.5rem;

@@ -176,6 +176,7 @@ section.about {
       width: fit-content;
       padding: 1rem 2rem;
       transition: 0.2s background-color;
+      text-decoration: none;
       @media (max-width: 400px) {
         flex-direction: column;
         align-items: center;

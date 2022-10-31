@@ -8,7 +8,7 @@
     </component>
     <div class="call-us-container">
       <Picture
-        class="w-100 h-100"
+        class="call-us-picture"
         :src="`${origin}/storage/media/${homeCallUs.photo}`"
         :alt="homeCallUs.photo_alt"
         :width="homeCallUs.photo_sizes.width"
@@ -85,11 +85,17 @@ export default {
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
 }
-::v-deep .bg {
-  @include borders-radius;
-  position: relative;
-  object-fit: cover;
-  object-position: 50% 50%;
+::v-deep {
+  .bg {
+    @include borders-radius;
+    position: relative;
+    object-fit: cover;
+    object-position: 50% 50%;
+  }
+  .call-us-picture {
+    width: 100%;
+    height: 100%;
+  }
 }
 section.call-us {
   .call-us-container {

@@ -117,6 +117,6 @@ export default {
 
 <style>
 picture {
-  display: block;
+  display: flex;
 }
 </style>

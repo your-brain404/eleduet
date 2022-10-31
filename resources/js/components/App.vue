@@ -172,9 +172,23 @@ export default {
 * {
   font-family: "Josefin Sans" !important;
 }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 *::selection {
   color: white;
   background-color: var(--first-color);
+}
+.v-application--wrap {
+  position: static !important;
+}
+hr {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 ul li {
   display: flex;
@@ -193,9 +207,7 @@ ul li {
     margin-right: 1rem;
   }
 }
-body {
-  overflow-x: hidden;
-}
+
 b {
   color: var(--first-color);
 }
@@ -266,7 +278,9 @@ footer {
   background-color: var(--first-color);
   border-radius: 12px;
 }
-
+body {
+  overflow-x: hidden;
+}
 .app,
 .ql-container {
   font-family: "Candara";
@@ -285,8 +299,11 @@ footer {
   background-color: var(--first-color) !important;
 }
 
-a:hover {
-  text-decoration: none !important;
+a {
+  text-decoration: none;
+  &:hover {
+    text-decoration: none !important;
+  }
 }
 
 blockquote {

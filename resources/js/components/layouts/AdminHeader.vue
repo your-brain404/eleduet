@@ -186,7 +186,66 @@ export default {
 * {
   /* font-family: "Candara" !important; */
 }
-
+.d-flex {
+  display: flex !important;
+}
+.justify-content-center {
+  justify-content: center !important;
+}
+.justify-content-end {
+  justify-content: flex-end !important;
+}
+.align-items-center {
+  align-items: center !important;
+}
+.w-100 {
+  width: 100% !important;
+}
+.position-relative {
+  position: relative !important;
+}
+.flex-column {
+  flex-direction: column !important;
+}
+.justify-content-between {
+  justify-content: space-between !important;
+}
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+h4,
+.h4 {
+  font-size: 1.35rem;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+.text-danger {
+  color: #e3342f !important;
+}
 .nav-drawer {
   background-color: blue;
 }
