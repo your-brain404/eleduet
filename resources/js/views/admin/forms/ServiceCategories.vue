@@ -1,5 +1,5 @@
 <template>
-  <v-content>
+  <v-main>
     <v-container>
       <v-card>
         <v-card-title class="justify-content-center">
@@ -31,7 +31,7 @@
         </v-form>
       </v-card>
     </v-container>
-  </v-content>
+  </v-main>
 </template>
 
 <script>

@@ -1,5 +1,5 @@
 <template>
-  <v-content>
+  <v-main>
     <v-container>
       <v-card>
         <v-card-title class="justify-content-center">
@@ -85,7 +85,7 @@
         </v-form>
       </v-card>
     </v-container>
-  </v-content>
+  </v-main>
 </template>
 
 <script>
@@ -94,11 +94,37 @@ import GalleryPicker from "@/components/gallery-picker/GalleryPicker";
 import SnackbarAlerts from "@/data/snackbar-alerts.js";
 import url from "@/helpers/photo/url.js";
 import Picture from "@/components/picture/Picture.vue";
+import {
+  VMain,
+  VContainer,
+  VCard,
+  VForm,
+  VBtn,
+  VIcon,
+  VCardActions,
+  VDivider,
+  VRow,
+  VCol,
+  VTextField,
+  VCardTitle,
+} from "vuetify/lib";
 
 export default {
   components: {
     GalleryPicker,
     Picture,
+    VMain,
+    VContainer,
+    VCard,
+    VForm,
+    VBtn,
+    VIcon,
+    VCardActions,
+    VDivider,
+    VRow,
+    VCol,
+    VTextField,
+    VCardTitle,
   },
   data: () => ({
     name: "",

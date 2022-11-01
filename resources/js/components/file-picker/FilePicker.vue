@@ -259,11 +259,43 @@ import formatFileSize from "@/helpers/files/format-file-size";
 import copyToClipboard from "@/helpers/copy/copy-to-clipboard";
 import Picture from "@/components/picture/Picture";
 import existingPhotoPath from "@/helpers/links/existing-photo-path";
+import {
+  VRow,
+  VDialog,
+  VCard,
+  VTab,
+  VTabs,
+  VTextField,
+  VTabsItems,
+  VTabItem,
+  VCardText,
+  VCol,
+  VBtn,
+  VIcon,
+  VPagination,
+  VTooltip,
+  VCardTitle,
+} from "vuetify/lib";
 
 export default {
   components: {
     AddFiles,
     Picture,
+    VRow,
+    VTextField,
+    VDialog,
+    VCard,
+    VTab,
+    VTabs,
+    VTabsItems,
+    VTabItem,
+    VCardText,
+    VCol,
+    VBtn,
+    VIcon,
+    VPagination,
+    VTooltip,
+    VCardTitle,
   },
   props: {
     value: {
@@ -470,7 +502,7 @@ export default {
 .file-picker-menu {
   position: fixed;
   width: calc(100% - 24px * 2);
-  z-index: 1;
+  z-index: 2;
   background: white;
   @media (max-width: 992px) {
     position: sticky;

@@ -35,6 +35,7 @@ import Title from "@/components/panel-home/Title";
 import panelBlocks from "@/data/admin-panel-blocks.js";
 import fillBaseHeaders from "@/helpers/panel-table/fill-base-headers.js";
 import getModule from "@/helpers/store/get-module";
+import { VMain, VContainer, VCard, VDivider } from "vuetify/lib";
 
 export default {
   data() {
@@ -48,6 +49,10 @@ export default {
   components: {
     Table,
     Title,
+    VMain,
+    VContainer,
+    VCard,
+    VDivider,
   },
   methods: {
     fillBaseHeaders() {

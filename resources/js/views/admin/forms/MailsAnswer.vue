@@ -85,8 +85,38 @@ import axios from "axios";
 import attachment from "../../../helpers/attachments/link.js";
 import Vue from "vue";
 import { VueReCaptcha } from "vue-recaptcha-v3";
+import {
+  VMain,
+  VContainer,
+  VForm,
+  VCardActions,
+  VBtn,
+  VIcon,
+  VDivider,
+  VTextarea,
+  VTextField,
+  VCard,
+  VCardTitle,
+  VRow,
+  VCol,
+} from "vuetify/lib";
 
 export default {
+  components: {
+    VMain,
+    VTextarea,
+    VContainer,
+    VForm,
+    VCardActions,
+    VBtn,
+    VIcon,
+    VDivider,
+    VTextField,
+    VCard,
+    VCardTitle,
+    VRow,
+    VCol,
+  },
   data() {
     return {
       mail: {},

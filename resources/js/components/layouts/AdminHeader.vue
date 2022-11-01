@@ -67,10 +67,36 @@
 <script>
 import avatar from "@/helpers/photo/avatar.js";
 import Picture from "@/components/picture/Picture.vue";
+import {
+  VNavigationDrawer,
+  VList,
+  VListItemGroup,
+  VListItem,
+  VListItemContent,
+  VListItemIcon,
+  VListItemTitle,
+  VDivider,
+  VBtn,
+  VIcon,
+  VListItemSubtitle,
+  VListItemAvatar,
+} from "vuetify/lib";
 
 export default {
   components: {
     Picture,
+    VNavigationDrawer,
+    VList,
+    VListItemGroup,
+    VListItem,
+    VListItemContent,
+    VListItemIcon,
+    VListItemTitle,
+    VDivider,
+    VBtn,
+    VIcon,
+    VListItemSubtitle,
+    VListItemAvatar,
   },
   data() {
     return {
@@ -213,6 +239,9 @@ export default {
 .img-fluid {
   max-width: 100%;
   height: auto;
+}
+.admin-body {
+  padding-left: 64px !important;
 }
 h1,
 h2,

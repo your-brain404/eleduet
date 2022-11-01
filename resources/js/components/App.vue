@@ -37,6 +37,7 @@
 import AdminSnackbar from "./snackbar/AdminSnackbar";
 import Loader from "./loader/Loader";
 import "@/font/JosefinSans/stylesheet.css";
+import { VApp } from "vuetify/lib";
 
 function recaptcha() {
   let badge = document.getElementsByClassName("grecaptcha-badge")[0];
@@ -58,6 +59,7 @@ export default {
     };
   },
   components: {
+    VApp,
     HeaderComponent: () =>
       import(
         /* webpackPrefetch: true */ /* webpackChunkName: 'front-layout' */ "./layouts/Header"
@@ -190,21 +192,24 @@ hr {
   border: 0;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
-ul li {
-  display: flex;
-  font-weight: 500;
-  align-items: center;
-  font-size: 1.2rem;
-  &::before {
-    content: "....";
-    color: white;
-    display: block;
-    background-image: url("/storage/img/layout/clef.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-    width: 9px;
-    height: 21px;
-    margin-right: 1rem;
+ul {
+  line-height: 1.5;
+  li {
+    display: flex;
+    font-weight: 500;
+    align-items: center;
+    font-size: 1.2rem;
+    &::before {
+      content: "....";
+      color: white;
+      display: block;
+      background-image: url("/storage/img/layout/clef.png");
+      background-size: contain;
+      background-repeat: no-repeat;
+      width: 9px;
+      height: 21px;
+      margin-right: 1rem;
+    }
   }
 }
 
@@ -225,6 +230,7 @@ b {
   }
   a {
     color: var(--first-color);
+    cursor: pointer;
   }
   :is(div, i, button, span, label).primary--text {
     color: var(--first-color) !important;
@@ -280,6 +286,7 @@ footer {
 }
 body {
   overflow-x: hidden;
+  margin: 0;
 }
 .app,
 .ql-container {
@@ -328,6 +335,8 @@ blockquote {
   border-radius: var(--global-border-radius);
   transition: 0.2s background-color;
   text-transform: uppercase;
+  border: unset;
+  cursor: pointer;
 }
 .first-button {
   background-color: var(--first-color);

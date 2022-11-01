@@ -131,7 +131,7 @@ section.about {
     width: 66%;
   }
   .photo-container {
-    width: 33%;
+    width: 34%;
     height: fit-content;
   }
   .content,

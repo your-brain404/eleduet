@@ -18,5 +18,12 @@
 </template>
 
 <script>
-export default {};
+import { VBtn, VCardActions, VIcon } from "vuetify/lib";
+export default {
+  components: {
+    VBtn,
+    VCardActions,
+    VIcon,
+  },
+};
 </script>

@@ -26,7 +26,8 @@ export default {
                     commit("setToken", res.data.token);
                     commit("setUser", res.data.data);
                     commit("setSnackbar", getters.snackbarAlerts.login_success);
-                    router.push({ name: "AdminHome" });
+                    localStorage.setItem("user", JSON.stringify(res.data.data));
+                    router.push({ name: "AdminMain" });
                 }
             })
             .catch(err => console.log(err));
@@ -70,5 +71,8 @@ export default {
         removeCookie("token");
         commit("setUser", {});
         commit("setToken", "");
+        localStorage.removeItem("user");
+        localStorage.removeItem("token");
+        localStorage.removeItem("authLogin");
     }
 };

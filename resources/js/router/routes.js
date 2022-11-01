@@ -177,12 +177,18 @@ const routes = [
     {
         path: "/admin-panel/mails/form",
         component: MailsForm,
-        name: "MailsForm"
+        name: "MailsForm",
+        meta: {
+            adminRoute: true
+        }
     },
     {
         path: "/admin-panel/mails/form/:id",
         component: MailsAnswerForm,
-        name: "MailsFormEdit"
+        name: "MailsFormEdit",
+        meta: {
+            adminRoute: true
+        }
     },
 
     {

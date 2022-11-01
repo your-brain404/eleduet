@@ -6,13 +6,37 @@ import AdminPanelBlocks from "@/data/admin-panel-blocks.js";
 import VueEditor from "@/components/forms/TinyMCE";
 import FormFooter from "@/components/layouts/FormFooter";
 import FormService from "@/store/modules/formService/formServiceModule.js";
+import {
+    VMain,
+    VCard,
+    VCardTitle,
+    VCheckbox,
+    VTextField,
+    VDivider,
+    VContainer,
+    VForm,
+    VCol,
+    VRow,
+    VTextarea
+} from "vuetify/lib";
 
 export default {
     components: {
         TagsInput,
         VueEditor,
+        VTextarea,
         FilePicker,
-        FormFooter
+        FormFooter,
+        VMain,
+        VCard,
+        VCardTitle,
+        VCheckbox,
+        VTextField,
+        VDivider,
+        VContainer,
+        VForm,
+        VCol,
+        VRow
     },
     data() {
         return {

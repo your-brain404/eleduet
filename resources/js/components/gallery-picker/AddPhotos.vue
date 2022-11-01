@@ -36,8 +36,27 @@
 import axios from "axios";
 import isPhoto from "@/helpers/files/is-photo";
 import photoTypes from "@/helpers/files/photo-types";
-
+import {
+  VRow,
+  VCard,
+  VCardText,
+  VCol,
+  VBtn,
+  VIcon,
+  VFileInput,
+  VForm,
+} from "vuetify/lib";
 export default {
+  components: {
+    VRow,
+    VCard,
+    VCardText,
+    VCol,
+    VBtn,
+    VIcon,
+    VFileInput,
+    VForm,
+  },
   data() {
     return {
       file: [],

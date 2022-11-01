@@ -1,5 +1,5 @@
 <template>
-  <v-content>
+  <v-main>
     <v-container>
       <v-card>
         <v-card-title class="justify-content-center">
@@ -49,12 +49,38 @@
         </v-form>
       </v-card>
     </v-container>
-  </v-content>
+  </v-main>
 </template>
 
 <script>
 import getModule from "@/helpers/store/get-module";
+import {
+  VMain,
+  VContainer,
+  VCard,
+  VForm,
+  VRow,
+  VBtn,
+  VIcon,
+  VTextField,
+  VDivider,
+  VCardTitle,
+  VCol,
+} from "vuetify/lib";
 export default {
+  components: {
+    VMain,
+    VCol,
+    VContainer,
+    VCard,
+    VForm,
+    VRow,
+    VBtn,
+    VIcon,
+    VTextField,
+    VDivider,
+    VCardTitle,
+  },
   data() {
     return {
       valid: true,

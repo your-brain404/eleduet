@@ -3,7 +3,7 @@
     "scripts": {
         "dev": "npm run development",
         "development": "mix",
-        "watch": "mix watch",
+        "watch": "rmdir /s /q \"public/dist\" && mix watch",
         "watch-poll": "mix watch -- --watch-options-poll=1000",
         "hot": "mix watch --hot",
         "prod": "npm run production",
@@ -15,6 +15,7 @@
         "@babel/plugin-proposal-class-properties": "^7.10.4",
         "axios": "^0.19.2",
         "bootstrap": "^4.0.0",
+        "clean-webpack-plugin": "^4.0.0",
         "cross-env": "^7.0",
         "eslint": "^7.3.1",
         "eslint-plugin-vue": "^6.2.2",
@@ -24,9 +25,11 @@
         "popper.js": "^1.12",
         "resolve-url-loader": "^2.3.1",
         "sass": "^1.20.1",
-        "sass-loader": "^8.0.0",
+        "sass-loader": "^9.0.0",
         "vue": "^2.5.17",
-        "vue-template-compiler": "^2.6.10"
+        "vue-template-compiler": "^2.7.13",
+        "vuetifyjs-mix-extension": "^0.0.20",
+        "webpack-bundle-analyzer": "^4.7.0"
     },
     "dependencies": {
         "@mdi/font": "^5.3.45",
@@ -43,8 +46,8 @@
         "vue-summernote": "^1.0.3",
         "vue2-editor": "^2.10.2",
         "vuelidate": "^0.7.5",
-        "vuetify": "^2.4.3",
-        "vuetify-loader": "^1.4.3",
+        "vuetify": "^2.6.12",
+        "vuetify-loader": "^1.9.2",
         "vuex": "^3.5.1"
     }
 }

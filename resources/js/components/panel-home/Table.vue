@@ -152,8 +152,28 @@
 <script>
 import axios from "axios";
 import snackbarAlerts from "@/data/snackbar-alerts";
+import {
+  VDataTable,
+  VCard,
+  VBtn,
+  VIcon,
+  VCheckbox,
+  VTextField,
+  VCardTitle,
+  VSpacer,
+} from "vuetify/lib";
 
 export default {
+  components: {
+    VDataTable,
+    VCard,
+    VBtn,
+    VIcon,
+    VCheckbox,
+    VTextField,
+    VCardTitle,
+    VSpacer,
+  },
   props: ["headers", "block", "i"],
   data() {
     return {

@@ -29,7 +29,7 @@
           <p class="slide-subtitle">{{ slide.subtitle }}</p>
 
           <custom-link
-            class="mr-2"
+            class="first-button-link"
             :path="slide.button_link_1"
             :download="slide.button_download_1"
           >
@@ -165,6 +165,9 @@ section.slider {
 
 <style lang="scss">
 section.slider {
+  .first-button-link {
+    margin-right: 8px;
+  }
   .slide {
     &-picture {
       width: 100%;

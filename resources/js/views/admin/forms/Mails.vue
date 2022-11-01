@@ -1,5 +1,5 @@
 <template>
-  <v-content>
+  <v-main>
     <v-container>
       <v-card>
         <v-card-title class="justify-content-center">
@@ -50,14 +50,41 @@
         </v-form>
       </v-card>
     </v-container>
-  </v-content>
+  </v-main>
 </template>
 
 <script>
 import axios from "axios";
 import Select from "../../../components/select/Users";
+import {
+  VMain,
+  VContainer,
+  VForm,
+  VCardActions,
+  VBtn,
+  VIcon,
+  VDivider,
+  VTextarea,
+  VTextField,
+  VCard,
+  VCardTitle,
+} from "vuetify/lib";
 
 export default {
+  components: {
+    VMain,
+    VContainer,
+    VForm,
+    VCardActions,
+    VBtn,
+    VIcon,
+    VDivider,
+    VTextarea,
+    VTextField,
+    VCard,
+    VCardTitle,
+    Select,
+  },
   data() {
     return {
       files: [],
@@ -74,9 +101,7 @@ export default {
       },
     };
   },
-  components: {
-    Select,
-  },
+
   methods: {
     deleteMail(mail) {
       axios.delete("/api/mails/delete/" + mail.id);

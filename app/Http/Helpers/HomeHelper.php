@@ -103,6 +103,7 @@ class HomeHelper
 
 		$data['meta_title'] = $data['meta_title'] . ' - ' . $data['settings']->company;
 		$data['meta_description'] = strip_tags($data['meta_description']);
+		$data['admin_route'] = LangHelper::getRouteSegment(1) === 'admin-panel';
 
 		return $data;
 	}

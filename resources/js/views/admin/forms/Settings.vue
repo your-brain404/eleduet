@@ -1,5 +1,5 @@
 <template>
-  <v-content>
+  <v-main>
     <v-container>
       <v-card>
         <v-card-title class="justify-content-center">
@@ -104,13 +104,16 @@
         </v-form>
       </v-card>
     </v-container>
-  </v-content>
+  </v-main>
 </template>
 
 <script>
 import FormServiceMixin from "@/mixins/FormService.js";
-
+import { VColorPicker } from "vuetify/lib";
 export default {
   mixins: [FormServiceMixin],
+  components: {
+    VColorPicker,
+  },
 };
 </script>

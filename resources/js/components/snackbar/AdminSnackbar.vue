@@ -1,5 +1,4 @@
 <template>
-  <!-- <div class="text-center"> -->
   <v-snackbar
     :color="$store.getters.settings.first_color"
     v-model="snackbar"
@@ -20,11 +19,16 @@
       </v-btn>
     </template>
   </v-snackbar>
-  <!-- </div> -->
 </template>
 
 <script>
+import { VSnackbar, VBtn } from "vuetify/lib";
+
 export default {
+  components: {
+    VSnackbar,
+    VBtn,
+  },
   watch: {
     snackbar() {
       setTimeout(() => {

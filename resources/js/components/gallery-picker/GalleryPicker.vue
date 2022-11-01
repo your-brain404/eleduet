@@ -113,8 +113,43 @@ import axios from "axios";
 import AddPhotos from "@/components/gallery-picker/AddPhotos.vue";
 import url from "@/helpers/photo/url.js";
 import Picture from "@/components/picture/Picture";
-
+import {
+  VRow,
+  VDialog,
+  VCard,
+  VTab,
+  VTabs,
+  VTextField,
+  VTabsItems,
+  VTabItem,
+  VCardText,
+  VCol,
+  VBtn,
+  VIcon,
+  VPagination,
+  VTooltip,
+  VCardTitle,
+} from "vuetify/lib";
 export default {
+  components: {
+    VRow,
+    VDialog,
+    VCard,
+    VTab,
+    VTabs,
+    VTextField,
+    VTabsItems,
+    VTabItem,
+    VCardText,
+    VCol,
+    VBtn,
+    VIcon,
+    VPagination,
+    VTooltip,
+    VCardTitle,
+    AddPhotos,
+    Picture,
+  },
   props: ["apiGallery", "title"],
   data() {
     return {
@@ -129,10 +164,6 @@ export default {
       search: "",
       page: 1,
     };
-  },
-  components: {
-    AddPhotos,
-    Picture,
   },
   watch: {
     apiGallery() {
@@ -255,7 +286,7 @@ export default {
 .gallery-picker-menu {
   position: sticky;
   width: 100%;
-  z-index: 1;
+  z-index: 2;
   background: white;
   top: 0;
   @media (max-width: 992px) {

@@ -17,9 +17,11 @@
     <div id="app">
         @yield('content')
     </div>
-    <script src="{{ asset('js/owlcarousel/jquery.min.js') }}"></script>
 
-    <script src="{{ mix('js/app.js') }}" defer></script>
+    <script defer src="{{ asset('js/owlcarousel/jquery.min.js') }}"></script>
+    <script src="{{ mix('js/manifest.js', 'dist') }}" async defer></script>
+    <script src="{{ mix('js/vendor.js', 'dist') }}" async defer></script>
+    <script src="{{ mix('js/app.js', 'dist') }}" defer></script>
 
     <script>
         window.global = {

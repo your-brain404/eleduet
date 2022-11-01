@@ -1,17 +1,17 @@
 import Vue from "vue";
 import router from "@/router/routes";
-import vuetify from "../plugins/vuetify";
 import axios from "axios";
 import VueAxios from "vue-axios";
 import store from "./store/store.js";
-import Vuelidate from "vuelidate";
+import vuetify from "@/plugins/vuetify.js";
+// import Vuelidate from "vuelidate";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel";
 import VueMeta from "vue-meta";
 import isExternal from "@/helpers/links/is-external";
 
 Vue.component("app", require("./components/App.vue").default);
-Vue.use(Vuelidate);
+// Vue.use(Vuelidate);
 Vue.use(VueAxios, axios);
 Vue.use(VueMeta, {
     refreshOnceOnNavigation: true
@@ -47,6 +47,6 @@ Vue.axios.interceptors.request.use(
 export const app = new Vue({
     el: "#app",
     router,
-    vuetify,
-    store
+    store,
+    vuetify
 });
