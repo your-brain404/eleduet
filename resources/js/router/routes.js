@@ -71,7 +71,6 @@ const tableCmsRoutes = [
     "realizations",
     "subpages",
     "mails",
-    "users",
     "gallery_page",
     "settings",
     "descriptions",

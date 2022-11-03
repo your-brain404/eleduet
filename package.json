@@ -6,7 +6,7 @@
         "watch": "rmdir /s /q \"public/dist\" && mix watch",
         "watch-poll": "mix watch -- --watch-options-poll=1000",
         "hot": "mix watch --hot",
-        "prod": "npm run production",
+        "prod": "rmdir /s /q \"public/dist\" && npm run production",
         "production": "mix --production",
         "lint": "eslint --ext .js,.vue resources/js/",
         "gendist": "npm run prod && git add . && git commit -am 'gendist' && git push"
