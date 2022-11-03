@@ -285,7 +285,7 @@ footer {
   border-radius: 12px;
 }
 body {
-  overflow-x: hidden;
+  overflow: hidden;
   margin: 0;
 }
 .app,

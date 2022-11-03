@@ -37,6 +37,6 @@ mix.webpackConfig({
     output: {
         chunkFilename: "js/[name].js",
         publicPath: "/dist/"
-    },
-    plugins: [new BundleAnalyzerPlugin()]
+    }
+    // plugins: [new BundleAnalyzerPlugin()]
 });
