@@ -158,6 +158,12 @@ export default {
     };
   },
   created() {
+    if (!this.$store.hasModule("loading")) {
+      this.$store.registerModule(
+        "loading",
+        require("@/store/modules/loading/loadingModule")
+      );
+    }
     this.$store.dispatch("fetchSomeUsers");
   },
   computed: {
