@@ -28,14 +28,12 @@
       <FooterComponent v-if="!isPathAdmin" />
     </footer>
 
-    <Loader v-if="loading" />
     <Cookies v-if="!isPathAdmin" />
   </v-app>
 </template>
 
 <script>
 import AdminSnackbar from "./snackbar/AdminSnackbar";
-import Loader from "./loader/Loader";
 import "@/font/JosefinSans/stylesheet.css";
 import { VApp } from "vuetify/lib";
 
@@ -73,7 +71,6 @@ export default {
         /* webpackPrefetch: true */ /* webpackChunkName: 'cms-layout' */ "./layouts/AdminHeader"
       ),
     AdminSnackbar,
-    Loader,
     Cookies: () =>
       import(
         /* webpackPrefetch: true */ /* webpackChunkName: 'front-layout' */ "@/components/cookies/Cookies"
@@ -108,9 +105,6 @@ export default {
   computed: {
     isPathAdmin() {
       return this.$route.meta.adminRoute;
-    },
-    loading() {
-      return this.$store.getters.loading;
     },
     subpages() {
       return this.$store.getters.subpages;

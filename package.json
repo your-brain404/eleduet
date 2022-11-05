@@ -35,19 +35,15 @@
         "@mdi/font": "^5.3.45",
         "@tinymce/tinymce-vue": "^3.2.8",
         "core-js": "^3.6.5",
-        "owl.carousel": "^2.3.4",
         "vue-axios": "^2.1.5",
+        "vue-carousel": "^0.18.0",
         "vue-cool-lightbox": "^2.7.4",
         "vue-loader": "^15.9.8",
         "vue-meta": "^2.4.0",
-        "vue-owl-carousel2": "^2.0.7",
         "vue-recaptcha-v3": "^1.9.0",
         "vue-router": "^3.2.0",
         "vue-summernote": "^1.0.3",
-        "vue2-editor": "^2.10.2",
-        "vuelidate": "^0.7.5",
         "vuetify": "^2.6.12",
-        "vuetify-loader": "^1.9.2",
         "vuex": "^3.5.1"
     }
 }

@@ -3,14 +3,15 @@
     <carousel
       v-if="carousel"
       class="slider-carousel"
-      :items="1"
-      :nav="false"
-      @update="update"
+      :perPage="1"
+      :navigationEnabled="false"
       :loop="true"
       :autoplay="true"
-      :autoplaySpeed="2000"
+      :paginationEnabled="false"
+      :autoplayTimeout="5000"
+      :speed="500"
     >
-      <div v-for="(slide, i) in slider" :key="`slide-${i}`" class="slide">
+      <slide v-for="(slide, i) in slider" :key="`slide-${i}`" class="slide">
         <Picture
           class="slide-picture"
           :src="url(slide.photo)"
@@ -47,25 +48,24 @@
           </custom-link>
         </div>
         <div class="mask"></div>
-      </div>
+      </slide>
     </carousel>
   </section>
 </template>
  
 <script>
-import carousel from "vue-owl-carousel2";
 import CustomLink from "@/components/custom-link/CustomLink";
 import adminTableComponent from "@/mixins/admin-table-component";
 import Picture from "@/components/picture/Picture";
 import url from "@/helpers/photo/url";
-import "owl.carousel/dist/assets/owl.carousel.css";
-import "owl.carousel";
+import { Carousel, Slide } from "vue-carousel";
 
 export default {
   components: {
-    carousel,
     CustomLink,
     Picture,
+    Carousel,
+    Slide,
   },
   mixins: [adminTableComponent],
   watch: {
@@ -102,6 +102,7 @@ export default {
   object-fit: cover;
   min-height: 500px;
   max-height: 500px;
+  width: 100%;
 }
 section.slider {
   min-height: 500px;

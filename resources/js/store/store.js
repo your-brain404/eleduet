@@ -10,8 +10,6 @@ import Users from "./modules/users";
 
 import Subpages from "./modules/subpages";
 
-import Loading from "./modules/loading";
-
 import Settings from "./modules/settings";
 
 import Contact from "./modules/contact";
@@ -24,7 +22,6 @@ export default new Vuex.Store({
         Auth,
         Users,
         Subpages,
-        Loading,
         Settings,
         Contact
     }

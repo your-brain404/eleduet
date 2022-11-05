@@ -1,9 +1,10 @@
 <template>
-  <v-container style="z-index: 100000">
+  <v-container class="d-flex" style="z-index: 100000">
     <v-progress-circular
       :size="70"
       :width="7"
-      color="primary"
+      :color="$store.getters.settings.first_color"
+      class="loader"
       indeterminate
     ></v-progress-circular>
   </v-container>
@@ -18,3 +19,12 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+::v-deep .loader {
+  margin: 5rem;
+  padding: 5rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>

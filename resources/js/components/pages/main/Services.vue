@@ -17,40 +17,41 @@
       <carousel
         v-if="homeServices.length > 0"
         class="service-carousel"
-        :items="carouselItems"
-        :nav="false"
-        :dots="false"
+        :perPage="carouselItems"
+        :navigationEnabled="false"
+        :paginationEnabled="false"
       >
-        <router-link
-          v-for="(service, i) in homeServices"
-          :key="`home-service-${i}`"
-          class="service"
-          :to="{
-            name: 'Service',
-            params: {
-              id: service.id,
-              title: slug(service.title),
-            },
-          }"
-        >
-          <Picture
-            :width="service.photo_sizes.width"
-            :height="service.photo_sizes.height"
-            :alt="service.photo_alt"
-            :classImg="'photo bg'"
-            :src="origin + '/storage/media/' + service.photo"
-            :mobile-version="576"
-          />
-
-          <h4 class="service-title">{{ service.title }}</h4>
-          <div v-if="service.short_description" class="description">
-            {{
-              service.short_description
-                .replace(/(<([^>]+)>)/gi, "")
-                .substring(0, 100) + "..."
-            }}
-          </div>
-        </router-link>
+        <slide>
+          <router-link
+            v-for="(service, i) in homeServices"
+            :key="`home-service-${i}`"
+            class="service"
+            :to="{
+              name: 'Service',
+              params: {
+                id: service.id,
+                title: slug(service.title),
+              },
+            }"
+          >
+            <Picture
+              :width="service.photo_sizes.width"
+              :height="service.photo_sizes.height"
+              :alt="service.photo_alt"
+              :classImg="'photo bg'"
+              :src="origin + '/storage/media/' + service.photo"
+              :mobile-version="576"
+            />
+            <h4 class="service-title">{{ service.title }}</h4>
+            <div v-if="service.short_description" class="description">
+              {{
+                service.short_description
+                  .replace(/(<([^>]+)>)/gi, "")
+                  .substring(0, 100) + "..."
+              }}
+            </div>
+          </router-link>
+        </slide>
       </carousel>
       <router-link :to="{ path: homeServicesDesc.link }">
         <button class="button first-button">
@@ -62,7 +63,7 @@
 </template>
 
 <script>
-import carousel from "vue-owl-carousel2";
+import { Carousel, Slide } from "vue-carousel";
 import slug from "@/helpers/links/slug";
 import adminTableComponent from "@/mixins/admin-table-component";
 import Picture from "@/components/picture/Picture";
@@ -70,7 +71,8 @@ import Picture from "@/components/picture/Picture";
 export default {
   mixins: [adminTableComponent],
   components: {
-    carousel,
+    Carousel,
+    Slide,
     Picture,
   },
   data() {
