@@ -33,10 +33,17 @@ mix.alias({
     "@node_modules": path.join(__dirname, "node_modules")
 });
 
-mix.webpackConfig({
+let base = {
     output: {
         chunkFilename: "js/[name].js",
         publicPath: "/dist/"
     }
-    // plugins: [new BundleAnalyzerPlugin()]
-});
+};
+if (mix.inProduction()) {
+    mix.webpackConfig({ ...base });
+} else {
+    mix.webpackConfig({
+        ...base,
+        plugins: [new BundleAnalyzerPlugin()]
+    });
+}

@@ -1,13 +1,20 @@
 <template>
-	<v-container style="z-index: 100000">
-		<v-overlay>
-			<v-progress-circular :size="70" :width="7" color="primary" indeterminate></v-progress-circular>
-		</v-overlay>
-	</v-container>
+  <v-container style="z-index: 100000">
+    <v-progress-circular
+      :size="70"
+      :width="7"
+      color="primary"
+      indeterminate
+    ></v-progress-circular>
+  </v-container>
 </template>
 
 <script>
-	export default {
-
-	}
+import { VContainer, VProgressCircular } from "vuetify/lib";
+export default {
+  components: {
+    VContainer,
+    VProgressCircular,
+  },
+};
 </script>

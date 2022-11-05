@@ -43,34 +43,30 @@ const Services = () =>
 //         /* webpackPrefetch: true */ /* webpackChunkName: 'cms' */ "@/components/emit-data-blocks/Translations"
 //     );
 const Slider = () =>
-    import(
-        /* webpackChunkName: 'main-page' */ "@/components/pages/main/Slider"
-    );
+    import(/* webpackChunkName: 'slider' */ "@/components/pages/main/Slider");
 const About = () =>
-    import(/* webpackChunkName: 'main-page' */ "@/components/pages/main/About");
+    import(/* webpackChunkName: 'about' */ "@/components/pages/main/About");
 const HomeServices = () =>
     import(
-        /* webpackChunkName: 'main-page' */ "@/components/pages/main/Services"
+        /* webpackChunkName: 'services' */ "@/components/pages/main/Services"
     );
 const HomeSolarSystem = () =>
     import(
-        /* webpackChunkName: 'main-page' */ "@/components/pages/main/SolarSystem"
+        /* webpackChunkName: 'solar-system' */ "@/components/pages/main/SolarSystem"
     );
 const HomeCallUs = () =>
-    import(
-        /* webpackChunkName: 'main-page' */ "@/components/pages/main/CallUs"
-    );
+    import(/* webpackChunkName: 'call-us' */ "@/components/pages/main/CallUs");
 const Attributes = () =>
     import(
-        /* webpackChunkName: 'main-page' */ "@/components/pages/main/Attributes"
+        /* webpackChunkName: 'attributes' */ "@/components/pages/main/Attributes"
     );
 const Opinions = () =>
     import(
-        /* webpackChunkName: 'main-page' */ /* webpackMode: "lazy" */ "@/components/pages/main/Opinions"
+        /* webpackChunkName: 'opinions' */ /* webpackMode: "lazy" */ "@/components/pages/main/Opinions"
     );
 const ExecutionProcess = () =>
     import(
-        /* webpackChunkName: 'main-page' */ "@/components/pages/main/ExecutionProcess"
+        /* webpackChunkName: 'execution-process' */ "@/components/pages/main/ExecutionProcess"
     );
 const ServicesCallUs = () =>
     import(

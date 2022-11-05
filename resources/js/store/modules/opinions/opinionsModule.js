@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export default {
+    namespaced: true,
     state: {
         opinions: window.global.cms.homePage.opinions
     },

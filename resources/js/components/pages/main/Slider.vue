@@ -58,6 +58,8 @@ import CustomLink from "@/components/custom-link/CustomLink";
 import adminTableComponent from "@/mixins/admin-table-component";
 import Picture from "@/components/picture/Picture";
 import url from "@/helpers/photo/url";
+import "owl.carousel/dist/assets/owl.carousel.css";
+import "owl.carousel";
 
 export default {
   components: {
