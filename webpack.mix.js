@@ -28,6 +28,7 @@ mix.override(config => {
     delete config.watchOptions;
 });
 mix.extract();
+mix.extract(["vue-cool-lightbox"], "vue-cool-lightbox");
 mix.alias({
     "@": path.join(__dirname, "resources/js"),
     "@node_modules": path.join(__dirname, "node_modules")

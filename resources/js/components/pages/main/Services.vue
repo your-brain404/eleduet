@@ -114,6 +114,9 @@ export default {
 
 <style lang="scss" scoped>
 ::v-deep {
+  .VueCarousel-wrapper {
+    padding: 2rem 0;
+  }
   .service {
     img {
       height: 200px;
