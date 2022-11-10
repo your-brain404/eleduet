@@ -73,7 +73,7 @@ export default {
         .catch((err) => {
           console.log(err);
           this.$store.commit(
-            "setSnackbar",
+            "toast",
             "Przepraszamy, nie udało się załadować galerii..."
           );
         });

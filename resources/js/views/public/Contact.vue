@@ -166,21 +166,18 @@ export default {
           value.constructor == String ? Boolean(value) : true
         )
       ) {
-        this.$store.commit(
-          "setSnackbar",
-          "Wszystkie pola muszą być uzupełnione!"
-        );
+        this.$store.commit("toast", "Wszystkie pola muszą być uzupełnione!");
         return false;
       }
       const pattern =
         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
       if (!pattern.test(this.formData.email)) {
-        this.$store.commit("setSnackbar", "Email jest nieprawidłowy!");
+        this.$store.commit("toast", "Email jest nieprawidłowy!");
         return false;
       }
       if (!this.formData.rodo1) {
-        this.$store.commit("setSnackbar", "Proszę zaznaczyć potrzebne rodo!");
+        this.$store.commit("toast", "Proszę zaznaczyć potrzebne rodo!");
         return false;
       }
       return true;
@@ -203,12 +200,12 @@ export default {
           console.log(res);
           this.$store.commit("loading", false);
           if (res.data.error != undefined)
-            this.$store.commit("setSnackbar", res.data.error.message);
+            this.$store.commit("toast", res.data.error.message);
           else if (res.data.success != undefined)
-            this.$store.commit("setSnackbar", res.data.success.message);
+            this.$store.commit("toast", res.data.success.message);
 
           if (res.status == 200) {
-            this.$store.commit("setSnackbar", "Pomyślnie wysłano wiadomość!");
+            this.$store.commit("toast", "Pomyślnie wysłano wiadomość!");
             this.formData = this.formDataDefault;
           }
         })
@@ -216,7 +213,7 @@ export default {
           console.log(err);
           this.$store.commit("loading", false);
           this.$store.commit(
-            "setSnackbar",
+            "toast",
             this.$store.getters.snackbarAlerts.mail_error
           );
         });
@@ -231,7 +228,7 @@ export default {
       const response = !!this.$recaptcha && (await this.$recaptcha("login"));
       if (this.$recaptcha && !response) {
         this.$store.commit(
-          "setSnackbar",
+          "toast",
           this.$store.getters.snackbarAlerts.recaptcha_error
         );
         this.$store.commit("loading", false);
@@ -242,7 +239,7 @@ export default {
         .then((res) => {
           console.log(res);
           if (res.data.error != undefined) {
-            this.$store.commit("setSnackbar", res.data.error.message);
+            this.$store.commit("toast", res.data.error.message);
             this.$store.commit("loading", false);
             return;
           } else this.sendMail(res.data);
@@ -250,10 +247,7 @@ export default {
         .catch((err) => {
           console.log(err);
           this.$store.commit("loading", false);
-          this.$store.commit(
-            "setSnackbar",
-            this.$store.getters.snackbarAlerts.error
-          );
+          this.$store.commit("toast", this.$store.getters.snackbarAlerts.error);
         });
     },
   },

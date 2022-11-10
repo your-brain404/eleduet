@@ -191,12 +191,12 @@ export default {
         })
         .then((res) => {
           this.setLoading(false);
-          this.$store.commit("setSnackbar", SnackbarAlerts.success);
+          this.$store.commit("toast", SnackbarAlerts.success);
           this.loadGallery();
           this.resetForm();
         })
         .catch((err) => {
-          this.$store.commit("setSnackbar", SnackbarAlerts.error);
+          this.$store.commit("toast", SnackbarAlerts.error);
           this.setLoading(false);
         });
     },
@@ -209,11 +209,11 @@ export default {
         })
         .then((res) => {
           this.setLoading(false);
-          this.$store.commit("setSnackbar", SnackbarAlerts.success);
+          this.$store.commit("toast", SnackbarAlerts.success);
           this.loadGallery();
         })
         .catch((err) => {
-          this.$store.commit("setSnackbar", SnackbarAlerts.error);
+          this.$store.commit("toast", SnackbarAlerts.error);
           this.setLoading(false);
           console.log(err);
         });
@@ -225,11 +225,11 @@ export default {
         .delete("/api/gallery/delete/" + id)
         .then((res) => {
           this.setLoading(false);
-          this.$store.commit("setSnackbar", SnackbarAlerts.success);
+          this.$store.commit("toast", SnackbarAlerts.success);
           this.loadGallery();
         })
         .catch((err) => {
-          this.$store.commit("setSnackbar", SnackbarAlerts.error);
+          this.$store.commit("toast", SnackbarAlerts.error);
           this.setLoading(false);
           console.log(err);
         });

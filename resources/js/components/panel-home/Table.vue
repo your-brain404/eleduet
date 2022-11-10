@@ -207,14 +207,14 @@ export default {
           .then((res) => {
             this.$emit("reloadFlag", true);
             this.$store.commit("loading", false);
-            this.$store.commit("setSnackbar", snackbarAlerts.delete);
+            this.$store.commit("toast", snackbarAlerts.delete);
             if (block.tablename == "news")
               this.$store.dispatch("deleteComments", item.id);
             setTimeout(() => this.$emit("reloadFlag", false), 200);
           })
           .catch((err) => {
             this.$store.commit("loading", false);
-            this.$store.commit("setSnackbar", snackbarAlerts.error);
+            this.$store.commit("toast", snackbarAlerts.error);
             console.log(err);
           });
       }
@@ -224,15 +224,15 @@ export default {
         .post("/api/reservations/accept", item)
         .then((res) => {
           if (res.data.success)
-            this.$store.commit("setSnackbar", res.data.success.message);
+            this.$store.commit("toast", res.data.success.message);
           if (res.data.error)
-            this.$store.commit("setSnackbar", res.data.error.message);
+            this.$store.commit("toast", res.data.error.message);
           this.$emit("reloadFlag", true);
           setTimeout(() => this.$emit("reloadFlag", false), 200);
         })
         .catch((err) => {
           console.log(err);
-          this.$store.commit("setSnackbar", snackbarAlerts.error);
+          this.$store.commit("toast", snackbarAlerts.error);
         });
     },
     sendShippingConfirmation(item) {
@@ -240,15 +240,15 @@ export default {
         .post("/api/shop_orders/shipping_confirmation", item)
         .then((res) => {
           if (res.data.success)
-            this.$store.commit("setSnackbar", res.data.success.message);
+            this.$store.commit("toast", res.data.success.message);
           if (res.data.error)
-            this.$store.commit("setSnackbar", res.data.error.message);
+            this.$store.commit("toast", res.data.error.message);
           this.$emit("reloadFlag", true);
           setTimeout(() => this.$emit("reloadFlag", false), 200);
         })
         .catch((err) => {
           console.log(err);
-          this.$store.commit("setSnackbar", snackbarAlerts.error);
+          this.$store.commit("toast", snackbarAlerts.error);
         });
     },
     setCheckbox(table, item) {
@@ -278,12 +278,12 @@ export default {
         .then((res) => {
           this.$emit("reloadFlag", true);
           setTimeout(() => this.$emit("reloadFlag", false), 200);
-          this.$store.commit("setSnackbar", snackbarAlerts.edit);
+          this.$store.commit("toast", snackbarAlerts.edit);
           if (table == "reservations" && item.active)
             this.acceptReservation(item);
         })
         .catch((err) => {
-          this.$store.commit("setSnackbar", snackbarAlerts.error);
+          this.$store.commit("toast", snackbarAlerts.error);
           console.log(err);
         });
     },

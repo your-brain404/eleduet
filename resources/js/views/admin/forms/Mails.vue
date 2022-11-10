@@ -117,9 +117,9 @@ export default {
           .then((res) => {
             this.loading = false;
             if (res.data.error != undefined)
-              this.$store.commit("setSnackbar", res.data.error.message);
+              this.$store.commit("toast", res.data.error.message);
             else if (res.data.success != undefined)
-              this.$store.commit("setSnackbar", res.data.success.message);
+              this.$store.commit("toast", res.data.success.message);
             if (i == this.users.length - 1) {
               if (res.data.success) {
                 this.$refs.form.reset();
@@ -132,7 +132,7 @@ export default {
             console.log(err);
             this.loading = false;
             this.$store.commit(
-              "setSnackbar",
+              "toast",
               "Przepraszamy, nie udało się wysłać maila..."
             );
           });
@@ -153,7 +153,7 @@ export default {
             this.loading = false;
             console.log(err);
             this.$store.commit(
-              "setSnackbar",
+              "toast",
               "Przepraszamy, nie udało się wysłać załączników..."
             );
           });
@@ -172,7 +172,7 @@ export default {
         .catch((err) => {
           console.log(err);
           this.loading = false;
-          this.$store.commit("setSnackbar", "Przepraszamy, błąd serwera...");
+          this.$store.commit("toast", "Przepraszamy, błąd serwera...");
         });
     },
   },

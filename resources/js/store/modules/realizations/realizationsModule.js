@@ -24,7 +24,7 @@ export default {
                 .catch(err => {
                     console.log(err);
                     commit(
-                        "setSnackbar",
+                        "toast",
                         "Przepraszamy, nie udało się załadować realizacji..."
                     );
                 });

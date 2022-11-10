@@ -118,12 +118,12 @@ export default {
             this.loading = false;
             this.$emit("loadFiles");
             this.file = [];
-            this.$store.commit("setSnackbar", "Pomyślnie dodano!");
+            this.$store.commit("toast", "Pomyślnie dodano!");
           })
           .catch((err) => {
             this.loading = false;
             console.log(err);
-            this.$store.commit("setSnackbar", "Coś poszło nie tak...");
+            this.$store.commit("toast", "Coś poszło nie tak...");
           });
       }
     },

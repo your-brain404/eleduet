@@ -87,10 +87,7 @@ export default {
             );
         })
         .catch((err) => {
-          this.$store.commit(
-            "setSnackbar",
-            "Nie udało się załadować kolorów..."
-          );
+          this.$store.commit("toast", "Nie udało się załadować kolorów...");
         });
     },
     searchColor() {
@@ -110,12 +107,12 @@ export default {
         .then((res) => {
           this.newColor = "";
           this.$store.commit("loading", false);
-          this.$store.commit("setSnackbar", "Pomyślnie dodano nowy kolor!");
+          this.$store.commit("toast", "Pomyślnie dodano nowy kolor!");
           this.getColors();
         })
         .catch((err) => {
           this.$store.commit("loading", false);
-          this.$store.commit("setSnackbar", "Nie udało się dodać koloru...");
+          this.$store.commit("toast", "Nie udało się dodać koloru...");
         });
     },
     async edit(item) {
@@ -126,13 +123,13 @@ export default {
         .then((res) => {
           this.$store.commit("loading", false);
           this.editing = false;
-          this.$store.commit("setSnackbar", "Pomyślnie edytowano kolor!");
+          this.$store.commit("toast", "Pomyślnie edytowano kolor!");
           this.getColors();
         })
         .catch((err) => {
           this.$store.commit("loading", false);
           this.editing = false;
-          this.$store.commit("setSnackbar", "Nie udało się edytować koloru...");
+          this.$store.commit("toast", "Nie udało się edytować koloru...");
         });
     },
     async destroy(item) {
@@ -142,12 +139,12 @@ export default {
         .delete(`/api/shop_item_colors/delete/${item.id}`)
         .then((res) => {
           this.$store.commit("loading", false);
-          this.$store.commit("setSnackbar", "Pomyślnie usunięto kolor!");
+          this.$store.commit("toast", "Pomyślnie usunięto kolor!");
           this.getColors();
         })
         .catch((err) => {
           this.$store.commit("loading", false);
-          this.$store.commit("setSnackbar", "Nie udało się usunąć koloru...");
+          this.$store.commit("toast", "Nie udało się usunąć koloru...");
         });
     },
   },

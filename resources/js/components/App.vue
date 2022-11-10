@@ -22,11 +22,9 @@
       ></router-view>
     </main>
     <Toast v-if="toasts.length > 0" />
-
     <footer>
       <FooterComponent v-if="!isPathAdmin" />
     </footer>
-
     <Cookies v-if="!isPathAdmin" />
   </v-app>
 </template>
@@ -214,8 +212,8 @@ b {
 :root {
   --global-padding-x-desktop: 5rem;
   --global-padding-x-mobile: 1.5rem;
-
   --global-border-radius: 12px;
+  --danger: #df1c1c;
 }
 .v-application {
   .primary,

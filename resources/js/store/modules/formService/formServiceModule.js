@@ -49,7 +49,7 @@ export default {
         async add({ commit, dispatch }, formData) {
             if (Object.keys(formData).some(key => Number.isInteger(key))) {
                 console.error(`Obiekt formData ma numeryczne klucze!!!`);
-                this.$store.commit("setSnackbar", SnackbarAlerts.error);
+                this.$store.commit("toast", SnackbarAlerts.error);
                 return;
             }
             await router;
@@ -58,14 +58,14 @@ export default {
                     ...formData.formData
                 })
                 .then(() => {
-                    commit("setSnackbar", SnackbarAlerts.success, {
+                    commit("toast", SnackbarAlerts.success, {
                         root: true
                     });
                     commit("resetCurrentObject");
                     dispatch("redirect");
                 })
                 .catch(err => {
-                    commit("setSnackbar", SnackbarAlerts.error, { root: true });
+                    commit("toast", SnackbarAlerts.error, { root: true });
                     console.error(err);
                 });
         },
@@ -75,7 +75,7 @@ export default {
         ) {
             if (Object.keys(formData).some(key => Number.isInteger(key))) {
                 console.error(`Obiekt formData ma numeryczne klucze!!!`);
-                this.$store.commit("setSnackbar", SnackbarAlerts.error);
+                this.$store.commit("toast", SnackbarAlerts.error);
                 return;
             }
             await router;
@@ -85,13 +85,13 @@ export default {
                     formData
                 )
                 .then(() => {
-                    commit("setSnackbar", SnackbarAlerts.success, {
+                    commit("toast", SnackbarAlerts.success, {
                         root: true
                     });
                     if (options.redirect) dispatch("redirect");
                 })
                 .catch(err => {
-                    commit("setSnackbar", SnackbarAlerts.error, { root: true });
+                    commit("toast", SnackbarAlerts.error, { root: true });
                     console.error(err);
                 });
         },

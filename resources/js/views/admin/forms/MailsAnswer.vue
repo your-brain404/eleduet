@@ -159,17 +159,17 @@ export default {
           console.log(res);
           this.loading = false;
           if (res.data.error != undefined)
-            this.$store.commit("setSnackbar", res.data.error.message);
+            this.$store.commit("toast", res.data.error.message);
           else if (res.data.success != undefined)
-            this.$store.commit("setSnackbar", res.data.success.message);
+            this.$store.commit("toast", res.data.success.message);
 
-          this.$store.commit("setSnackbar", "Pomyślnie wysłano odpowiedź!");
+          this.$store.commit("toast", "Pomyślnie wysłano odpowiedź!");
         })
         .catch((err) => {
           console.log(err);
           this.loading = false;
           this.$store.commit(
-            "setSnackbar",
+            "toast",
             "Przepraszamy, nie udało się wysłać maila..."
           );
         });
@@ -186,7 +186,7 @@ export default {
         .catch((err) => {
           this.loading = false;
           this.$store.commit(
-            "setSnackbar",
+            "toast",
             "Nie udało się zapisać wiadomości, skontaktuj się z Danielem"
           );
         });
