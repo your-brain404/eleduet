@@ -127,7 +127,7 @@ export default {
         },
         validate() {
             if (!this.$refs.form.validate()) {
-                this.$store.commit("setSnackbar", "Formularz zawiera błędy!");
+                this.$store.commit("toast", "Formularz zawiera błędy!");
                 return;
             }
             this[this.$route.params.id ? "edit" : "add"](this.currentObject);

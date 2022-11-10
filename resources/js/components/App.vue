@@ -21,8 +21,7 @@
         :class="{ 'admin-body': isPathAdmin }"
       ></router-view>
     </main>
-
-    <AdminSnackbar />
+    <Toast v-if="toasts.length > 0" />
 
     <footer>
       <FooterComponent v-if="!isPathAdmin" />
@@ -33,7 +32,6 @@
 </template>
 
 <script>
-import AdminSnackbar from "./snackbar/AdminSnackbar";
 import "@/font/JosefinSans/stylesheet.css";
 import { VApp } from "vuetify/lib";
 
@@ -70,7 +68,7 @@ export default {
       import(
         /* webpackPrefetch: true */ /* webpackChunkName: 'cms-layout' */ "./layouts/AdminHeader"
       ),
-    AdminSnackbar,
+    Toast: () => import(/* webpackChunkName: 'toast' */ "./toast/Toast"),
     Cookies: () =>
       import(
         /* webpackPrefetch: true */ /* webpackChunkName: 'front-layout' */ "@/components/cookies/Cookies"
@@ -114,6 +112,9 @@ export default {
     },
     settings() {
       return this.$store.getters.settings;
+    },
+    toasts() {
+      return this.$store.state.Toast.toasts;
     },
   },
   methods: {

@@ -21,11 +21,11 @@ export default {
             .post("api/auth/login", credentials)
             .then(res => {
                 if (res.data.error) {
-                    commit("setSnackbar", res.data.error.message);
+                    commit("toast", res.data.error.message);
                 } else {
                     commit("setToken", res.data.token);
                     commit("setUser", res.data.data);
-                    commit("setSnackbar", getters.snackbarAlerts.login_success);
+                    commit("toast", getters.snackbarAlerts.login_success);
                     localStorage.setItem("user", JSON.stringify(res.data.data));
                     router.push({ name: "AdminMain" });
                 }
@@ -51,14 +51,11 @@ export default {
             .then(res => {
                 commit("loading", false);
                 if (res.data.error) {
-                    commit("setSnackbar", res.data.error.message);
+                    commit("toast", res.data.error.message);
                 } else {
                     commit("setToken", res.data.token);
                     commit("setUser", res.data.data);
-                    commit(
-                        "setSnackbar",
-                        getters.snackbarAlerts.register_success
-                    );
+                    commit("toast", getters.snackbarAlerts.register_success);
                 }
             })
             .catch(err => {
