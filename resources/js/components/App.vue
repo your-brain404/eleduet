@@ -25,13 +25,14 @@
     <footer>
       <FooterComponent v-if="!isPathAdmin" />
     </footer>
-    <Cookies v-if="!isPathAdmin" />
+    <Cookies v-if="!isPathAdmin && !savedCookies" />
   </v-app>
 </template>
 
 <script>
 import "@/font/JosefinSans/stylesheet.css";
 import { VApp } from "vuetify/lib";
+import getCookie from "@/helpers/cookies/get-cookie";
 
 function recaptcha() {
   let badge = document.getElementsByClassName("grecaptcha-badge")[0];
@@ -69,7 +70,7 @@ export default {
     Toast: () => import(/* webpackChunkName: 'toast' */ "./toast/Toast"),
     Cookies: () =>
       import(
-        /* webpackPrefetch: true */ /* webpackChunkName: 'front-layout' */ "@/components/cookies/Cookies"
+        /* webpackPrefetch: true */ /* webpackChunkName: 'cookies' */ "@/components/cookies/Cookies"
       ),
     Banner: () =>
       import(
@@ -113,6 +114,9 @@ export default {
     },
     toasts() {
       return this.$store.state.Toast.toasts;
+    },
+    savedCookies() {
+      return getCookie("cookies");
     },
   },
   methods: {
