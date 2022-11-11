@@ -1,157 +1,122 @@
 <template>
-  <v-navigation-drawer
-    class="admin-header admin-drawer"
-    v-model="drawer"
-    :color="$store.getters.settings.first_color"
-    left
-    :permanent="true"
-    expand-on-hover
-    app
-    dark
-  >
-    <v-list dense nav class="py-0">
-      <v-list-item two-line :class="'px-0'">
-        <v-list-item-avatar>
-          <Picture classImg="avatar" :src="placeholder" :webp="false" />
-        </v-list-item-avatar>
+  <div class="admin-header drawer">
+    <div class="drawer__header">
+      <Picture
+        class="drawer__header-avatar-container"
+        classImg="avatar"
+        :src="placeholder"
+        :webp="false"
+      />
 
-        <v-list-item-content>
-          <v-list-item-title>Panel Administracyjny</v-list-item-title>
-          <router-link to="/">
-            <v-list-item-subtitle
-              style="overflow: unset; text-overflow: unset; white-space: unset"
-              >{{ settings.company }}</v-list-item-subtitle
-            >
-          </router-link>
-          <v-btn
-            class="mt-5"
-            x-small
-            color="gray"
-            style="border-radius: unset !important"
-            icon
-            @click="logout"
+      <div class="drawer__header-content">
+        <div class="drawer__header-content-title">Panel Administracyjny</div>
+        <router-link to="/">
+          <div
+            class="drawer__header-content-subtitle"
+            style="overflow: unset; text-overflow: unset; white-space: unset"
           >
-            <v-icon left>mdi-logout</v-icon>
-            <span>Wyloguj</span>
-          </v-btn>
-        </v-list-item-content>
-      </v-list-item>
+            {{ settings.company }}
+          </div>
+        </router-link>
+        <div class="drawer__header-content-logout" @click="logout">
+          <img
+            width="18"
+            height="18"
+            src="/storage/img/mdi-icons/logout-white.svg"
+            alt="logout"
+            style="margin-right: 4px"
+          />
+          <span class="drawer__header-content-logout-text">WYLOGUJ</span>
+        </div>
+      </div>
+    </div>
 
-      <v-divider></v-divider>
-      <v-list-item-group v-model="selectedItem">
-        <v-list-item
-          v-for="(item, i) in items"
-          :key="item.title"
-          @load="
-            item.path.split('/')[1] == $route.path.split('/')[1]
-              ? (selectedItem = i)
-              : true
-          "
-          link
-          active-class="nav-link"
-          @click="$route.path == item.path ? true : $router.push(item.path)"
-        >
-          <v-list-item-icon>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-icon>
+    <hr class="drawer__hr" />
+    <ul class="drawer__list">
+      <li
+        v-for="item in items"
+        :key="item.title"
+        class="drawer__list-item"
+        :class="{ active: $route.path == item.path }"
+        @click="$route.path == item.path ? true : $router.push(item.path)"
+      >
+        <div class="drawer__list-item-icon-container">
+          <img
+            style="display: block"
+            width="24"
+            height="24"
+            :src="`/storage/img/mdi-icons/${item.icon}.svg`"
+            :alt="item.icon"
+          />
+        </div>
 
-          <v-list-item-content>
-            <v-list-item-title>{{ item.title }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-      </v-list-item-group>
-    </v-list>
-  </v-navigation-drawer>
+        <span class="drawer__list-item-text">{{ item.title }}</span>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
 import avatar from "@/helpers/photo/avatar.js";
 import Picture from "@/components/picture/Picture.vue";
-import {
-  VNavigationDrawer,
-  VList,
-  VListItemGroup,
-  VListItem,
-  VListItemContent,
-  VListItemIcon,
-  VListItemTitle,
-  VDivider,
-  VBtn,
-  VIcon,
-  VListItemSubtitle,
-  VListItemAvatar,
-} from "vuetify/lib";
 
 export default {
   components: {
     Picture,
-    VNavigationDrawer,
-    VList,
-    VListItemGroup,
-    VListItem,
-    VListItemContent,
-    VListItemIcon,
-    VListItemTitle,
-    VDivider,
-    VBtn,
-    VIcon,
-    VListItemSubtitle,
-    VListItemAvatar,
   },
   data() {
     return {
       avatar,
-      drawer: true,
 
       items: [
         {
           title: "Strona główna",
-          icon: "mdi-view-dashboard",
+          icon: "view-dashboard",
           path: "/admin-panel/main",
         },
 
         {
           title: "Usługi",
-          icon: "mdi-tag-multiple",
+          icon: "tag-multiple",
           path: "/admin-panel/services",
         },
 
         {
           title: "Realizacje",
-          icon: "mdi-image-multiple",
+          icon: "image-multiple",
           path: "/admin-panel/realizations",
         },
         {
           title: "O nas",
-          icon: "mdi-violin",
+          icon: "violin",
           path: "/admin-panel/about_page",
         },
 
         {
           title: "Kontakt",
-          icon: "mdi-phone",
+          icon: "phone",
           path: "/admin-panel/contact",
         },
 
         {
           title: "Pozostałe opisy",
-          icon: "mdi-table-of-contents",
+          icon: "table-of-contents",
           path: "/admin-panel/descriptions",
         },
         {
           title: "Skrzynka pocztowa",
-          icon: "mdi-mailbox",
+          icon: "mailbox",
           path: "/admin-panel/mails",
         },
 
         {
           title: "Podstrony",
-          icon: "mdi-folder-multiple",
+          icon: "folder-multiple",
           path: "/admin-panel/subpages",
         },
         {
           title: "Ustawienia",
-          icon: "mdi-cog",
+          icon: "cog",
           path: "/admin-panel/settings",
         },
       ],
@@ -173,24 +138,6 @@ export default {
     settings() {
       return this.$store.getters.settings;
     },
-    selectedItem() {
-      let selectedItem = undefined;
-
-      for (let item of this.items) {
-        if (item.path.split("/")[2] == this.$route.path.split("/")[2]) {
-          selectedItem = this.items.indexOf(item);
-        }
-      }
-
-      if (this.$route.path.split("/")[2] == "price_list")
-        selectedItem = this.items.indexOf(
-          this.items.find(
-            (item) => item.path == "/admin-panel/price_list_categories"
-          )
-        );
-
-      return selectedItem;
-    },
   },
   methods: {
     logout() {
@@ -210,8 +157,121 @@ export default {
   }
 }
 
-.admin-drawer {
-  min-width: 66px;
+.drawer {
+  width: 57px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  z-index: 999;
+  background: var(--first-color);
+  padding: 8px;
+  color: white;
+  overflow-y: auto;
+  overflow-x: hidden;
+  transition: width 0.2s ease;
+  &::-webkit-scrollbar {
+    width: 0;
+  }
+  &:hover {
+    width: 256px;
+  }
+  &:hover &__header-content,
+  &:hover &__list-item-text {
+    display: block;
+  }
+
+  &__hr {
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+  &__header {
+    display: flex;
+    align-items: center;
+    &-avatar-container {
+      padding-right: 20px;
+    }
+    &-content {
+      display: none;
+      &-title {
+        font-size: 0.8125rem;
+        font-weight: 500;
+        line-height: 1rem;
+        margin-bottom: 2px;
+      }
+      &-subtitle {
+        font-size: 0.8125rem;
+        font-weight: 500;
+        line-height: 1rem;
+        color: white;
+        opacity: 0.7;
+      }
+      &-logout {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        margin-top: 20px;
+        padding-bottom: 4px;
+        position: relative;
+        width: fit-content;
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 15px;
+          height: 1px;
+          background: white;
+          transition: width 0.2s ease;
+        }
+        &:hover::after {
+          width: 100%;
+        }
+        &-text {
+          font-size: 0.625rem;
+          font-weight: 500;
+          letter-spacing: 0.892857px;
+        }
+      }
+    }
+  }
+  &__list {
+    padding-left: 0;
+    &-item {
+      padding: 8px;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      line-height: 1px;
+      position: relative;
+      cursor: pointer;
+      margin-bottom: 4px;
+      &:hover::before {
+        opacity: 0.08;
+      }
+      &::before {
+        background: unset;
+        background-color: currentColor;
+        content: "";
+        width: 100%;
+        height: 100%;
+        bottom: 0;
+        left: 0;
+        position: absolute;
+        transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
+        margin: 0;
+        opacity: 0;
+        border-radius: 4px;
+      }
+      &.active::before {
+        opacity: 0.24;
+      }
+      &-text {
+        display: none;
+      }
+      &-icon-container {
+        margin-right: 32px;
+      }
+    }
+  }
 }
 </style>
 <style>
