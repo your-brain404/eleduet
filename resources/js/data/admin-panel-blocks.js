@@ -330,7 +330,7 @@ export default {
             active: false,
             home_page: false,
             answer: true,
-            add_button_icon: "mdi-email-plus",
+            add_button_icon: "email-plus",
             add_button_text: "Napisz wiadomość",
             edit_button_icon: "mdi-eye",
             edit_button_text: "Pokaż"

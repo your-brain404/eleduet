@@ -18,14 +18,14 @@
           block.parent ? `${$route.params.parent_id}/` : ''
         }form`"
       >
-        <v-btn class="first-bgc white--text add-button">
-          <v-icon left>{{
-            block.add_button_icon ? block.add_button_icon : "mdi-plus"
-          }}</v-icon>
+        <btn
+          class="add-button"
+          :icon="block.add_button_icon ? block.add_button_icon : 'plus'"
+        >
           <span>{{
             block.add_button_text ? block.add_button_text : "Dodaj"
           }}</span>
-        </v-btn>
+        </btn>
       </router-link>
     </v-card-title>
     <v-data-table
@@ -152,21 +152,23 @@
 <script>
 import axios from "axios";
 import snackbarAlerts from "@/data/snackbar-alerts";
+import Btn from "@/components/elements/Btn.vue";
 import {
   VDataTable,
   VCard,
-  VBtn,
   VIcon,
   VCheckbox,
   VTextField,
   VCardTitle,
   VSpacer,
+  VBtn,
 } from "vuetify/lib";
 
 export default {
   components: {
     VDataTable,
     VCard,
+    Btn,
     VBtn,
     VIcon,
     VCheckbox,
