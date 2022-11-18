@@ -1,33 +1,35 @@
 <template>
-  <v-card shaped>
-    <v-card-title class="align-items-center pt-5 search-container">
-      <h2 class="table-title first-color ma-0">Akcje</h2>
-      <v-spacer></v-spacer>
-      <v-text-field
-        class="ma-0 pt-0 mr-5 search-input"
-        v-model="search"
-        append-icon="mdi-magnify"
-        label="Szukaj..."
-        single-line
-        hide-details
-      ></v-text-field>
-      <router-link
-        v-if="block.multiple"
-        class="form-link"
-        :to="`/admin-panel/${block.tablename}/${
-          block.parent ? `${$route.params.parent_id}/` : ''
-        }form`"
-      >
-        <btn
-          class="add-button"
-          :icon="block.add_button_icon ? block.add_button_icon : 'plus'"
+  <div>
+    <div class="search-container">
+      <h2 class="table__title first-color">Akcje</h2>
+
+      <div style="display: flex; align-items: center; flex-wrap: wrap">
+        <v-text-field
+          class="ma-0 pt-0 mr-5 search-input"
+          v-model="search"
+          append-icon="mdi-magnify"
+          label="Szukaj..."
+          single-line
+          hide-details
+        ></v-text-field>
+        <router-link
+          v-if="block.multiple"
+          class="form-link"
+          :to="`/admin-panel/${block.tablename}/${
+            block.parent ? `${$route.params.parent_id}/` : ''
+          }form`"
         >
-          <span>{{
-            block.add_button_text ? block.add_button_text : "Dodaj"
-          }}</span>
-        </btn>
-      </router-link>
-    </v-card-title>
+          <btn
+            customClass="add-button"
+            :icon="block.add_button_icon ? block.add_button_icon : 'plus'"
+          >
+            <span>{{
+              block.add_button_text ? block.add_button_text : "Dodaj"
+            }}</span>
+          </btn>
+        </router-link>
+      </div>
+    </div>
     <v-data-table
       locale="pl"
       :headers="headers[i]"
@@ -146,7 +148,7 @@
         </div>
       </template>
     </v-data-table>
-  </v-card>
+  </div>
 </template>
 
 <script>
@@ -155,11 +157,9 @@ import snackbarAlerts from "@/data/snackbar-alerts";
 import Btn from "@/components/elements/Btn.vue";
 import {
   VDataTable,
-  VCard,
   VIcon,
   VCheckbox,
   VTextField,
-  VCardTitle,
   VSpacer,
   VBtn,
 } from "vuetify/lib";
@@ -167,13 +167,11 @@ import {
 export default {
   components: {
     VDataTable,
-    VCard,
     Btn,
     VBtn,
     VIcon,
     VCheckbox,
     VTextField,
-    VCardTitle,
     VSpacer,
   },
   props: ["headers", "block", "i"],
@@ -294,15 +292,29 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.table {
+  &__title {
+    margin: 0;
+  }
+}
 .form-link {
   text-decoration: none !important;
 }
 .search-container {
-  @media (max-width: 992px) {
-  }
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  font-size: 1.25rem;
+  font-weight: 500;
+  letter-spacing: 0.0125em;
+  line-height: 2rem;
+  word-break: break-all;
+  padding: 16px;
 }
-@media (max-width: 576px) {
-  .table-title,
+
+@media (max-width: 768px) {
+  .table__title,
   .search-input,
   .add-button {
     width: 100%;

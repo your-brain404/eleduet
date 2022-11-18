@@ -1,9 +1,10 @@
 <template functional>
   <button
-    class="custom-btn"
     :class="[
       { 'custom-btn--small': props.small },
       variant ? `custom-btn--${props.variant}` : '',
+      'custom-btn',
+      props.customClass,
     ]"
   >
     <span class="custom-btn__content">
@@ -42,6 +43,7 @@ export default {
     },
     lazyIcon: { type: Boolean, default: true },
     textMarginTop: { type: String, default: "3px" },
+    customClass: String,
   },
 };
 </script>
