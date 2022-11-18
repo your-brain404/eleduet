@@ -4,14 +4,12 @@
       <h2 class="table__title first-color">Akcje</h2>
 
       <div style="display: flex; align-items: center; flex-wrap: wrap">
-        <v-text-field
+        <text-field
           class="ma-0 pt-0 mr-5 search-input"
           v-model="search"
-          append-icon="mdi-magnify"
           label="Szukaj..."
-          single-line
-          hide-details
-        ></v-text-field>
+          icon="magnify"
+        />
         <router-link
           v-if="block.multiple"
           class="form-link"
@@ -66,7 +64,7 @@
       </template>
       <template #item.order_number="{ item }">
         <div class="d-flex justify-content-center">
-          <v-text-field v-model="item.order_number"></v-text-field>
+          <text-field v-model="item.order_number"></text-field>
         </div>
       </template>
       <template #item.is_paid="{ item }">
@@ -79,10 +77,10 @@
       </template>
       <template #item.order="{ item }">
         <div class="d-flex justify-content-center">
-          <v-text-field
-            @change="setCheckbox(block.tablename, item)"
+          <text-field
+            @input="setCheckbox(block.tablename, item)"
             v-model="item.order"
-          ></v-text-field>
+          ></text-field>
         </div>
       </template>
       <template #item.sent="{ item }">
@@ -155,14 +153,8 @@
 import axios from "axios";
 import snackbarAlerts from "@/data/snackbar-alerts";
 import Btn from "@/components/elements/Btn.vue";
-import {
-  VDataTable,
-  VIcon,
-  VCheckbox,
-  VTextField,
-  VSpacer,
-  VBtn,
-} from "vuetify/lib";
+import TextField from "@/components/elements/TextField.vue";
+import { VDataTable, VIcon, VCheckbox, VBtn } from "vuetify/lib";
 
 export default {
   components: {
@@ -171,8 +163,7 @@ export default {
     VBtn,
     VIcon,
     VCheckbox,
-    VTextField,
-    VSpacer,
+    TextField,
   },
   props: ["headers", "block", "i"],
   data() {

@@ -93,7 +93,8 @@ export default {
             removable: true,
             gallery: false,
             active: true,
-            home_page: false
+            home_page: false,
+            order: false
         },
         {
             title: "Sekcja pod sliderem",

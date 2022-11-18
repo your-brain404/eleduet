@@ -3,6 +3,7 @@ const path = require("path");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
     .BundleAnalyzerPlugin;
 require("vuetifyjs-mix-extension");
+require("laravel-mix-svg-vue");
 
 // require("laravel-mix-clean");
 /*
@@ -21,7 +22,11 @@ mix.js("resources/js/app.js", "js")
     .vue({
         version: 2
     })
+    .svgVue({
+        svgPath: "/storage/app/public/img/mdi-icons"
+    })
     .setPublicPath(path.normalize("public/dist"));
+
 mix.sourceMaps();
 mix.version();
 mix.override(config => {
@@ -46,7 +51,7 @@ if (mix.inProduction()) {
     mix.webpackConfig({ ...base });
 } else {
     mix.webpackConfig({
-        ...base,
-        plugins: [new BundleAnalyzerPlugin()]
+        ...base
+        // plugins: [new BundleAnalyzerPlugin()]
     });
 }
