@@ -107,7 +107,7 @@
               block.parent ? `${$route.params.parent_id}/` : ''
             }form/${item.id}`"
           >
-            <btn small :disabled="disabled">
+            <btn small>
               <template #icon>
                 <svg-vue
                   class="custom-btn__content-icon"
@@ -162,7 +162,6 @@ export default {
   props: ["headers", "block", "i"],
   data() {
     return {
-      disabled: true,
       search: "",
       templateCheckboxes: ["home_page", "active", "blocked", "is_paid", "sent"],
     };
