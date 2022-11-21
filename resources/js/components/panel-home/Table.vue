@@ -39,14 +39,14 @@
       @page-count="pageCount = $event"
     >
       <template
-        v-for="(checkbox, j) in templateCheckboxes"
+        v-for="checkbox in templateCheckboxes"
         #[slot(checkbox)]="{ item }"
       >
         <div class="d-flex justify-content-center">
-          <v-checkbox
+          <checkbox
             v-model="item[checkbox]"
             @change="setCheckbox(block.tablename, item)"
-          ></v-checkbox>
+          />
         </div>
       </template>
       <template #item.name="{ item }">
@@ -59,7 +59,7 @@
       </template>
       <template #item.answer="{ item }">
         <div class="d-flex justify-content-center">
-          <v-checkbox v-model="item.answer" disabled></v-checkbox>
+          <checkbox v-model="item.answer" disabled />
         </div>
       </template>
       <template #item.order_number="{ item }">
@@ -67,34 +67,17 @@
           <text-field v-model="item.order_number"></text-field>
         </div>
       </template>
-      <template #item.is_paid="{ item }">
-        <div class="d-flex justify-content-center">
-          <v-checkbox
-            @change="setCheckbox(block.tablename, item)"
-            v-model="item.is_paid"
-          ></v-checkbox>
-        </div>
-      </template>
-      <template #item.order="{ item }">
-        <div class="d-flex justify-content-center">
-          <text-field
-            @input="setCheckbox(block.tablename, item)"
-            v-model="item.order"
-          ></text-field>
-        </div>
-      </template>
+
       <template #item.sent="{ item }">
         <div class="d-flex justify-content-center">
-          <v-checkbox
+          <checkbox
             :disabled="item.sent"
             @change="setCheckbox(block.tablename, item)"
             v-model="item.sent"
-          ></v-checkbox>
+          />
         </div>
       </template>
-      <template #item.service_equipment="{ item }">
-        {{ item.service_equipment.title }}
-      </template>
+
       <template #item.actions="{ item }">
         <div class="d-flex justify-content-end">
           <router-link
@@ -154,7 +137,8 @@ import axios from "axios";
 import snackbarAlerts from "@/data/snackbar-alerts";
 import Btn from "@/components/elements/Btn.vue";
 import TextField from "@/components/elements/TextField.vue";
-import { VDataTable, VIcon, VCheckbox, VBtn } from "vuetify/lib";
+import Checkbox from "@/components/elements/Checkbox.vue";
+import { VDataTable, VIcon, VBtn } from "vuetify/lib";
 
 export default {
   components: {
@@ -162,12 +146,13 @@ export default {
     Btn,
     VBtn,
     VIcon,
-    VCheckbox,
     TextField,
+    Checkbox,
   },
   props: ["headers", "block", "i"],
   data() {
     return {
+      dupa: false,
       search: "",
       templateCheckboxes: ["home_page", "active", "blocked", "is_paid", "sent"],
     };

@@ -1,0 +1,123 @@
+<template functional>
+  <div
+    class="checkbox"
+    :class="{
+      'checkbox--checked': props.value,
+      'checkbox--disabled': props.disabled,
+    }"
+  >
+    <label class="checkbox__label">
+      <div class="checkbox__mask"></div>
+      <div class="checkbox__active-mask"></div>
+      <input
+        @input="
+          props.disabled
+            ? true
+            : (listeners['input']($event.target.checked),
+              listeners['change']($event.target.checked))
+        "
+        class="checkbox__input"
+        type="checkbox"
+        :checked="props.value"
+      />
+      <div class="checkbox__square"></div>
+    </label>
+  </div>
+</template>
+
+<script>
+export default {
+  props: {
+    value: Boolean,
+    disabled: Boolean,
+  },
+};
+</script>
+
+<style lang="scss">
+.checkbox {
+  position: relative;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  &--disabled {
+    pointer-events: none;
+    opacity: 0.8;
+  }
+
+  &__mask,
+  &__active-mask {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    border-radius: 100%;
+    width: 100%;
+    height: 100%;
+    transform-origin: center center;
+    background-color: rgba(0, 0, 0, 0.54);
+    opacity: 0.2;
+    transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
+  }
+  &--checked &__mask,
+  &--checked &__active-mask {
+    background-color: var(--first-color);
+  }
+
+  &__active-mask {
+    opacity: 0.25;
+  }
+  &:hover &__mask,
+  &:active &__active-mask {
+    transform: translate(-50%, -50%) scale(1.15);
+  }
+  &:hover &__square {
+    background-color: rgba(var(--first-color), 0.2);
+  }
+
+  &__label {
+    cursor: pointer;
+  }
+  &__input {
+    position: absolute;
+    opacity: 0;
+    user-select: none;
+    pointer-events: none;
+  }
+  &__square {
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(0, 0, 0, 0.54);
+    border-radius: 2px;
+    background-color: transparent;
+    position: relative;
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotateZ(360deg) scale(0);
+      width: 7px;
+      height: 12px;
+      border-color: white;
+      border-width: 2px;
+      border-bottom-style: solid;
+      border-right-style: solid;
+      z-index: 1;
+      transform-origin: right;
+      transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
+    }
+  }
+  &--checked &__square {
+    border-color: var(--first-color);
+    background-color: var(--first-color) !important;
+    &::after {
+      transform: translate(-57%, -49%) rotateZ(45deg) scale(1);
+    }
+  }
+}
+</style>

@@ -60,11 +60,6 @@ export default {
     window.addEventListener("click", (e) => {
       let textFieldClicked = Boolean(
         e.path.find((el) => {
-          console.log(
-            el?.id,
-            `text-field-${this.id}`,
-            el?.id === `text-field-${this.id}`
-          );
           return el?.id === `text-field-${this.id}`;
         })
       );
