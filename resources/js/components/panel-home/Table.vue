@@ -21,9 +21,15 @@
             customClass="add-button"
             :icon="block.add_button_icon ? block.add_button_icon : 'plus'"
           >
-            <span>{{
-              block.add_button_text ? block.add_button_text : "Dodaj"
-            }}</span>
+            <template #icon>
+              <svg-vue
+                class="custom-btn__content-icon"
+                width="18"
+                height="18"
+                icon="plus"
+              ></svg-vue>
+            </template>
+            {{ block.add_button_text ? block.add_button_text : "Dodaj" }}
           </btn>
         </router-link>
       </div>
@@ -82,50 +88,54 @@
         <div class="d-flex justify-content-end">
           <router-link
             v-if="block.list"
-            class="form-link"
+            class="form-link table__action-button"
             :to="`/admin-panel/${block.list}/${item.id}`"
           >
-            <v-btn small color="primary" class="white--text mr-2">
-              <v-icon left>mdi-format-list-bulleted</v-icon>
-              <span>Lista</span>
-            </v-btn>
+            <btn small icon="format-list-bulleted"> Lista </btn>
           </router-link>
           <router-link
             v-if="block.gallery"
-            class="form-link"
+            class="form-link table__action-button"
             :to="`/admin-panel/${block.tablename}/gallery/${item.id}`"
           >
-            <v-btn small color="warning" class="white--text mr-2">
-              <v-icon left>mdi-image-multiple</v-icon>
-              <span>Galeria</span>
-            </v-btn>
+            <btn small variant="warning" icon="image-multiple"> Galeria </btn>
           </router-link>
           <router-link
             v-if="!block.non_editable"
-            class="form-link"
+            class="form-link table__action-button"
             :to="`/admin-panel/${block.tablename}/${
               block.parent ? `${$route.params.parent_id}/` : ''
             }form/${item.id}`"
           >
-            <v-btn small color="primary" class="white--text mr-2">
-              <v-icon left>{{
-                block.edit_button_icon ? block.edit_button_icon : "mdi-pencil"
-              }}</v-icon>
-              <span>{{
-                block.edit_button_text ? block.edit_button_text : "Edytuj"
-              }}</span>
-            </v-btn>
+            <btn small :disabled="disabled">
+              <template #icon>
+                <svg-vue
+                  class="custom-btn__content-icon"
+                  width="18"
+                  height="18"
+                  :icon="block.edit_button_icon || 'pencil'"
+                ></svg-vue>
+              </template>
+              {{ block.edit_button_text ? block.edit_button_text : "Edytuj" }}
+            </btn>
           </router-link>
-          <v-btn
+          <btn
             v-if="block.removable"
             @click="deleteItem(block, item)"
             small
-            color="error"
-            class="white--text"
+            variant="error"
+            customClass="table__action-button"
           >
-            <v-icon left>mdi-close</v-icon>
-            <span>Usuń</span>
-          </v-btn>
+            <template #icon>
+              <svg-vue
+                class="custom-btn__content-icon"
+                width="18"
+                height="18"
+                icon="close"
+              ></svg-vue>
+            </template>
+            Usuń
+          </btn>
         </div>
       </template>
     </v-data-table>
@@ -138,21 +148,21 @@ import snackbarAlerts from "@/data/snackbar-alerts";
 import Btn from "@/components/elements/Btn.vue";
 import TextField from "@/components/elements/TextField.vue";
 import Checkbox from "@/components/elements/Checkbox.vue";
-import { VDataTable, VIcon, VBtn } from "vuetify/lib";
+import { VDataTable } from "vuetify/lib";
+import SvgVue from "svg-vue";
 
 export default {
   components: {
     VDataTable,
     Btn,
-    VBtn,
-    VIcon,
+    SvgVue,
     TextField,
     Checkbox,
   },
   props: ["headers", "block", "i"],
   data() {
     return {
-      dupa: false,
+      disabled: true,
       search: "",
       templateCheckboxes: ["home_page", "active", "blocked", "is_paid", "sent"],
     };
@@ -271,6 +281,9 @@ export default {
 .table {
   &__title {
     margin: 0;
+  }
+  &__action-button:not(:last-child) {
+    margin-right: 8px;
   }
 }
 .form-link {

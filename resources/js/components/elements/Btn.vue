@@ -2,21 +2,15 @@
   <button
     :class="[
       { 'custom-btn--small': props.small },
-      variant ? `custom-btn--${props.variant}` : '',
+      { 'custom-btn--disabled': props.disabled },
+      props.variant ? `custom-btn--${props.variant}` : '',
       'custom-btn',
       props.customClass,
     ]"
   >
     <span class="custom-btn__content">
-      <img
-        v-if="props.icon"
-        class="custom-btn__content-icon"
-        :loading="props.lazyIcon ? 'lazy' : 'eager'"
-        :src="`/storage/img/mdi-icons/${props.icon}.svg`"
-        :alt="props.icon"
-        width="20"
-        height="20"
-      />
+      <slot name="icon"></slot>
+
       <span
         class="custom-btn__content-text"
         :style="{ marginTop: props.textMarginTop }"
@@ -44,6 +38,7 @@ export default {
     lazyIcon: { type: Boolean, default: true },
     textMarginTop: { type: String, default: "3px" },
     customClass: String,
+    disabled: Boolean,
   },
 };
 </script>
@@ -80,6 +75,10 @@ export default {
   cursor: pointer;
   overflow: visible;
   border-style: none;
+  $parent: ".custom-btn";
+  &--warning {
+    background-color: #fb8c00;
+  }
 
   &::before {
     background-color: currentColor;
@@ -126,6 +125,22 @@ export default {
       transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1), visibility 0s;
       vertical-align: middle;
       user-select: none;
+      path {
+        fill: white;
+      }
+    }
+  }
+  &--error {
+    background-color: #ff5252;
+  }
+  &--small {
+    height: 28px;
+    min-width: 50px;
+    padding: 0 12.4444444444px;
+    font-size: 0.75rem;
+    #{$parent}__content-icon {
+      width: 18px;
+      height: 18px;
     }
   }
 }

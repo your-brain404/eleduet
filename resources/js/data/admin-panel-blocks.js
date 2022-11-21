@@ -333,7 +333,7 @@ export default {
             answer: true,
             add_button_icon: "email-plus",
             add_button_text: "Napisz wiadomość",
-            edit_button_icon: "mdi-eye",
+            edit_button_icon: "eye",
             edit_button_text: "Pokaż"
         }
     ],
