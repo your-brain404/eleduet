@@ -34,20 +34,8 @@
         </router-link>
       </div>
     </div>
-    <v-data-table
-      locale="pl"
-      :headers="headers[i]"
-      :items="block.table"
-      :search="search"
-      :items-per-page="5"
-      :footer-props="{ 'items-per-page-options': [5, 10, 15] }"
-      class="elevation-1"
-      @page-count="pageCount = $event"
-    >
-      <template
-        v-for="checkbox in templateCheckboxes"
-        #[slot(checkbox)]="{ item }"
-      >
+    <data-table :headers="headers[i]" :items="block.table" :search="search">
+      <template #checkbox="{ item, checkbox }">
         <div class="d-flex justify-content-center">
           <checkbox
             v-model="item[checkbox]"
@@ -138,7 +126,7 @@
           </btn>
         </div>
       </template>
-    </v-data-table>
+    </data-table>
   </div>
 </template>
 
@@ -148,12 +136,12 @@ import snackbarAlerts from "@/data/snackbar-alerts";
 import Btn from "@/components/elements/Btn.vue";
 import TextField from "@/components/elements/TextField.vue";
 import Checkbox from "@/components/elements/Checkbox.vue";
-import { VDataTable } from "vuetify/lib";
+import DataTable from "@/components/data-table/DataTable";
 import SvgVue from "svg-vue";
 
 export default {
   components: {
-    VDataTable,
+    DataTable,
     Btn,
     SvgVue,
     TextField,
