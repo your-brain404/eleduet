@@ -110,7 +110,14 @@ export default {
           }
         }
       });
-      items = items;
+      if (this.sort.column) {
+        let sortTypeInt = this.sort.type === "asc" ? 1 : -1;
+        items = items.sort((a, b) => {
+          return a[this.sort.column] > b[this.sort.column]
+            ? sortTypeInt
+            : sortTypeInt * -1;
+        });
+      }
       return items;
     },
   },
