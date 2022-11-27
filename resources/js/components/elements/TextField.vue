@@ -81,22 +81,11 @@ export default {
   color: var(--first-color);
 }
 .text-field {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.42);
   $inputPaddingY: 2px;
   transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
   position: relative;
   $parent: ".text-field";
-  &::after {
-    bottom: -1px;
-    content: "";
-    left: 0;
-    position: absolute;
-    transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
-    width: 100%;
-    transform: scaleX(0);
-    background-color: var(--first-color);
-    height: 2px;
-  }
+
   &--is-focused &__label {
     @include labelFocusState;
   }
@@ -106,7 +95,7 @@ export default {
         fill: var(--first-color);
       }
     }
-    &::after {
+    #{$parent}__input-container::after {
       transform: scaleX(1);
     }
   }
@@ -119,6 +108,7 @@ export default {
     border: unset;
     outline: unset;
     font-size: 16px;
+    width: 100%;
     font-weight: 400;
     &--not-empty + #{$parent}__label {
       @include labelFocusState;
@@ -126,7 +116,21 @@ export default {
     &-container {
       position: relative;
       display: flex;
+      justify-content: space-between;
       align-items: center;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.42);
+      width: 100%;
+      &::after {
+        bottom: -1px;
+        content: "";
+        left: 0;
+        position: absolute;
+        transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
+        width: 100%;
+        transform: scaleX(0);
+        background-color: var(--first-color);
+        height: 2px;
+      }
     }
   }
   &__label {

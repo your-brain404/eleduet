@@ -39,6 +39,9 @@
             v-for="header in headersClone"
             :key="'header-' + header.value"
           >
+            <div v-if="header.text" class="data-table__td-column-name">
+              {{ header.text }}
+            </div>
             <div v-if="header.type === 'checkbox'" class="data-table__checkbox">
               <slot name="checkbox" :checkbox="header.value" :item="item">{{
                 item[header.value]
@@ -46,7 +49,7 @@
             </div>
             <div v-else class="data-table__custom-td">
               <slot :name="`item.${header.value}`" :item="item">{{
-                item[header.value]
+                item[header.value] | truncate
               }}</slot>
             </div>
           </td>
@@ -73,27 +76,29 @@
         z
         {{ filteredItems.length }}
       </div>
-      <div
-        @click="page--"
-        class="data-table__previous-page data-table__pagination-arrow"
-        :class="{ 'data-table__pagination-arrow--disabled': page < 2 }"
-      >
-        <btn :disabled="page < 2" just-icon>
-          <template #icon>
-            <svg-vue width="24" height="24" icon="chevron-left"></svg-vue>
-          </template>
-        </btn>
-      </div>
-      <div
-        @click="page++"
-        class="data-table__next-page data-table__pagination-arrow"
-        :class="{ 'data-table__pagination-arrow--disabled': page >= maxPage }"
-      >
-        <btn :disabled="page >= maxPage" just-icon>
-          <template #icon>
-            <svg-vue width="24" height="24" icon="chevron-right"></svg-vue>
-          </template>
-        </btn>
+      <div class="data-table__pagination-arrows">
+        <div
+          @click="page--"
+          class="data-table__previous-page data-table__pagination-arrow"
+          :class="{ 'data-table__pagination-arrow--disabled': page < 2 }"
+        >
+          <btn :disabled="page < 2" just-icon>
+            <template #icon>
+              <svg-vue width="24" height="24" icon="chevron-left"></svg-vue>
+            </template>
+          </btn>
+        </div>
+        <div
+          @click="page++"
+          class="data-table__next-page data-table__pagination-arrow"
+          :class="{ 'data-table__pagination-arrow--disabled': page >= maxPage }"
+        >
+          <btn :disabled="page >= maxPage" just-icon>
+            <template #icon>
+              <svg-vue width="24" height="24" icon="chevron-right"></svg-vue>
+            </template>
+          </btn>
+        </div>
       </div>
     </div>
   </div>
@@ -130,6 +135,12 @@ export default {
       perPage: this.itemsPerPage,
       page: 1,
     };
+  },
+  filters: {
+    truncate(value) {
+      if (!value) return value;
+      return value.length > 70 ? value.slice(0, 70) + "..." : value;
+    },
   },
   methods: {
     setSort(column) {
@@ -185,17 +196,26 @@ export default {
 <style lang="scss" scoped>
 .data-table {
   $parent: ".data-table";
+  $mobileEndpoint: 768px;
   &__table {
     width: 100%;
     border-collapse: collapse;
   }
   &__thead {
     border-bottom: thin solid rgba(0, 0, 0, 0.12);
+    @media (max-width: $mobileEndpoint) {
+      display: none;
+    }
   }
   &__tr {
     border-bottom: thin solid rgba(0, 0, 0, 0.12);
   }
   &__tbody &__tr {
+    @media (max-width: $mobileEndpoint) {
+      display: flex;
+      flex-direction: column;
+      padding: 10px 0;
+    }
     &:hover {
       background-color: #eee;
     }
@@ -205,8 +225,7 @@ export default {
     color: rgba(0, 0, 0, 0.6);
     user-select: none;
     font-size: 0.75rem;
-    height: 66px;
-    padding: 0 16px;
+    padding: 16px;
     transition: height 0.2s cubic-bezier(0.4, 0, 0.6, 1);
   }
   &__th {
@@ -234,6 +253,25 @@ export default {
   }
   &__td {
     font-size: 0.875rem;
+    @media (max-width: $mobileEndpoint) {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    &-column-name {
+      color: rgba(0, 0, 0, 0.87);
+      font-weight: 600;
+      padding-right: 0.5rem;
+      @media (min-width: $mobileEndpoint) {
+        display: none;
+      }
+    }
+  }
+  &__custom-td {
+    @media (max-width: $mobileEndpoint) {
+      text-align: right;
+      width: 100%;
+    }
   }
   &__sort-arrow {
     transform: translateY(5px);
@@ -250,6 +288,14 @@ export default {
     height: 59px;
     font-size: 0.75rem;
     padding: 0 16px;
+    @media (max-width: $mobileEndpoint) {
+      flex-direction: column;
+      justify-content: start;
+      height: unset;
+      & > div {
+        padding: 0.5rem;
+      }
+    }
   }
   &__per-page {
     display: flex;
@@ -260,6 +306,10 @@ export default {
   }
   &__pagination {
     margin: 0 35px;
+    &-arrows {
+      display: flex;
+      align-items: center;
+    }
     &-arrow {
       display: flex;
       align-items: center;

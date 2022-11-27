@@ -5,7 +5,7 @@
 
       <div style="display: flex; align-items: center; flex-wrap: wrap">
         <text-field
-          class="ma-0 pt-0 mr-5 search-input"
+          class="search-input"
           v-model="search"
           label="Szukaj..."
           icon="magnify"
@@ -73,7 +73,7 @@
       </template>
 
       <template #item.actions="{ item }">
-        <div class="d-flex justify-content-end">
+        <div class="table__action-buttons">
           <router-link
             v-if="block.list"
             class="form-link table__action-button"
@@ -265,12 +265,32 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$mobileEndpoint: 768px;
 .table {
   &__title {
     margin: 0;
+    @media (max-width: $mobileEndpoint) {
+      margin-bottom: 0.5rem;
+    }
   }
-  &__action-button:not(:last-child) {
-    margin-right: 8px;
+  &__action-buttons {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+  }
+  &__action-button {
+    margin-left: 8px;
+    @media (max-width: $mobileEndpoint) {
+      &,
+      button {
+        width: 100%;
+      }
+      margin: 0;
+      margin-bottom: 3px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
   }
 }
 .form-link {
@@ -288,7 +308,11 @@ export default {
   word-break: break-all;
   padding: 16px;
 }
-
+.search-input {
+  margin: 0;
+  padding-top: 0;
+  margin-right: 20px;
+}
 @media (max-width: 768px) {
   .table__title,
   .search-input,
@@ -297,6 +321,7 @@ export default {
   }
   .search-input {
     margin-top: 0.5rem;
+    margin-right: 0;
   }
   .add-button {
     margin-top: 1rem;
