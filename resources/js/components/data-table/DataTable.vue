@@ -56,7 +56,13 @@
     <div class="data-table__footer">
       <div class="data-table__per-page">
         Wierszy na stronie:
-        <v-select :options="itemsPerPageOptions"></v-select>
+        <v-select
+          v-model="perPage"
+          class="data-table__per-page-select"
+          :clearSearchOnSelect="false"
+          :options="itemsPerPageOptions"
+          :searchable="false"
+        ></v-select>
       </div>
     </div>
   </div>
@@ -88,6 +94,7 @@ export default {
     return {
       headersClone: this.headers,
       sort: {},
+      perPage: this.itemsPerPage,
     };
   },
   methods: {
@@ -191,6 +198,20 @@ export default {
     transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1), visibility 0s;
     ::v-deep path {
       fill: rgba(0, 0, 0, 0.38);
+    }
+  }
+  &__footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 59px;
+    font-size: 0.75rem;
+  }
+  &__per-page {
+    display: flex;
+    align-items: center;
+    &-select {
+      margin-left: 1rem;
     }
   }
 }
