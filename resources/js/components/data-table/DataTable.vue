@@ -27,7 +27,7 @@
           </th>
         </tr>
       </thead>
-      <tbody>
+      <tbody class="data-table__tbody">
         <tr
           class="data-table__tr"
           v-for="(item, i) in filteredItems"
@@ -53,15 +53,23 @@
         </tr>
       </tbody>
     </table>
+    <div class="data-table__footer">
+      <div class="data-table__per-page">
+        Wierszy na stronie:
+        <v-select :options="itemsPerPageOptions"></v-select>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import SvgVue from "svg-vue";
+import VSelect from "@/components/elements/VSelect.vue";
 
 export default {
   components: {
     SvgVue,
+    VSelect,
   },
   props: {
     headers: Array,
@@ -137,6 +145,11 @@ export default {
   &__tr {
     border-bottom: thin solid rgba(0, 0, 0, 0.12);
   }
+  &__tbody &__tr {
+    &:hover {
+      background-color: #eee;
+    }
+  }
   &__th,
   &__td {
     color: rgba(0, 0, 0, 0.6);
@@ -145,9 +158,9 @@ export default {
     height: 66px;
     padding: 0 16px;
     transition: height 0.2s cubic-bezier(0.4, 0, 0.6, 1);
-    cursor: pointer;
   }
   &__th {
+    cursor: pointer;
     &:hover,
     &--sort-active {
       color: rgba(0, 0, 0, 0.87);
@@ -155,6 +168,7 @@ export default {
         opacity: 1;
       }
     }
+
     &--sort-active {
       #{$parent}__sort-arrow {
         ::v-deep path {

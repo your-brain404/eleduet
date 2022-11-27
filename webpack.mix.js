@@ -51,7 +51,7 @@ if (mix.inProduction()) {
     mix.webpackConfig({ ...base });
 } else {
     mix.webpackConfig({
-        ...base
-        // plugins: [new BundleAnalyzerPlugin()]
+        ...base,
+        plugins: [new BundleAnalyzerPlugin()]
     });
 }
