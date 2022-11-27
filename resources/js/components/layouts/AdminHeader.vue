@@ -1,5 +1,8 @@
 <template>
-  <div class="admin-header drawer">
+  <div
+    class="admin-header drawer"
+    :class="{ 'drawer--active': drawer && mobile }"
+  >
     <div class="drawer__header">
       <Picture
         class="drawer__header-avatar-container"
@@ -38,7 +41,10 @@
         :key="item.title"
         class="drawer__list-item"
         :class="{ active: $route.path == item.path }"
-        @click="$route.path == item.path ? true : $router.push(item.path)"
+        @click="
+          $route.path == item.path ? true : $router.push(item.path);
+          drawer = false;
+        "
       >
         <div class="drawer__list-item-icon-container">
           <img
@@ -66,8 +72,9 @@ export default {
   },
   data() {
     return {
+      drawer: false,
       avatar,
-
+      innerWidth: window.innerWidth,
       items: [
         {
           title: "Strona główna",
@@ -122,6 +129,7 @@ export default {
       ],
     };
   },
+
   created() {
     if (!this.$store.hasModule("loading")) {
       this.$store.registerModule(
@@ -129,6 +137,18 @@ export default {
         require("@/store/modules/loading/loadingModule")
       );
     }
+    window.addEventListener("resize", () => {
+      this.innerWidth = window.innerWidth;
+    });
+    window.addEventListener("click", (e) => {
+      const drawerClicked = e.path.find((el) =>
+        el?.classList?.contains("drawer")
+      );
+      const drawerListItemClicked = e.path.find((el) =>
+        el?.classList?.contains("drawer__list-item")
+      );
+      this.drawer = drawerClicked && !drawerListItemClicked;
+    });
     this.$store.dispatch("fetchSomeUsers");
   },
   computed: {
@@ -137,6 +157,9 @@ export default {
     },
     settings() {
       return this.$store.getters.settings;
+    },
+    mobile() {
+      return this.innerWidth <= 992;
     },
   },
   methods: {
@@ -174,10 +197,21 @@ export default {
     width: 0;
   }
   &:hover {
+    @media (min-width: 992px) {
+      width: 256px;
+    }
+  }
+  &--active {
     width: 256px;
   }
   &:hover &__header-content,
   &:hover &__list-item-text {
+    @media (min-width: 992px) {
+      display: block;
+    }
+  }
+  &--active &__header-content,
+  &--active &__list-item-text {
     display: block;
   }
 
