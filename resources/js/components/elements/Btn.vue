@@ -3,6 +3,7 @@
     :class="[
       { 'custom-btn--small': props.small },
       { 'custom-btn--disabled': props.disabled },
+      { 'custom-btn--just-icon': props.justIcon },
       props.variant ? `custom-btn--${props.variant}` : '',
       'custom-btn',
       props.customClass,
@@ -12,6 +13,7 @@
       <slot name="icon"></slot>
 
       <span
+        v-if="!justIcon"
         class="custom-btn__content-text"
         :style="{ marginTop: props.textMarginTop }"
         ><slot></slot
@@ -24,6 +26,10 @@
 export default {
   props: {
     small: {
+      type: Boolean,
+      default: false,
+    },
+    justIcon: {
       type: Boolean,
       default: false,
     },
@@ -80,7 +86,8 @@ export default {
     background-color: #fb8c00;
   }
 
-  &::before {
+  &::before,
+  &::after {
     background-color: currentColor;
     border-radius: inherit;
     bottom: 0;
@@ -92,7 +99,10 @@ export default {
     position: absolute;
     right: 0;
     top: 0;
-    transition: opacity 0.2s cubic-bezier(0.4, 0, 0.6, 1);
+    transition: 0.2s cubic-bezier(0.4, 0, 0.6, 1);
+  }
+  &::after {
+    transform: scale(0);
   }
   &:hover::before {
     opacity: 0.08;
@@ -141,6 +151,35 @@ export default {
     #{$parent}__content-icon {
       width: 18px;
       height: 18px;
+    }
+  }
+  &--just-icon {
+    background: unset;
+    border-radius: 100%;
+    width: 36px;
+    max-width: 36px;
+    min-width: 36px;
+    height: 36px;
+    box-shadow: unset;
+    padding: 0;
+    &:hover:before,
+    &:active:after {
+      opacity: 0.2;
+    }
+    &:hover:before {
+      background: rgba(0, 0, 0, 0.54);
+    }
+    &:active:after {
+      background: rgba(0, 0, 0, 0.87);
+      transform: scale(1);
+    }
+
+    svg {
+      width: 24px;
+      height: 24px;
+      path {
+        fill: rgba(0, 0, 0, 0.54);
+      }
     }
   }
 }

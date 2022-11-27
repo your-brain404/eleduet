@@ -30,7 +30,7 @@
       <tbody class="data-table__tbody">
         <tr
           class="data-table__tr"
-          v-for="(item, i) in filteredItems"
+          v-for="(item, i) in paginatedItems"
           :key="'item-' + i"
         >
           <td
@@ -64,6 +64,37 @@
           :searchable="false"
         ></v-select>
       </div>
+      <div class="data-table__pagination">
+        {{ perPage * page - (perPage - 1) }}-{{
+          perPage * page > filteredItems.length
+            ? filteredItems.length
+            : perPage * page
+        }}
+        z
+        {{ filteredItems.length }}
+      </div>
+      <div
+        @click="page--"
+        class="data-table__previous-page data-table__pagination-arrow"
+        :class="{ 'data-table__pagination-arrow--disabled': page < 2 }"
+      >
+        <btn :disabled="page < 2" just-icon>
+          <template #icon>
+            <svg-vue width="24" height="24" icon="chevron-left"></svg-vue>
+          </template>
+        </btn>
+      </div>
+      <div
+        @click="page++"
+        class="data-table__next-page data-table__pagination-arrow"
+        :class="{ 'data-table__pagination-arrow--disabled': page >= maxPage }"
+      >
+        <btn :disabled="page >= maxPage" just-icon>
+          <template #icon>
+            <svg-vue width="24" height="24" icon="chevron-right"></svg-vue>
+          </template>
+        </btn>
+      </div>
     </div>
   </div>
 </template>
@@ -71,11 +102,13 @@
 <script>
 import SvgVue from "svg-vue";
 import VSelect from "@/components/elements/VSelect.vue";
+import Btn from "@/components/elements/Btn";
 
 export default {
   components: {
     SvgVue,
     VSelect,
+    Btn,
   },
   props: {
     headers: Array,
@@ -95,6 +128,7 @@ export default {
       headersClone: this.headers,
       sort: {},
       perPage: this.itemsPerPage,
+      page: 1,
     };
   },
   methods: {
@@ -134,6 +168,15 @@ export default {
         });
       }
       return items;
+    },
+    paginatedItems() {
+      return this.filteredItems.slice(
+        (this.page - 1) * this.perPage,
+        (this.page - 1) * this.perPage + this.perPage
+      );
+    },
+    maxPage() {
+      return Math.ceil(this.filteredItems.length / this.perPage);
     },
   },
 };
@@ -206,12 +249,41 @@ export default {
     justify-content: flex-end;
     height: 59px;
     font-size: 0.75rem;
+    padding: 0 16px;
   }
   &__per-page {
     display: flex;
     align-items: center;
     &-select {
-      margin-left: 1rem;
+      margin-left: 1.5rem;
+    }
+  }
+  &__pagination {
+    margin: 0 35px;
+    &-arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      position: relative;
+      z-index: 1;
+      &:hover:after {
+        content: "";
+        z-index: -1;
+        width: 100%;
+        height: 100%;
+        border-radius: 100%;
+        position: absolute;
+      }
+      ::v-deep path {
+        fill: rgba(0, 0, 0, 0.54);
+      }
+      &--disabled {
+        pointer-events: none;
+        ::v-deep path {
+          fill: rgba(0, 0, 0, 0.26);
+        }
+      }
     }
   }
 }

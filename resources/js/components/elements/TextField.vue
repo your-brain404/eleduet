@@ -6,6 +6,7 @@
   >
     <div class="text-field__input-container">
       <input
+        ref="input"
         @input="$emit('input', $event.target.value)"
         :value="value"
         class="text-field__input"
@@ -54,6 +55,11 @@ export default {
       id: randomString(6),
       isFocused: false,
     };
+  },
+  watch: {
+    isFocused() {
+      if (this.isFocused) this.$refs.input.focus();
+    },
   },
 
   created() {
