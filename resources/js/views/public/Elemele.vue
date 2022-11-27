@@ -3,7 +3,14 @@
     <div v-if="!clicked" @click="clicked = true" class="elemele__dont-click">
       Elemele
     </div>
-    <video v-else ref="elemele" width="100%" height="100%" autoplay controls>
+    <video
+      class="elemele__video"
+      v-else
+      ref="elemele"
+      width="100%"
+      height="100%"
+      autoplay
+    >
       <source src="/storage/elemele/elemele.mp4" type="video/mp4" />
     </video>
   </div>
@@ -49,6 +56,9 @@ export default {
     color: white;
     font-weight: 700;
     cursor: pointer;
+  }
+  &__video {
+    pointer-events: none;
   }
 }
 </style>
