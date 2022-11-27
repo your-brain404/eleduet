@@ -53,6 +53,10 @@ const AboutPage = () =>
     import(
         /* webpackPrefetch: true */ /* webpackChunkName: 'service-page' */ "@/views/public/AboutPage"
     );
+const Elemele = () =>
+    import(
+        /* webpackPrefetch: true */ /* webpackChunkName: 'elemele' */ "@/views/public/Elemele"
+    );
 
 import getPrefixes from "@/helpers/languages/get-prefixes";
 import snakeToPascal from "@/helpers/string/snake-to-pascal";
@@ -130,6 +134,7 @@ const prefixes = getPrefixes();
 let frontRoutes = [
     { path: "/", component: Main, name: "Main" },
     { path: "/uslugi", component: Services, name: "Services" },
+    { path: "/elemele", component: Elemele, name: "Elemele" },
     { path: "/uslugi/:title/:id", component: Service, name: "Service" },
     {
         path: "/realizacje",

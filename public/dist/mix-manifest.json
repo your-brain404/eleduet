@@ -1,5 +1,5 @@
 {
-    "/js/app.js": "/js/app.js?id=6c3691e95362c2fc94b698753ac8c40e",
+    "/js/app.js": "/js/app.js?id=4af4cd4cadbb48187c9571ebf820cea2",
     "/js/manifest.js": "/js/manifest.js?id=7b91cb9b05cacde4889b99f15f43f42e",
     "/js/cms.js": "/js/cms.js?id=eceb4d1c16731ac973e7c754917bf620",
     "/js/admin-login.js": "/js/admin-login.js?id=28ce8f3726a0b8f2ca2e60863057e92a",
@@ -57,5 +57,6 @@
     "/js/services-call-us.js": "/js/services-call-us.js?id=83e301c9acc1378baa29dc1bd30c239c",
     "/js/about-page.js": "/js/about-page.js?id=345003b7bd47174aaa0386cb9e8357fd",
     "/js/vue-cool-lightbox.js": "/js/vue-cool-lightbox.js?id=edfcc7d0b42d21e08201004dc9771fc9",
-    "/js/vendor.js": "/js/vendor.js?id=62a411d66e33045ac6c58fbf6e2d1a58"
+    "/js/vendor.js": "/js/vendor.js?id=62a411d66e33045ac6c58fbf6e2d1a58",
+    "/js/elemele.js": "/js/elemele.js?id=6d743374087df7595a30fa2adda9253d"
 }

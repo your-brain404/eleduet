@@ -6,7 +6,7 @@
         `/storage/media/${$store.state.Settings.settings.li_marker}`
       }}");}
     </component>
-    <header>
+    <header v-if="$route.path != '/elemele'">
       <HeaderComponent
         :openLogin="openLogin"
         v-if="!isPathAdmin"
@@ -22,7 +22,7 @@
       ></router-view>
     </main>
     <Toast v-if="toasts.length > 0" />
-    <footer>
+    <footer v-if="$route.path != '/elemele'">
       <FooterComponent v-if="!isPathAdmin" />
     </footer>
     <Cookies v-if="!isPathAdmin && !savedCookies" />
