@@ -19,11 +19,13 @@
 
 <script>
 import { VBtn, VCardActions, VIcon } from "vuetify/lib";
+import Btn from "@/components/elements/Btn.vue";
 export default {
   components: {
     VBtn,
     VCardActions,
     VIcon,
+    Btn,
   },
 };
 </script>

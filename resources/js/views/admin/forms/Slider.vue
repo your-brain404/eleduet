@@ -12,53 +12,43 @@
           <v-row>
             <v-col cols="12" md="8">
               <div class="pa-5">
-                <v-text-field
-                  color="primary"
+                <text-field
                   v-model="currentObject.title"
                   :rules="rules.titleRules"
                   label="Tytuł *"
                   required
-                ></v-text-field>
-                <v-text-field
-                  color="primary"
+                ></text-field>
+                <text-field
                   v-model="currentObject.subtitle"
                   label="Podtytuł"
-                ></v-text-field>
-                <v-text-field
-                  color="primary"
+                ></text-field>
+                <text-field
                   v-model="currentObject.button_name_1"
                   label="Napis na pierwszym przycisku"
-                ></v-text-field>
+                ></text-field>
 
-                <v-text-field
-                  color="primary"
+                <text-field
+                  ref="button_link_1"
                   v-model="currentObject.button_link_1"
                   label="Link pierwszego przycisku"
-                ></v-text-field>
-                <v-checkbox
-                  color="primary"
+                ></text-field>
+                <checkbox
+                  ref="checkbox1"
                   label="Przycisk typu 'pobierz'?"
-                  :input-value="currentObject.button_download_1"
-                  :value="currentObject.button_download_1"
-                  @change="currentObject.button_download_1 = $event"
-                ></v-checkbox>
-                <v-text-field
-                  color="primary"
+                  v-model="currentObject.button_download_1"
+                ></checkbox>
+                <text-field
                   v-model="currentObject.button_name_2"
                   label="Napis na drugim przycisku"
-                ></v-text-field>
-                <v-text-field
-                  color="primary"
+                ></text-field>
+                <text-field
                   v-model="currentObject.button_link_2"
                   label="Link drugiego przycisku"
-                ></v-text-field>
-                <v-checkbox
-                  color="primary"
+                ></text-field>
+                <checkbox
                   label="Przycisk typu 'pobierz'?"
-                  :input-value="currentObject.button_download_2"
-                  :value="currentObject.button_download_2"
-                  @change="currentObject.button_download_2 = $event"
-                ></v-checkbox>
+                  v-model="currentObject.button_download_2"
+                ></checkbox>
               </div>
             </v-col>
 
@@ -66,22 +56,19 @@
               <div class="pa-5">
                 <FilePicker v-model="currentObject.photo" images-only />
 
-                <v-text-field
-                  color="primary"
+                <text-field
                   v-model="currentObject.photo_alt"
                   label="Tekst alternatywny zdjęcia"
-                ></v-text-field>
+                ></text-field>
 
-                <v-text-field
-                  color="primary"
+                <text-field
                   v-model="currentObject.photo_background_position"
                   label="Pozycja zdjęcia"
-                ></v-text-field>
-                <v-text-field
-                  color="primary"
+                ></text-field>
+                <text-field
                   v-model="currentObject.photo_background_size"
                   label="Wielkość zdjęcia (wartość procentowa np. 95%)"
-                ></v-text-field>
+                ></text-field>
               </div>
             </v-col>
           </v-row>

@@ -7,21 +7,26 @@
     }"
   >
     <label class="checkbox__label">
-      <div class="checkbox__mask"></div>
-      <div class="checkbox__active-mask"></div>
-      <input
-        @input="
-          props.disabled
-            ? true
-            : (listeners['input']($event.target.checked),
-              listeners['change']($event.target.checked))
-        "
-        class="checkbox__input"
-        type="checkbox"
-        :checked="props.value"
-      />
-      <div class="checkbox__square"></div>
+      <div class="checkbox__square-container">
+        <div class="checkbox__mask"></div>
+        <div class="checkbox__active-mask"></div>
+        <input
+          @input="
+            props.disabled
+              ? true
+              : (listeners['input']($event.target.checked),
+                listeners['change']($event.target.checked))
+          "
+          class="checkbox__input"
+          type="checkbox"
+          :checked="props.value"
+        />
+        <div class="checkbox__square"></div>
+      </div>
+
+      <span class="checkbox__label-text">{{ props.label }}</span>
     </label>
+    <div v-if="!props.noValidation" class="checkbox__error">{{ error }}</div>
   </div>
 </template>
 
@@ -30,19 +35,17 @@ export default {
   props: {
     value: Boolean,
     disabled: Boolean,
+    label: String,
+    noValidation: Boolean,
   },
 };
 </script>
 
 <style lang="scss">
 .checkbox {
-  position: relative;
-  width: 34px;
-  height: 34px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
+  margin-top: 16px;
+  padding-top: 4px;
+
   &--disabled {
     pointer-events: none;
     opacity: 0.8;
@@ -71,16 +74,24 @@ export default {
   &__active-mask {
     opacity: 0.25;
   }
-  &:hover &__mask,
-  &:active &__active-mask {
+  &__square-container:hover &__mask,
+  &__square-container:active &__active-mask {
     transform: translate(-50%, -50%) scale(1.15);
   }
-  &:hover &__square {
+  &__square-container:hover &__square {
     background-color: rgba(var(--first-color), 0.2);
   }
 
   &__label {
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin: 0 -7px;
+    margin-bottom: 8px;
+    width: fit-content;
+    &-text {
+      padding-left: 0.5rem;
+    }
   }
   &__input {
     position: absolute;
@@ -95,6 +106,14 @@ export default {
     border-radius: 2px;
     background-color: transparent;
     position: relative;
+    &-container {
+      width: 34px;
+      height: 34px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
     &::after {
       content: "";
       position: absolute;
@@ -118,6 +137,9 @@ export default {
     &::after {
       transform: translate(-57%, -49%) rotateZ(45deg) scale(1);
     }
+  }
+  &__error {
+    min-height: 14px;
   }
 }
 </style>

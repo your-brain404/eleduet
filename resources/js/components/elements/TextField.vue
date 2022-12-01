@@ -23,7 +23,7 @@
         :icon="icon"
       ></svg-vue>
     </div>
-    <div v-if="error" class="text-field__error">{{ error }}</div>
+    <div class="text-field__error">{{ error }}</div>
   </div>
 </template>
 
@@ -78,16 +78,18 @@ export default {
 <style lang="scss" >
 @mixin labelFocusState {
   transform: translateY(-19px) scale(0.8);
-  color: var(--first-color);
 }
 .text-field {
   $inputPaddingY: 2px;
   transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
   position: relative;
   $parent: ".text-field";
+  padding-top: 12px;
+  margin-top: 4px;
 
   &--is-focused &__label {
     @include labelFocusState;
+    color: var(--first-color);
   }
   &--is-focused {
     #{$parent}__icon {
@@ -109,7 +111,7 @@ export default {
     outline: unset;
     font-size: 16px;
     width: 100%;
-    font-weight: 400;
+    font-weight: 300;
     &--not-empty + #{$parent}__label {
       @include labelFocusState;
     }
@@ -120,6 +122,7 @@ export default {
       align-items: center;
       border-bottom: 1px solid rgba(0, 0, 0, 0.42);
       width: 100%;
+      margin-bottom: 8px;
       &::after {
         bottom: -1px;
         content: "";
@@ -139,7 +142,11 @@ export default {
     top: $inputPaddingY;
     left: 0;
     font-size: 16px;
+    color: rgba(0, 0, 0, 0.6);
     transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
+  }
+  &__error {
+    min-height: 14px;
   }
 }
 </style>

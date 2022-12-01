@@ -6,6 +6,9 @@ import AdminPanelBlocks from "@/data/admin-panel-blocks.js";
 import VueEditor from "@/components/forms/TinyMCE";
 import FormFooter from "@/components/layouts/FormFooter";
 import FormService from "@/store/modules/formService/formServiceModule.js";
+
+import TextField from "@/components/elements/TextField.vue";
+import Checkbox from "@/components/elements/Checkbox.vue";
 import {
     VMain,
     VCard,
@@ -36,7 +39,9 @@ export default {
         VContainer,
         VForm,
         VCol,
-        VRow
+        VRow,
+        TextField,
+        Checkbox
     },
     data() {
         return {

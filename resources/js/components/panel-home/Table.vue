@@ -38,6 +38,7 @@
       <template #checkbox="{ item, checkbox }">
         <div class="d-flex justify-content-center">
           <checkbox
+            no-validation
             v-model="item[checkbox]"
             @change="setCheckbox(block.tablename, item)"
           />
@@ -53,7 +54,7 @@
       </template>
       <template #item.answer="{ item }">
         <div class="d-flex justify-content-center">
-          <checkbox v-model="item.answer" disabled />
+          <checkbox no-validation v-model="item.answer" disabled />
         </div>
       </template>
       <template #item.order_number="{ item }">
