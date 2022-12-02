@@ -1,9 +1,9 @@
-<template functional>
+<template>
   <div
     class="checkbox"
     :class="{
-      'checkbox--checked': props.value,
-      'checkbox--disabled': props.disabled,
+      'checkbox--checked': value,
+      'checkbox--disabled': disabled,
     }"
   >
     <label class="checkbox__label">
@@ -12,21 +12,21 @@
         <div class="checkbox__active-mask"></div>
         <input
           @input="
-            props.disabled
+            disabled
               ? true
-              : (listeners['input']($event.target.checked),
-                listeners['change']($event.target.checked))
+              : ($emit('input', $event.target.checked),
+                $emit('change', $event.target.checked))
           "
           class="checkbox__input"
           type="checkbox"
-          :checked="props.value"
+          :checked="value"
         />
         <div class="checkbox__square"></div>
       </div>
 
-      <span class="checkbox__label-text">{{ props.label }}</span>
+      <span class="checkbox__label-text">{{ label }}</span>
     </label>
-    <div v-if="!props.noValidation" class="checkbox__error">{{ error }}</div>
+    <div v-if="!noValidation" class="checkbox__error">{{ error }}</div>
   </div>
 </template>
 
@@ -37,6 +37,11 @@ export default {
     disabled: Boolean,
     label: String,
     noValidation: Boolean,
+  },
+  data() {
+    return {
+      error: "",
+    };
   },
 };
 </script>
