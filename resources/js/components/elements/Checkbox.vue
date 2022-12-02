@@ -31,12 +31,15 @@
 </template>
 
 <script>
+import formValidation from "@/mixins/form-validation";
 export default {
+  mixins: [formValidation],
   props: {
     value: Boolean,
     disabled: Boolean,
     label: String,
     noValidation: Boolean,
+    rules: Object,
   },
   data() {
     return {

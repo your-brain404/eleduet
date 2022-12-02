@@ -7,6 +7,7 @@ import VueEditor from "@/components/forms/TinyMCE";
 import FormFooter from "@/components/layouts/FormFooter";
 import FormService from "@/store/modules/formService/formServiceModule.js";
 
+import VForm from "@/components/elements/VForm.vue";
 import TextField from "@/components/elements/TextField.vue";
 import Checkbox from "@/components/elements/Checkbox.vue";
 import {
@@ -17,7 +18,6 @@ import {
     VTextField,
     VDivider,
     VContainer,
-    VForm,
     VCol,
     VRow,
     VTextarea

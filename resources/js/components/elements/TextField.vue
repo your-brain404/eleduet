@@ -2,7 +2,7 @@
   <div
     :id="`text-field-${id}`"
     class="text-field"
-    :class="{ 'text-field--is-focused': isFocused }"
+    :class="{ 'text-field--is-focused': isFocused, 'text-field--error': error }"
   >
     <div class="text-field__input-container">
       <input
@@ -30,7 +30,9 @@
 <script>
 import SvgVue from "svg-vue";
 import randomString from "@/helpers/string/random-string";
+import formValidation from "@/mixins/form-validation";
 export default {
+  mixins: [formValidation],
   components: {
     SvgVue,
   },
@@ -48,6 +50,7 @@ export default {
       default: "",
     },
     lazyIcon: { type: Boolean, default: true },
+    rules: Object,
   },
   data() {
     return {
@@ -84,8 +87,8 @@ export default {
   transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
   position: relative;
   $parent: ".text-field";
-  padding-top: 12px;
-  margin-top: 4px;
+  padding-bottom: 12px;
+  margin-bottom: 10px;
 
   &--is-focused &__label {
     @include labelFocusState;
@@ -122,7 +125,8 @@ export default {
       align-items: center;
       border-bottom: 1px solid rgba(0, 0, 0, 0.42);
       width: 100%;
-      margin-bottom: 8px;
+      padding-bottom: 2px;
+      margin-bottom: 4px;
       &::after {
         bottom: -1px;
         content: "";
@@ -147,6 +151,36 @@ export default {
   }
   &__error {
     min-height: 14px;
+    font-size: 12px;
+    line-height: 12px;
+  }
+  &--error &__label,
+  &--error &__input,
+  &__error {
+    color: #ff5252;
+  }
+  &--error &__input-container {
+    border-color: #ff5252;
+    &::after {
+      background-color: #ff5252;
+    }
+  }
+  &--error &__label {
+    animation: shake 0.6s cubic-bezier(0.25, 0.8, 0.5, 1);
+  }
+}
+
+@keyframes shake {
+  59% {
+    margin-left: 0;
+  }
+  60%,
+  80% {
+    margin-left: 2px;
+  }
+  70%,
+  90% {
+    margin-left: -2px;
   }
 }
 </style>

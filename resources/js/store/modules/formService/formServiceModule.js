@@ -7,7 +7,7 @@ export default {
     namespaced: true,
     state: {
         currentObject: {},
-        valid: false,
+        valid: true,
         validateFlag: false
     },
     mutations: {
