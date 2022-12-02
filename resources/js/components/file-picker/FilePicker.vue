@@ -1,5 +1,5 @@
 <template>
-  <v-row justify="center" class="file-picker-component mt-5 mb-2 px-3">
+  <v-row justify="center" class="file-picker-component mt-5 mb-5 px-3">
     <v-col
       v-if="Boolean(chosenFile.id) || Boolean(value)"
       class="

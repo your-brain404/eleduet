@@ -51,8 +51,8 @@ export default {
 
 <style lang="scss">
 .checkbox {
-  margin-top: 16px;
-  padding-top: 4px;
+  padding-bottom: 12px;
+  margin-bottom: 10px;
 
   &--disabled {
     pointer-events: none;
