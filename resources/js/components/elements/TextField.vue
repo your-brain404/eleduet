@@ -88,7 +88,7 @@ export default {
   position: relative;
   $parent: ".text-field";
   padding-bottom: 12px;
-  margin-bottom: 10px;
+  margin-bottom: 22px;
 
   &--is-focused &__label {
     @include labelFocusState;
@@ -153,6 +153,8 @@ export default {
     min-height: 14px;
     font-size: 12px;
     line-height: 12px;
+    position: absolute;
+    width: 100%;
   }
   &--error &__label,
   &--error &__input,

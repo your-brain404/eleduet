@@ -12,18 +12,16 @@
           <v-row>
             <v-col cols="12" md="8">
               <div class="pa-5">
-                <v-text-field
-                  color="primary"
+                <text-field
                   v-model="currentObject.title"
                   :rules="rules.titleRules"
                   label="Tytuł *"
                   required
-                ></v-text-field>
-                <v-text-field
-                  color="primary"
+                ></text-field>
+                <text-field
                   v-model="currentObject.button_name"
                   label="Napis na przycisku"
-                ></v-text-field>
+                ></text-field>
 
                 <div class="mt-3">
                   <p class="mb-1">Krótki opis</p>
@@ -37,11 +35,10 @@
               <div class="pa-5">
                 <FilePicker v-model="currentObject.photo" images-only />
 
-                <v-text-field
-                  color="primary"
+                <text-field
                   v-model="currentObject.photo_alt"
                   label="Tekst alternatywny zdjęcia"
-                ></v-text-field>
+                ></text-field>
               </div>
             </v-col>
           </v-row>

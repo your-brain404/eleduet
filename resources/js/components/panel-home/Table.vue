@@ -312,6 +312,7 @@ $mobileEndpoint: 768px;
 .search-input {
   margin: 0;
   padding-top: 0;
+  padding-bottom: 0;
   margin-right: 20px;
 }
 @media (max-width: 768px) {
