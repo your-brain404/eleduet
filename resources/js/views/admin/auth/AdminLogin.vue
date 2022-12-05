@@ -8,30 +8,21 @@
           </h2>
         </v-card-title>
         <v-divider class="mt-0"></v-divider>
-        <v-form
-          v-if="validationRules.id"
-          ref="form"
-          v-model="valid"
-          lazy-validation
-          @submit.prevent="login"
-        >
+        <v-form v-if="validationRules.id" ref="form" v-model="valid">
           <v-row>
             <v-col cols="12">
               <div class="pa-5">
-                <v-text-field
-                  color="primary"
+                <text-field
                   v-model="credentials.email"
                   :rules="[required, email]"
                   label="Adres E-mail"
-                  required
-                ></v-text-field>
-                <v-text-field
+                ></text-field>
+                <text-field
                   type="password"
-                  color="primary"
                   :rules="[required, passwordLength]"
                   v-model="credentials.password"
                   label="Hasło"
-                ></v-text-field>
+                ></text-field>
 
                 <v-btn
                   color="primary"
@@ -54,15 +45,15 @@
 
 <script>
 import getModule from "@/helpers/store/get-module";
+import VForm from "@/components/elements/VForm.vue";
+import TextField from "@/components/elements/TextField.vue";
 import {
   VMain,
   VContainer,
   VCard,
-  VForm,
   VRow,
   VBtn,
   VIcon,
-  VTextField,
   VDivider,
   VCardTitle,
   VCol,
@@ -77,7 +68,7 @@ export default {
     VRow,
     VBtn,
     VIcon,
-    VTextField,
+    TextField,
     VDivider,
     VCardTitle,
   },

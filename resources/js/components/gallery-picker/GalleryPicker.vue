@@ -19,12 +19,12 @@
               <div class="d-flex align-items-center flex-wrap">
                 <div>GalleryPicker</div>
                 <div class="ml-3">
-                  <v-text-field
+                  <text-field
                     label="Szukaj"
-                    prepend-icon="mdi-magnify"
+                    icon="magnify"
                     v-model="search"
-                    @change="searchPhoto"
-                  ></v-text-field>
+                    @input="searchPhoto"
+                  ></text-field>
                 </div>
               </div>
               <v-icon class="gallery-picker-close" @click="dialog = false"
@@ -113,13 +113,13 @@ import axios from "axios";
 import AddPhotos from "@/components/gallery-picker/AddPhotos.vue";
 import url from "@/helpers/photo/url.js";
 import Picture from "@/components/picture/Picture";
+import TextField from "@/components/elements/TextField.vue";
 import {
   VRow,
   VDialog,
   VCard,
   VTab,
   VTabs,
-  VTextField,
   VTabsItems,
   VTabItem,
   VCardText,
@@ -137,7 +137,7 @@ export default {
     VCard,
     VTab,
     VTabs,
-    VTextField,
+    TextField,
     VTabsItems,
     VTabItem,
     VCardText,

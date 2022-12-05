@@ -48,12 +48,12 @@
             <div class="d-flex align-items-center flex-wrap">
               <div>FilePicker{{ title ? ` - ${title}` : "" }}</div>
               <div class="ml-3">
-                <v-text-field
+                <text-field
                   label="Szukaj"
-                  prepend-icon="mdi-magnify"
+                  icon="magnify"
                   v-model="search"
-                  @change="searchPhoto"
-                ></v-text-field>
+                  @input="searchPhoto"
+                ></text-field>
               </div>
             </div>
             <v-icon class="file-picker-close" @click="dialog = false"
@@ -259,13 +259,13 @@ import formatFileSize from "@/helpers/files/format-file-size";
 import copyToClipboard from "@/helpers/copy/copy-to-clipboard";
 import Picture from "@/components/picture/Picture";
 import existingPhotoPath from "@/helpers/links/existing-photo-path";
+import TextField from "@/components/elements/TextField.vue";
 import {
   VRow,
   VDialog,
   VCard,
   VTab,
   VTabs,
-  VTextField,
   VTabsItems,
   VTabItem,
   VCardText,
@@ -282,7 +282,7 @@ export default {
     AddFiles,
     Picture,
     VRow,
-    VTextField,
+    TextField,
     VDialog,
     VCard,
     VTab,

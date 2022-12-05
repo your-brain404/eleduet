@@ -23,7 +23,6 @@
                 v-model="mail.message"
                 label="Twoja wiadomość"
               ></v-textarea>
-              <Select @users="users = $event"></Select>
             </v-col>
           </v-row>
 
@@ -56,7 +55,6 @@
 import axios from "axios";
 import VForm from "@/components/elements/VForm.vue";
 import TextField from "@/components/elements/TextField.vue";
-import Select from "../../../components/select/Users";
 import {
   VMain,
   VContainer,
@@ -65,7 +63,6 @@ import {
   VIcon,
   VDivider,
   VTextarea,
-  VTextField,
   VCard,
   VCardTitle,
 } from "vuetify/lib";
@@ -81,10 +78,8 @@ export default {
     VIcon,
     VDivider,
     VTextarea,
-    VTextField,
     VCard,
     VCardTitle,
-    Select,
   },
   data() {
     return {
