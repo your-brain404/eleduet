@@ -12,35 +12,29 @@
           <v-row>
             <v-col cols="12" md="8">
               <div class="pa-5">
-                <v-checkbox
-                  color="primary"
+                <checkbox
                   label="Pokaż na stronie głównej"
-                  :input-value="currentObject.home_page"
-                  :value="currentObject.home_page"
-                  @change="currentObject.home_page = $event"
-                ></v-checkbox>
-                <v-text-field
-                  color="primary"
+                  v-model="currentObject.home_page"
+                ></checkbox>
+                <text-field
                   v-model="currentObject.title"
                   :rules="rules.titleRules"
                   label="Tytuł *"
-                  required
-                ></v-text-field>
+                ></text-field>
                 <div class="checkboxes">
                   <p class="mb-1">Wybierz kategorie:</p>
-                  <v-checkbox
+                  <checkbox
                     v-for="(category, i) in serviceCategories"
                     :key="`service-category-${i}`"
-                    color="primary"
                     :label="
                       category.title
                         .replace('<br>', ' ')
                         .replace('{', '')
                         .replace('}', '')
                     "
-                    :input-value="setCheckboxState(category.id)"
-                    @change="serviceCategoryChange(category.id, $event)"
-                  ></v-checkbox>
+                    :value="setCheckboxState(category.id)"
+                    @input="serviceCategoryChange(category.id, $event)"
+                  ></checkbox>
                 </div>
 
                 <div class="mt-3">
@@ -59,16 +53,14 @@
               <div class="pa-5">
                 <FilePicker v-model="currentObject.photo" images-only />
 
-                <v-text-field
-                  color="primary"
+                <text-field
                   v-model="currentObject.photo_alt"
                   label="Tekst alternatywny zdjęcia"
-                ></v-text-field>
-                <v-text-field
-                  color="primary"
+                ></text-field>
+                <text-field
                   v-model="currentObject.photo_background_position"
                   label="Pozycja zdjęcia"
-                ></v-text-field>
+                ></text-field>
               </div>
             </v-col>
           </v-row>
@@ -116,15 +108,15 @@ export default {
   },
 
   created() {
-    if (!this.$store.hasModule("serviceCategories")) {
+    if (!this.$store.hasModule("ServiceCategories")) {
       this.$store.registerModule(
-        "serviceCategories",
+        "ServiceCategories",
         getModule("serviceCategories")
       );
     }
-    if (!this.$store.hasModule("currentServiceCategories")) {
+    if (!this.$store.hasModule("CurrentServiceCategories")) {
       this.$store.registerModule(
-        "currentServiceCategories",
+        "CurrentServiceCategories",
         getModule("currentServiceCategories")
       );
     }

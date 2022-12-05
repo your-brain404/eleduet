@@ -12,25 +12,21 @@
           <v-row>
             <v-col cols="12" md="8">
               <div class="pa-5">
-                <v-text-field
-                  color="primary"
+                <text-field
                   v-model="currentObject.title"
                   :rules="rules.titleRules"
                   label="Tytuł *"
-                  required
-                ></v-text-field>
+                ></text-field>
 
-                <v-text-field
-                  color="primary"
+                <text-field
                   v-model="currentObject.button_name"
                   label="Napis na przycisku"
-                ></v-text-field>
+                ></text-field>
 
-                <v-text-field
-                  color="primary"
+                <text-field
                   v-model="currentObject.link"
                   label="Link przycisku"
-                ></v-text-field>
+                ></text-field>
 
                 <div class="mt-3">
                   <p class="mb-1">Opis</p>
@@ -42,34 +38,29 @@
               <div class="pa-5">
                 <FilePicker v-model="currentObject.photo" images-only />
 
-                <v-text-field
-                  color="primary"
+                <text-field
                   v-model="currentObject.photo_alt"
                   label="Tekst alternatywny zdjęcia"
-                ></v-text-field>
-                <v-text-field
-                  color="primary"
+                ></text-field>
+                <text-field
                   v-model="currentObject.photo_background_position"
                   label="Pozycja zdjęcia"
-                ></v-text-field>
-                <v-text-field
-                  color="primary"
+                ></text-field>
+                <text-field
                   type="number"
                   v-model="currentObject.height"
                   label="Wysokość (mobile) w pikselach"
-                ></v-text-field>
-                <v-text-field
-                  color="primary"
+                ></text-field>
+                <text-field
                   type="number"
                   v-model="currentObject.height_md"
                   label="Wysokość (tablet) w pikselach"
-                ></v-text-field>
-                <v-text-field
-                  color="primary"
+                ></text-field>
+                <text-field
                   type="number"
                   v-model="currentObject.height_lg"
                   label="Wysokość (desktop) w pikselach"
-                ></v-text-field>
+                ></text-field>
               </div>
             </v-col>
           </v-row>

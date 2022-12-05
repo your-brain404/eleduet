@@ -12,64 +12,12 @@
           <v-row>
             <v-col cols="12" md="12">
               <div class="pa-5">
-                <!-- <v-checkbox
-                                    color="primary"
-                                    label="Aktywny"
-                                    :input-value="currentObject.active"
-                                    :value="currentObject.active"
-                                    @change="currentObject.active = $event"
-                                ></v-checkbox>
-                                <v-text-field
-                                    color="primary"
-                                    v-model="currentObject.order_number"
-                                    type="number"
-                                    label="Kolejność"
-                                ></v-text-field> -->
-                <!-- <v-text-field
-                                    color="primary"
-                                    v-model="currentObject.title"
-                                    :rules="rules.titleRules"
-                                    label="Tytuł *"
-                                    required
-                                ></v-text-field>
-                                <v-text-field
-                                    color="primary"
-                                    v-model="currentObject.subtitle"
-                                    label="Podtytuł"
-                                    required
-                                ></v-text-field> -->
-
-                <!-- <div class="mt-3">
-                                    <p class="mb-1">Krótki opis</p>
-                                    <vue-editor
-                                        v-model="
-                                            currentObject.short_description
-                                        "
-                                    ></vue-editor>
-                                </div> -->
                 <div class="mt-3">
                   <p class="mb-1">Opis</p>
                   <vue-editor v-model="currentObject.description"></vue-editor>
                 </div>
               </div>
             </v-col>
-            <!-- <v-col cols="12" md="4">
-              <div class="pa-5">
-                <v-img
-                  :src="activePhoto"
-                  :alt="currentObject.photo_alt"
-                ></v-img>
-                <FilePicker
-                  v-model="currentObject.photo" images-only
-                />
-
-                <v-text-field
-                  color="primary"
-                  v-model="currentObject.photo_alt"
-                  label="Tekst alternatywny zdjęcia"
-                ></v-text-field>
-              </div>
-            </v-col> -->
           </v-row>
           <v-divider class="mb-0"></v-divider>
           <form-footer></form-footer>

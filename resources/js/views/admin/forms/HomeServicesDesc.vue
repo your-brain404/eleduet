@@ -12,31 +12,24 @@
           <v-row>
             <v-col cols="12">
               <div class="pa-5">
-                <v-text-field
-                  color="primary"
+                <text-field
                   v-model="currentObject.title"
                   :rules="rules.titleRules"
                   label="Tytuł *"
-                  required
-                ></v-text-field>
-                <v-text-field
-                  color="primary"
+                ></text-field>
+                <text-field
                   v-model="currentObject.subtitle"
                   label="Podtytuł"
-                  required
-                ></v-text-field>
-                <v-text-field
-                  color="primary"
+                ></text-field>
+                <text-field
                   v-model="currentObject.button_name"
                   label="Napis na przycisku"
-                  required
-                ></v-text-field>
-                <v-text-field
+                ></text-field>
+                <text-field
                   color="primary"
                   v-model="currentObject.link"
                   label="Link przycisku"
-                  required
-                ></v-text-field>
+                ></text-field>
               </div>
             </v-col>
           </v-row>

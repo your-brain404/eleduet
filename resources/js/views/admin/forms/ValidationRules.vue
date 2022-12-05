@@ -12,48 +12,34 @@
           <v-row>
             <v-col cols="12">
               <div class="pa-5">
-                <v-text-field
-                  color="primary"
+                <text-field
                   v-model="currentObject.required"
                   label="To pole jest wymagane!"
-                  required
-                ></v-text-field>
-                <v-text-field
-                  color="primary"
+                ></text-field>
+                <text-field
                   v-model="currentObject.email"
                   label="Niepoprawny e-mail."
-                  required
-                ></v-text-field>
-                <v-text-field
-                  color="primary"
+                ></text-field>
+                <text-field
                   v-model="currentObject.password_length"
                   label="Hasło musi mieć co najmniej 8 liter!"
-                  required
-                ></v-text-field>
-                <v-text-field
-                  color="primary"
+                ></text-field>
+                <text-field
                   v-model="currentObject.file_size"
                   label="Zdjęcie powinno ważyć mniej niż 5 MB!"
-                  required
-                ></v-text-field>
-                <v-text-field
-                  color="primary"
+                ></text-field>
+                <text-field
                   v-model="currentObject.password_confirm"
                   label="Hasła muszą być takie same!"
-                  required
-                ></v-text-field>
-                <v-text-field
-                  color="primary"
+                ></text-field>
+                <text-field
                   v-model="currentObject.reservation_min_time"
                   label="Minimalny czas rezerwacji to 30 minut!"
-                  required
-                ></v-text-field>
-                <v-text-field
-                  color="primary"
+                ></text-field>
+                <text-field
                   v-model="currentObject.reservation_exist"
                   label="Taka rezerwacja już istnieje!"
-                  required
-                ></v-text-field>
+                ></text-field>
               </div>
             </v-col>
           </v-row>

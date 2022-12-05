@@ -11,12 +11,11 @@
         <v-form ref="form" v-model="valid">
           <v-row class="px-5">
             <v-col cols="12">
-              <v-text-field
-                color="primary"
+              <text-field
                 :rules="rules.titleRules"
                 v-model="mail.subject"
                 label="Temat Twojej wiadomości"
-              ></v-text-field>
+              ></text-field>
               <v-textarea
                 color="primary"
                 :rules="rules.titleRules"
@@ -55,11 +54,12 @@
 
 <script>
 import axios from "axios";
+import VForm from "@/components/elements/VForm.vue";
+import TextField from "@/components/elements/TextField.vue";
 import Select from "../../../components/select/Users";
 import {
   VMain,
   VContainer,
-  VForm,
   VCardActions,
   VBtn,
   VIcon,
@@ -76,6 +76,7 @@ export default {
     VContainer,
     VForm,
     VCardActions,
+    TextField,
     VBtn,
     VIcon,
     VDivider,

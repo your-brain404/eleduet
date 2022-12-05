@@ -12,34 +12,29 @@
           <v-row>
             <v-col cols="12">
               <div class="pa-5">
-                <v-text-field
-                  color="primary"
+                <text-field
                   v-model="currentObject.email_1"
                   :rules="rules.titleRules"
                   label="E-mail formularz (na ten email będą przychodzić maile z formularzy) *"
-                ></v-text-field>
+                ></text-field>
 
-                <v-text-field
-                  color="primary"
+                <text-field
                   v-model="currentObject.phone_1"
                   label="Telefon 1"
-                ></v-text-field>
+                ></text-field>
 
-                <v-text-field
-                  color="primary"
+                <text-field
                   v-model="currentObject.address"
                   label="Adres"
-                ></v-text-field>
-                <v-text-field
-                  color="primary"
+                ></text-field>
+                <text-field
                   v-model="currentObject.zip_code"
                   label="Kod Pocztowy"
-                ></v-text-field>
-                <v-text-field
-                  color="primary"
+                ></text-field>
+                <text-field
                   v-model="currentObject.city"
                   label="Miasto"
-                ></v-text-field>
+                ></text-field>
               </div>
             </v-col>
           </v-row>

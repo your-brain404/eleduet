@@ -12,13 +12,11 @@
           <v-row>
             <v-col cols="12">
               <div class="pa-5">
-                <v-text-field
-                  color="primary"
+                <text-field
                   v-model="currentObject.title"
                   :rules="rules.titleRules"
                   label="Tytuł *"
-                  required
-                ></v-text-field>
+                ></text-field>
               </div>
             </v-col>
           </v-row>

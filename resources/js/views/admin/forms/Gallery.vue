@@ -43,10 +43,10 @@
                           >
                         </div>
                       </div>
-                      <v-text-field
+                      <text-field
                         label="Tekst alternatywny"
                         v-model="photo.photo_alt"
-                      ></v-text-field>
+                      ></text-field>
                     </v-col>
                   </v-row>
                 </div>
@@ -94,18 +94,18 @@ import GalleryPicker from "@/components/gallery-picker/GalleryPicker";
 import SnackbarAlerts from "@/data/snackbar-alerts.js";
 import url from "@/helpers/photo/url.js";
 import Picture from "@/components/picture/Picture.vue";
+import TextField from "@/components/elements/TextField.vue";
+import VForm from "@/components/elements/VForm.vue";
 import {
   VMain,
   VContainer,
   VCard,
-  VForm,
   VBtn,
   VIcon,
   VCardActions,
   VDivider,
   VRow,
   VCol,
-  VTextField,
   VCardTitle,
 } from "vuetify/lib";
 
@@ -123,7 +123,7 @@ export default {
     VDivider,
     VRow,
     VCol,
-    VTextField,
+    TextField,
     VCardTitle,
   },
   data: () => ({

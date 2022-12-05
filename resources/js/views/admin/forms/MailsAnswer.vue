@@ -21,30 +21,26 @@
             </v-col>
             <v-col cols="12" md="4">
               <div class="pa-5">
-                <v-text-field
-                  color="primary"
+                <text-field
                   disabled
                   v-model="mail.name"
                   label="Imię i nazwisko"
-                ></v-text-field>
-                <v-text-field
-                  color="primary"
+                ></text-field>
+                <text-field
                   disabled
                   v-model="mail.email"
                   label="E-mail"
-                ></v-text-field>
-                <v-text-field
-                  color="primary"
+                ></text-field>
+                <text-field
                   disabled
                   v-model="mail.phone"
                   label="Telefon"
-                ></v-text-field>
-                <v-text-field
-                  color="primary"
+                ></text-field>
+                <text-field
                   disabled
                   v-model="mail.subject"
                   label="Temat"
-                ></v-text-field>
+                ></text-field>
                 <v-textarea
                   color="primary"
                   rows="5"
@@ -84,17 +80,17 @@
 import axios from "axios";
 import attachment from "../../../helpers/attachments/link.js";
 import Vue from "vue";
+import VForm from "@/components/elements/VForm.vue";
+import TextField from "@/components/elements/TextField.vue";
 import { VueReCaptcha } from "vue-recaptcha-v3";
 import {
   VMain,
   VContainer,
-  VForm,
   VCardActions,
   VBtn,
   VIcon,
   VDivider,
   VTextarea,
-  VTextField,
   VCard,
   VCardTitle,
   VRow,
@@ -111,7 +107,7 @@ export default {
     VBtn,
     VIcon,
     VDivider,
-    VTextField,
+    TextField,
     VCard,
     VCardTitle,
     VRow,
@@ -184,10 +180,11 @@ export default {
           this.sendMail(res.data);
         })
         .catch((err) => {
+          console.error(err);
           this.loading = false;
           this.$store.commit(
             "toast",
-            "Nie udało się zapisać wiadomości, skontaktuj się z Danielem"
+            "Nie udało się zapisać wiadomości, skontaktuj się z Administratorem"
           );
         });
     },

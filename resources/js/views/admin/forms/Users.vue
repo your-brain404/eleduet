@@ -12,25 +12,17 @@
           <v-row>
             <v-col cols="12">
               <div class="pa-5">
-                <v-text-field
-                  color="primary"
+                <text-field
                   v-model="currentObject.name"
                   :rules="rules.titleRules"
                   label="Imię i nazwisko *"
-                  required
-                ></v-text-field>
-                <v-select
-                  :items="['Admin', 'Klient', 'Zawodnik']"
-                  color="primary"
-                  v-model="currentObject.type"
-                  label="Typ użytkownika"
-                ></v-select>
-                <v-text-field
+                ></text-field>
+
+                <text-field
                   disabled
-                  color="primary"
                   v-model="currentObject.email"
                   label="Adres e-mail"
-                ></v-text-field>
+                ></text-field>
               </div>
             </v-col>
           </v-row>

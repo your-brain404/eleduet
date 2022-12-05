@@ -12,32 +12,24 @@
           <v-row>
             <v-col cols="12" md="8">
               <div class="pa-5">
-                <v-checkbox
-                  color="primary"
+                <checkbox
                   label="Aktywny"
-                  :input-value="currentObject.active"
-                  :value="currentObject.active"
-                  @change="currentObject.active = $event"
-                ></v-checkbox>
-                <v-text-field
-                  color="primary"
+                  v-model="currentObject.active"
+                ></checkbox>
+                <text-field
                   v-model="currentObject.order_number"
                   type="number"
                   label="Kolejność"
-                ></v-text-field>
-                <v-text-field
-                  color="primary"
+                ></text-field>
+                <text-field
                   v-model="currentObject.title"
                   :rules="rules.titleRules"
                   label="Tytuł *"
-                  required
-                ></v-text-field>
-                <v-text-field
-                  color="primary"
+                ></text-field>
+                <text-field
                   v-model="currentObject.subtitle"
                   label="Podtytuł"
-                  required
-                ></v-text-field>
+                ></text-field>
 
                 <div class="mt-3">
                   <p class="mb-1">Krótki opis</p>
@@ -55,11 +47,10 @@
               <div class="pa-5">
                 <FilePicker v-model="currentObject.photo" images-only />
 
-                <v-text-field
-                  color="primary"
+                <text-field
                   v-model="currentObject.photo_alt"
                   label="Tekst alternatywny zdjęcia"
-                ></v-text-field>
+                ></text-field>
               </div>
             </v-col>
           </v-row>

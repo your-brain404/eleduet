@@ -2,7 +2,11 @@
   <div
     :id="`text-field-${id}`"
     class="text-field"
-    :class="{ 'text-field--is-focused': isFocused, 'text-field--error': error }"
+    :class="{
+      'text-field--is-focused': isFocused,
+      'text-field--error': error,
+      'text-field--disabled': disabled,
+    }"
   >
     <div class="text-field__input-container">
       <input
@@ -11,7 +15,7 @@
         :value="value"
         class="text-field__input"
         :class="{ 'text-field__input--not-empty': value }"
-        type="text"
+        :type="type"
       />
       <label v-if="label" class="text-field__label">{{ label }}</label>
 
@@ -37,20 +41,16 @@ export default {
     SvgVue,
   },
   props: {
-    value: {
-      type: String,
-      default: "",
-    },
-    icon: {
-      type: String,
-      default: "",
-    },
-    label: {
-      type: String,
-      default: "",
-    },
+    value: String,
+    icon: String,
+    label: String,
+    disabled: Boolean,
     lazyIcon: { type: Boolean, default: true },
     rules: Object,
+    type: {
+      type: String,
+      default: "text",
+    },
   },
   data() {
     return {
@@ -89,6 +89,10 @@ export default {
   $parent: ".text-field";
   padding-bottom: 12px;
   margin-bottom: 22px;
+
+  &__input[type="date"] + &__label {
+    @include labelFocusState;
+  }
 
   &--is-focused &__label {
     @include labelFocusState;
@@ -169,6 +173,25 @@ export default {
   }
   &--error &__label {
     animation: shake 0.6s cubic-bezier(0.25, 0.8, 0.5, 1);
+  }
+  &--disabled {
+    pointer-events: none;
+    cursor: default;
+  }
+  &--disabled &__input,
+  &--disabled &__label {
+    color: rgba(0, 0, 0, 0.38);
+  }
+  &--disabled &__input-container {
+    border-image: repeating-linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.38) 0px,
+        rgba(0, 0, 0, 0.38) 2px,
+        transparent 2px,
+        transparent 4px
+      )
+      1 repeat;
+    border-color: rgba(0, 0, 0, 0.42);
   }
 }
 
