@@ -41,11 +41,6 @@ export default {
     noValidation: Boolean,
     rules: Object,
   },
-  data() {
-    return {
-      error: "",
-    };
-  },
 };
 </script>
 

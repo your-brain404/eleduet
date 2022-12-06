@@ -17,9 +17,7 @@
                 label="Temat Twojej wiadomości"
               ></text-field>
               <v-textarea
-                color="primary"
                 :rules="rules.titleRules"
-                rows="5"
                 v-model="mail.message"
                 label="Twoja wiadomość"
               ></v-textarea>
@@ -55,6 +53,7 @@
 import axios from "axios";
 import VForm from "@/components/elements/VForm.vue";
 import TextField from "@/components/elements/TextField.vue";
+import VTextarea from "@/components/elements/VTextarea.vue";
 import {
   VMain,
   VContainer,
@@ -62,7 +61,6 @@ import {
   VBtn,
   VIcon,
   VDivider,
-  VTextarea,
   VCard,
   VCardTitle,
 } from "vuetify/lib";

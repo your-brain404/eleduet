@@ -1,4 +1,9 @@
 export default {
+    data() {
+        return {
+            error: ""
+        };
+    },
     watch: {
         value: {
             deep: true,

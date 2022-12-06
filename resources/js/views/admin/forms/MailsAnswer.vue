@@ -12,9 +12,7 @@
           <v-row class="px-5">
             <v-col cols="12" md="8">
               <v-textarea
-                color="primary"
                 :rules="rules.titleRules"
-                rows="5"
                 v-model="answer.answer_message"
                 label="Twoja wiadomość"
               ></v-textarea>
@@ -81,6 +79,7 @@ import axios from "axios";
 import attachment from "../../../helpers/attachments/link.js";
 import Vue from "vue";
 import VForm from "@/components/elements/VForm.vue";
+import VTextarea from "@/components/elements/VTextarea.vue";
 import TextField from "@/components/elements/TextField.vue";
 import { VueReCaptcha } from "vue-recaptcha-v3";
 import {
@@ -90,7 +89,6 @@ import {
   VBtn,
   VIcon,
   VDivider,
-  VTextarea,
   VCard,
   VCardTitle,
   VRow,

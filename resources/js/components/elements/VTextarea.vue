@@ -1,48 +1,37 @@
 <template>
   <div
-    :id="`text-field-${id}`"
-    class="text-field"
+    :id="`textarea-${id}`"
+    class="textarea"
     :class="{
-      'text-field--is-focused': isFocused,
-      'text-field--error': error,
-      'text-field--disabled': disabled,
+      'textarea--is-focused': isFocused,
+      'textarea--error': error,
+      'textarea--disabled': disabled,
     }"
   >
-    <div class="text-field__input-container">
-      <input
-        ref="input"
+    <div class="textarea__input-container">
+      <textarea
+        ref="textarea"
         @input="$emit('input', $event.target.value)"
         :value="value"
-        class="text-field__input"
-        :class="{ 'text-field__input--not-empty': value }"
-        :type="type"
+        class="textarea__input"
+        :class="{ 'textarea__input--not-empty': value }"
+        :rows="rows"
       />
-      <label v-if="label" class="text-field__label">{{ label }}</label>
-
-      <svg-vue
-        v-if="icon"
-        class="text-field__icon"
-        width="24"
-        height="24"
-        :icon="icon"
-      ></svg-vue>
+      <label v-if="label" class="textarea__label">{{ label }}</label>
     </div>
-    <div class="text-field__error">{{ error }}</div>
+    <div class="textarea__error">{{ error }}</div>
   </div>
 </template>
-
-<script>
-import SvgVue from "svg-vue";
+  
+  <script>
 import randomString from "@/helpers/string/random-string";
 import formValidation from "@/mixins/form-validation";
 export default {
   mixins: [formValidation],
-  components: {
-    SvgVue,
-  },
+
   props: {
     value: String,
-    icon: String,
+    rows: { type: Number, default: 5 },
     label: String,
     disabled: Boolean,
     lazyIcon: { type: Boolean, default: true },
@@ -60,7 +49,7 @@ export default {
   },
   watch: {
     isFocused() {
-      if (this.isFocused) this.$refs.input.focus();
+      if (this.isFocused) this.$refs.textarea.focus();
     },
   },
 
@@ -68,7 +57,7 @@ export default {
     window.addEventListener("click", (e) => {
       let textFieldClicked = Boolean(
         e.path.find((el) => {
-          return el?.id === `text-field-${this.id}`;
+          return el?.id === `textarea-${this.id}`;
         })
       );
       this.isFocused = textFieldClicked;
@@ -76,16 +65,16 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" >
+  
+  <style lang="scss" >
 @mixin labelFocusState {
   transform: translateY(-19px) scale(0.8);
 }
-.text-field {
+.textarea {
   $inputPaddingY: 2px;
   transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
   position: relative;
-  $parent: ".text-field";
+  $parent: ".textarea";
   padding-bottom: 12px;
   margin-bottom: 22px;
 
