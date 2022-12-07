@@ -97,6 +97,7 @@ import Picture from "@/components/picture/Picture.vue";
 import TextField from "@/components/elements/TextField.vue";
 import VForm from "@/components/elements/VForm.vue";
 import VRow from "@/components/grid/VRow.vue";
+import VCol from "@/components/grid/VCol.vue";
 import {
   VMain,
   VContainer,
@@ -105,7 +106,6 @@ import {
   VIcon,
   VCardActions,
   VDivider,
-  VCol,
   VCardTitle,
 } from "vuetify/lib";
 

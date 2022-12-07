@@ -48,6 +48,7 @@ import getModule from "@/helpers/store/get-module";
 import VForm from "@/components/elements/VForm.vue";
 import TextField from "@/components/elements/TextField.vue";
 import VRow from "@/components/grid/VRow.vue";
+import VCol from "@/components/grid/VCol.vue";
 import {
   VMain,
   VContainer,
@@ -56,7 +57,6 @@ import {
   VIcon,
   VDivider,
   VCardTitle,
-  VCol,
 } from "vuetify/lib";
 export default {
   components: {

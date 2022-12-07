@@ -17,7 +17,7 @@
             block.parent ? `${$route.params.parent_id}/` : ''
           }form`"
         >
-          <btn
+          <v-btn
             customClass="add-button"
             :icon="block.add_button_icon ? block.add_button_icon : 'plus'"
           >
@@ -30,7 +30,7 @@
               ></svg-vue>
             </template>
             {{ block.add_button_text ? block.add_button_text : "Dodaj" }}
-          </btn>
+          </v-btn>
         </router-link>
       </div>
     </div>
@@ -80,14 +80,14 @@
             class="form-link table__action-button"
             :to="`/admin-panel/${block.list}/${item.id}`"
           >
-            <btn small icon="format-list-bulleted"> Lista </btn>
+            <v-btn small icon="format-list-bulleted"> Lista </v-btn>
           </router-link>
           <router-link
             v-if="block.gallery"
             class="form-link table__action-button"
             :to="`/admin-panel/${block.tablename}/gallery/${item.id}`"
           >
-            <btn small variant="warning" icon="image-multiple"> Galeria </btn>
+            <v-btn small color="warning" icon="image-multiple"> Galeria </v-btn>
           </router-link>
           <router-link
             v-if="!block.non_editable"
@@ -96,7 +96,7 @@
               block.parent ? `${$route.params.parent_id}/` : ''
             }form/${item.id}`"
           >
-            <btn small>
+            <v-btn small>
               <template #icon>
                 <svg-vue
                   class="custom-btn__content-icon"
@@ -106,13 +106,13 @@
                 ></svg-vue>
               </template>
               {{ block.edit_button_text ? block.edit_button_text : "Edytuj" }}
-            </btn>
+            </v-btn>
           </router-link>
-          <btn
+          <v-btn
             v-if="block.removable"
             @click="deleteItem(block, item)"
             small
-            variant="error"
+            color="error"
             customClass="table__action-button"
           >
             <template #icon>
@@ -124,7 +124,7 @@
               ></svg-vue>
             </template>
             Usuń
-          </btn>
+          </v-btn>
         </div>
       </template>
     </data-table>
@@ -134,7 +134,7 @@
 <script>
 import axios from "axios";
 import snackbarAlerts from "@/data/snackbar-alerts";
-import Btn from "@/components/elements/Btn.vue";
+import VBtn from "@/components/elements/VBtn.vue";
 import TextField from "@/components/elements/TextField.vue";
 import Checkbox from "@/components/elements/Checkbox.vue";
 import DataTable from "@/components/data-table/DataTable";
@@ -143,7 +143,7 @@ import SvgVue from "svg-vue";
 export default {
   components: {
     DataTable,
-    Btn,
+    VBtn,
     SvgVue,
     TextField,
     Checkbox,

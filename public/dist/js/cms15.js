@@ -107,6 +107,17 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
+/***/ "./storage/app/public/img/mdi-icons/check.svg":
+/*!****************************************************!*\
+  !*** ./storage/app/public/img/mdi-icons/check.svg ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (\"<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" viewBox=\\\"0 0 24 24\\\"><path d=\\\"M21 7 9 19l-5.5-5.5 1.41-1.41L9 16.17 19.59 5.59 21 7Z\\\"/></svg>\");//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zdG9yYWdlL2FwcC9wdWJsaWMvaW1nL21kaS1pY29ucy9jaGVjay5zdmcuanMiLCJtYXBwaW5ncyI6Ijs7OztBQUFBLGlFQUFlLDRJQUE0SSIsInNvdXJjZXMiOlsid2VicGFjazovLy8uL3N0b3JhZ2UvYXBwL3B1YmxpYy9pbWcvbWRpLWljb25zL2NoZWNrLnN2Zz9mYjdlIl0sInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCBkZWZhdWx0IFwiPHN2ZyB4bWxucz1cXFwiaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmdcXFwiIHZpZXdCb3g9XFxcIjAgMCAyNCAyNFxcXCI+PHBhdGggZD1cXFwiTTIxIDcgOSAxOWwtNS41LTUuNSAxLjQxLTEuNDFMOSAxNi4xNyAxOS41OSA1LjU5IDIxIDdaXFxcIi8+PC9zdmc+XCI7Il0sIm5hbWVzIjpbXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./storage/app/public/img/mdi-icons/check.svg\n");
+
+/***/ }),
+
 /***/ "./storage/app/public/img/mdi-icons/chevron-left.svg":
 /*!***********************************************************!*\
   !*** ./storage/app/public/img/mdi-icons/chevron-left.svg ***!
@@ -573,6 +584,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 var map = {
 	"./arrow-down.svg": "./storage/app/public/img/mdi-icons/arrow-down.svg",
 	"./arrow-up.svg": "./storage/app/public/img/mdi-icons/arrow-up.svg",
+	"./check.svg": "./storage/app/public/img/mdi-icons/check.svg",
 	"./chevron-left.svg": "./storage/app/public/img/mdi-icons/chevron-left.svg",
 	"./chevron-right.svg": "./storage/app/public/img/mdi-icons/chevron-right.svg",
 	"./close.svg": "./storage/app/public/img/mdi-icons/close.svg",

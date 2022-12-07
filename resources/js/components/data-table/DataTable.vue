@@ -82,22 +82,22 @@
           class="data-table__previous-page data-table__pagination-arrow"
           :class="{ 'data-table__pagination-arrow--disabled': page < 2 }"
         >
-          <btn :disabled="page < 2" just-icon>
+          <v-btn :disabled="page < 2" just-icon>
             <template #icon>
               <svg-vue width="24" height="24" icon="chevron-left"></svg-vue>
             </template>
-          </btn>
+          </v-btn>
         </div>
         <div
           @click="page++"
           class="data-table__next-page data-table__pagination-arrow"
           :class="{ 'data-table__pagination-arrow--disabled': page >= maxPage }"
         >
-          <btn :disabled="page >= maxPage" just-icon>
+          <v-btn :disabled="page >= maxPage" just-icon>
             <template #icon>
               <svg-vue width="24" height="24" icon="chevron-right"></svg-vue>
             </template>
-          </btn>
+          </v-btn>
         </div>
       </div>
     </div>
@@ -107,13 +107,13 @@
 <script>
 import SvgVue from "svg-vue";
 import VSelect from "@/components/elements/VSelect.vue";
-import Btn from "@/components/elements/Btn";
+import VBtn from "@/components/elements/VBtn";
 
 export default {
   components: {
     SvgVue,
     VSelect,
-    Btn,
+    VBtn,
   },
   props: {
     headers: Array,

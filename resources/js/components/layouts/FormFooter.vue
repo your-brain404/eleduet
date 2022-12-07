@@ -6,26 +6,30 @@
       class="mr-2"
       @click="$store.commit('FormService/validate')"
     >
-      <v-icon left>mdi-check</v-icon>
+      <template #icon>
+        <svg-vue icon="check"></svg-vue>
+      </template>
       <span>Zatwierdź</span>
     </v-btn>
 
     <v-btn color="error" class="mr-2" @click="$router.go(-1)">
-      <v-icon left>mdi-close</v-icon>
+      <template #icon>
+        <svg-vue icon="close"></svg-vue>
+      </template>
       <span>Anuluj</span>
     </v-btn>
   </v-card-actions>
 </template>
 
 <script>
-import { VBtn, VCardActions, VIcon } from "vuetify/lib";
-import Btn from "@/components/elements/Btn.vue";
+import { VCardActions } from "vuetify/lib";
+import SvgVue from "svg-vue";
+import VBtn from "@/components/elements/VBtn.vue";
 export default {
   components: {
     VBtn,
     VCardActions,
-    VIcon,
-    Btn,
+    SvgVue,
   },
 };
 </script>

@@ -38,16 +38,8 @@ import axios from "axios";
 import isPhoto from "@/helpers/files/is-photo";
 import photoTypes from "@/helpers/files/photo-types";
 import VRow from "@/components/grid/VRow.vue";
-
-import {
-  VCard,
-  VCardText,
-  VCol,
-  VBtn,
-  VIcon,
-  VFileInput,
-  VForm,
-} from "vuetify/lib";
+import VCol from "@/components/grid/VCol.vue";
+import { VCard, VCardText, VBtn, VIcon, VFileInput, VForm } from "vuetify/lib";
 
 export default {
   components: {

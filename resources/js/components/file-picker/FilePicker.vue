@@ -261,6 +261,7 @@ import Picture from "@/components/picture/Picture";
 import existingPhotoPath from "@/helpers/links/existing-photo-path";
 import TextField from "@/components/elements/TextField.vue";
 import VRow from "@/components/grid/VRow.vue";
+import VCol from "@/components/grid/VCol.vue";
 import {
   VDialog,
   VCard,
@@ -269,7 +270,6 @@ import {
   VTabsItems,
   VTabItem,
   VCardText,
-  VCol,
   VBtn,
   VIcon,
   VPagination,

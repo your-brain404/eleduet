@@ -1,8 +1,12 @@
 <template functional>
-  <div class="row"><slot></slot></div>
+  <div class="row" v-bind="data.attrs" :class="data.staticClass">
+    <slot></slot>
+  </div>
 </template>
-
-<style scoped>
+<script>
+export default {};
+</script>
+<style>
 .row {
   display: flex;
   flex-wrap: wrap;
