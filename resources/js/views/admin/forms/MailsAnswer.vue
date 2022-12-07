@@ -40,8 +40,6 @@
                   label="Temat"
                 ></text-field>
                 <v-textarea
-                  color="primary"
-                  rows="5"
                   disabled
                   v-model="mail.message"
                   label="Wiadomość"
@@ -82,6 +80,7 @@ import VForm from "@/components/elements/VForm.vue";
 import VTextarea from "@/components/elements/VTextarea.vue";
 import TextField from "@/components/elements/TextField.vue";
 import { VueReCaptcha } from "vue-recaptcha-v3";
+import VRow from "@/components/grid/VRow.vue";
 import {
   VMain,
   VContainer,
@@ -91,7 +90,6 @@ import {
   VDivider,
   VCard,
   VCardTitle,
-  VRow,
   VCol,
 } from "vuetify/lib";
 

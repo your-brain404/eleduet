@@ -260,8 +260,8 @@ import copyToClipboard from "@/helpers/copy/copy-to-clipboard";
 import Picture from "@/components/picture/Picture";
 import existingPhotoPath from "@/helpers/links/existing-photo-path";
 import TextField from "@/components/elements/TextField.vue";
+import VRow from "@/components/grid/VRow.vue";
 import {
-  VRow,
   VDialog,
   VCard,
   VTab,

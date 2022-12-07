@@ -114,8 +114,8 @@ import AddPhotos from "@/components/gallery-picker/AddPhotos.vue";
 import url from "@/helpers/photo/url.js";
 import Picture from "@/components/picture/Picture";
 import TextField from "@/components/elements/TextField.vue";
+import VRow from "@/components/grid/VRow.vue";
 import {
-  VRow,
   VDialog,
   VCard,
   VTab,

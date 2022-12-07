@@ -37,9 +37,9 @@
 import axios from "axios";
 import isPhoto from "@/helpers/files/is-photo";
 import photoTypes from "@/helpers/files/photo-types";
+import VRow from "@/components/grid/VRow.vue";
 
 import {
-  VRow,
   VCard,
   VCardText,
   VCol,

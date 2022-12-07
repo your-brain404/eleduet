@@ -8,6 +8,7 @@ import FormFooter from "@/components/layouts/FormFooter";
 import FormService from "@/store/modules/formService/formServiceModule.js";
 
 import VForm from "@/components/elements/VForm.vue";
+import VRow from "@/components/grid/VRow.vue";
 import TextField from "@/components/elements/TextField.vue";
 import Checkbox from "@/components/elements/Checkbox.vue";
 import {
@@ -19,7 +20,6 @@ import {
     VDivider,
     VContainer,
     VCol,
-    VRow,
     VTextarea
 } from "vuetify/lib";
 

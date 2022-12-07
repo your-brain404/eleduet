@@ -47,11 +47,11 @@
 import getModule from "@/helpers/store/get-module";
 import VForm from "@/components/elements/VForm.vue";
 import TextField from "@/components/elements/TextField.vue";
+import VRow from "@/components/grid/VRow.vue";
 import {
   VMain,
   VContainer,
   VCard,
-  VRow,
   VBtn,
   VIcon,
   VDivider,
