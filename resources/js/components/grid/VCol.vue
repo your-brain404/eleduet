@@ -6,8 +6,11 @@
       props.md ? `col-md-${props.md}` : '',
       props.lg ? `col-lg-${props.lg}` : '',
       data.staticClass,
+      ...data.class,
     ]"
     v-bind="data.attrs"
+    :style="data.staticStyle"
+    v-on="data.on"
   >
     <slot></slot>
   </div>
@@ -15,6 +18,7 @@
 <script>
 export default {
   props: {
+    dupa: Boolean,
     cols: { type: [Number, String], default: 12 },
     md: {
       type: [Number, String, Boolean],
