@@ -27,7 +27,7 @@
         :icon="icon"
       ></svg-vue>
     </div>
-    <div class="text-field__error">{{ error }}</div>
+    <div v-if="!noValidation" class="text-field__error">{{ error }}</div>
   </div>
 </template>
 
@@ -47,6 +47,7 @@ export default {
     disabled: Boolean,
     lazyIcon: { type: Boolean, default: true },
     rules: Object,
+    noValidation: Boolean,
     type: {
       type: String,
       default: "text",
