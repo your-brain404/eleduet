@@ -10,12 +10,13 @@
       data.staticClass,
     ]"
     v-bind="data.attrs"
+    v-on="data.on"
   >
     <span class="custom-btn__content">
       <slot name="icon"></slot>
 
       <span
-        v-if="!justIcon"
+        v-if="!props.justIcon"
         class="custom-btn__content-text"
         :style="{ marginTop: props.textMarginTop }"
         ><slot></slot
@@ -39,10 +40,7 @@ export default {
       type: String,
       default: "",
     },
-    icon: {
-      type: String,
-      default: "",
-    },
+
     lazyIcon: { type: Boolean, default: true },
     textMarginTop: { type: String, default: "3px" },
     customClass: String,
