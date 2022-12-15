@@ -12,9 +12,9 @@ import VRow from "@/components/grid/VRow.vue";
 import VCol from "@/components/grid/VCol.vue";
 import TextField from "@/components/elements/TextField.vue";
 import Checkbox from "@/components/elements/Checkbox.vue";
+import VCard from "@/components/elements/VCard";
 import {
     VMain,
-    VCard,
     VCardTitle,
     VCheckbox,
     VTextField,
