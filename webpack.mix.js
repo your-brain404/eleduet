@@ -45,6 +45,22 @@ let base = {
     output: {
         chunkFilename: "js/[name].js",
         publicPath: "/dist/"
+    },
+    module: {
+        rules: [
+            {
+                test: /\.scss$/,
+                loader: "sass-loader",
+                options: {
+                    additionalData: `
+                 @import "~bootstrap/scss/_functions.scss";
+                 @import "~bootstrap/scss/_variables.scss";
+                 @import "~bootstrap/scss/_mixins.scss";
+                 @import "~@/plugins/bootstrap-vue/src/_variables";
+                 `
+                }
+            }
+        ]
     }
 };
 if (mix.inProduction()) {

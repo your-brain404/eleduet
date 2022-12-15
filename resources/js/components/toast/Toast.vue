@@ -45,10 +45,6 @@ export default {
 </script>
 
 <style lang="scss" >
-@import "bootstrap/scss/_functions.scss";
-@import "bootstrap/scss/_variables.scss";
-@import "bootstrap/scss/_mixins.scss";
-@import "~@/plugins/bootstrap-vue/src/_variables";
 @import "bootstrap/scss/_toasts.scss";
 @import "~@/plugins/bootstrap-vue/src/components/toast/index.scss";
 .snackbar-button {
