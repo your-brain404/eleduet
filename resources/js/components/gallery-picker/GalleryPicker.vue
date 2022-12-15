@@ -116,14 +116,14 @@ import Picture from "@/components/picture/Picture";
 import TextField from "@/components/elements/TextField.vue";
 import VRow from "@/components/grid/VRow.vue";
 import VCol from "@/components/grid/VCol.vue";
+import VCard from "@/components/elements/VCard";
+import VCardText from "@/components/elements/VCardText";
 import {
   VDialog,
-  VCard,
   VTab,
   VTabs,
   VTabsItems,
   VTabItem,
-  VCardText,
   VBtn,
   VIcon,
   VPagination,

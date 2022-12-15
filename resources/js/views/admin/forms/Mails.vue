@@ -54,6 +54,7 @@ import axios from "axios";
 import VForm from "@/components/elements/VForm.vue";
 import TextField from "@/components/elements/TextField.vue";
 import VTextarea from "@/components/elements/VTextarea.vue";
+import VCard from "@/components/elements/VCard";
 import {
   VMain,
   VContainer,
@@ -61,7 +62,6 @@ import {
   VBtn,
   VIcon,
   VDivider,
-  VCard,
   VCardTitle,
 } from "vuetify/lib";
 

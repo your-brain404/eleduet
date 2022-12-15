@@ -82,6 +82,7 @@ import TextField from "@/components/elements/TextField.vue";
 import { VueReCaptcha } from "vue-recaptcha-v3";
 import VRow from "@/components/grid/VRow.vue";
 import VCol from "@/components/grid/VCol.vue";
+import VCard from "@/components/elements/VCard";
 import {
   VMain,
   VContainer,
@@ -89,7 +90,6 @@ import {
   VBtn,
   VIcon,
   VDivider,
-  VCard,
   VCardTitle,
 } from "vuetify/lib";
 

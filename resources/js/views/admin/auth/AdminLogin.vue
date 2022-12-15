@@ -49,10 +49,10 @@ import VForm from "@/components/elements/VForm.vue";
 import TextField from "@/components/elements/TextField.vue";
 import VRow from "@/components/grid/VRow.vue";
 import VCol from "@/components/grid/VCol.vue";
+import VCard from "@/components/elements/VCard";
 import {
   VMain,
   VContainer,
-  VCard,
   VBtn,
   VIcon,
   VDivider,

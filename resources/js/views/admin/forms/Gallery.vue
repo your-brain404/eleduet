@@ -98,10 +98,10 @@ import TextField from "@/components/elements/TextField.vue";
 import VForm from "@/components/elements/VForm.vue";
 import VRow from "@/components/grid/VRow.vue";
 import VCol from "@/components/grid/VCol.vue";
+import VCard from "@/components/elements/VCard";
 import {
   VMain,
   VContainer,
-  VCard,
   VBtn,
   VIcon,
   VCardActions,

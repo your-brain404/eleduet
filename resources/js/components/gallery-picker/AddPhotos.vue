@@ -38,7 +38,9 @@ import isPhoto from "@/helpers/files/is-photo";
 import photoTypes from "@/helpers/files/photo-types";
 import VRow from "@/components/grid/VRow.vue";
 import VCol from "@/components/grid/VCol.vue";
-import { VCard, VCardText, VBtn, VIcon, VFileInput, VForm } from "vuetify/lib";
+import VCardText from "@/components/elements/VCardText";
+import VCard from "@/components/elements/VCard";
+import { VBtn, VIcon, VFileInput, VForm } from "vuetify/lib";
 export default {
   components: {
     VRow,
