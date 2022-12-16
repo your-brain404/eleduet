@@ -10,18 +10,14 @@ import FormService from "@/store/modules/formService/formServiceModule.js";
 import VForm from "@/components/elements/VForm.vue";
 import VRow from "@/components/grid/VRow.vue";
 import VCol from "@/components/grid/VCol.vue";
+import VMain from "@/components/grid/VMain.vue";
+import VContainer from "@/components/grid/VContainer.vue";
 import TextField from "@/components/elements/TextField.vue";
+import VTextarea from "@/components/elements/VTextarea.vue";
 import Checkbox from "@/components/elements/Checkbox.vue";
+import VCardTitle from "@/components/elements/VCardTitle.vue";
 import VCard from "@/components/elements/VCard";
-import {
-    VMain,
-    VCardTitle,
-    VCheckbox,
-    VTextField,
-    VDivider,
-    VContainer,
-    VTextarea
-} from "vuetify/lib";
+import VDivider from "@/components/elements/VDivider";
 
 export default {
     components: {
@@ -33,15 +29,13 @@ export default {
         VMain,
         VCard,
         VCardTitle,
-        VCheckbox,
-        VTextField,
-        VDivider,
         VContainer,
         VForm,
         VCol,
         VRow,
         TextField,
-        Checkbox
+        Checkbox,
+        VDivider
     },
     data() {
         return {

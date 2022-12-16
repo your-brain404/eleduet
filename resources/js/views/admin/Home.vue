@@ -1,15 +1,15 @@
 <template>
-  <v-main>
-    <v-container
+  <div class="home">
+    <div
       :id="block.tablename"
       :ref="block.tablename"
       v-for="(block, i) in blocks"
       :key="i"
-      class="pa-5"
+      class="home__block"
     >
       <v-card raised>
         <Title :block="block" :parentData="parentData" />
-        <v-divider></v-divider>
+        <v-divider />
         <component
           style="overflow: hidden"
           :reloadFlag="reloadFlag"
@@ -25,8 +25,8 @@
           @reloadFlag="reloadFlag = $event"
         />
       </v-card>
-    </v-container>
-  </v-main>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -36,7 +36,7 @@ import panelBlocks from "@/data/admin-panel-blocks.js";
 import fillBaseHeaders from "@/helpers/panel-table/fill-base-headers.js";
 import getModule from "@/helpers/store/get-module";
 import VCard from "@/components/elements/VCard";
-import { VMain, VContainer, VDivider } from "vuetify/lib";
+import VDivider from "@/components/elements/VDivider";
 
 export default {
   data() {
@@ -50,8 +50,6 @@ export default {
   components: {
     Table,
     Title,
-    VMain,
-    VContainer,
     VCard,
     VDivider,
   },
@@ -96,6 +94,13 @@ export default {
   padding: 0px 80px;
   @media (max-width: 768px) {
     padding: 0 20px;
+  }
+}
+
+.home {
+  padding-left: 64px;
+  &__block {
+    padding: 20px;
   }
 }
 </style>
