@@ -18,6 +18,7 @@ import Checkbox from "@/components/elements/Checkbox.vue";
 import VCardTitle from "@/components/elements/VCardTitle.vue";
 import VCard from "@/components/elements/VCard";
 import VDivider from "@/components/elements/VDivider";
+import loadingModule from "@/store/modules/loading/loadingModule";
 
 export default {
     components: {
@@ -151,6 +152,9 @@ export default {
     },
 
     created() {
+        if (!this.$store.hasModule("Loading")) {
+            this.$store.registerModule("Loading", loadingModule);
+        }
         if (!this.$store.hasModule("FormService")) {
             this.$store.registerModule("FormService", FormService);
         }

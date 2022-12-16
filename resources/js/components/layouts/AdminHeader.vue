@@ -131,9 +131,9 @@ export default {
   },
 
   created() {
-    if (!this.$store.hasModule("loading")) {
+    if (!this.$store.hasModule("Loading")) {
       this.$store.registerModule(
-        "loading",
+        "Loading",
         require("@/store/modules/loading/loadingModule")
       );
     }
