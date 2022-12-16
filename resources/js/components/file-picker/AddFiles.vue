@@ -21,9 +21,10 @@
               :loading="loading"
               @click="submit"
               class="mt-3"
-              color="success"
             >
-              <v-icon left>mdi-check</v-icon>
+              <template #icon>
+                <svg-vue icon="check" />
+              </template>
               <span>Wyślij</span>
             </v-btn>
           </v-form>
@@ -41,7 +42,10 @@ import VRow from "@/components/grid/VRow.vue";
 import VCol from "@/components/grid/VCol.vue";
 import VCardText from "@/components/elements/VCardText";
 import VCard from "@/components/elements/VCard";
-import { VBtn, VIcon, VFileInput, VForm } from "vuetify/lib";
+import VBtn from "@/components/elements/VBtn";
+import SvgVue from "svg-vue";
+import VForm from "@/components/elements/VForm.vue";
+import { VFileInput } from "vuetify/lib";
 
 export default {
   components: {
@@ -50,7 +54,7 @@ export default {
     VCardText,
     VCol,
     VBtn,
-    VIcon,
+    SvgVue,
     VFileInput,
     VForm,
   },
