@@ -1,5 +1,5 @@
 <template>
-  <v-card-actions class="pa-4">
+  <div class="form-footer">
     <v-btn
       :disabled="!$store.state.FormService.valid"
       color="primary"
@@ -18,18 +18,24 @@
       </template>
       <span>Anuluj</span>
     </v-btn>
-  </v-card-actions>
+  </div>
 </template>
 
 <script>
-import { VCardActions } from "vuetify/lib";
 import SvgVue from "svg-vue";
 import VBtn from "@/components/elements/VBtn.vue";
 export default {
   components: {
     VBtn,
-    VCardActions,
     SvgVue,
   },
 };
 </script>
+
+<style lang="scss">
+.form-footer {
+  padding: 16px;
+  align-items: center;
+  display: flex;
+}
+</style>
