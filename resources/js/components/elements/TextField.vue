@@ -125,7 +125,6 @@ export default {
   position: relative;
   $parent: ".text-field";
   padding-bottom: 12px;
-  margin-bottom: 22px;
   display: flex;
   padding-top: 19px;
   flex-direction: column;
