@@ -34,12 +34,16 @@
               class="mr-2"
               @click="saveMail"
             >
-              <v-icon left>mdi-check</v-icon>
+              <template #icon>
+                <svg-vue icon="check"></svg-vue>
+              </template>
               <span>Wyślij</span>
             </v-btn>
 
             <v-btn color="error" class="mr-2" @click="$router.go(-1)">
-              <v-icon left>mdi-close</v-icon>
+              <template #icon>
+                <svg-vue icon="close"></svg-vue>
+              </template>
               <span>Wróć</span>
             </v-btn>
           </v-card-actions>
@@ -55,15 +59,13 @@ import VForm from "@/components/elements/VForm.vue";
 import TextField from "@/components/elements/TextField.vue";
 import VTextarea from "@/components/elements/VTextarea.vue";
 import VCard from "@/components/elements/VCard";
-import {
-  VMain,
-  VContainer,
-  VCardActions,
-  VBtn,
-  VIcon,
-  VDivider,
-  VCardTitle,
-} from "vuetify/lib";
+import VBtn from "@/components/elements/VBtn";
+import VDivider from "@/components/elements/VDivider";
+import VCardTitle from "@/components/elements/VCardTitle";
+import VCardActions from "@/components/elements/VCardActions";
+import VMain from "@/components/grid/VMain";
+import VContainer from "@/components/grid/VContainer";
+import SvgVue from "svg-vue";
 
 export default {
   components: {
@@ -73,7 +75,7 @@ export default {
     VCardActions,
     TextField,
     VBtn,
-    VIcon,
+    SvgVue,
     VDivider,
     VTextarea,
     VCard,
