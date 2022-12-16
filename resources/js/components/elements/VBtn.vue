@@ -189,8 +189,10 @@ export default {
     }
   }
   &--disabled {
-    background-color: rgba(0, 0, 0, 0.12) !important;
     pointer-events: none;
+  }
+  &--disabled:not(&--just-icon) {
+    background-color: rgba(0, 0, 0, 0.12) !important;
   }
   &--disabled &__content-text,
   &--disabled &__content-text * {
