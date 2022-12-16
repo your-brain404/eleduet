@@ -4,18 +4,17 @@
       <v-row class="d-flex justify-content-center add-files-row">
         <v-col lg="4" sm="12" md="6">
           <v-form ref="form" v-model="valid" lazy-validation>
-            <v-file-input
-              :color="$store.getters.settings.first_color"
-              id="file"
+            <text-field
               v-model="file"
               multiple
               show-size
               counter
               label="Pliki"
-              prepend-icon="mdi-files"
+              icon="paperclip"
               :rules="rules"
+              type="file"
               :accept="imagesOnly ? photoTypes : ''"
-            ></v-file-input>
+            ></text-field>
             <v-btn
               :disabled="loading || !valid || file.length === 0"
               :loading="loading"
@@ -45,7 +44,7 @@ import VCard from "@/components/elements/VCard";
 import VBtn from "@/components/elements/VBtn";
 import SvgVue from "svg-vue";
 import VForm from "@/components/elements/VForm.vue";
-import { VFileInput } from "vuetify/lib";
+import TextField from "@/components/elements/TextField.vue";
 
 export default {
   components: {
@@ -55,7 +54,7 @@ export default {
     VCol,
     VBtn,
     SvgVue,
-    VFileInput,
+    TextField,
     VForm,
   },
   props: {
@@ -132,7 +131,6 @@ export default {
 <style scoped lang="scss">
 .add-files-row {
   @media (min-width: 992px) {
-    overflow-y: auto;
     max-height: 80vh;
   }
 }
