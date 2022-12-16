@@ -7,7 +7,7 @@
       'text-field--error': error,
       'text-field--disabled': disabled,
     }"
-    @click="$refs['input-file'].click()"
+    @click="$refs['input-file'] && $refs['input-file'].click()"
   >
     <div class="text-field__input-container">
       <input
