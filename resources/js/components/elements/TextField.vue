@@ -7,16 +7,28 @@
       'text-field--error': error,
       'text-field--disabled': disabled,
     }"
+    @click="$refs['input-file'].click()"
   >
     <div class="text-field__input-container">
       <input
+        @change="$emit('input', $event.target.files)"
+        :multiple="multiple"
+        v-if="type === 'file'"
+        v-show="false"
+        type="file"
+        class="text-field__input-file"
+        ref="input-file"
+      />
+      <input
         ref="input"
         @input="$emit('input', $event.target.value)"
-        :value="value"
+        :value="prepareValue(value)"
         class="text-field__input"
         :class="{ 'text-field__input--not-empty': value }"
-        :type="type"
+        :type="type !== 'file' && type"
+        :accept="accept"
       />
+
       <label v-if="label" class="text-field__label">{{ label }}</label>
 
       <svg-vue
@@ -27,7 +39,13 @@
         :icon="icon"
       ></svg-vue>
     </div>
-    <div v-if="!noValidation" class="text-field__error">{{ error }}</div>
+    <div class="text-field__messages">
+      <div v-if="!noValidation" class="text-field__error">{{ error }}</div>
+      <div v-if="counter || showSize" class="text-field__counter-size">
+        <template>Liczba plików: {{ value.length }} </template
+        ><template>(łącznie {{ formatFileSize(filesSize) }}) </template>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -35,6 +53,7 @@
 import SvgVue from "svg-vue";
 import randomString from "@/helpers/string/random-string";
 import formValidation from "@/mixins/form-validation";
+import formatFileSize from "@/helpers/files/format-file-size";
 export default {
   mixins: [formValidation],
   components: {
@@ -52,6 +71,10 @@ export default {
       type: String,
       default: "text",
     },
+    multiple: Boolean,
+    counter: Boolean,
+    showSize: Boolean,
+    accept: String,
   },
   data() {
     return {
@@ -59,13 +82,27 @@ export default {
       isFocused: false,
     };
   },
+  computed: {
+    filesSize() {
+      if (this.value.constructor !== FileList) return 0;
+      return [...this.value].reduce((total, file) => (total += file.size), 0);
+    },
+  },
+  methods: {
+    formatFileSize,
+    prepareValue(value) {
+      return value?.constructor === FileList
+        ? `Liczba plików: ${value.length}`
+        : value;
+    },
+  },
   watch: {
     isFocused() {
       if (this.isFocused) this.$refs.input.focus();
     },
   },
 
-  created() {
+  mounted() {
     window.addEventListener("click", (e) => {
       let textFieldClicked = Boolean(
         e.path.find((el) => {
@@ -89,9 +126,17 @@ export default {
   $parent: ".text-field";
   padding-bottom: 12px;
   margin-bottom: 22px;
+  display: flex;
+  padding-top: 19px;
+  flex-direction: column;
 
   &__input[type="date"] + &__label {
     @include labelFocusState;
+  }
+  svg {
+    path {
+      fill: rgba(0, 0, 0, 0.6);
+    }
   }
 
   &--is-focused &__label {
@@ -153,17 +198,30 @@ export default {
     color: rgba(0, 0, 0, 0.6);
     transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1);
   }
-  &__error {
+  &__messages {
     min-height: 14px;
     font-size: 12px;
     line-height: 12px;
-    position: absolute;
     width: 100%;
+    display: flex;
+    flex: 1 0 auto;
+    bottom: -2px;
   }
+  &__counter-size {
+    white-space: nowrap;
+  }
+  &__error {
+    flex: 1 1 auto;
+  }
+
   &--error &__label,
   &--error &__input,
-  &__error {
+  &__error,
+  &--error &__counter-size {
     color: #ff5252;
+  }
+  &--error svg path {
+    fill: #ff5252 !important;
   }
   &--error &__input-container {
     border-color: #ff5252;
