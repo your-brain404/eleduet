@@ -72,9 +72,7 @@ export default {
   text-decoration: none;
   text-indent: 0.0892857143em;
   text-transform: uppercase;
-  transition-duration: 0.28s;
-  transition-property: box-shadow, transform, opacity;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition: 0.28s cubic-bezier(0.4, 0, 0.2, 1);
   user-select: none;
   vertical-align: middle;
   white-space: nowrap;
@@ -189,6 +187,17 @@ export default {
         fill: rgba(0, 0, 0, 0.54);
       }
     }
+  }
+  &--disabled {
+    background-color: rgba(0, 0, 0, 0.12) !important;
+    pointer-events: none;
+  }
+  &--disabled &__content-text,
+  &--disabled &__content-text * {
+    color: rgba(0, 0, 0, 0.26) !important;
+  }
+  &--disabled svg path {
+    fill: rgba(0, 0, 0, 0.26);
   }
 }
 </style>
