@@ -31,7 +31,9 @@
                   :loading="loading"
                   type="submit"
                 >
-                  <v-icon left>mdi-check</v-icon>
+                  <template #icon>
+                    <svg-vue icon="check"></svg-vue>
+                  </template>
                   <span class="button-name">Zaloguj</span>
                 </v-btn>
               </div>
@@ -49,25 +51,24 @@ import VForm from "@/components/elements/VForm.vue";
 import TextField from "@/components/elements/TextField.vue";
 import VRow from "@/components/grid/VRow.vue";
 import VCol from "@/components/grid/VCol.vue";
+import VMain from "@/components/grid/VMain.vue";
+import VContainer from "@/components/grid/VContainer.vue";
 import VCard from "@/components/elements/VCard";
-import {
-  VMain,
-  VContainer,
-  VBtn,
-  VIcon,
-  VDivider,
-  VCardTitle,
-} from "vuetify/lib";
+import VBtn from "@/components/elements/VBtn";
+import VDivider from "@/components/elements/VDivider";
+import VCardTitle from "@/components/elements/VCardTitle";
+import SvgVue from "svg-vue";
+
 export default {
   components: {
     VMain,
     VCol,
+    SvgVue,
     VContainer,
     VCard,
     VForm,
     VRow,
     VBtn,
-    VIcon,
     TextField,
     VDivider,
     VCardTitle,
