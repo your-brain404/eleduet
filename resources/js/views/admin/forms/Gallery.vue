@@ -34,13 +34,16 @@
                           :src="getUrl(photo.path)"
                         />
                         <div class="close-icon-container">
-                          <v-icon
+                          <v-btn
+                            class="close-icon"
                             v-if="photo.id"
                             @click="destroy(photo.id)"
-                            class="pr-1 pt-1 close-icon"
-                            color="grey"
-                            >mdi-close</v-icon
+                            just-icon
                           >
+                            <template #icon>
+                              <svg-vue icon="close"></svg-vue>
+                            </template>
+                          </v-btn>
                         </div>
                       </div>
                       <text-field
@@ -73,12 +76,16 @@
               class="mr-2"
               @click="send"
             >
-              <v-icon left>mdi-check</v-icon>
+              <template #icon>
+                <svg-vue icon="check"></svg-vue>
+              </template>
               <span>Zatwierdź</span>
             </v-btn>
 
             <v-btn color="error" class="mr-2" @click="$router.go(-1)">
-              <v-icon left>mdi-close</v-icon>
+              <template #icon>
+                <svg-vue icon="close"></svg-vue>
+              </template>
               <span>Anuluj</span>
             </v-btn>
           </v-card-actions>
@@ -98,16 +105,14 @@ import TextField from "@/components/elements/TextField.vue";
 import VForm from "@/components/elements/VForm.vue";
 import VRow from "@/components/grid/VRow.vue";
 import VCol from "@/components/grid/VCol.vue";
+import VMain from "@/components/grid/VMain.vue";
+import VContainer from "@/components/grid/VContainer.vue";
 import VCard from "@/components/elements/VCard";
-import {
-  VMain,
-  VContainer,
-  VBtn,
-  VIcon,
-  VCardActions,
-  VDivider,
-  VCardTitle,
-} from "vuetify/lib";
+import VBtn from "@/components/elements/VBtn";
+import VCardActions from "@/components/elements/VCardActions";
+import VDivider from "@/components/elements/VDivider";
+import VCardTitle from "@/components/elements/VCardTitle";
+import SvgVue from "svg-vue";
 
 export default {
   components: {
@@ -118,7 +123,7 @@ export default {
     VCard,
     VForm,
     VBtn,
-    VIcon,
+    SvgVue,
     VCardActions,
     VDivider,
     VRow,
