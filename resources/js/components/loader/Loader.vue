@@ -1,21 +1,16 @@
 <template>
   <v-container class="d-flex" style="z-index: 100000">
-    <v-progress-circular
-      :size="70"
-      :width="7"
-      :color="$store.getters.settings.first_color"
-      class="loader"
-      indeterminate
-    ></v-progress-circular>
+    <b-spinner class="loader"></b-spinner>
   </v-container>
 </template>
 
 <script>
-import { VContainer, VProgressCircular } from "vuetify/lib";
+import { BSpinner } from "@/plugins/bootstrap-vue/src/components/spinner/spinner";
+import VContainer from "@/components/grid/VContainer.vue";
 export default {
   components: {
     VContainer,
-    VProgressCircular,
+    BSpinner,
   },
 };
 </script>
@@ -27,4 +22,8 @@ export default {
   margin-left: auto;
   margin-right: auto;
 }
+</style>
+
+<style lang="scss">
+@import "~bootstrap/scss/spinners";
 </style>
