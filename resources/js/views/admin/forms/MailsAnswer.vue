@@ -58,12 +58,16 @@
               class="mr-2"
               @click="editMail"
             >
-              <v-icon left>mdi-check</v-icon>
+              <template #icon>
+                <svg-vue icon="check"></svg-vue>
+              </template>
               <span>Wyślij</span>
             </v-btn>
 
             <v-btn color="error" class="mr-2" @click="$router.go(-1)">
-              <v-icon left>mdi-close</v-icon>
+              <template #icon>
+                <svg-vue icon="close"></svg-vue>
+              </template>
               <span>Wróć</span>
             </v-btn>
           </v-card-actions>
@@ -82,26 +86,24 @@ import TextField from "@/components/elements/TextField.vue";
 import { VueReCaptcha } from "vue-recaptcha-v3";
 import VRow from "@/components/grid/VRow.vue";
 import VCol from "@/components/grid/VCol.vue";
+import VMain from "@/components/grid/VMain.vue";
+import VContainer from "@/components/grid/VContainer.vue";
 import VCard from "@/components/elements/VCard";
-import {
-  VMain,
-  VContainer,
-  VCardActions,
-  VBtn,
-  VIcon,
-  VDivider,
-  VCardTitle,
-} from "vuetify/lib";
+import VCardActions from "@/components/elements/VCardActions";
+import VBtn from "@/components/elements/VBtn";
+import VDivider from "@/components/elements/VDivider";
+import VCardTitle from "@/components/elements/VCardTitle";
+import SvgVue from "svg-vue";
 
 export default {
   components: {
     VMain,
+    SvgVue,
     VTextarea,
     VContainer,
     VForm,
     VCardActions,
     VBtn,
-    VIcon,
     VDivider,
     TextField,
     VCard,
