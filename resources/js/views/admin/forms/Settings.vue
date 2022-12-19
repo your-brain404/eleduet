@@ -19,12 +19,10 @@
                 ></text-field>
                 <div class="mt-3">
                   <p class="mb-1">Kolor strony</p>
-                  <v-color-picker
-                    dot-size="25"
-                    swatches-max-height="200"
-                    @input="currentObject.first_color = $event"
-                    :value="currentObject.first_color"
-                  ></v-color-picker>
+                  <text-field
+                    type="color"
+                    v-model="currentObject.first_color"
+                  ></text-field>
                 </div>
 
                 <div class="mt-3">
@@ -103,11 +101,7 @@
 
 <script>
 import FormServiceMixin from "@/mixins/FormService.js";
-import { VColorPicker } from "vuetify/lib";
 export default {
   mixins: [FormServiceMixin],
-  components: {
-    VColorPicker,
-  },
 };
 </script>

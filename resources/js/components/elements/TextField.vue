@@ -22,7 +22,7 @@
       <input
         ref="input"
         @input="$emit('input', $event.target.value)"
-        :value="prepareValue(value)"
+        :value="valueToPlaceholder"
         class="text-field__input"
         :class="{ 'text-field__input--not-empty': value }"
         :type="type !== 'file' && type"
@@ -87,14 +87,14 @@ export default {
       if (this.value.constructor !== FileList) return 0;
       return [...this.value].reduce((total, file) => (total += file.size), 0);
     },
+    valueToPlaceholder() {
+      return this.value?.constructor === FileList
+        ? `Liczba plików: ${this.value.length}`
+        : this.value;
+    },
   },
   methods: {
     formatFileSize,
-    prepareValue(value) {
-      return value?.constructor === FileList
-        ? `Liczba plików: ${value.length}`
-        : value;
-    },
   },
   watch: {
     isFocused() {
