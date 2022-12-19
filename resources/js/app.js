@@ -3,7 +3,6 @@ import router from "@/router/routes";
 import axios from "axios";
 import VueAxios from "vue-axios";
 import store from "./store/store.js";
-import vuetify from "@/plugins/vuetify.js";
 
 import VueMeta from "vue-meta";
 import isExternal from "@/helpers/links/is-external";
@@ -44,6 +43,5 @@ Vue.axios.interceptors.request.use(
 export const app = new Vue({
     el: "#app",
     router,
-    store,
-    vuetify
+    store
 });

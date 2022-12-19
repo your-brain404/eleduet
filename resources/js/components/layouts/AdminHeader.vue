@@ -343,6 +343,34 @@ export default {
 .admin-body {
   padding-left: 64px !important;
 }
+.px-3 {
+  padding-right: 12px !important;
+  padding-left: 12px !important;
+}
+.pt-4 {
+  padding-top: 16px !important;
+}
+.text-center {
+  text-align: center !important;
+}
+.font-weight-bold {
+  font-weight: 700;
+}
+.pa-5 {
+  padding: 20px !important;
+}
+.mb-2 {
+  margin-bottom: 8px !important;
+}
+.mb-5 {
+  margin-bottom: 20px !important;
+}
+.mr-2 {
+  margin-right: 8px !important;
+}
+.mt-5 {
+  margin-top: 20px !important;
+}
 h1,
 h2,
 h3,

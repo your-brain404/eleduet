@@ -1,5 +1,5 @@
 <template>
-  <v-app class="app">
+  <div class="app">
     <component :is="'style'">
       :root { --first-color: {{ $store.state.Settings.settings.first_color }}; }
       ul li::before { background-image: url("{{
@@ -26,12 +26,11 @@
       <FooterComponent v-if="!isPathAdmin" />
     </footer>
     <Cookies v-if="!isPathAdmin && !savedCookies" />
-  </v-app>
+  </div>
 </template>
 
 <script>
 import "@/font/JosefinSans/stylesheet.css";
-import { VApp } from "vuetify/lib";
 import getCookie from "@/helpers/cookies/get-cookie";
 
 function recaptcha() {
@@ -54,7 +53,6 @@ export default {
     };
   },
   components: {
-    VApp,
     HeaderComponent: () =>
       import(
         /* webpackPrefetch: true */ /* webpackChunkName: 'front-layout' */ "./layouts/Header"
@@ -171,6 +169,15 @@ export default {
 * {
   font-family: "Josefin Sans" !important;
 }
+.app {
+  flex: 1 1 auto;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  max-width: 100%;
+  position: static;
+}
 *,
 *::before,
 *::after {
@@ -180,8 +187,11 @@ export default {
   color: white;
   background-color: var(--first-color);
 }
-.v-application--wrap {
-  position: static !important;
+html {
+  overflow-y: auto;
+}
+p {
+  margin-bottom: 16px;
 }
 hr {
   margin-top: 1rem;
@@ -219,20 +229,18 @@ b {
   --global-border-radius: 12px;
   --danger: #df1c1c;
 }
-.v-application {
-  .primary,
-  :is(div, i, button, span, label).primary {
-    background-color: var(--first-color) !important;
-    border-color: var(--first-color) !important;
-  }
-  a {
-    color: var(--first-color);
-    cursor: pointer;
-  }
-  :is(div, i, button, span, label).primary--text {
-    color: var(--first-color) !important;
-    caret-color: var(--first-color) !important;
-  }
+.primary,
+:is(div, i, button, span, label).primary {
+  background-color: var(--first-color) !important;
+  border-color: var(--first-color) !important;
+}
+a {
+  color: var(--first-color);
+  cursor: pointer;
+}
+:is(div, i, button, span, label).primary--text {
+  color: var(--first-color) !important;
+  caret-color: var(--first-color) !important;
 }
 .grecaptcha-badge {
   z-index: 999;

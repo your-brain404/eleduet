@@ -32,7 +32,6 @@
         "webpack-bundle-analyzer": "^4.7.0"
     },
     "dependencies": {
-        "@mdi/font": "^5.3.45",
         "@tinymce/tinymce-vue": "^3.2.8",
         "bootstrap-vue": "^2.23.1",
         "core-js": "^3.6.5",
@@ -50,7 +49,6 @@
         "vue-router": "^3.2.0",
         "vue-select": "^3.20.0",
         "vue-summernote": "^1.0.3",
-        "vuetify": "^2.6.12",
         "vuex": "^3.5.1"
     }
 }

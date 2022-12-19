@@ -145,7 +145,7 @@
                             cols="12"
                             style="
                               position: sticky;
-                              bottom: -1px;
+                              bottom: -20px;
                               background-color: white;
                               z-index: 23;
                             "
