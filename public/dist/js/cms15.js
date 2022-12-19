@@ -195,6 +195,17 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
+/***/ "./storage/app/public/img/mdi-icons/camera.svg":
+/*!*****************************************************!*\
+  !*** ./storage/app/public/img/mdi-icons/camera.svg ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (\"<svg xmlns=\\\"http://www.w3.org/2000/svg\\\" viewBox=\\\"0 0 24 24\\\"><path d=\\\"M4 4h3l2-2h6l2 2h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2m8 3a5 5 0 0 0-5 5 5 5 0 0 0 5 5 5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 2a3 3 0 0 1 3 3 3 3 0 0 1-3 3 3 3 0 0 1-3-3 3 3 0 0 1 3-3Z\\\"/></svg>\");//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9zdG9yYWdlL2FwcC9wdWJsaWMvaW1nL21kaS1pY29ucy9jYW1lcmEuc3ZnLmpzIiwibWFwcGluZ3MiOiI7Ozs7QUFBQSxpRUFBZSxnU0FBZ1MiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9zdG9yYWdlL2FwcC9wdWJsaWMvaW1nL21kaS1pY29ucy9jYW1lcmEuc3ZnPzJiYzYiXSwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IGRlZmF1bHQgXCI8c3ZnIHhtbG5zPVxcXCJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Z1xcXCIgdmlld0JveD1cXFwiMCAwIDI0IDI0XFxcIj48cGF0aCBkPVxcXCJNNCA0aDNsMi0yaDZsMiAyaDNhMiAyIDAgMCAxIDIgMnYxMmEyIDIgMCAwIDEtMiAySDRhMiAyIDAgMCAxLTItMlY2YTIgMiAwIDAgMSAyLTJtOCAzYTUgNSAwIDAgMC01IDUgNSA1IDAgMCAwIDUgNSA1IDUgMCAwIDAgNS01IDUgNSAwIDAgMC01LTVtMCAyYTMgMyAwIDAgMSAzIDMgMyAzIDAgMCAxLTMgMyAzIDMgMCAwIDEtMy0zIDMgMyAwIDAgMSAzLTNaXFxcIi8+PC9zdmc+XCI7Il0sIm5hbWVzIjpbXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./storage/app/public/img/mdi-icons/camera.svg\n");
+
+/***/ }),
+
 /***/ "./storage/app/public/img/mdi-icons/check.svg":
 /*!****************************************************!*\
   !*** ./storage/app/public/img/mdi-icons/check.svg ***!
@@ -1133,6 +1144,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 var map = {
 	"./arrow-down.svg": "./storage/app/public/img/mdi-icons/arrow-down.svg",
 	"./arrow-up.svg": "./storage/app/public/img/mdi-icons/arrow-up.svg",
+	"./camera.svg": "./storage/app/public/img/mdi-icons/camera.svg",
 	"./check.svg": "./storage/app/public/img/mdi-icons/check.svg",
 	"./chevron-left.svg": "./storage/app/public/img/mdi-icons/chevron-left.svg",
 	"./chevron-right.svg": "./storage/app/public/img/mdi-icons/chevron-right.svg",

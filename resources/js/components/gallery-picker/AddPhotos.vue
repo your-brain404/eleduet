@@ -4,7 +4,7 @@
       <v-row class="d-flex justify-content-center">
         <v-col lg="4" sm="12" md="4">
           <v-form ref="form" v-model="valid" lazy-validation>
-            <v-file-input
+            <text-field
               id="file"
               v-model="file"
               multiple
@@ -12,17 +12,19 @@
               counter
               label="Zdjęcie"
               :accept="photoTypes"
-              prepend-icon="mdi-camera"
+              icon="camera"
+              type="file"
               :rules="rules"
-            ></v-file-input>
+            ></text-field>
             <v-btn
-              :disabled="loading || file.length === 0"
+              :disabled="loading || !valid || file.length === 0"
               :loading="loading"
               @click="submit"
-              class="mt-3"
               color="success"
             >
-              <v-icon left>mdi-check</v-icon>
+              <template #icon>
+                <svg-vue icon="check" />
+              </template>
               <span>Wyślij</span>
             </v-btn>
           </v-form>
@@ -40,16 +42,19 @@ import VRow from "@/components/grid/VRow.vue";
 import VCol from "@/components/grid/VCol.vue";
 import VCardText from "@/components/elements/VCardText";
 import VCard from "@/components/elements/VCard";
-import { VBtn, VIcon, VFileInput, VForm } from "vuetify/lib";
+import VForm from "@/components/elements/VForm";
+import TextField from "@/components/elements/TextField.vue";
+import VBtn from "@/components/elements/VBtn.vue";
+import SvgVue from "svg-vue";
 export default {
   components: {
     VRow,
+    TextField,
     VCard,
     VCardText,
     VCol,
     VBtn,
-    VIcon,
-    VFileInput,
+    SvgVue,
     VForm,
   },
   data() {
