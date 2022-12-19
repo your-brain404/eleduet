@@ -2,7 +2,6 @@ const mix = require("laravel-mix");
 const path = require("path");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
     .BundleAnalyzerPlugin;
-require("vuetifyjs-mix-extension");
 require("laravel-mix-svg-vue");
 
 // require("laravel-mix-clean");
@@ -18,7 +17,6 @@ require("laravel-mix-svg-vue");
  */
 
 mix.js("resources/js/app.js", "js")
-    .vuetify()
     .vue({
         version: 2
     })

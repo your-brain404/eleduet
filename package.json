@@ -28,7 +28,6 @@
         "sass-loader": "^9.0.0",
         "vue": "^2.6.12",
         "vue-template-compiler": "^2.6.12",
-        "vuetifyjs-mix-extension": "^0.0.20",
         "webpack-bundle-analyzer": "^4.7.0"
     },
     "dependencies": {

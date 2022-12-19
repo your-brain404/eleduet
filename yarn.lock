@@ -3827,7 +3827,7 @@
     "svgo" "^2.3.1"
     "svgo-loader" "^3.0.0"
 
-"laravel-mix@^4.0.15 || ^5.0.0 || ^6.0.0", "laravel-mix@^6.0.49", "laravel-mix@>=5.0.4":
+"laravel-mix@^4.0.15 || ^5.0.0 || ^6.0.0", "laravel-mix@^6.0.49":
   "integrity" "sha512-bBMFpFjp26XfijPvY5y9zGKud7VqlyOE0OWUcPo3vTBY5asw8LTjafAbee1dhfLz6PWNqDziz69CP78ELSpfKw=="
   "resolved" "https://registry.npmjs.org/laravel-mix/-/laravel-mix-6.0.49.tgz"
   "version" "6.0.49"
@@ -5336,7 +5336,7 @@
   "resolved" "https://registry.npmjs.org/safer-buffer/-/safer-buffer-2.1.2.tgz"
   "version" "2.1.2"
 
-"sass-loader@^9.0.0", "sass-loader@>=9.0.2":
+"sass-loader@^9.0.0":
   "integrity" "sha512-fOwsP98ac1VMme+V3+o0HaaMHp8Q/C9P+MUazLFVi3Jl7ORGHQXL1XeRZt3zLSGZQQPC8xE42Y2WptItvGjDQg=="
   "resolved" "https://registry.npmjs.org/sass-loader/-/sass-loader-9.0.3.tgz"
   "version" "9.0.3"
@@ -6186,11 +6186,6 @@
   "integrity" "sha512-uhmLFETqPPNyuLLbsKz6ioJ4q7AZHzD8ZVFNATNyICSZouqP2Sz0rotWQC8UNBF6VGSCs5abnKJoStA6JbCbfg=="
   "resolved" "https://registry.npmjs.org/vue/-/vue-2.6.12.tgz"
   "version" "2.6.12"
-
-"vuetifyjs-mix-extension@^0.0.20":
-  "integrity" "sha512-mGThNSQHSyyvMEvtJ7eae9Iq7sjt5lAwIMGBnypINU5fOdhdN+MiKbnEl0fpMNfrc7RxVr7M5gKe2yBP2RVhnQ=="
-  "resolved" "https://registry.npmjs.org/vuetifyjs-mix-extension/-/vuetifyjs-mix-extension-0.0.20.tgz"
-  "version" "0.0.20"
 
 "vuex@^3.5.1":
   "integrity" "sha512-w7oJzmHQs0FM9LXodfskhw9wgKBiaB+totOdb8sNzbTB2KDCEEwEs29NzBZFh/lmEK1t5tDmM1vtsO7ubG1DFw=="
