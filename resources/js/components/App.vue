@@ -30,7 +30,6 @@
 </template>
 
 <script>
-import "@/font/JosefinSans/stylesheet.css";
 import getCookie from "@/helpers/cookies/get-cookie";
 
 function recaptcha() {

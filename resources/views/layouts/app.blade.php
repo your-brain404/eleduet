@@ -10,6 +10,7 @@
     <title>{{ $meta_title }}</title>
     <meta name="description" content="{{ $meta_description }}">
     <link rel="icon" href="/storage/media/{{ $settings->favicon }}" type="image/png">
+    <link rel="stylesheet" async href="{{ asset('custom-fonts/JosefinSans/stylesheet.css') }}">
 
 </head>
 
