@@ -19,6 +19,7 @@
           :width="slide.photo_sizes.width"
           :height="slide.photo_sizes.height"
           :classImg="'slide-photo'"
+          :rel="i === 0 ? 'preload' : ''"
           :loading="i === 0 ? 'eager' : 'lazy'"
           :styleImg="{
             'object-size': slide.photo_background_size,
@@ -75,7 +76,6 @@ export default {
       this.emitData();
       this.carousel = false;
       setTimeout(() => (this.carousel = true), 1);
-      this.preloadImages();
     },
   },
   data() {
@@ -97,12 +97,6 @@ export default {
   methods: {
     url,
     existingPhotoPath,
-    preloadImages() {
-      for (let slide of this.slider) {
-        let image = new Image();
-        image.src = this.existingPhotoPath(this.url(slide.photo));
-      }
-    },
   },
 };
 </script>

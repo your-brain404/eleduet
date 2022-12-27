@@ -77,6 +77,10 @@ export default {
     styleImg: String,
     width: String,
     height: String,
+    rel: {
+      type: String,
+      default: "",
+    },
   },
   computed: {
     isWebpType() {
@@ -111,6 +115,27 @@ export default {
     webpSrcCustomWidth(width) {
       return this.isWebpType && this.srcEncodeCustomWidth(width) + ".webp";
     },
+    preloadImage() {
+      let image = new Image();
+      let src = "";
+      if (this.webp && this.isWebpType && this.mobileVersion >= innerWidth) {
+        src = this.webpSrcCustomWidth(this.mobileVersion);
+      } else if (this.webp && this.isWebpType) {
+        src = this.webpSrc;
+      } else if (
+        this.mobileVersion >= innerWidth &&
+        this.srcEncodeExtension != "webp"
+      ) {
+        src = this.srcEncodeCustomWidth(this.mobileVersion);
+      } else if (this.srcEncodeExtension != "webp") {
+        src = this.srcEncode;
+      }
+
+      image.src = src;
+    },
+  },
+  created() {
+    if (this.rel === "preload") this.preloadImage();
   },
 };
 </script>
