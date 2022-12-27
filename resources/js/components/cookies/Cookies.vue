@@ -3,17 +3,15 @@
     <div class="cookies__overlay"></div>
     <div class="cookies__content">
       <div class="cookies__text">
-        {{ $store.getters.settings.cookies
-        }}<a
-          target="_blank"
-          :href="url($store.getters.settings.privace_policy)"
-          >{{ " " + $store.getters.settings.cookies_privace_button }}</a
-        >
+        {{ settings.cookies
+        }}<a target="_blank" :href="url(settings.privace_policy)">{{
+          " " + settings.cookies_privace_button
+        }}</a>
       </div>
       <button
         @click="accept"
         class="button first-button"
-        v-text="$store.getters.settings.cookies_button"
+        v-text="settings.cookies_button"
       ></button>
     </div>
   </div>
@@ -30,6 +28,11 @@ export default {
       url,
       cookies: true,
     };
+  },
+  computed: {
+    settings() {
+      return window.global.config.settings;
+    },
   },
   methods: {
     accept() {
