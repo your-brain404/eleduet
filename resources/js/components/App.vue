@@ -31,6 +31,7 @@
 
 <script>
 import getCookie from "@/helpers/cookies/get-cookie";
+import lazyLoadComponent from "@/services/lazy-load-component";
 
 function recaptcha() {
   let badge = document.getElementsByClassName("grecaptcha-badge")[0];
@@ -48,12 +49,15 @@ export default {
   components: {
     HeaderComponent: () =>
       import(
-        /* webpackPrefetch: true */ /* webpackChunkName: 'front-layout' */ "./layouts/Header"
+        /* webpackPrefetch: true */ /* webpackChunkName: 'front-header' */ "./layouts/Header"
       ),
-    FooterComponent: () =>
-      import(
-        /* webpackPrefetch: true */ /* webpackChunkName: 'front-layout' */ "./layouts/Footer"
-      ),
+    FooterComponent: lazyLoadComponent({
+      componentFactory: () =>
+        import(/* webpackChunkName: 'front-footer' */ "./layouts/Footer"),
+      loading: {
+        template: "<div></div>",
+      },
+    }),
     AdminHeader: () =>
       import(
         /* webpackPrefetch: true */ /* webpackChunkName: 'cms-layout' */ "./layouts/AdminHeader"
@@ -65,7 +69,7 @@ export default {
       ),
     Banner: () =>
       import(
-        /* webpackPrefetch: true */ /* webpackChunkName: 'front-layout' */ "./layouts/Banner"
+        /* webpackPrefetch: true */ /* webpackChunkName: 'banner' */ "./layouts/Banner"
       ),
   },
   data() {

@@ -1,5 +1,5 @@
 <template>
-  <v-container class="d-flex" style="z-index: 100000">
+  <v-container style="display: flex; justify-content: center; z-index: 1000000">
     <b-spinner class="loader"></b-spinner>
   </v-container>
 </template>
@@ -25,5 +25,5 @@ export default {
 </style>
 
 <style lang="scss">
-@import "~bootstrap/scss/spinners";
+// @import "~bootstrap/scss/spinners";
 </style>
