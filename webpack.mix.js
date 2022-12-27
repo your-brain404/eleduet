@@ -68,6 +68,7 @@ let base = {
     }
 };
 if (mix.inProduction()) {
+    base.output.chunkFilename = "js/[name].[contenthash].js";
     mix.webpackConfig({ ...base });
 } else {
     mix.webpackConfig({
