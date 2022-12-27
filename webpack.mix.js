@@ -25,7 +25,6 @@ mix.js("resources/js/app.js", "js")
     })
     .setPublicPath(path.normalize("public/dist"));
 
-mix.sourceMaps();
 mix.version();
 mix.override(config => {
     delete config.watchOptions;
@@ -71,6 +70,7 @@ if (mix.inProduction()) {
     base.output.chunkFilename = "js/[name].[contenthash].js";
     mix.webpackConfig({ ...base });
 } else {
+    mix.sourceMaps();
     mix.webpackConfig({
         ...base,
         plugins: [new BundleAnalyzerPlugin()]
