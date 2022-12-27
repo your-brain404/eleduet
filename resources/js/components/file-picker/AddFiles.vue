@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from "@/plugins/axios/axios";
 import isPhoto from "@/helpers/files/is-photo";
 import photoTypes from "@/helpers/files/photo-types";
 import VRow from "@/components/grid/VRow.vue";

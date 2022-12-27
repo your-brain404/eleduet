@@ -54,7 +54,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from "@/plugins/axios/axios";
 import VForm from "@/components/elements/VForm.vue";
 import TextField from "@/components/elements/TextField.vue";
 import VTextarea from "@/components/elements/VTextarea.vue";

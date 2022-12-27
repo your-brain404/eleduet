@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "@/plugins/axios/axios";
 import router from "@/router/routes.js";
 
 export default {

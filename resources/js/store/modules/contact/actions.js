@@ -1,5 +1,8 @@
-import axios from 'axios'
+import axios from "@/plugins/axios/axios";
 
 export default {
-	contact: async ({commit}) => await axios.get('/api/contact/get_one/1').then(res => commit('contact', res.data))
-}
+    contact: async ({ commit }) =>
+        await axios
+            .get("/api/contact/get_one/1")
+            .then(res => commit("contact", res.data))
+};

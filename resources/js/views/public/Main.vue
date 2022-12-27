@@ -74,37 +74,44 @@ export default {
   },
   computed: {
     slider() {
+      if (window.global.cms.homePage.slider === null) return true;
       return (window.global.cms.homePage.slider || []).length > 0;
     },
     about() {
+      if (window.global.cms.homePage.about === null) return true;
       return Object.values(window.global.cms.homePage.about || {}).length > 0;
     },
     attributes() {
-      return window.global.cms.homePage.attributes.length > 0;
+      if (window.global.cms.homePage.attributes === null) return true;
+      return (window.global.cms.homePage.attributes || []).length > 0;
     },
     callUs() {
+      if (window.global.cms.homePage.homeCallUs === null) return true;
       return (
         Object.values(window.global.cms.homePage.homeCallUs || {}).length > 0
       );
     },
     executionProcess() {
+      if (window.global.cms.homePage.executionProcess === null) return true;
       return (window.global.cms.homePage.executionProcess || []).length > 0;
     },
 
     solarSystem() {
+      if (window.global.cms.homePage.homeSolarSystemDesc === null) return true;
       return (
         Object.values(window.global.cms.homePage.homeSolarSystemDesc || {})
           .length > 0
       );
     },
     services() {
+      if (window.global.cms.homePage.homeServices === null) return true;
       return (window.global.cms.homePage.homeServices ?? []).length > 0;
     },
     opinions() {
+      if (window.global.cms.homePage.opinions === null) return true;
       return (window.global.cms.homePage.opinions || []).length > 0;
     },
   },
 };
 </script>
 
-<style lang="scss" scoped></style>

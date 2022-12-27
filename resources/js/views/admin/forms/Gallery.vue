@@ -96,7 +96,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from "@/plugins/axios/axios";
 import GalleryPicker from "@/components/gallery-picker/GalleryPicker";
 import SnackbarAlerts from "@/data/snackbar-alerts.js";
 import url from "@/helpers/photo/url.js";

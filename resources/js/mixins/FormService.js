@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "@/plugins/axios/axios";
 import FilePicker from "@/components/file-picker/FilePicker";
 import url from "@/helpers/photo/url.js";
 import TagsInput from "@/components/tagsinput/TagsInput.vue";

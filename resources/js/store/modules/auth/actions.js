@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "@/plugins/axios/axios";
 import parseJwt from "@/helpers/auth/tokenDecoder.js";
 import router from "@/router/routes.js";
 import getCookie from "@/helpers/cookies/get-cookie";

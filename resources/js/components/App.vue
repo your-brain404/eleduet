@@ -46,12 +46,6 @@ window.addEventListener("load", function () {
 });
 
 export default {
-  metaInfo() {
-    return {
-      title: this.title,
-      titleTemplate: "%s - " + this.settings.company,
-    };
-  },
   components: {
     HeaderComponent: () =>
       import(
@@ -82,6 +76,9 @@ export default {
     };
   },
   watch: {
+    title() {
+      document.title = `${this.title} - ${this.settings.company}`;
+    },
     currentSubpage: {
       deep: true,
       handler() {

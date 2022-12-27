@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "@/plugins/axios/axios";
 
 export default {
     settings: async ({ commit }) =>

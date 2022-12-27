@@ -133,7 +133,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from "@/plugins/axios/axios";
 import AddPhotos from "@/components/gallery-picker/AddPhotos.vue";
 import url from "@/helpers/photo/url.js";
 import Picture from "@/components/picture/Picture";

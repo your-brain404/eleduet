@@ -1,19 +1,11 @@
 import Vue from "vue";
 import router from "@/router/routes";
-import axios from "axios";
-import VueAxios from "vue-axios";
 import store from "./store/store.js";
 
-import VueMeta from "vue-meta";
 import isExternal from "@/helpers/links/is-external";
 
 Vue.component("app", require("./components/App.vue").default);
-Vue.use(VueAxios, axios);
-Vue.use(VueMeta, {
-    refreshOnceOnNavigation: true
-});
 
-Vue.prototype.$vueMeta = VueMeta;
 Vue.prototype.$isLinkExternal = isExternal;
 
 const ignoreWarnMessage =
@@ -25,20 +17,6 @@ Vue.config.warnHandler = function(msg, vm, trace) {
         trace = null;
     }
 };
-
-Vue.axios.defaults.baseURL = window.location.origin;
-Vue.axios.interceptors.request.use(
-    config => {
-        const token = localStorage.getItem("token");
-        if (token) {
-            config.headers.Authorization = `Bearer ${token}`;
-        }
-        config.headers["Access-Control-Allow-Origin"] = "*";
-
-        return config;
-    },
-    error => Promise.reject(error)
-);
 
 export const app = new Vue({
     el: "#app",

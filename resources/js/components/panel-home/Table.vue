@@ -132,7 +132,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from "@/plugins/axios/axios";
 import snackbarAlerts from "@/data/snackbar-alerts";
 import VBtn from "@/components/elements/VBtn.vue";
 import TextField from "@/components/elements/TextField.vue";

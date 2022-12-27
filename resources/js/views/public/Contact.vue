@@ -117,7 +117,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from "@/plugins/axios/axios";
 import Vue from "vue";
 import { VueReCaptcha } from "vue-recaptcha-v3";
 import Picture from "@/components/picture/Picture";

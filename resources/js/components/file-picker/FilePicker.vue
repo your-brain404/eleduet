@@ -284,7 +284,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from "@/plugins/axios/axios";
 import AddFiles from "./AddFiles.vue";
 import url from "@/helpers/photo/url";
 import isPhoto from "@/helpers/files/is-photo";

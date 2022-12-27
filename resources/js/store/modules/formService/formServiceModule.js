@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "@/plugins/axios/axios";
 import router from "@/router/routes";
 import SnackbarAlerts from "@/data/snackbar-alerts.js";
 import AdminPanelBlocks from "@/data/admin-panel-blocks.js";

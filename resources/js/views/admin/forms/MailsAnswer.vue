@@ -77,7 +77,7 @@
   </v-main>
 </template>
 <script>
-import axios from "axios";
+import axios from "@/plugins/axios/axios";
 import attachment from "../../../helpers/attachments/link.js";
 import Vue from "vue";
 import VForm from "@/components/elements/VForm.vue";

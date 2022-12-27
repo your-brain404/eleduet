@@ -31,8 +31,14 @@ mix.override(config => {
     delete config.watchOptions;
 });
 
-mix.extract();
+mix.extract(["vue", "axios"]);
 mix.extract(["vue-cool-lightbox"], "vue-cool-lightbox");
+mix.extract(["vue-select"], "vue-select");
+mix.extract(["vue-carousel"], "vue-carousel");
+mix.extract(["@tinymce"], "@tinymce");
+mix.extract(["vue-recaptcha-v3"], "vue-recaptcha-v3");
+mix.extract(["vue-functional-data-merge"], "vue-functional-data-merge");
+mix.extract(["vue-summernote"], "vue-summernote");
 mix.alias({
     "@": path.join(__dirname, "resources/js"),
     "@node_modules": path.join(__dirname, "node_modules"),
