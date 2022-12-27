@@ -60,6 +60,7 @@ import adminTableComponent from "@/mixins/admin-table-component";
 import Picture from "@/components/picture/Picture";
 import url from "@/helpers/photo/url";
 import { Carousel, Slide } from "vue-carousel";
+import existingPhotoPath from "@/helpers/links/existing-photo-path";
 
 export default {
   components: {
@@ -74,6 +75,7 @@ export default {
       this.emitData();
       this.carousel = false;
       setTimeout(() => (this.carousel = true), 1);
+      this.preloadImages();
     },
   },
   data() {
@@ -94,6 +96,13 @@ export default {
   },
   methods: {
     url,
+    existingPhotoPath,
+    preloadImages() {
+      for (let slide of this.slider) {
+        let image = new Image();
+        image.src = this.existingPhotoPath(this.url(slide.photo));
+      }
+    },
   },
 };
 </script>
