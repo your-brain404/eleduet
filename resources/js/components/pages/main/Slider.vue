@@ -19,6 +19,7 @@
           :width="slide.photo_sizes.width"
           :height="slide.photo_sizes.height"
           :classImg="'slide-photo'"
+          :loading="i === 0 ? 'eager' : 'lazy'"
           :styleImg="{
             'object-size': slide.photo_background_size,
             'object-position': slide.photo_background_position,
