@@ -116,7 +116,6 @@ export default {
       return this.isWebpType && this.srcEncodeCustomWidth(width) + ".webp";
     },
     preloadImage() {
-      let image = new Image();
       let src = "";
       if (this.webp && this.isWebpType && this.mobileVersion >= innerWidth) {
         src = this.webpSrcCustomWidth(this.mobileVersion);
@@ -131,7 +130,11 @@ export default {
         src = this.srcEncode;
       }
 
-      image.src = src;
+      const preloadLink = document.createElement("link");
+      preloadLink.href = src;
+      preloadLink.rel = "preload";
+      preloadLink.as = "image";
+      document.head.appendChild(preloadLink);
     },
   },
   created() {
