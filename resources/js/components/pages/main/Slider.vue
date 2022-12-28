@@ -117,6 +117,7 @@ export default {
   }
   .vueperslides__parallax-wrapper {
     height: 500px;
+    padding-bottom: 0 !important;
   }
 }
 section.slider {
