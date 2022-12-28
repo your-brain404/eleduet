@@ -166,7 +166,7 @@ export default {
 </script>
   
 <style lang="scss">
-* {
+html.fonts-loaded * {
   font-family: "Josefin Sans" !important;
 }
 .app {

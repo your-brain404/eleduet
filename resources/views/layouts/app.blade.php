@@ -75,6 +75,15 @@
             }
         }
     </script>
+    <script src="{{ asset('js/fontfaceobserver.js') }}" type="text/javascript"></script>
+    <script type="text/javascript">
+        const josefinSansObserver = new FontFaceObserver("Josefin Sans");
+        Promise.all([josefinSansObserver.load()]).then(
+            function() {
+                document.documentElement.classList.add("fonts-loaded");
+            }
+        );
+    </script>
 
 </body>
 
