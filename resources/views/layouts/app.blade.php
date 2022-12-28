@@ -75,7 +75,7 @@
             }
         }
     </script>
-    <script src="{{ asset('js/fontfaceobserver.js') }}" type="text/javascript"></script>
+
 
 
 </body>

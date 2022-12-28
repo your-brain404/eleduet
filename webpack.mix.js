@@ -30,7 +30,7 @@ mix.override(config => {
     delete config.watchOptions;
 });
 
-mix.extract(["vue", "axios"]);
+mix.extract(["vue", "axios", "fontfaceobserver"]);
 mix.extract(["vue-cool-lightbox"], "vue-cool-lightbox");
 mix.extract(["vue-select"], "vue-select");
 mix.extract(["vue-carousel"], "vue-carousel");

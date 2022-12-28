@@ -32,6 +32,7 @@
 <script>
 import getCookie from "@/helpers/cookies/get-cookie";
 import lazyLoadComponent from "@/services/lazy-load-component";
+import FontFaceObserver from "fontfaceobserver";
 
 function recaptcha() {
   let badge = document.getElementsByClassName("grecaptcha-badge")[0];
