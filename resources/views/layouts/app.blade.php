@@ -10,7 +10,7 @@
     <title>{{ $meta_title }}</title>
     <meta name="description" content="{{ $meta_description }}">
     <link rel="icon" href="/storage/media/{{ $settings->favicon }}" type="image/png">
-    <link rel="stylesheet" defer async href="{{ asset('custom-fonts/JosefinSans/stylesheet.css') }}">
+
 
 </head>
 
@@ -76,14 +76,7 @@
         }
     </script>
     <script src="{{ asset('js/fontfaceobserver.js') }}" type="text/javascript"></script>
-    <script type="text/javascript">
-        const josefinSansObserver = new FontFaceObserver("Josefin Sans");
-        Promise.all([josefinSansObserver.load()]).then(
-            function() {
-                document.documentElement.classList.add("fonts-loaded");
-            }
-        );
-    </script>
+
 
 </body>
 

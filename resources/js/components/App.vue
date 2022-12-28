@@ -154,13 +154,23 @@ export default {
       }
     },
   },
-  async created() {
+  created() {
     this.setCart();
     this.setMetaTitle();
 
     if (window.location.hash && window.location.hash == "#_=_") {
       window.location.href = window.location.origin;
     }
+    let font = document.createElement("link");
+    font.rel = "stylesheet";
+    font.defer = true;
+    font.async = true;
+    font.href = "/custom-fonts/JosefinSans/stylesheet.css";
+    document.head.appendChild(font);
+    const josefinSansObserver = new FontFaceObserver("Josefin Sans");
+    Promise.all([josefinSansObserver.load()]).then(function () {
+      document.documentElement.classList.add("fonts-loaded");
+    });
   },
 };
 </script>
