@@ -1,62 +1,57 @@
 <template>
   <section v-if="slider.length > 0" class="slider">
-    <vueper-slides
+    <carousel
       v-if="carousel"
       class="slider-carousel"
-      :initSlide="1"
-      :bullets="false"
-      :infinite="false"
-      :duration="5000"
-      :transitionSpeed="500"
+      :perPage="1"
+      :navigationEnabled="false"
+      :loop="true"
       :autoplay="true"
+      :paginationEnabled="false"
+      :autoplayTimeout="5000"
+      :speed="500"
     >
-      <vueper-slide
-        v-for="(slide, i) in slider"
-        :key="`slide-${i}`"
-        class="slide"
-      >
-        <template #content>
-          <Picture
-            class="slide-picture"
-            :src="url(slide.photo)"
-            :alt="slide.photo_alt"
-            :width="slide.photo_sizes.width"
-            :height="slide.photo_sizes.height"
-            :classImg="'slide-photo'"
-            :rel="i === 0 ? 'preload' : ''"
-            :loading="i === 0 ? 'eager' : 'lazy'"
-            :styleImg="{
-              'object-size': slide.photo_background_size,
-              'object-position': slide.photo_background_position,
-            }"
-            :mobile-version="576"
-          />
-          <div class="content">
-            <h2 class="slide-title">{{ slide.title }}</h2>
-            <p class="slide-subtitle">{{ slide.subtitle }}</p>
+      <slide v-for="(slide, i) in slider" :key="`slide-${i}`" class="slide">
+        <Picture
+          class="slide-picture"
+          :src="url(slide.photo)"
+          :alt="slide.photo_alt"
+          :width="slide.photo_sizes.width"
+          :height="slide.photo_sizes.height"
+          :classImg="'slide-photo'"
+          :rel="i === 0 ? 'preload' : ''"
+          :loading="i === 0 ? 'eager' : 'lazy'"
+          :styleImg="{
+            'object-size': slide.photo_background_size,
+            'object-position': slide.photo_background_position,
+          }"
+          :mobile-version="576"
+        />
+        <div class="content">
+          <h2 class="slide-title">{{ slide.title }}</h2>
+          <p class="slide-subtitle">{{ slide.subtitle }}</p>
 
-            <custom-link
-              class="first-button-link"
-              :path="slide.button_link_1"
-              :download="slide.button_download_1"
-            >
-              <button class="button first-button">
-                {{ slide.button_name_1 }}
-              </button>
-            </custom-link>
-            <custom-link
-              :path="slide.button_link_2"
-              :download="slide.button_download_2"
-            >
-              <button class="button second-button">
-                {{ slide.button_name_2 }}
-              </button>
-            </custom-link>
-          </div>
-          <div class="mask"></div>
-        </template>
-      </vueper-slide>
-    </vueper-slides>
+          <custom-link
+            class="first-button-link"
+            :path="slide.button_link_1"
+            :download="slide.button_download_1"
+          >
+            <button class="button first-button">
+              {{ slide.button_name_1 }}
+            </button>
+          </custom-link>
+          <custom-link
+            :path="slide.button_link_2"
+            :download="slide.button_download_2"
+          >
+            <button class="button second-button">
+              {{ slide.button_name_2 }}
+            </button>
+          </custom-link>
+        </div>
+        <div class="mask"></div>
+      </slide>
+    </carousel>
   </section>
 </template>
  
@@ -65,16 +60,15 @@ import CustomLink from "@/components/custom-link/CustomLink";
 import adminTableComponent from "@/mixins/admin-table-component";
 import Picture from "@/components/picture/Picture";
 import url from "@/helpers/photo/url";
+import { Carousel, Slide } from "vue-carousel";
 import existingPhotoPath from "@/helpers/links/existing-photo-path";
-import { VueperSlides, VueperSlide } from "vueperslides";
-import "vueperslides/dist/vueperslides.css";
 
 export default {
   components: {
     CustomLink,
     Picture,
-    VueperSlides,
-    VueperSlide,
+    Carousel,
+    Slide,
   },
   mixins: [adminTableComponent],
   watch: {
@@ -108,17 +102,11 @@ export default {
 </script>
 
 <style scoped lang="scss">
-::v-deep {
-  .slide-photo {
-    object-fit: cover;
-    min-height: 500px;
-    max-height: 500px;
-    width: 100%;
-  }
-  .vueperslides__parallax-wrapper {
-    height: 500px;
-    padding-bottom: 0 !important;
-  }
+::v-deep .slide-photo {
+  object-fit: cover;
+  min-height: 500px;
+  max-height: 500px;
+  width: 100%;
 }
 section.slider {
   min-height: 500px;

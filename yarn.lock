@@ -262,7 +262,7 @@
     "chalk" "^2.0.0"
     "js-tokens" "^4.0.0"
 
-"@babel/parser@^7.1.0", "@babel/parser@^7.18.10", "@babel/parser@^7.18.4", "@babel/parser@^7.19.6":
+"@babel/parser@^7.1.0", "@babel/parser@^7.18.10", "@babel/parser@^7.19.6":
   "integrity" "sha512-h1IUp81s2JYJ3mRkdxJgs4UvmSsRvDrx5ICSJbPvtWYv5i1nTBGcBpnog+89rAFMwvvru6E5NUHdBe01UeSzYA=="
   "resolved" "https://registry.npmjs.org/@babel/parser/-/parser-7.19.6.tgz"
   "version" "7.19.6"
@@ -1269,15 +1269,6 @@
   "version" "8.5.3"
   dependencies:
     "@types/node" "*"
-
-"@vue/compiler-sfc@2.7.14":
-  "integrity" "sha512-aNmNHyLPsw+sVvlQFQ2/8sjNuLtK54TC6cuKnVzAY93ks4ZBrvwQSnkkIh7bsbNhum5hJBS00wSDipQ937f5DA=="
-  "resolved" "https://registry.npmjs.org/@vue/compiler-sfc/-/compiler-sfc-2.7.14.tgz"
-  "version" "2.7.14"
-  dependencies:
-    "@babel/parser" "^7.18.4"
-    "postcss" "^8.4.14"
-    "source-map" "^0.6.1"
 
 "@vue/component-compiler-utils@^3.1.0":
   "integrity" "sha512-QLq9z8m79mCinpaEeSURhnNCN6djxpHw0lpP/bodMlt5kALfONpryMthvnrQOlTcIKoF+VoPi+lPHUYeDFPXug=="
@@ -2521,11 +2512,6 @@
   dependencies:
     "css-tree" "^1.1.2"
 
-"csstype@^3.1.0":
-  "integrity" "sha512-DJR/VvkAvSZW9bTouZue2sSxDwdTN92uHjqeKVm+0dAqdfNykRzQ95tay8aXMBAAPpUiq4Qcug2L7neoRh2Egw=="
-  "resolved" "https://registry.npmjs.org/csstype/-/csstype-3.1.1.tgz"
-  "version" "3.1.1"
-
 "custom-event-polyfill@^1.0.7":
   "integrity" "sha512-TDDkd5DkaZxZFM8p+1I3yAlvM3rSr1wbrOliG4yJiwinMZN8z/iGL7BTlDkrJcYTmgUSb4ywVCc3ZaUtOtC76w=="
   "resolved" "https://registry.npmjs.org/custom-event-polyfill/-/custom-event-polyfill-1.0.7.tgz"
@@ -3377,7 +3363,7 @@
     "inherits" "^2.0.3"
     "minimalistic-assert" "^1.0.1"
 
-"he@^1.2.0":
+"he@^1.1.0", "he@^1.2.0":
   "integrity" "sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw=="
   "resolved" "https://registry.npmjs.org/he/-/he-1.2.0.tgz"
   "version" "1.2.0"
@@ -4932,7 +4918,7 @@
   "resolved" "https://registry.npmjs.org/postcss-value-parser/-/postcss-value-parser-4.2.0.tgz"
   "version" "4.2.0"
 
-"postcss@^7.0.0 || ^8.0.1", "postcss@^8.0.9", "postcss@^8.1.0", "postcss@^8.2.15", "postcss@^8.2.2", "postcss@^8.3.11", "postcss@^8.3.3", "postcss@^8.4.14", "postcss@^8.4.7", "postcss@>=8.0.9":
+"postcss@^7.0.0 || ^8.0.1", "postcss@^8.0.9", "postcss@^8.1.0", "postcss@^8.2.15", "postcss@^8.2.2", "postcss@^8.3.11", "postcss@^8.3.3", "postcss@^8.4.7", "postcss@>=8.0.9":
   "integrity" "sha512-Wi8mWhncLJm11GATDaQKobXSNEYGUHeQLiQqDFG1qQ5UTDPTEvKw0Xt5NsTpktGTwLps3ByrWsBrG0rB8YQ9oA=="
   "resolved" "https://registry.npmjs.org/postcss/-/postcss-8.4.18.tgz"
   "version" "8.4.18"
@@ -6166,31 +6152,23 @@
     "jquery" "2.1.4"
     "summernote" "^0.8.2"
 
-"vue-template-compiler@^2.7.14":
-  "integrity" "sha512-zyA5Y3ArvVG0NacJDkkzJuPQDF8RFeRlzV2vLeSnhSpieO6LK2OVbdLPi5MPPs09Ii+gMO8nY4S3iKQxBxDmWQ=="
-  "resolved" "https://registry.npmjs.org/vue-template-compiler/-/vue-template-compiler-2.7.14.tgz"
-  "version" "2.7.14"
+"vue-template-compiler@^2.6.12":
+  "integrity" "sha512-OzzZ52zS41YUbkCBfdXShQTe69j1gQDZ9HIX8miuC9C3rBCk9wIRjLiZZLrmX9V+Ftq/YEyv1JaVr5Y/hNtByg=="
+  "resolved" "https://registry.npmjs.org/vue-template-compiler/-/vue-template-compiler-2.6.12.tgz"
+  "version" "2.6.12"
   dependencies:
     "de-indent" "^1.0.2"
-    "he" "^1.2.0"
+    "he" "^1.1.0"
 
 "vue-template-es2015-compiler@^1.9.0":
   "integrity" "sha512-4gDntzrifFnCEvyoO8PqyJDmguXgVPxKiIxrBKjIowvL9l+N66196+72XVYR8BBf1Uv1Fgt3bGevJ+sEmxfZzw=="
   "resolved" "https://registry.npmjs.org/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.9.1.tgz"
   "version" "1.9.1"
 
-"vue@^2.0.0", "vue@^2.3.0", "vue@^2.4.3", "vue@^2.5.17", "vue@^2.5.18", "vue@^2.6.10", "vue@^2.6.11", "vue@^2.6.12", "vue@^2.6.14 || ^3.2.0", "vue@2.x":
-  "integrity" "sha512-b2qkFyOM0kwqWFuQmgd4o+uHGU7T+2z3T+WQp8UBjADfEv2n4FEMffzBmCKNP0IGzOEEfYjvtcC62xaSKeQDrQ=="
-  "resolved" "https://registry.npmjs.org/vue/-/vue-2.7.14.tgz"
-  "version" "2.7.14"
-  dependencies:
-    "@vue/compiler-sfc" "2.7.14"
-    "csstype" "^3.1.0"
-
-"vueperslides@^2.16.0":
-  "integrity" "sha512-HosQXtbFr7qexeLTb6k7H+2Q7iODELGRalRDmPviMulSLDUBub8lmeVjda8TK3IcKpD0wma0A7bg085HtwDiRg=="
-  "resolved" "https://registry.npmjs.org/vueperslides/-/vueperslides-2.16.0.tgz"
-  "version" "2.16.0"
+"vue@^2.0.0", "vue@^2.3.0", "vue@^2.4.3", "vue@^2.5.17", "vue@^2.5.18", "vue@^2.6.10", "vue@^2.6.11", "vue@^2.6.12", "vue@2.x":
+  "integrity" "sha512-uhmLFETqPPNyuLLbsKz6ioJ4q7AZHzD8ZVFNATNyICSZouqP2Sz0rotWQC8UNBF6VGSCs5abnKJoStA6JbCbfg=="
+  "resolved" "https://registry.npmjs.org/vue/-/vue-2.6.12.tgz"
+  "version" "2.6.12"
 
 "vuex@^3.5.1":
   "integrity" "sha512-w7oJzmHQs0FM9LXodfskhw9wgKBiaB+totOdb8sNzbTB2KDCEEwEs29NzBZFh/lmEK1t5tDmM1vtsO7ubG1DFw=="
