@@ -63,10 +63,12 @@ export default {
     Toast: () => import(/* webpackChunkName: 'toast' */ "./toast/Toast"),
     Cookies: () =>
       import(/* webpackChunkName: 'cookies' */ "@/components/cookies/Cookies"),
-    Banner: () =>
-      import(
-        /* webpackPrefetch: true */ /* webpackChunkName: 'banner' */ "./layouts/Banner"
-      ),
+    Banner: lazyLoadComponent({
+      componentFactory: () =>
+        import(
+          /* webpackPrefetch: true */ /* webpackChunkName: 'banner' */ "./layouts/Banner"
+        ),
+    }),
   },
   data() {
     return {
