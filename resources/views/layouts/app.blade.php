@@ -10,7 +10,7 @@
     <title>{{ $meta_title }}</title>
     <meta name="description" content="{{ $meta_description }}">
     <link async rel="icon" href="/storage/media/{{ $settings->favicon }}" type="image/png">
-    <style>
+    <style async>
         {{ $critical_css }}
     </style>
 
