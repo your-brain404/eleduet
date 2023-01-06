@@ -24,6 +24,8 @@ mix.js("resources/js/app.js", "js")
         svgPath: "/storage/app/public/img/mdi-icons"
     })
     .setPublicPath(path.normalize("public/dist"));
+mix.sass("resources/scss/criticals/critical-home.scss", "css");
+mix.sass("resources/scss/header/header.scss", "css");
 
 mix.version();
 mix.override(config => {
