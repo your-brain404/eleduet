@@ -40,6 +40,8 @@ mix.extract(["@tinymce"], "@tinymce");
 mix.extract(["vue-recaptcha-v3"], "vue-recaptcha-v3");
 mix.extract(["vue-functional-data-merge"], "vue-functional-data-merge");
 mix.extract(["vue-summernote"], "vue-summernote");
+mix.extract(["vue-router"], "js/vue-router");
+mix.extract(["vuex"], "js/vuex");
 mix.alias({
     "@": path.join(__dirname, "resources/js"),
     "@node_modules": path.join(__dirname, "node_modules"),
