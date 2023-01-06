@@ -1,6 +1,5 @@
 <template>
   <section class="main">
-    <Slider v-if="slider" />
     <About v-if="about" />
     <Services v-if="services" />
     <SolarSystem v-if="solarSystem" />
@@ -15,8 +14,6 @@
 <script>
 import lazyLoadComponent from "@/services/lazy-load-component";
 import Loader from "@/components/loader/Loader";
-const Slider = () =>
-  import(/* webpackChunkName: 'slider' */ "@/components/pages/main/Slider");
 const About = () =>
   import(/* webpackChunkName: 'about' */ "@/components/pages/main/About");
 
@@ -43,7 +40,6 @@ const Opinions = () =>
 
 export default {
   components: {
-    Slider,
     About: lazyLoadComponent({
       componentFactory: About,
       loading: Loader,
