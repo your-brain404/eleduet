@@ -62,9 +62,7 @@ export default {
       ),
     Toast: () => import(/* webpackChunkName: 'toast' */ "./toast/Toast"),
     Cookies: () =>
-      import(
-        /* webpackPrefetch: true */ /* webpackChunkName: 'cookies' */ "@/components/cookies/Cookies"
-      ),
+      import(/* webpackChunkName: 'cookies' */ "@/components/cookies/Cookies"),
     Banner: () =>
       import(
         /* webpackPrefetch: true */ /* webpackChunkName: 'banner' */ "./layouts/Banner"
