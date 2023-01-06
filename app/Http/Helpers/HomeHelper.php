@@ -69,7 +69,10 @@ class HomeHelper
 			$data['slider'] = Slider::where('active', 1)->get()->toArray() ?? [];
 			if (count($data['slider']) > 0) {
 				$data['preloads'][] = '/storage/media/' . $data['slider'][0]['photo'] . '.webp';
-				$data['preloads'][] = '/storage/media/width_576_' . $data['slider'][0]['photo'] . '.webp';
+				list($date, $photo_name) = explode('/', $data['slider'][0]['photo']);
+				$new_mobile_path = "/storage/media/$date/width_576_$photo_name.webp";
+
+				$data['preloads'][] = $new_mobile_path;
 			}
 			$data['home_services'] = Services::where('home_page', 1)->orderBy('id', 'ASC')->get() ?? [];
 			$data['home_services_desc'] = HomeServicesDesc::find(1) ?? new stdClass;
