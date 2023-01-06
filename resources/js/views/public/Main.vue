@@ -44,7 +44,10 @@ const Opinions = () =>
 export default {
   components: {
     Slider,
-    About,
+    About: lazyLoadComponent({
+      componentFactory: About,
+      loading: Loader,
+    }),
     Attributes: lazyLoadComponent({
       componentFactory: Attributes,
       loading: Loader,
