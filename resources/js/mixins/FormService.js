@@ -152,8 +152,8 @@ export default {
     },
 
     created() {
-        if (!this.$store.hasModule("Loading")) {
-            this.$store.registerModule("Loading", loadingModule);
+        if (!this.$store.hasModule("loading")) {
+            this.$store.registerModule("loading", loadingModule);
         }
         if (!this.$store.hasModule("FormService")) {
             this.$store.registerModule("FormService", FormService);

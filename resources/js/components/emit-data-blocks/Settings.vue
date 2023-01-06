@@ -2,6 +2,7 @@
 
 <script>
 import axios from "@/plugins/axios/axios";
+import settingsModule from "@/store/modules/settings/settingsModule";
 
 export default {
   props: ["reloadFlag"],
@@ -33,6 +34,9 @@ export default {
     },
   },
   created() {
+    if (!this.$store.hasModule("settings")) {
+      this.$store.registerModule("settings", settingsModule);
+    }
     this.getData();
   },
 };

@@ -7,7 +7,7 @@
         :height="settings.photo_sizes.height"
         :alt="settings.photo_alt"
         :classImg="'logo'"
-        :src="`${origin}/storage/media/${settings.photo}`"
+        :src="`/storage/media/${settings.photo}`"
         :webp="false"
       />
     </router-link>
@@ -33,7 +33,7 @@
         height="18"
         :alt="'phone-icon'"
         :classImg="'phone-icon'"
-        :src="`${origin}/storage/img/layout/phone.svg`"
+        :src="`/storage/img/layout/phone.svg`"
         :webp="false"
       />
 
@@ -45,7 +45,7 @@
       height="20"
       :alt="'hamburger-menu'"
       :class="'hamburger-menu'"
-      :src="`${origin}/storage/img/layout/hamburger-menu.svg`"
+      :src="`/storage/img/layout/hamburger-menu.svg`"
       :webp="false"
     />
   </section>
@@ -61,9 +61,10 @@ export default {
   },
   data() {
     return {
-      origin: window.location.origin,
       showMobileMenu: false,
       windowWidth: window.innerWidth,
+      settings: window.global.config.settings,
+      contact: window.global.config.contact,
     };
   },
   watch: {
@@ -75,12 +76,7 @@ export default {
     subpages() {
       return this.$store.getters.subpages;
     },
-    settings() {
-      return this.$store.getters.settings;
-    },
-    contact() {
-      return this.$store.getters.contact;
-    },
+
     isScreenMobileDevice() {
       return this.windowWidth <= 992;
     },
@@ -88,6 +84,7 @@ export default {
       return this.isScreenMobileDevice ? this.showMobileMenu : true;
     },
   },
+
   methods: {
     url,
     showMobileMenuHandler() {

@@ -3,7 +3,7 @@
     <b-toast
       v-for="toast in toasts"
       :key="`toast-${toast.id}`"
-      :color="$store.getters.settings.first_color"
+      :color="settings.first_color"
       toaster="b-toaster-bottom-right"
       :no-auto-hide="true"
       :visible="true"
@@ -35,10 +35,15 @@ export default {
   components: {
     BToast,
   },
+  data() {
+    return {
+      settings: window.global.config.settings,
+    };
+  },
 
   computed: {
     toasts() {
-      return this.$store.state.Toast?.toasts || [];
+      return this.$store.state.toast?.toasts || [];
     },
   },
 };

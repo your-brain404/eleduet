@@ -2,7 +2,7 @@
 
 <script>
 import axios from "@/plugins/axios/axios";
-import getModule from "@/helpers/store/get-module.js";
+import contactModule from "@/store/modules/contact/contactModule";
 
 export default {
   props: ["reloadFlag"],
@@ -34,8 +34,8 @@ export default {
     },
   },
   created() {
-    if (!this.$store.hasModule("Contact")) {
-      this.$store.registerModule("Contact", getModule("contact"));
+    if (!this.$store.hasModule("contact")) {
+      this.$store.registerModule("contact", contactModule);
     }
     this.getContact();
   },

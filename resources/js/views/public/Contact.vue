@@ -15,11 +15,11 @@
             <span v-if="link.icon_svg" v-html="link.icon_svg"></span>
             <Picture
               v-else
-              :width="'auto'"
+              width="auto"
               :height="25"
               :alt="link.photo_alt"
-              :src="`${origin}/storage/media/${link.photo}`"
-              :classImg="'img'"
+              :src="`/storage/media/${link.photo}`"
+              classImg="img"
             />
 
             <div class="text" v-html="prepareBlockHtml(link.title)"></div>
@@ -27,11 +27,11 @@
         </div>
       </div>
       <Picture
-        :width="125"
-        :height="125"
-        :alt="'elipsa'"
-        :src="`${origin}/storage/img/home/ellipse1.svg`"
-        :classImg="'ellipse'"
+        width="125"
+        height="125"
+        alt="elipsa"
+        src="/storage/img/home/ellipse1.svg"
+        classImg="ellipse"
       />
     </div>
 
@@ -130,7 +130,8 @@ export default {
   },
   data() {
     return {
-      origin: window.location.origin,
+      contact: window.global.config.contact,
+      settings: window.global.config.settings,
       formData: {
         name: "",
         email: "",
@@ -150,12 +151,6 @@ export default {
     };
   },
   computed: {
-    contact() {
-      return this.$store.getters.contact;
-    },
-    settings() {
-      return this.$store.getters.settings;
-    },
     contactLinks() {
       return this.$store.state.ContactLinks?.contactLinks || [];
     },

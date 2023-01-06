@@ -4,11 +4,11 @@
       <div class="content">
         <div class="section-content">
           <Picture
-            :src="`${origin}/storage/media/${$store.state.Settings.settings.li_marker}`"
-            :alt="$store.state.Settings.settings.li_marker_alt"
+            :src="`/storage/media/${settings.li_marker}`"
+            :alt="settings.li_marker_alt"
             :width="48"
             :height="75"
-            :classImg="'bolt'"
+            classImg="bolt"
           />
           <h3 class="section-title" v-html="prepareTitle(service.title)"></h3>
         </div>
@@ -21,8 +21,8 @@
           :width="service.photo_sizes.width"
           :height="service.photo_sizes.height"
           :alt="service.photo_alt"
-          :src="`${origin}/storage/media/${service.photo}`"
-          :classImg="'img-fluid photo service-photo'"
+          :src="`/storage/media/${service.photo}`"
+          classImg="img-fluid photo service-photo"
           :styleImg="{ 'object-position': service.photo_background_position }"
         />
       </div>
@@ -33,7 +33,7 @@
         <CoolLightBox
           :items="
             gallery.map((photo) =>
-              existingPhotoPath(`${origin}/storage/media/${photo.path}`)
+              existingPhotoPath(`/storage/media/${photo.path}`)
             )
           "
           :index="index"
@@ -50,8 +50,8 @@
             :width="photo.photo_sizes.width"
             :height="photo.photo_sizes.height"
             :alt="photo.photo_alt"
-            :src="`${origin}/storage/media/${photo.path}`"
-            :classImg="'photo'"
+            :src="`/storage/media/${photo.path}`"
+            classImg="photo"
           />
         </div>
       </div>
@@ -74,9 +74,9 @@ export default {
   },
   data() {
     return {
-      origin: window.location.origin,
       gallery: [],
       index: null,
+      settings: window.global.config.settings,
     };
   },
   computed: {

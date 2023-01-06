@@ -3,9 +3,9 @@
     <Picture
       :width="700"
       :height="700"
-      :alt="'elipsa'"
-      :src="`${origin}/storage/img/services/solar-system-ellipse.svg`"
-      :classImg="'ellipse'"
+      alt="elipsa"
+      src="/storage/img/services/solar-system-ellipse.svg"
+      classImg="ellipse"
     />
 
     <div class="position-relative call-us-bg-container">
@@ -20,7 +20,7 @@
         :width="servicesCallUs.photo_sizes.width"
         :height="servicesCallUs.photo_sizes.width"
         :alt="servicesCallUs.photo_alt"
-        :src="`${origin}/storage/media/${servicesCallUs.photo}`"
+        :src="`/storage/media/${servicesCallUs.photo}`"
         :classImg="'bg call-us-bg'"
         :styleImg="{
           'object-position': servicesCallUs.photo_background_position,
@@ -43,7 +43,7 @@
                 data-name="Icon ionic-ios-call"
                 d="M30.72,25.65a22.686,22.686,0,0,0-4.739-3.171c-1.42-.682-1.941-.668-2.946.056-.837.6-1.378,1.167-2.341.956s-2.862-1.645-4.7-3.48-3.277-3.741-3.48-4.7.359-1.5.956-2.341c.724-1.005.745-1.526.056-2.946A22.238,22.238,0,0,0,10.35,5.28c-1.034-1.034-1.266-.809-1.835-.6a10.443,10.443,0,0,0-1.68.893A5.069,5.069,0,0,0,4.816,7.7c-.4.865-.865,2.475,1.5,6.68a37.272,37.272,0,0,0,6.553,8.74h0l.007.007.007.007h0a37.418,37.418,0,0,0,8.74,6.553c4.2,2.362,5.815,1.9,6.68,1.5a4.983,4.983,0,0,0,2.13-2.018,10.443,10.443,0,0,0,.893-1.68C31.528,26.916,31.76,26.684,30.72,25.65Z"
                 transform="translate(-4.49 -4.502)"
-                :fill="$store.getters.settings.first_color"
+                :fill="settings.first_color"
               />
             </svg>
           </div>
@@ -69,18 +69,17 @@ export default {
   },
   data() {
     return {
-      origin: window.location.origin,
       table: "servicesCallUs",
       module: servicesCallUsModule,
+      settings: window.global.config.settings,
+      contact: window.global.config.contact,
     };
   },
   computed: {
     servicesCallUs() {
       return this.$store.state.ServicesCallUs?.servicesCallUs || {};
     },
-    contact() {
-      return this.$store.getters["contact"];
-    },
+
     tableData() {
       return this.contact;
     },

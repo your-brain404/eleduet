@@ -31,7 +31,7 @@
       </div>
       <v-btn
         @click="toggleModal"
-        :color="$store.getters.settings.first_color"
+        :color="settings.first_color"
         class="file-picker__modal-button"
       >
         {{ title ? title : "Dodaj plik" }}
@@ -130,9 +130,7 @@
                               v-else
                               class="file-picker__set-file-button"
                             >
-                              <v-btn
-                                :color="$store.getters.settings.first_color"
-                              >
+                              <v-btn :color="settings.first_color">
                                 <template #icon>
                                   <svg-vue icon="file" />
                                 </template>
@@ -218,7 +216,7 @@
                               <a target="_blank" :href="url(chosenFile.path)">
                                 <v-btn
                                   class="white--text"
-                                  :color="$store.getters.settings.first_color"
+                                  :color="settings.first_color"
                                 >
                                   <template #icon>
                                     <svg-vue icon="eye" />
@@ -255,7 +253,7 @@
                                   )
                                 "
                                 class="white--text"
-                                :color="$store.getters.settings.first_color"
+                                :color="settings.first_color"
                               >
                                 <template #icon>
                                   <svg-vue icon="content-copy" />
@@ -348,6 +346,7 @@ export default {
       page: 1,
       chosenFileColumnShow: false,
       placeholder: "/storage/img/placeholder/250.png",
+      settings: window.global.config.settings,
     };
   },
 

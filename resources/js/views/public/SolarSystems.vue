@@ -7,8 +7,8 @@
       <div class="content">
         <div class="section-content">
           <Picture
-            :src="`${origin}/storage/media/${$store.state.Settings.settings.li_marker}`"
-            :alt="$store.state.Settings.settings.li_marker_alt"
+            :src="`/storage/media/${settings.li_marker}`"
+            :alt="settings.li_marker_alt"
             :width="48"
             :height="75"
             :classImg="'bolt'"
@@ -28,9 +28,7 @@
         <div
           class="photo bg"
           :title="solarSystem.photo_alt"
-          v-lazy:background-image="
-            `${origin}/storage/media/${solarSystem.photo}`
-          "
+          v-lazy:background-image="`/storage/media/${solarSystem.photo}`"
         ></div>
       </div>
     </section>
@@ -48,7 +46,7 @@ export default {
   components: { CallUs },
   data() {
     return {
-      origin: window.location.origin,
+      settings: window.global.config.settings,
       table: "solarSystem",
       module: solarSystemModule,
     };

@@ -4,11 +4,11 @@
       <div class="content">
         <div class="section-content">
           <Picture
-            :src="`${origin}/storage/media/${$store.state.Settings.settings.li_marker}`"
-            :alt="$store.state.Settings.settings.li_marker_alt"
+            :src="`/storage/media/${settings.li_marker}`"
+            :alt="settings.li_marker_alt"
             :width="48"
             :height="75"
-            :classImg="'bolt'"
+            classImg="bolt"
           />
 
           <h3
@@ -27,8 +27,8 @@
           :width="servicesPageDesc.photo_sizes.width"
           :height="servicesPageDesc.photo_sizes.height"
           :alt="servicesPageDesc.photo_alt"
-          :src="`${origin}/storage/media/${servicesPageDesc.photo}`"
-          :classImg="'photo bg'"
+          :src="`/storage/media/${servicesPageDesc.photo}`"
+          classImg="photo bg"
           :styleImg="{
             'object-position': servicesPageDesc.photo_background_position,
           }"
@@ -37,9 +37,9 @@
           v-if="servicesPageDesc.photo"
           :width="170"
           :height="170"
-          :alt="'elipsa'"
-          :src="`${origin}/storage/img/home/ellipse1.svg`"
-          :classImg="'ellipse'"
+          alt="elipsa"
+          src="/storage/img/home/ellipse1.svg"
+          classImg="ellipse"
         />
       </div>
     </section>
@@ -64,11 +64,11 @@
       <div class="content">
         <div class="section-content">
           <Picture
-            :width="'auto'"
+            width="auto"
             :height="75"
-            :alt="'marker'"
-            :src="`${origin}/storage/media/${$store.state.Settings.settings.li_marker}`"
-            :classImg="'bolt'"
+            alt="marker"
+            :src="`/storage/media/${settings.li_marker}`"
+            classImg="bolt"
           />
           <h3
             class="section-title"
@@ -97,8 +97,8 @@
               :width="240"
               :height="200"
               :alt="service.photo_alt"
-              :src="`${origin}/storage/media/${service.photo}`"
-              :classImg="'photo'"
+              :src="`/storage/media/${service.photo}`"
+              classImg="photo"
               :styleImg="{
                 'object-position': service.photo_background_position,
               }"
@@ -140,11 +140,11 @@ export default {
   },
   data() {
     return {
-      origin: window.location.origin,
       table: "services",
       styleText: `.guarantee ul li::before { background-image:
-                url(${origin}/storage/img/layout/clef.png) }`,
+                url(/storage/img/layout/clef.png) }`,
       module: servicesModule,
+      settings: window.global.config.settings,
     };
   },
   methods: {

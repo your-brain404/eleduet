@@ -3,8 +3,8 @@
     <div class="content">
       <div class="section-content">
         <Picture
-          :src="`${origin}/storage/media/${$store.state.Settings.settings.li_marker}`"
-          :alt="$store.state.Settings.settings.li_marker_alt"
+          :src="`/storage/media/${settings.li_marker}`"
+          :alt="settings.li_marker_alt"
           :width="48"
           :height="75"
           :classImg="'bolt'"
@@ -39,7 +39,7 @@
               :height="service.photo_sizes.height"
               :alt="service.photo_alt"
               :classImg="'photo bg'"
-              :src="origin + '/storage/media/' + service.photo"
+              :src="'/storage/media/' + service.photo"
               :mobile-version="576"
             />
             <h4 class="service-title">{{ service.title }}</h4>
@@ -79,11 +79,11 @@ export default {
   },
   data() {
     return {
-      origin: window.location.origin,
       carouselItems: 3.5,
       screenWidth: window.innerWidth,
       table: "homeServices",
       module: homeServicesModule,
+      settings: window.global.config.settings,
     };
   },
   computed: {

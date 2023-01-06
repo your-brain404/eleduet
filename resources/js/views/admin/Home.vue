@@ -37,6 +37,8 @@ import fillBaseHeaders from "@/helpers/panel-table/fill-base-headers.js";
 import getModule from "@/helpers/store/get-module";
 import VCard from "@/components/elements/VCard";
 import VDivider from "@/components/elements/VDivider";
+import usersModule from "@/store/modules/users/usersModule";
+import loadingModule from "@/store/modules/loading/loadingModule";
 
 export default {
   data() {
@@ -82,6 +84,12 @@ export default {
   created() {
     this.secureRoutes();
     this.setBlocks();
+    if (!this.$store.hasModule("users")) {
+      this.$store.registerModule("users", usersModule);
+    }
+    if (!this.$store.hasModule("loading")) {
+      this.$store.registerModule("loading", loadingModule);
+    }
     this.$store.dispatch("fetchAllUsers");
     if (!this.$store.hasModule("snackbarAlerts"))
       this.$store.registerModule("snackbarAlerts", getModule("snackbarAlerts"));

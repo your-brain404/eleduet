@@ -14,7 +14,7 @@
       <section class="descriptions">
         <router-link :to="{ name: 'Main' }">
           <Picture
-            :src="`${origin}/storage/media/${settings.photo}`"
+            :src="`/storage/media/${settings.photo}`"
             :alt="settings.photo_alt"
             :width="settings.photo_sizes.width"
             :height="settings.photo_sizes.height"
@@ -79,18 +79,13 @@ export default {
   },
   data() {
     return {
-      origin: window.location.origin,
+      settings: window.global.config.settings,
+      contact: window.global.config.contact,
     };
   },
   computed: {
     subpages() {
       return this.$store.getters.subpages;
-    },
-    contact() {
-      return this.$store.getters.contact;
-    },
-    settings() {
-      return this.$store.getters.settings;
     },
   },
 };

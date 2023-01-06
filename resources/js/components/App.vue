@@ -1,17 +1,11 @@
 <template>
   <div class="app">
     <component :is="'style'">
-      :root { --first-color: {{ $store.state.Settings.settings.first_color }}; }
-      ul li::before { background-image: url("{{
-        `/storage/media/${$store.state.Settings.settings.li_marker}`
-      }}");}
+      :root { --first-color: {{ settings.first_color }}; } ul li::before {
+      background-image: url("{{ `/storage/media/${settings.li_marker}` }}");}
     </component>
     <header v-if="$route.path != '/elemele'">
-      <HeaderComponent
-        :openLogin="openLogin"
-        v-if="!isPathAdmin"
-        class="header"
-      />
+      <HeaderComponent v-if="!isPathAdmin" class="header" />
       <AdminHeader v-else-if="$route.name != 'AdminLogin'" />
     </header>
     <main>
@@ -33,6 +27,9 @@
 import getCookie from "@/helpers/cookies/get-cookie";
 import lazyLoadComponent from "@/services/lazy-load-component";
 import FontFaceObserver from "fontfaceobserver";
+import authModule from "@/store/modules/auth/authModule";
+import toastModule from "@/store/modules/toast/toastModule";
+import subpagesModule from "@/store/modules/subpages/subpagesModule";
 
 function recaptcha() {
   let badge = document.getElementsByClassName("grecaptcha-badge")[0];
@@ -56,7 +53,7 @@ export default {
       componentFactory: () =>
         import(/* webpackChunkName: 'front-footer' */ "./layouts/Footer"),
       loading: {
-        template: "<div></div>",
+        template: "<div>loading...</div>",
       },
     }),
     AdminHeader: () =>
@@ -76,7 +73,7 @@ export default {
   data() {
     return {
       title: "",
-      openLogin: false,
+      settings: window.global.config.settings,
     };
   },
   watch: {
@@ -90,6 +87,9 @@ export default {
       },
     },
     "$route.path"() {
+      if (!this.$store.hasModule("subpages")) {
+        this.$store.registerModule("subpages", subpagesModule);
+      }
       recaptcha();
       this.checkSubpageEntry();
       this.setCurrentSubpage();
@@ -103,26 +103,20 @@ export default {
       return this.$route.meta.adminRoute;
     },
     subpages() {
-      return this.$store.getters.subpages;
+      return this.$store.state.subpages?.subpages || [];
     },
     currentSubpage() {
       return this.$store.getters.currentSubpage;
     },
-    settings() {
-      return this.$store.getters.settings;
-    },
+
     toasts() {
-      return this.$store.state.Toast.toasts;
+      return this.$store.state.toast?.toasts || [];
     },
     savedCookies() {
       return getCookie("cookies");
     },
   },
   methods: {
-    openLoginEvent() {
-      this.openLogin = true;
-      setTimeout(() => (this.openLogin = false), 20);
-    },
     setCurrentSubpage() {
       let currentSubpage = this.subpages.find(
         (subpage) => subpage.page === this.$route.path
@@ -158,6 +152,12 @@ export default {
   created() {
     this.setCart();
     this.setMetaTitle();
+    this.$store.registerModule("auth", authModule);
+    this.$store.registerModule("toast", toastModule);
+    if (!this.$store.hasModule("subpages")) {
+      this.$store.registerModule("subpages", subpagesModule);
+    }
+    this.$store.dispatch("authAutoLogin");
 
     if (window.location.hash && window.location.hash == "#_=_") {
       window.location.href = window.location.origin;

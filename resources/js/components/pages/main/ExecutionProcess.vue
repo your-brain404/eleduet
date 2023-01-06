@@ -3,8 +3,8 @@
     <div class="content">
       <div class="section-content">
         <Picture
-          :src="`${origin}/storage/media/${$store.state.Settings.settings.li_marker}`"
-          :alt="$store.state.Settings.settings.li_marker_alt"
+          :src="`/storage/media/${settings.li_marker}`"
+          :alt="settings.li_marker_alt"
           :width="48"
           :height="75"
           :classImg="'bolt'"
@@ -25,7 +25,7 @@
                 height="60"
                 :alt="step.photo_alt"
                 :classImg="'icon'"
-                :src="`${origin}/storage/media/${step.photo}`"
+                :src="`/storage/media/${step.photo}`"
               />
             </div>
             <div
@@ -56,10 +56,10 @@ export default {
   mixins: [adminTableComponent],
   data() {
     return {
-      origin: window.location.origin,
       innerWidth: window.innerWidth,
       table: "executionProcess",
       module: executionProcessModule,
+      settings: window.global.config.settings,
     };
   },
   computed: {

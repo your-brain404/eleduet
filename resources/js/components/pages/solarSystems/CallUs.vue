@@ -3,16 +3,14 @@
     <Picture
       :width="700"
       :height="700"
-      :src="`${origin}/storage/img/services/solar-system-ellipse.svg`"
+      :src="`/storage/img/services/solar-system-ellipse.svg`"
       alt="elipsa"
       classImg="ellipse"
     />
     <div
       class="bg"
       :title="solarSystemCallUs.photo_alt"
-      v-lazy:background-image="
-        `${origin}/storage/media/${solarSystemCallUs.photo}`
-      "
+      v-lazy:background-image="`/storage/media/${solarSystemCallUs.photo}`"
     >
       <div class="mask"></div>
       <div class="content">
@@ -20,10 +18,7 @@
 
         <a class="phone-link" :href="`tel:${contact.phone_1}`">
           <div class="icon-container">
-            <img
-              v-lazy="`${origin}/storage/img/home/about/phone.svg`"
-              alt="słuchawka"
-            />
+            <img v-lazy="`/storage/img/home/about/phone.svg`" alt="słuchawka" />
           </div>
           <div class="phone-content">
             {{ solarSystemCallUs.button_name }}
@@ -44,8 +39,8 @@ export default {
   components: { Picture },
   data() {
     return {
-      origin: window.location.origin,
       table: "solarSystemCallUs",
+      contact: window.global.config.contact,
     };
   },
   computed: {
@@ -54,9 +49,6 @@ export default {
     },
     tableData() {
       return [this.solarSystemCallUs];
-    },
-    contact() {
-      return this.$store.getters["contact"];
     },
   },
 };

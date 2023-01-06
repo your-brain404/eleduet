@@ -65,6 +65,8 @@
 <script>
 import avatar from "@/helpers/photo/avatar.js";
 import Picture from "@/components/picture/Picture.vue";
+import usersModule from "@/store/modules/users/usersModule";
+import loadingModule from "@/store/modules/loading/loadingModule";
 
 export default {
   components: {
@@ -75,6 +77,7 @@ export default {
       drawer: false,
       avatar,
       innerWidth: window.innerWidth,
+      settings: window.global.config.settings,
       items: [
         {
           title: "Strona główna",
@@ -131,11 +134,11 @@ export default {
   },
 
   created() {
-    if (!this.$store.hasModule("Loading")) {
-      this.$store.registerModule(
-        "Loading",
-        require("@/store/modules/loading/loadingModule")
-      );
+    if (!this.$store.hasModule("loading")) {
+      this.$store.registerModule("loading", loadingModule);
+    }
+    if (!this.$store.hasModule("users")) {
+      this.$store.registerModule("users", usersModule);
     }
     window.addEventListener("resize", () => {
       this.innerWidth = window.innerWidth;
@@ -155,9 +158,7 @@ export default {
     placeholder() {
       return window.location.origin + "/storage/img/avatar/avatar.png";
     },
-    settings() {
-      return this.$store.getters.settings;
-    },
+
     mobile() {
       return this.innerWidth <= 992;
     },

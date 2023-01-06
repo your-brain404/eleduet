@@ -10,12 +10,12 @@
       :width="photoSizes.width"
       :height="photoSizes.width"
       :alt="alt"
-      :src="`${origin}/storage/media/${photo}`"
+      :src="`/storage/media/${photo}`"
       :styleImg="{
         'object-position': backgroundPosition,
         'object-fit': 'cover',
       }"
-      :classImg="'img-fluid h-100'"
+      classImg="img-fluid h-100"
     />
     <div class="mask"></div>
     <div class="content">
@@ -31,14 +31,13 @@ export default {
   components: {
     Picture,
   },
-  data() {
-    return {
-      origin: window.location.origin,
-    };
-  },
+
   computed: {
     currentSubpage() {
-      return this.$store.getters.currentSubpage;
+      return (
+        this.$store.getters.currentSubpage ||
+        window.global.config.currentSubpage
+      );
     },
 
     title() {
