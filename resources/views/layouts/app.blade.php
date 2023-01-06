@@ -13,6 +13,9 @@
     <style async>
         {{ $critical_css }}
     </style>
+    @foreach ($preloads as $preload)
+        <link rel="preload" src="{{ $preload }}" />
+    @endforeach
 
 </head>
 

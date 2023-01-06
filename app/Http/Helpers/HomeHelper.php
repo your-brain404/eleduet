@@ -60,12 +60,17 @@ class HomeHelper
 		$data['translations'] = Translations::all();
 		$data['current_subpage'] = self::getCurrentSubpage($data['subpages']);
 		$data['critical_css'] = file_get_contents($_SERVER['ROOT'] . '/dist/css/header.css');
+		$data['preloads'] = [];
 
 		if (LangHelper::getRouteSegment(1) != 'admin-panel') {
 			//
 		}
 		if (LangHelper::getRouteSegment(1) == '') {
-			$data['slider'] = Slider::where('active', 1)->get() ?? [];
+			$data['slider'] = Slider::where('active', 1)->get()->toArray() ?? [];
+			if (count($data['slider']) > 0) {
+				$data['preloads'][] = '/storage/media/' . $data['slider'][0]['photo'] . '.webp';
+				$data['preloads'][] = '/storage/media/width_576_' . $data['slider'][0]['photo'] . '.webp';
+			}
 			$data['home_services'] = Services::where('home_page', 1)->orderBy('id', 'ASC')->get() ?? [];
 			$data['home_services_desc'] = HomeServicesDesc::find(1) ?? new stdClass;
 			$data['home_solar_system_desc'] = HomeSolarSystemDesc::find(1) ?? new stdClass;
