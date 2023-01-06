@@ -60,6 +60,7 @@
 <script>
 import Picture from "@/components/picture/Picture";
 import adminTableComponent from "@/mixins/admin-table-component";
+import servicesCallUsModule from "@/store/modules/servicesCallUs/servicesCallUsModule";
 
 export default {
   mixins: [adminTableComponent],
@@ -70,6 +71,7 @@ export default {
     return {
       origin: window.location.origin,
       table: "servicesCallUs",
+      module: servicesCallUsModule,
     };
   },
   computed: {

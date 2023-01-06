@@ -61,6 +61,7 @@
 <script>
 import adminTableComponent from "@/mixins/admin-table-component";
 import Picture from "@/components/picture/Picture";
+import aboutModule from "@/store/modules/about/aboutModule.js";
 
 export default {
   components: {
@@ -72,6 +73,7 @@ export default {
     return {
       origin: window.location.origin,
       table: "about",
+      module: aboutModule,
     };
   },
   computed: {
@@ -93,5 +95,6 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+@import "~@scss/pages/main/about";
 </style>

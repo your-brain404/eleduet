@@ -38,6 +38,7 @@ import "vue-cool-lightbox/dist/vue-cool-lightbox.min.css";
 import Picture from "@/components/picture/Picture";
 import adminTableComponent from "@/mixins/admin-table-component";
 import existingPhotoPath from "@/helpers/links/existing-photo-path";
+import aboutPageModule from "@/store/modules/aboutPage/aboutPageModule";
 
 export default {
   components: {
@@ -52,6 +53,7 @@ export default {
       table: "aboutPage",
       index: null,
       gallery: window.global.cms.aboutPage.aboutPageGallery || [],
+      module: aboutPageModule,
     };
   },
   computed: {

@@ -16,8 +16,10 @@
 import url from "@/helpers/photo/url";
 import lazyLoadComponent from "@/services/lazy-load-component";
 import Loader from "@/components/loader/Loader";
-import Slider from "@/components/pages/main/Slider";
-import About from "@/components/pages/main/About";
+const Slider = () =>
+  import(/* webpackChunkName: 'slider' */ "@/components/pages/main/Slider");
+const About = () =>
+  import(/* webpackChunkName: 'about' */ "@/components/pages/main/About");
 
 const Services = () =>
   import(/* webpackChunkName: 'services' */ "@/components/pages/main/Services");
@@ -42,8 +44,14 @@ const Opinions = () =>
 
 export default {
   components: {
-    Slider,
-    About,
+    Slider: lazyLoadComponent({
+      componentFactory: Slider,
+      loading: Loader,
+    }),
+    About: lazyLoadComponent({
+      componentFactory: About,
+      loading: Loader,
+    }),
     Attributes: lazyLoadComponent({
       componentFactory: Attributes,
       loading: Loader,

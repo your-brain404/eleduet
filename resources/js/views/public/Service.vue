@@ -64,7 +64,7 @@ import axios from "@/plugins/axios/axios";
 import CoolLightBox from "vue-cool-lightbox";
 import "vue-cool-lightbox/dist/vue-cool-lightbox.min.css";
 import Picture from "@/components/picture/Picture";
-import getModule from "@/helpers/store/get-module";
+import serviceModule from "@/store/modules/service/serviceModule";
 import existingPhotoPath from "@/helpers/links/existing-photo-path";
 
 export default {
@@ -107,7 +107,7 @@ export default {
     },
   },
   created() {
-    this.$store.registerModule("Service", getModule("service"));
+    this.$store.registerModule("Service", serviceModule);
     if (Object.values(this.service).length === 0) this.fetchData();
     if (this.gallery.length === 0) this.fetchGallery();
   },

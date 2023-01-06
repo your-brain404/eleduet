@@ -38,6 +38,7 @@ import "vue-cool-lightbox/dist/vue-cool-lightbox.min.css";
 import adminTableComponent from "@/mixins/admin-table-component";
 import Picture from "../../components/picture/Picture.vue";
 import existingPhotoPath from "@/helpers/links/existing-photo-path";
+import realizationsModule from "@/store/modules/realizations/realizationsModule";
 
 export default {
   mixins: [adminTableComponent],
@@ -52,6 +53,7 @@ export default {
       table: "realizations",
       index: null,
       emit: false,
+      module: realizationsModule,
     };
   },
   methods: {

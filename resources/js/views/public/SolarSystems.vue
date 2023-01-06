@@ -41,6 +41,7 @@
 <script>
 import CallUs from "@/components/pages/solarSystems/CallUs";
 import adminTableComponent from "@/mixins/admin-table-component";
+import solarSystemModule from "@/store/modules/solarSystem/solarSystemModule";
 
 export default {
   mixins: [adminTableComponent],
@@ -49,6 +50,7 @@ export default {
     return {
       origin: window.location.origin,
       table: "solarSystem",
+      module: solarSystemModule,
     };
   },
   methods: {

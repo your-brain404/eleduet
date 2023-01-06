@@ -45,6 +45,8 @@
 <script>
 import adminTableComponent from "@/mixins/admin-table-component";
 import Picture from "@/components/picture/Picture";
+import attributesModule from "@/store/modules/attributes/attributesModule.js";
+import attributesDescModule from "@/store/modules/attributesDesc/attributesDescModule.js";
 
 export default {
   mixins: [adminTableComponent],
@@ -56,6 +58,7 @@ export default {
     return {
       origin: window.location.origin,
       table: "attributes",
+      module: attributesModule,
     };
   },
   computed: {
@@ -82,7 +85,7 @@ export default {
       title.replaceAll("{", "<span>").replaceAll("}", "</span>"),
   },
   created() {
-    this.registerModule("AttributesDesc");
+    this.registerModule("AttributesDesc", attributesDescModule);
     if (this.attributes.length === 0) this.fetchData();
     if (Object.values(this.attributesDesc).length === 0)
       this.$store.dispatch("AttributesDesc/attributesDesc");

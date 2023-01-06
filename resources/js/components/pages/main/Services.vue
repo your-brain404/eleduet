@@ -67,6 +67,8 @@ import { Carousel, Slide } from "vue-carousel";
 import slug from "@/helpers/links/slug";
 import adminTableComponent from "@/mixins/admin-table-component";
 import Picture from "@/components/picture/Picture";
+import homeServicesModule from "@/store/modules/homeServices/homeServicesModule";
+import homeServicesDescModule from "@/store/modules/homeServicesDesc/homeServicesDescModule";
 
 export default {
   mixins: [adminTableComponent],
@@ -81,6 +83,7 @@ export default {
       carouselItems: 3.5,
       screenWidth: window.innerWidth,
       table: "homeServices",
+      module: homeServicesModule,
     };
   },
   computed: {
@@ -102,7 +105,7 @@ export default {
     slug,
   },
   created() {
-    this.registerModule("HomeServicesDesc");
+    this.registerModule("HomeServicesDesc", homeServicesDescModule);
     this.setCarouselItems();
     if (this.homeServices.length === 0)
       this.$store.dispatch("HomeServices/homeServices");

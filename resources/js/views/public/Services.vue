@@ -126,6 +126,11 @@ import CallUs from "@/components/pages/services/CallUs";
 import slug from "@/helpers/links/slug";
 import Picture from "@/components/picture/Picture";
 import adminTableComponent from "@/mixins/admin-table-component";
+import servicesModule from "@/store/modules/services/servicesModule";
+import serviceCategoriesModule from "@/store/modules/serviceCategories/serviceCategoriesModule";
+import servicesServiceCategoriesModule from "@/store/modules/servicesServiceCategories/servicesServiceCategoriesModule";
+import servicesPageDescModule from "@/store/modules/servicesPageDesc/servicesPageDescModule";
+import servicesAttributesModule from "@/store/modules/servicesAttributes/servicesAttributesModule";
 
 export default {
   mixins: [adminTableComponent],
@@ -139,6 +144,7 @@ export default {
       table: "services",
       styleText: `.guarantee ul li::before { background-image:
                 url(${origin}/storage/img/layout/clef.png) }`,
+      module: servicesModule,
     };
   },
   methods: {
@@ -184,10 +190,13 @@ export default {
     },
   },
   created() {
-    this.registerModule("serviceCategories");
-    this.registerModule("servicesServiceCategories");
-    this.registerModule("servicesPageDesc");
-    this.registerModule("servicesAttributes");
+    this.registerModule("serviceCategories", serviceCategoriesModule);
+    this.registerModule(
+      "servicesServiceCategories",
+      servicesServiceCategoriesModule
+    );
+    this.registerModule("servicesPageDesc", servicesPageDescModule);
+    this.registerModule("servicesAttributes", servicesAttributesModule);
     if (this.serviceCategories.length === 0)
       this.$store.dispatch("ServiceCategories/serviceCategories");
     if (this.servicesServiceCategories.length === 0)

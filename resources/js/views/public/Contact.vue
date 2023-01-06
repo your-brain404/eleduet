@@ -121,7 +121,8 @@ import axios from "@/plugins/axios/axios";
 import Vue from "vue";
 import { VueReCaptcha } from "vue-recaptcha-v3";
 import Picture from "@/components/picture/Picture";
-import getModule from "@/helpers/store/get-module";
+import contactLinksModule from "@/store/modules/contactLinks/contactLinksModule";
+import snackbarAlertsModule from "@/store/modules/snackbarAlerts/snackbarAlertsModule";
 
 export default {
   components: {
@@ -253,9 +254,9 @@ export default {
   },
   created() {
     if (!this.$store.hasModule("contactLinks"))
-      this.$store.registerModule("ContactLinks", getModule("contactLinks"));
+      this.$store.registerModule("ContactLinks", contactLinksModule);
     if (!this.$store.hasModule("snackbarAlerts"))
-      this.$store.registerModule("snackbarAlerts", getModule("snackbarAlerts"));
+      this.$store.registerModule("snackbarAlerts", snackbarAlertsModule);
     if (this.contactLinks.length === 0)
       this.$store.dispatch("ContactLinks/contactLinks");
     let siteKey = this.$route.path.includes("localhost")

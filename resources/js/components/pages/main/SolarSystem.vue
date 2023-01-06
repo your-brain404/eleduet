@@ -45,6 +45,7 @@
 <script>
 import adminTableComponent from "@/mixins/admin-table-component";
 import Picture from "@/components/picture/Picture";
+import homeSolarSystemDescModule from "@/store/modules/homeSolarSystemDesc/homeSolarSystemDescModule";
 
 export default {
   components: {
@@ -55,6 +56,7 @@ export default {
     return {
       origin: window.location.origin,
       table: "homeSolarSystemDesc",
+      module: homeSolarSystemDescModule,
     };
   },
   computed: {

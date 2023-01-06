@@ -62,6 +62,7 @@ import Picture from "@/components/picture/Picture";
 import url from "@/helpers/photo/url";
 import { Carousel, Slide } from "vue-carousel";
 import existingPhotoPath from "@/helpers/links/existing-photo-path";
+import sliderModule from "@/store/modules/slider/sliderModule.js";
 
 export default {
   components: {
@@ -83,6 +84,7 @@ export default {
       origin: window.location.origin,
       table: "slider",
       carousel: true,
+      module: sliderModule,
     };
   },
 
@@ -100,4 +102,6 @@ export default {
   },
 };
 </script>
-
+<style lang="scss">
+@import "~@scss/pages/main/slider";
+</style>

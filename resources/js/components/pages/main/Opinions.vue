@@ -91,6 +91,8 @@
 <script>
 import adminTableComponent from "@/mixins/admin-table-component";
 import Picture from "@/components/picture/Picture.vue";
+import opinionsModule from "@/store/modules/opinions/opinionsModule";
+import opinionsDescModule from "@/store/modules/opinionsDesc/opinionsDescModule";
 
 export default {
   components: {
@@ -101,6 +103,7 @@ export default {
     return {
       origin: window.location.origin,
       table: "opinions",
+      module: opinionsModule,
     };
   },
   methods: {
@@ -125,7 +128,7 @@ export default {
     },
   },
   created() {
-    this.registerModule("OpinionsDesc");
+    this.registerModule("OpinionsDesc", opinionsDescModule);
     if (this.opinions?.constructor === Array && this.opinions.length === 0)
       this.fetchData();
     if (Object.values(this.opinionsDesc).length === 0)
