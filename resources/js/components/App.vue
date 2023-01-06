@@ -1,5 +1,6 @@
 <template>
   <div class="app">
+    <Cookies v-if="!isPathAdmin && !savedCookies" />
     <component :is="'style'">
       :root { --first-color: {{ settings.first_color }}; } ul li::before {
       background-image: url("{{ `/storage/media/${settings.li_marker}` }}");}
@@ -56,6 +57,8 @@ export default {
     AdminHeader: () =>
       import(/* webpackChunkName: 'cms-layout' */ "./layouts/AdminHeader"),
     Toast: () => import(/* webpackChunkName: 'toast' */ "./toast/Toast"),
+    Cookies: () =>
+      import(/* webpackChunkName: 'cookies' */ "@/components/cookies/Cookies"),
     Banner: lazyLoadComponent({
       componentFactory: () =>
         import(/* webpackChunkName: 'banner' */ "./layouts/Banner"),
