@@ -14,7 +14,7 @@
       <slide v-for="(slide, i) in slider" :key="`slide-${i}`" class="slide">
         <Picture
           class="slide-picture"
-          :src="url(slide.photo)"
+          :src="`/storage/media/${slide.photo}`"
           :alt="slide.photo_alt"
           :width="slide.photo_sizes.width"
           :height="slide.photo_sizes.height"
@@ -56,35 +56,29 @@
 </template>
  
 <script>
-import CustomLink from "@/components/custom-link/CustomLink";
-import adminTableComponent from "@/mixins/admin-table-component";
-import Picture from "@/components/picture/Picture";
-import url from "@/helpers/photo/url";
 import { Carousel, Slide } from "vue-carousel";
-import existingPhotoPath from "@/helpers/links/existing-photo-path";
 import sliderModule from "@/store/modules/slider/sliderModule.js";
 
 export default {
   components: {
-    CustomLink,
-    Picture,
+    CustomLink: () =>
+      import(
+        /* webpackChunkName: 'custom-link' */ "@/components/custom-link/CustomLink"
+      ),
+    Picture: () =>
+      import(/* webpackChunkName: 'picture' */ "@/components/picture/Picture"),
     Carousel,
     Slide,
   },
-  mixins: [adminTableComponent],
   watch: {
     slider() {
-      this.emitData();
       this.carousel = false;
       setTimeout(() => (this.carousel = true), 1);
     },
   },
   data() {
     return {
-      origin: window.location.origin,
-      table: "slider",
       carousel: true,
-      module: sliderModule,
     };
   },
 
@@ -92,13 +86,13 @@ export default {
     slider() {
       return this.$store.state.Slider?.slider || [];
     },
-    tableData() {
-      return this.slider;
-    },
   },
-  methods: {
-    url,
-    existingPhotoPath,
+  created() {
+    if (!this.$store.hasModule("Slider")) {
+      this.$store.registerModule("Slider", sliderModule);
+    }
+    if (this.slider.length === 0)
+      this.$store.dispatch("Slider/slider", sliderModule);
   },
 };
 </script>

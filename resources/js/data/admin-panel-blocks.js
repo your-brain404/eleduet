@@ -2,10 +2,7 @@ const Subpages = () =>
     import(
         /* webpackPrefetch: true */ /* webpackChunkName: 'cms' */ "@/components/emit-data-blocks/Subpages"
     );
-// const Languages = () =>
-//     import(
-//         /* webpackPrefetch: true */ /* webpackChunkName: 'cms' */ "@/components/emit-data-blocks/Languages"
-//     );
+
 const Mails = () =>
     import(
         /* webpackPrefetch: true */ /* webpackChunkName: 'cms' */ "@/components/emit-data-blocks/Mails"
@@ -38,12 +35,11 @@ const Services = () =>
     import(
         /* webpackPrefetch: true */ /* webpackChunkName: 'cms' */ "@/components/emit-data-blocks/Services"
     );
-// const Translations = () =>
-//     import(
-//         /* webpackPrefetch: true */ /* webpackChunkName: 'cms' */ "@/components/emit-data-blocks/Translations"
-//     );
+
 const Slider = () =>
-    import(/* webpackChunkName: 'slider' */ "@/components/pages/main/Slider");
+    import(
+        /* webpackChunkName: 'slider-panel' */ "@/components/emit-data-blocks/Slider"
+    );
 const About = () =>
     import(/* webpackChunkName: 'about' */ "@/components/pages/main/About");
 const HomeServices = () =>
