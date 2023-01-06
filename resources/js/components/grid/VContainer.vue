@@ -1,5 +1,10 @@
 <template functional>
-  <div class="custom-container" v-bind="data.attrs" v-on="data.on">
+  <div
+    class="custom-container"
+    v-bind="data.attrs"
+    v-on="data.on"
+    :style="data.staticStyle"
+  >
     <slot></slot>
   </div>
 </template>
