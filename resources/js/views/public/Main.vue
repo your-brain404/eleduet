@@ -13,7 +13,6 @@
 </template>
 
 <script>
-import url from "@/helpers/photo/url";
 import lazyLoadComponent from "@/services/lazy-load-component";
 import Loader from "@/components/loader/Loader";
 const Slider = () =>
@@ -77,9 +76,7 @@ export default {
       loading: Loader,
     }),
   },
-  methods: {
-    url,
-  },
+
   computed: {
     slider() {
       if (window.global.cms.homePage.slider === null) return true;
