@@ -46,9 +46,7 @@ window.addEventListener("load", function () {
 export default {
   components: {
     HeaderComponent: () =>
-      import(
-        /* webpackPrefetch: true */ /* webpackChunkName: 'front-header' */ "./layouts/Header"
-      ),
+      import(/* webpackChunkName: 'front-header' */ "./layouts/Header"),
     FooterComponent: lazyLoadComponent({
       componentFactory: () =>
         import(/* webpackChunkName: 'front-footer' */ "./layouts/Footer"),
@@ -57,17 +55,16 @@ export default {
       },
     }),
     AdminHeader: () =>
-      import(
-        /* webpackPrefetch: true */ /* webpackChunkName: 'cms-layout' */ "./layouts/AdminHeader"
-      ),
+      import(/* webpackChunkName: 'cms-layout' */ "./layouts/AdminHeader"),
     Toast: () => import(/* webpackChunkName: 'toast' */ "./toast/Toast"),
     Cookies: () =>
       import(/* webpackChunkName: 'cookies' */ "@/components/cookies/Cookies"),
     Banner: lazyLoadComponent({
       componentFactory: () =>
-        import(
-          /* webpackPrefetch: true */ /* webpackChunkName: 'banner' */ "./layouts/Banner"
-        ),
+        import(/* webpackChunkName: 'banner' */ "./layouts/Banner"),
+      loading: {
+        template: "<div>loading...</div>",
+      },
     }),
   },
   data() {
