@@ -23,7 +23,7 @@
 
     <script src="{{ mix('js/manifest.js', 'dist') }}" async defer></script>
     <script src="{{ mix('js/vendor.js', 'dist') }}" async defer></script>
-    <script src="{{ mix('js/app.js', 'dist') }}" defer></script>
+    <script src="{{ mix('js/app.js', 'dist') }}" async defer></script>
 
     <script>
         window.global = {
