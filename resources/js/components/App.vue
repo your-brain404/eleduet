@@ -1,5 +1,6 @@
 <template>
   <div class="app">
+    <Cookies v-if="!isPathAdmin && !savedCookies" />
     <component :is="'style'">
       :root { --first-color: {{ settings.first_color }}; } ul li::before {
       background-image: url("{{ `/storage/media/${settings.li_marker}` }}");}
@@ -19,7 +20,6 @@
     <footer v-if="$route.path != '/elemele'">
       <FooterComponent v-if="!isPathAdmin" />
     </footer>
-    <Cookies v-if="!isPathAdmin && !savedCookies" />
   </div>
 </template>
 

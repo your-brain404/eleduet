@@ -4,9 +4,11 @@
     <div class="cookies__content">
       <div class="cookies__text">
         {{ settings.cookies
-        }}<a target="_blank" :href="url(settings.privace_policy)">{{
-          " " + settings.cookies_privace_button
-        }}</a>
+        }}<a
+          target="_blank"
+          :href="`/storage/media/${settings.privace_policy}`"
+          >{{ " " + settings.cookies_privace_button }}</a
+        >
       </div>
       <button
         @click="accept"
@@ -18,22 +20,17 @@
 </template>
 
 <script>
-import url from "@/helpers/photo/url";
 import setCookie from "@/helpers/cookies/set-cookie";
 import getCookie from "@/helpers/cookies/get-cookie";
 
 export default {
   data() {
     return {
-      url,
       cookies: true,
+      settings: window.global.config.settings,
     };
   },
-  computed: {
-    settings() {
-      return window.global.config.settings;
-    },
-  },
+
   methods: {
     accept() {
       setCookie("cookies", true, 365);
