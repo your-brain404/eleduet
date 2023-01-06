@@ -59,6 +59,8 @@ class HomeHelper
 		}))[0] ?? $data['languages'][0];
 		$data['translations'] = Translations::all();
 		$data['current_subpage'] = self::getCurrentSubpage($data['subpages']);
+		$data['critical_css'] = file_get_contents($_SERVER['ROOT'] . '/dist/css/header.css');
+
 		if (LangHelper::getRouteSegment(1) != 'admin-panel') {
 			//
 		}
@@ -76,6 +78,8 @@ class HomeHelper
 			$data['opinions'] = $opinions->count() > 0 ? $opinions : null;
 			$data['opinions_desc'] = OpinionsDesc::find(1) ?? new stdClass;
 			$data['about'] = About::find(1) ?? new stdClass;
+
+			$data['critical_css'] .= file_get_contents($_SERVER['ROOT'] . '/dist/css/critical-home.css');
 		}
 		if (LangHelper::getRouteSegment(1) == 'uslugi') {
 			$data['services'] = Services::all() ?? [];
