@@ -14,7 +14,7 @@
         {{ $critical_css }}
     </style>
     @foreach ($preloads as $preload)
-        <link rel="preload" src="{{ $preload }}" />
+        <link rel="preload" as="{{ $preload['as'] }}" href="{{ $preload['href'] }}" />
     @endforeach
 
 </head>
