@@ -18,7 +18,14 @@ require("laravel-mix-svg-vue");
 
 mix.js("resources/js/app.js", "js")
     .vue({
-        version: 2
+        version: 3,
+        options: {
+            compilerOptions: {
+                compatConfig: {
+                    MODE: 3,
+                },
+            },
+        },
     })
     .svgVue({
         svgPath: "/storage/app/public/img/mdi-icons"
@@ -47,7 +54,9 @@ mix.extract(["fontfaceobserver"], "js/fontfaceobserver");
 mix.alias({
     "@": path.join(__dirname, "resources/js"),
     "@node_modules": path.join(__dirname, "node_modules"),
-    "@scss": path.join(__dirname, "resources/scss")
+    "@scss": path.join(__dirname, "resources/scss"),
+    'vue': '@vue/compat',
+    "@vue/composition-api": "@vue/compat",
 });
 
 let base = {
