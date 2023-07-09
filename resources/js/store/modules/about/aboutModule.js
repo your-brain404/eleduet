@@ -1,5 +1,4 @@
 import axios from "@/plugins/axios/axios";
-import router from "@/router/routes.js";
 
 export default {
     namespaced: true,
@@ -14,7 +13,6 @@ export default {
     },
     actions: {
         async about({ commit }) {
-            await router;
             await axios
                 .get(`/api/about/get_one/1`)
                 .then(res => {

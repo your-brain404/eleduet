@@ -1,5 +1,4 @@
-import Vue from "vue";
-import VueRouter from "vue-router";
+import { createRouter as _createRouter, createWebHistory } from 'vue-router'
 import storeBuilderRoutes from "@/router/cmsRoutes.js";
 
 const Home = () =>
@@ -129,7 +128,6 @@ const cmsRoutes = [
     }
 }));
 
-Vue.use(VueRouter);
 const prefixes = getPrefixes();
 let frontRoutes = [
     { path: "/", component: Main, name: "Main" },
@@ -203,17 +201,19 @@ const routes = [
             adminRoute: true
         }
     },
-    { path: "*", redirect: "/" }
+    { path: "/:pathMatch(.*)*", redirect: "/" }
 ];
 
-export default new VueRouter({
-    routes,
-    mode: "history",
-    scrollBehavior: function(to) {
-        if (to.hash) {
-            return {
-                selector: to.hash
-            };
-        } else return { x: 0, y: 0 };
-    }
-});
+export function createRouter() {
+    return _createRouter({
+        routes,
+        history: createWebHistory(),
+        scrollBehavior: function (to) {
+            if (to.hash) {
+                return {
+                    selector: to.hash
+                };
+            } else return { x: 0, y: 0 };
+        }
+    });
+} 

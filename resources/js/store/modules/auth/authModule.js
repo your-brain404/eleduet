@@ -1,6 +1,5 @@
 import axios from "@/plugins/axios/axios";
 import parseJwt from "@/helpers/auth/tokenDecoder.js";
-import router from "@/router/routes.js";
 import getCookie from "@/helpers/cookies/get-cookie";
 import setCookie from "@/helpers/cookies/set-cookie";
 import removeCookie from "@/helpers/cookies/remove-cookie";
@@ -31,8 +30,7 @@ export default {
                 })
                 .catch(err => console.log(err));
         },
-        async authLogin({ commit, getters }, credentials) {
-            await router;
+        async authLogin({ commit, getters, state }, credentials) {
             await axios
                 .post("api/auth/login", credentials)
                 .then(res => {
@@ -46,7 +44,7 @@ export default {
                             "user",
                             JSON.stringify(res.data.data)
                         );
-                        router.push({ name: "AdminMain" });
+                        state.router.push({ name: "AdminMain" });
                     }
                 })
                 .catch(err => console.log(err));

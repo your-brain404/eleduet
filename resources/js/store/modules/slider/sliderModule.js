@@ -1,5 +1,4 @@
 import axios from "@/plugins/axios/axios";
-import router from "@/router/routes";
 
 export default {
     namespaced: true,
@@ -13,13 +12,11 @@ export default {
         slider: state => state.slider
     },
     actions: {
-        slider: async function({ commit }) {
-            await router;
-            let endpoint = `/api/slider/${
-                router.history.current.meta.adminRoute
+        slider: function ({ commit, state }) {
+            let endpoint = `/api/slider/${state.router.history.current.meta.adminRoute
                     ? "get_all"
                     : "get_where?active=1"
-            }`;
+                }`;
             axios
                 .get(endpoint)
                 .then(res => {

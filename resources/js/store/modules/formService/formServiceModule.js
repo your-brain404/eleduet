@@ -1,5 +1,4 @@
 import axios from "@/plugins/axios/axios";
-import router from "@/router/routes";
 import SnackbarAlerts from "@/data/snackbar-alerts.js";
 import AdminPanelBlocks from "@/data/admin-panel-blocks.js";
 
@@ -26,35 +25,33 @@ export default {
         getCurrentObject: state => state.currentObject
     },
     actions: {
-        async redirect(_) {
-            await router;
+        async redirect({ state }) {
             let redirect = "";
             Object.entries(AdminPanelBlocks).forEach(block => {
                 block[1].forEach(table => {
                     if (
                         table.tablename ==
-                        router.history.current.path.split("/")[2]
+                        state.router.history.current.path.split("/")[2]
                     ) {
                         redirect = `/${block[0]}`;
-                        if (router.history.current.params.parent_id)
-                            redirect = `${redirect}/${router.history.current.params.parent_id}`;
+                        if (state.router.history.current.params.parent_id)
+                            redirect = `${redirect}/${state.router.history.current.params.parent_id}`;
                     }
                 });
             });
-            let hash = router.history.current.params.parent_id
+            let hash = state.router.history.current.params.parent_id
                 ? ""
-                : `#${router.history.current.path.split("/")[2]}`;
-            router.push(`/admin-panel${redirect}${hash}`);
+                : `#${state.router.history.current.path.split("/")[2]}`;
+            state.router.push(`/admin-panel${redirect}${hash}`);
         },
-        async add({ commit, dispatch }, formData) {
+        async add({ commit, dispatch, state }, formData) {
             if (Object.keys(formData).some(key => Number.isInteger(key))) {
                 console.error(`Obiekt formData ma numeryczne klucze!!!`);
                 this.$store.commit("toast", SnackbarAlerts.error);
                 return;
             }
-            await router;
             axios
-                .post(`/api/${router.history.current.path.split("/")[2]}/add`, {
+                .post(`/api/${state.router.history.current.path.split("/")[2]}/add`, {
                     ...formData.formData
                 })
                 .then(() => {
@@ -70,7 +67,7 @@ export default {
                 });
         },
         async edit(
-            { commit, dispatch },
+            { commit, dispatch, state },
             { formData, options = { redirect: true } }
         ) {
             if (Object.keys(formData).some(key => Number.isInteger(key))) {
@@ -78,10 +75,9 @@ export default {
                 this.$store.commit("toast", SnackbarAlerts.error);
                 return;
             }
-            await router;
             axios
                 .put(
-                    `/api/${router.history.current.path.split("/")[2]}/edit`,
+                    `/api/${state.router.history.current.path.split("/")[2]}/edit`,
                     formData
                 )
                 .then(() => {
@@ -95,9 +91,8 @@ export default {
                     console.error(err);
                 });
         },
-        async updateDeletedFile({ dispatch, getters }) {
-            await router;
-            if (router.history.current.params.id)
+        async updateDeletedFile({ dispatch, getters, state }) {
+            if (state.router.history.current.params.id)
                 dispatch("edit", {
                     formData: getters.getCurrentObject,
                     options: { redirect: false }

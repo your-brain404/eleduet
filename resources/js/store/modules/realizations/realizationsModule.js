@@ -1,5 +1,4 @@
 import axios from "@/plugins/axios/axios";
-import router from "@/router/routes.js";
 
 export default {
     namespaced: true,
@@ -15,7 +14,6 @@ export default {
     },
     actions: {
         async realizations({ commit }) {
-            await router;
             await axios
                 .get(`/api/gallery/get_photos/realizations/1`)
                 .then(res => {

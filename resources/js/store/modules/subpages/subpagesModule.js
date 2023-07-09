@@ -1,5 +1,4 @@
 import axios from "@/plugins/axios/axios";
-import router from "@/router/routes.js";
 
 export default {
     state: {
@@ -19,8 +18,7 @@ export default {
         currentSubpage: state => state.currentSubpage
     },
     actions: {
-        async fetchSubpages({ commit }) {
-            await router;
+        async fetchSubpages({ commit, state }) {
             await axios
                 .get("/api/subpages/get_where?active=1")
                 .then(res => {
@@ -30,7 +28,7 @@ export default {
                         "currentSubpage",
                         res.data.find(
                             subpage =>
-                                subpage.page == router.history.current.path
+                                subpage.page == state.router.history.current.path
                         )
                     );
                 })
