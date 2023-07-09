@@ -1,16 +1,26 @@
-import Vue from "vue";
-import router from "@/router/routes";
-import store from "./store/store.js";
+import { createApp } from "vue";
+import { createRouter } from "@/router/routes";
+import { createStore } from "./store/store.js";
+import App from './components/App.vue'
 
 import isExternal from "@/helpers/links/is-external";
 
-Vue.component("app", require("./components/App.vue").default);
+const store = createStore()
+const router = createRouter()
 
-Vue.prototype.$isLinkExternal = isExternal;
+
+
+const app = createApp({
+    router,
+    store,
+    ...App
+}).mount("#app")
+
+app.provide('$isLinkExternal', isExternal)
 
 const ignoreWarnMessage =
     "The .native modifier for v-on is only valid on components but it was used on <div>.";
-Vue.config.warnHandler = function(msg, vm, trace) {
+app.config.warnHandler = function (msg, vm, trace) {
     if (msg === ignoreWarnMessage) {
         msg = null;
         vm = null;
@@ -18,8 +28,6 @@ Vue.config.warnHandler = function(msg, vm, trace) {
     }
 };
 
-export const app = new Vue({
-    el: "#app",
-    router,
-    store
-});
+app.use(store)
+
+export { app }
