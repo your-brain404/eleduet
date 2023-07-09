@@ -115,38 +115,37 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-::v-deep {
-  .bolt {
-    height: 75px;
-    padding-right: 1.3rem;
-    @media (max-width: 400px) {
-      margin-bottom: 0.5rem;
-    }
-  }
-  .service-photo {
-    position: relative;
-    z-index: 2;
-    height: 200px;
-    width: 100%;
-    object-fit: cover;
-    border-bottom-left-radius: var(--global-border-radius);
-    border-top-left-radius: var(--global-border-radius);
-    @media (max-width: 992px) {
-      margin-bottom: 3rem;
-    }
-  }
-  .gallery {
-    .photo {
-      border-radius: 12px;
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-    }
+:deep(.bolt) {
+  height: 75px;
+  padding-right: 1.3rem;
+  @media (max-width: 400px) {
+    margin-bottom: 0.5rem;
   }
 }
+:deep(.service-photo) {
+  position: relative;
+  z-index: 2;
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+  border-bottom-left-radius: var(--global-border-radius);
+  border-top-left-radius: var(--global-border-radius);
+  @media (max-width: 992px) {
+    margin-bottom: 3rem;
+  }
+}
+:deep(.gallery) {
+  .photo {
+    border-radius: 12px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+}
+
 @mixin mircel-padding {
   padding-left: var(--global-padding-x-desktop);
   @media (max-width: 992px) {

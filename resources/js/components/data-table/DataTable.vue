@@ -240,7 +240,7 @@ export default {
 
     &--sort-active {
       #{$parent}__sort-arrow {
-        ::v-deep path {
+        :deep(path) {
           fill: rgba(0, 0, 0, 0.87) !important;
         }
       }
@@ -277,7 +277,7 @@ export default {
     transform: translateY(5px);
     opacity: 0;
     transition: 0.3s cubic-bezier(0.25, 0.8, 0.5, 1), visibility 0s;
-    ::v-deep path {
+    :deep(path) {
       fill: rgba(0, 0, 0, 0.38);
     }
   }
@@ -325,12 +325,12 @@ export default {
         border-radius: 100%;
         position: absolute;
       }
-      ::v-deep path {
+      :deep(path) {
         fill: rgba(0, 0, 0, 0.54);
       }
       &--disabled {
         pointer-events: none;
-        ::v-deep path {
+        :deep(path) {
           fill: rgba(0, 0, 0, 0.26);
         }
       }

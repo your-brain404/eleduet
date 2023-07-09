@@ -82,7 +82,7 @@ export default {
 section.realizations-page {
   margin-top: 7rem;
   margin-bottom: 7rem;
-  ::v-deep .content {
+  :deep(.content) {
     @include mircel-padding;
     display: flex;
     flex-wrap: wrap;

@@ -75,22 +75,21 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-::v-deep {
-  .ellipse {
-    position: absolute;
-    z-index: -1;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    height: 142%;
-    width: auto;
-  }
-  .solar-system-bg {
-    min-height: 435px;
-    object-fit: cover;
-    border-radius: var(--global-border-radius);
-  }
+:deep(.ellipse) {
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 142%;
+  width: auto;
 }
+:deep(.solar-system-bg) {
+  min-height: 435px;
+  object-fit: cover;
+  border-radius: var(--global-border-radius);
+}
+
 section.solar-system {
   position: relative;
   z-index: 1;

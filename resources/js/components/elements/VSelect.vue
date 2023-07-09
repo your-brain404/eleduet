@@ -68,53 +68,51 @@ export default {
     background-color: var(--first-color);
     height: 2px;
   }
-
-  ::v-deep {
-    .vs {
-      &__dropdown {
-        &-menu {
-          padding-left: 0;
-          min-width: unset;
+  // tu powinien być v-deep no ale no nie wiem
+  .vs {
+    &__dropdown {
+      &-menu {
+        padding-left: 0;
+        min-width: unset;
+      }
+      &-option {
+        position: relative;
+        background: white !important;
+        z-index: 1;
+        font-weight: 200;
+        &::before {
+          content: unset;
         }
-        &-option {
-          position: relative;
-          background: white !important;
-          z-index: 1;
-          font-weight: 200;
-          &::before {
-            content: unset;
-          }
-          &--highlight {
-            color: var(--first-color) !important;
-            &::after {
-              position: absolute;
-              content: "";
-              top: 0;
-              left: 0;
-              background-color: var(--first-color);
-              opacity: 0.16;
-              pointer-events: none;
-              z-index: -1;
-              width: 100%;
-              height: 100%;
-            }
+        &--highlight {
+          color: var(--first-color) !important;
+          &::after {
+            position: absolute;
+            content: "";
+            top: 0;
+            left: 0;
+            background-color: var(--first-color);
+            opacity: 0.16;
+            pointer-events: none;
+            z-index: -1;
+            width: 100%;
+            height: 100%;
           }
         }
-        &-toggle {
-          border: unset;
-        }
       }
-      &__open {
-        &-indicator {
-          fill: rgba(0, 0, 0, 0.54);
-        }
+      &-toggle {
+        border: unset;
       }
-      &__clear {
-        display: none;
+    }
+    &__open {
+      &-indicator {
+        fill: rgba(0, 0, 0, 0.54);
       }
-      &__selected {
-        font-size: 0.75rem;
-      }
+    }
+    &__clear {
+      display: none;
+    }
+    &__selected {
+      font-size: 0.75rem;
     }
   }
 }

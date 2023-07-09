@@ -94,20 +94,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-::v-deep {
-  .attribute .icon {
-    height: 65px;
-    padding-right: 1.5rem;
-    width: auto;
-  }
-  .bolt {
-    padding-right: 1.3rem;
+:deep(.attribute .icon) {
+  height: 65px;
+  padding-right: 1.5rem;
+  width: auto;
+}
+:deep(.bolt) {
+  padding-right: 1.3rem;
 
-    @media (max-width: 400px) {
-      margin-bottom: 0.5rem;
-    }
+  @media (max-width: 400px) {
+    margin-bottom: 0.5rem;
   }
 }
+
 section.attributes {
   .content {
     padding: var(--global-padding-x-desktop);
@@ -157,7 +156,7 @@ section.attributes {
           height: 100%;
           @media (max-width: 576px) {
             flex-direction: column;
-            &::v-deep .icon {
+            &:deep(.icon) {
               padding-right: 0 !important;
               margin-bottom: 0.9rem;
             }

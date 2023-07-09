@@ -55,16 +55,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-::v-deep {
-  .ellipse {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    top: -130%;
-    height: 700px;
-    @media (max-width: 992px) {
-      display: none;
-    }
+:deep(.ellipse) {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: -130%;
+  height: 700px;
+  @media (max-width: 992px) {
+    display: none;
   }
 }
 section.call-us {

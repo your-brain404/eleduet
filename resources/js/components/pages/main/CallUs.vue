@@ -86,18 +86,17 @@ export default {
   border-top-left-radius: 12px;
   border-top-right-radius: 12px;
 }
-::v-deep {
-  .bg {
-    @include borders-radius;
-    position: relative;
-    object-fit: cover;
-    object-position: 50% 50%;
-  }
-  .call-us-picture {
-    width: 100%;
-    height: 100%;
-  }
+:deep(.bg) {
+  @include borders-radius;
+  position: relative;
+  object-fit: cover;
+  object-position: 50% 50%;
 }
+:deep(.call-us-picture) {
+  width: 100%;
+  height: 100%;
+}
+
 section.call-us {
   .call-us-container {
     position: relative;

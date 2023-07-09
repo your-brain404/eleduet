@@ -92,20 +92,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-::v-deep.call-us {
-  .call-us-bg {
-    object-fit: cover;
-  }
-  .ellipse {
-    position: absolute;
-    right: -10%;
-    top: -130%;
-    height: 700px;
-    @media (max-width: 992px) {
-      display: none;
-    }
+:deep(.call-us-bg) {
+  object-fit: cover;
+}
+:deep(.ellipse) {
+  position: absolute;
+  right: -10%;
+  top: -130%;
+  height: 700px;
+  @media (max-width: 992px) {
+    display: none;
   }
 }
+
 section.call-us {
   position: relative;
   @mixin borders-radius {

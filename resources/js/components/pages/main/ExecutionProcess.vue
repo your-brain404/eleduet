@@ -84,17 +84,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-::v-deep {
-  .bolt {
-    padding-right: 1.3rem;
-    @media (max-width: 400px) {
-      margin-bottom: 0.5rem;
-    }
-  }
-  .icon-picture {
-    display: flex;
+:deep(.bolt) {
+  padding-right: 1.3rem;
+  @media (max-width: 400px) {
+    margin-bottom: 0.5rem;
   }
 }
+:deep(.icon-picture) {
+  display: flex;
+}
+
 section.execution-process {
   .content {
     padding: var(--global-padding-x-desktop);

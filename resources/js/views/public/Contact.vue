@@ -273,36 +273,35 @@ export default {
     margin-right: var(--global-padding-x-mobile);
   }
 }
-::v-deep {
-  .ellipse {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    height: 125px;
-    transform: translate(50%, calc(50% - 0.3rem));
-    z-index: 1;
-  }
-  .square {
-    img {
-      height: 100%;
-      width: 100%;
-      &:not(.show) {
-        display: none;
-      }
-    }
-  }
-  .form-ellipse {
-    position: absolute;
-    bottom: -51%;
-    left: -20%;
-    height: 800px;
-    @media (max-width: 992px) {
-      left: 50%;
-      transform: translateX(-50%);
-      bottom: -800px;
+:deep(.ellipse) {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  height: 125px;
+  transform: translate(50%, calc(50% - 0.3rem));
+  z-index: 1;
+}
+:deep(.square) {
+  img {
+    height: 100%;
+    width: 100%;
+    &:not(.show) {
+      display: none;
     }
   }
 }
+:deep(.form-ellipse) {
+  position: absolute;
+  bottom: -51%;
+  left: -20%;
+  height: 800px;
+  @media (max-width: 992px) {
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -800px;
+  }
+}
+
 section.contact {
   margin-bottom: 7rem;
   position: relative;
@@ -343,11 +342,11 @@ section.contact {
           border-radius: 12px;
           padding: 2rem;
           background-color: #fff;
-          ::v-deep :is(img, svg) {
+          :deep(:is(img, svg)) {
             height: 25px;
             margin-bottom: 1rem;
           }
-          ::v-deep svg path {
+          :deep(svg path) {
             fill: var(--first-color);
           }
           .text {

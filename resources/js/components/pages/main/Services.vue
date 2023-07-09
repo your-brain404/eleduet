@@ -116,25 +116,24 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-::v-deep {
-  .VueCarousel-wrapper {
-    padding: 2rem 0;
-  }
-  .service {
-    img {
-      height: 200px;
-      border-radius: var(--global-border-radius);
-      object-fit: cover;
-    }
-  }
-  .bolt {
-    height: 75px;
-    padding-right: 1.3rem;
-    @media (max-width: 400px) {
-      margin-bottom: 0.5rem;
-    }
+:deep(.VueCarousel-wrapper) {
+  padding: 2rem 0;
+}
+:deep(.service) {
+  img {
+    height: 200px;
+    border-radius: var(--global-border-radius);
+    object-fit: cover;
   }
 }
+:deep(.bolt) {
+  height: 75px;
+  padding-right: 1.3rem;
+  @media (max-width: 400px) {
+    margin-bottom: 0.5rem;
+  }
+}
+
 section.services {
   margin-top: 7rem;
   padding-bottom: 3rem;

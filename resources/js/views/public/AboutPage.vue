@@ -97,12 +97,10 @@ export default {
     padding-right: var(--global-padding-x-mobile);
   }
 }
-::v-deep {
-  .img {
-    max-width: 100%;
-    height: auto;
-    cursor: pointer;
-  }
+:deep(.img) {
+  max-width: 100%;
+  height: auto;
+  cursor: pointer;
 }
 section.about-page {
   @include mircel-padding();

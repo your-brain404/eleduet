@@ -138,24 +138,23 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-::v-deep {
-  .bolt {
-    padding-right: 1.3rem;
-    @media (max-width: 400px) {
-      margin-bottom: 0.5rem;
-    }
-  }
-  .ellipse {
-    position: absolute;
-    left: 50%;
-    top: 0;
-  }
-  .avatar {
-    height: 60px;
-    border-radius: 100%;
-    margin-right: 1rem;
+:deep(.bolt) {
+  padding-right: 1.3rem;
+  @media (max-width: 400px) {
+    margin-bottom: 0.5rem;
   }
 }
+:deep(.ellipse) {
+  position: absolute;
+  left: 50%;
+  top: 0;
+}
+:deep(.avatar) {
+  height: 60px;
+  border-radius: 100%;
+  margin-right: 1rem;
+}
+
 section.opinions {
   position: relative;
   z-index: 1;

@@ -212,51 +212,49 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-::v-deep {
-  section.about {
-    .photo-container {
-      .ellipse {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        transform: translate(-50%, 50%);
-        height: 170px;
-        z-index: 0;
-      }
-    }
-    .photo {
-      position: relative;
-      z-index: 2;
-      height: 160px;
-      object-fit: cover;
-      border-bottom-left-radius: var(--global-border-radius);
-      border-top-left-radius: var(--global-border-radius);
-      @media (max-width: 992px) {
-        margin-top: 3rem;
-      }
+:deep(section.about) {
+  .photo-container {
+    .ellipse {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      transform: translate(-50%, 50%);
+      height: 170px;
+      z-index: 0;
     }
   }
+  .photo {
+    position: relative;
+    z-index: 2;
+    height: 160px;
+    object-fit: cover;
+    border-bottom-left-radius: var(--global-border-radius);
+    border-top-left-radius: var(--global-border-radius);
+    @media (max-width: 992px) {
+      margin-top: 3rem;
+    }
+  }
+}
 
-  .section-content {
-    .bolt {
-      height: 75px;
-      padding-right: 1.3rem;
-      @media (max-width: 400px) {
-        margin-bottom: 0.5rem;
-      }
+:deep(.section-content) {
+  .bolt {
+    height: 75px;
+    padding-right: 1.3rem;
+    @media (max-width: 400px) {
+      margin-bottom: 0.5rem;
     }
   }
-  .services-blocks {
-    .photo {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      background-position: center;
-      background-size: cover;
-      background-repeat: no-repeat;
-      border-radius: 12px;
-      margin-bottom: 1rem;
-    }
+}
+:deep(.services-blocks) {
+  .photo {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 12px;
+    margin-bottom: 1rem;
   }
 }
 section.services-page {

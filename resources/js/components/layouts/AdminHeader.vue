@@ -172,13 +172,11 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-::v-deep {
-  .avatar {
-    object-fit: cover;
-    width: 40px;
-    height: 40px;
-    border-radius: 100%;
-  }
+:deep(.avatar) {
+  object-fit: cover;
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
 }
 
 .drawer {
