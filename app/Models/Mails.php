@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,7 +12,8 @@ class Mails extends Model
 
     protected $hidden = ['file'];
 
-    public function attachments() {
-    	return $this->hasMany('App\Attachments', 'mail_id');
+    public function attachments()
+    {
+        return $this->hasMany('App\Attachments', 'mail_id');
     }
 }

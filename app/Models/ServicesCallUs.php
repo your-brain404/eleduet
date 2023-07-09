@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Http\Helpers\PhotoSizesHelper;
 use Illuminate\Database\Eloquent\Model;

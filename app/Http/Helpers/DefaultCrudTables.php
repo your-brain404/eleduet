@@ -2,7 +2,7 @@
 
 namespace App\Http\Helpers;
 
-use App\DefaultCrudTables as DefaultCrudTablesModel;
+use App\Models\DefaultCrudTables as DefaultCrudTablesModel;
 
 class DefaultCrudTables
 {
