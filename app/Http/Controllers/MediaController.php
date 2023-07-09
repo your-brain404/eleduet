@@ -8,12 +8,12 @@ use App\Media;
 use App\Http\Helpers\FileHelper;
 use Illuminate\Http\Request;
 
-class MediaController extends Controller
+class MediaController extends CrudController
 {
 
-	public function __construct()
+	function __construct()
 	{
-		CrudService::$model = 'App\\' . str_replace('Controller', '', explode('\\', __CLASS__)[array_key_last(explode('\\', __CLASS__))]);
+		parent::__construct();
 	}
 
 	public function getFiles()
@@ -31,7 +31,8 @@ class MediaController extends Controller
 	public function store(Request $request)
 	{
 
-		if (!$request->isMethod('post')) return new CrudResource(['message' => 'Wrong request method!']);
+		if (!$request->isMethod('post'))
+			return new CrudResource(['message' => 'Wrong request method!']);
 		else {
 			$media = FileHelper::store($request->file('file'), 'media');
 			return new CrudResource($media);
@@ -43,9 +44,10 @@ class MediaController extends Controller
 		return new CrudResource(CrudService::getAll());
 	}
 
-	public function destroy(String $id, Request $request)
+	public function destroy(string $id, Request $request)
 	{
-		if (!$request->isMethod('delete')) return new CrudResource(['message' => 'Wrong request method!']);
+		if (!$request->isMethod('delete'))
+			return new CrudResource(['message' => 'Wrong request method!']);
 		else {
 			return FileHelper::delete($id);
 		}

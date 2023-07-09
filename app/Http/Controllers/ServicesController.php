@@ -7,11 +7,11 @@ use App\Http\Services\ServicesService;
 use App\Http\Resources\CrudResource;
 use Illuminate\Http\Request;
 
-class ServicesController extends Controller
+class ServicesController extends CrudController
 {
-	public function __construct()
+	function __construct()
 	{
-		CrudService::$model = 'App\\' . str_replace('Controller', '', explode('\\', __CLASS__)[array_key_last(explode('\\', __CLASS__))]);
+		parent::__construct();
 	}
 
 	public function getAll()

@@ -6,11 +6,11 @@ use App\Http\Services\CrudService;
 use App\Http\Resources\CrudResource;
 use Illuminate\Http\Request;
 
-class ServicesPageDescController extends Controller
+class ServicesPageDescController extends CrudController
 {
-	public function __construct()
+	function __construct()
 	{
-		CrudService::$model = 'App\\' . str_replace('Controller', '', explode('\\', __CLASS__)[array_key_last(explode('\\', __CLASS__))]);
+		parent::__construct();
 	}
 
 	public function getAll()
