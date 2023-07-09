@@ -1,7 +1,14 @@
-import Vue from "vue";
+import { createStore as _createStore } from 'vuex'
 
-import Vuex from "vuex";
-
-Vue.use(Vuex);
-
-export default new Vuex.Store();
+export function createStore(router) {
+    return _createStore({
+        state: {
+            get route() {
+                return router.currentRoute.value
+            },
+            get router() {
+                return router
+            }
+        }
+    });
+} 
