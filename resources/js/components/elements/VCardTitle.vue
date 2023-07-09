@@ -1,4 +1,4 @@
-<template functional>
+<template>
   <div class="v-card-title">
     <slot></slot>
   </div>

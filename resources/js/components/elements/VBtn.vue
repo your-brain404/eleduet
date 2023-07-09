@@ -1,24 +1,21 @@
-<template functional>
+<template>
   <button
     :class="[
-      { 'custom-btn--small': props.small },
-      { 'custom-btn--disabled': props.disabled },
-      { 'custom-btn--just-icon': props.justIcon },
-      props.color ? `custom-btn--${props.color}` : '',
+      { 'custom-btn--small': small },
+      { 'custom-btn--disabled': disabled },
+      { 'custom-btn--just-icon': justIcon },
+      color ? `custom-btn--${color}` : '',
       'custom-btn',
-      props.customClass,
-      data.staticClass,
+      customClass,
     ]"
-    v-bind="data.attrs"
-    v-on="data.on"
   >
     <span class="custom-btn__content">
       <slot name="icon"></slot>
 
       <span
-        v-if="!props.justIcon"
+        v-if="!justIcon"
         class="custom-btn__content-text"
-        :style="{ marginTop: props.textMarginTop }"
+        :style="{ marginTop: textMarginTop }"
         ><slot></slot
       ></span>
     </span>

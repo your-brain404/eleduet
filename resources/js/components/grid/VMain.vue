@@ -1,5 +1,5 @@
-<template functional>
-  <div class="custom-main" v-bind="data.attrs" v-on="data.on">
+<template>
+  <div class="custom-main">
     <slot></slot>
   </div>
 </template>

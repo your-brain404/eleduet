@@ -1,16 +1,11 @@
-<template functional>
+<template>
   <div
     :class="[
       'col',
-      `col-${props.cols}`,
-      props.md ? `col-md-${props.md}` : '',
-      props.lg ? `col-lg-${props.lg}` : '',
-      data.staticClass,
-      ...data.class,
+      `col-${cols}`,
+      md ? `col-md-${md}` : '',
+      lg ? `col-lg-${lg}` : '',
     ]"
-    v-bind="data.attrs"
-    :style="data.staticStyle"
-    v-on="data.on"
   >
     <slot></slot>
   </div>
@@ -18,7 +13,6 @@
 <script>
 export default {
   props: {
-    dupa: Boolean,
     cols: { type: [Number, String], default: 12 },
     md: {
       type: [Number, String, Boolean],

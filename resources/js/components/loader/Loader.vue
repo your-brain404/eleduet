@@ -1,8 +1,8 @@
-<template functional>
+<template>
   <div class="loader__container">
     <img
-      :src="`/storage/media/${$options.settings.li_marker}.webp`"
-      :alt="$options.settings.li_marker_alt"
+      :src="`/storage/media/${settings.li_marker}.webp`"
+      :alt="settings.li_marker_alt"
       :width="48"
       :height="75"
       class="loader"
@@ -12,7 +12,11 @@
 
 <script>
 export default {
-  settings: window.global.config.settings,
+  setup() {
+    const { settings } = window.global.config;
+
+    return { settings };
+  },
 };
 </script>
 

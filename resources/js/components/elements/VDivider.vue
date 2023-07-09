@@ -1,4 +1,4 @@
-<template functional>
+<template>
   <hr class="v-divider" />
 </template>
     
