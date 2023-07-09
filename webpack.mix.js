@@ -60,6 +60,12 @@ mix.alias({
 });
 
 let base = {
+    resolve: {
+        alias: {
+            'vue': '@vue/compat',
+            "@vue/composition-api": "@vue/compat",
+        }
+    },
     output: {
         chunkFilename: "js/[name].js",
         publicPath: "/dist/"
