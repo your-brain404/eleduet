@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateValidationRulesTable extends Migration
+return new class extends Migration
 {
     private $columns = ['title', 'required', 'email', 'password_length', 'file_size', 'password_confirm', 'reservation_min_time', 'reservation_exist'];
 
