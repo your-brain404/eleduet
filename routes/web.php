@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
@@ -16,9 +17,7 @@ use App\Models\Media;
 |
  */
 
-Route::get('/test', function () {
-    echo HomeController::class;
-});
+Route::get('/test', [AboutController::class, 'test']);
 Route::get('/photo-sizes', function () {
     $photos = Media::where('type', 'image/jpeg')->orWhere('type', 'image/jpg')->orWhere('type', 'image/png')->orWhere('type', 'image/bmp')->orWhere('type', 'application/octet-stream')->orWhere('type', 'image/jfif')->get();
     for ($i = 0; $i < count($photos); $i++) {
