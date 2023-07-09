@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use App\Http\Services\TokenDecoder;
-use App\User;
+use App\Models\User;
 
 class EnsureUserIsAdmin
 {
@@ -13,7 +13,7 @@ class EnsureUserIsAdmin
         $user_settings = include base_path() . '/config/user.php';
         try {
             $decodedToken = TokenDecoder::decode($request->bearerToken());
-        } catch (Exception $e) {
+        } catch (\Exception $e) {
             echo $e;
             die;
         }

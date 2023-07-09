@@ -3,8 +3,7 @@
 namespace App\Http\Helpers;
 
 use Illuminate\Http\Response;
-use App\Http\Resources\ResponseResource;
-use App\SnackbarAlerts;
+use App\Models\SnackbarAlerts;
 
 class ResponseHelper
 {

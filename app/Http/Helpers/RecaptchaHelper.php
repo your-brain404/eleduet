@@ -2,7 +2,6 @@
 
 namespace App\Http\Helpers;
 
-use App\Settings;
 
 class RecaptchaHelper
 {

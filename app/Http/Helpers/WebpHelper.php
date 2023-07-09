@@ -3,14 +3,14 @@
 namespace App\Http\Helpers;
 
 use Illuminate\Support\Facades\Storage;
-use App\Settings;
+use App\Models\Settings;
 
 class WebpHelper
 {
 	/*
-	   $destroyPrimalPhoto - flaga, która ustawiona na true usuwa pierwotne zdjęcie, z którego powstało webp
+		  $destroyPrimalPhoto - flaga, która ustawiona na true usuwa pierwotne zdjęcie, z którego powstało webp
 
-	  */
+		 */
 	private static $destroyPrimalPhoto = true;
 
 	public function __construct()

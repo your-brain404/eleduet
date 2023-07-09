@@ -4,10 +4,7 @@ namespace App\Http\Services;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
-use App\ServicesServiceCategories;
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Str;
+use App\Models\ServicesServiceCategories;
 use App\Http\Services\CrudService;
 
 class ServicesService
@@ -23,7 +20,8 @@ class ServicesService
 		$model = $request->isMethod('put') ? self::$model::where('id', $request->input('id'))->first()->fill($data) : self::$model::create($data);
 
 		$model->save();
-		if (is_array($request->service_categories)) self::saveServicesServiceCategories($model, array_unique($request->service_categories));
+		if (is_array($request->service_categories))
+			self::saveServicesServiceCategories($model, array_unique($request->service_categories));
 
 		return $model;
 	}
@@ -32,7 +30,8 @@ class ServicesService
 	{
 		$modelServiceCategories = ServicesServiceCategories::where('service_id', $model->id)->get();
 		foreach ($modelServiceCategories as $row) {
-			if (!in_array($row->service_category_id, $requestServiceCategories)) $row->delete();
+			if (!in_array($row->service_category_id, $requestServiceCategories))
+				$row->delete();
 		}
 		$modelServiceCategories = array_map(function ($row) {
 			return $row['service_category_id'];
@@ -40,7 +39,8 @@ class ServicesService
 
 		foreach ($requestServiceCategories as $categoryId) {
 
-			if (!in_array($categoryId, $modelServiceCategories)) ServicesServiceCategories::create(['service_category_id' => $categoryId, 'service_id' => $model->id])->save();
+			if (!in_array($categoryId, $modelServiceCategories))
+				ServicesServiceCategories::create(['service_category_id' => $categoryId, 'service_id' => $model->id])->save();
 		}
 	}
 }

@@ -3,8 +3,8 @@
 namespace App\Http\Helpers;
 
 use App\Http\Helpers\WebpHelper;
-use App\SnackbarAlerts;
-use App\Media;
+use App\Models\SnackbarAlerts;
+use App\Models\Media;
 use Illuminate\Http\File;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Resources\MediaResource;
@@ -21,7 +21,7 @@ class FileHelper
 		$fileNameWithExt = $file->getClientOriginalName();
 		self::$name = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
 		$extension = $file->getClientOriginalExtension();
-		$name = str_replace(' ', '_', self::$name)  . '_' . time() . '.' . $extension;
+		$name = str_replace(' ', '_', self::$name) . '_' . time() . '.' . $extension;
 
 		return $name;
 	}
@@ -52,8 +52,8 @@ class FileHelper
 		$destination = "$folder/" . $destination;
 		$file_options = [
 			'size' => $file->getSize(),
-			'width' =>  null,
-			'height' =>  null,
+			'width' => null,
+			'height' => null,
 		];
 
 		$storageDestinationPath = $_SERVER['ROOT'] . "/storage/$folder/$full_path";
@@ -62,14 +62,16 @@ class FileHelper
 		}
 		if (in_array($file->getClientMimeType(), self::$webpTypes)) {
 			$img = \Image::make($file->getRealPath());
-			if ($img->width() > 1920 && $img->width() > $img->height()) $img->resize(1920, 1080, function ($constraint) {
-				$constraint->aspectRatio();
-				// $constraint->upsize();
-			});
-			if ($img->height() > 1080 && $img->width() < $img->height()) $img->resize(1080, 1920, function ($constraint) {
-				$constraint->aspectRatio();
-				// $constraint->upsize();
-			});
+			if ($img->width() > 1920 && $img->width() > $img->height())
+				$img->resize(1920, 1080, function ($constraint) {
+					$constraint->aspectRatio();
+					// $constraint->upsize();
+				});
+			if ($img->height() > 1080 && $img->width() < $img->height())
+				$img->resize(1080, 1920, function ($constraint) {
+					$constraint->aspectRatio();
+					// $constraint->upsize();
+				});
 			$quality = $img->filesize() > 1000000 ? 50 : 90;
 
 			$img->save($storageDestinationPath, $quality, $file->getClientOriginalExtension());
@@ -82,7 +84,8 @@ class FileHelper
 			$mobilePath = $_SERVER['ROOT'] . "/storage/$folder/$date_folder/width_576_$name";
 			$img->save($mobilePath);
 			WebpHelper::convertToWebp($destination, "width_576_$name");
-		} else Storage::putFileAs($destination, new File($file), $name);
+		} else
+			Storage::putFileAs($destination, new File($file), $name);
 
 		$primalPath = file_exists($storageDestinationPath) ? $storageDestinationPath : "$storageDestinationPath.webp";
 		$sizes = getimagesize($primalPath);
@@ -100,7 +103,7 @@ class FileHelper
 	public static function deleteFilesFromStorage($path, $folder)
 	{
 		$separator = strpos($path, '/') !== FALSE ? '/' : '\\';
-		list($date, $fileName) =  explode($separator, $path);
+		list($date, $fileName) = explode($separator, $path);
 
 		$primalPath = "$folder/$date/$fileName";
 		if (file_exists("{$_SERVER['ROOT']}/storage/$primalPath")) {

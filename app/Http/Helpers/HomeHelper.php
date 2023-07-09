@@ -2,33 +2,33 @@
 
 namespace App\Http\Helpers;
 
-use App\About;
-use App\AboutPage;
-use App\Attributes;
-use App\AttributesDesc;
-use App\Contact;
-use App\ContactLinks;
-use App\Settings;
-use App\Subpages;
-use App\ExecutionProcess;
-use App\ExecutionProcessDesc;
-use App\HomeCallUs;
-use App\HomeServicesDesc;
-use App\HomeSolarSystemDesc;
+use App\Models\About;
+use App\Models\AboutPage;
+use App\Models\Attributes;
+use App\Models\AttributesDesc;
+use App\Models\Contact;
+use App\Models\ContactLinks;
+use App\Models\Settings;
+use App\Models\Subpages;
+use App\Models\ExecutionProcess;
+use App\Models\ExecutionProcessDesc;
+use App\Models\HomeCallUs;
+use App\Models\HomeServicesDesc;
+use App\Models\HomeSolarSystemDesc;
 use App\Http\Services\AutoLoginService;
 use App\Http\Services\TokenDecoder;
-use App\Languages;
-use App\Opinions;
-use App\OpinionsDesc;
-use App\ServiceCategories;
-use App\Services;
-use App\ServicesAttributes;
-use App\ServicesCallUs;
-use App\ServicesPageDesc;
-use App\ServicesServiceCategories;
-use App\Slider;
-use App\SnackbarAlerts;
-use App\Translations;
+use App\Models\Languages;
+use App\Models\Opinions;
+use App\Models\OpinionsDesc;
+use App\Models\ServiceCategories;
+use App\Models\Services;
+use App\Models\ServicesAttributes;
+use App\Models\ServicesCallUs;
+use App\Models\ServicesPageDesc;
+use App\Models\ServicesServiceCategories;
+use App\Models\Slider;
+use App\Models\SnackbarAlerts;
+use App\Models\Translations;
 use stdClass;
 
 class HomeHelper
@@ -37,7 +37,8 @@ class HomeHelper
 	public static function getCurrentSubpage($subpages): ?object
 	{
 		foreach ($subpages as $i => $subpage) {
-			if ($subpage->page == '/' . LangHelper::getRouteSegment(1)) return $subpage;
+			if ($subpage->page == '/' . LangHelper::getRouteSegment(1))
+				return $subpage;
 		}
 		return null;
 	}
@@ -68,9 +69,9 @@ class HomeHelper
 		if (LangHelper::getRouteSegment(1) == '') {
 			$data['slider'] = Slider::where('active', 1)->get()->toArray() ?? [];
 			if (count($data['slider']) > 0) {
-				$data['preloads'][] = ['as' => 'image', 'href' =>  '/storage/media/' . $data['slider'][0]['photo'] . '.webp'];
+				$data['preloads'][] = ['as' => 'image', 'href' => '/storage/media/' . $data['slider'][0]['photo'] . '.webp'];
 				list($date, $photo_name) = explode('/', $data['slider'][0]['photo']);
-				$new_mobile_path =  "/storage/media/$date/width_576_$photo_name.webp";
+				$new_mobile_path = "/storage/media/$date/width_576_$photo_name.webp";
 
 				$data['preloads'][] = ['href' => $new_mobile_path, 'as' => 'image'];
 			}

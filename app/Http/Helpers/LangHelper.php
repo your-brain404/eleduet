@@ -2,7 +2,7 @@
 
 namespace App\Http\Helpers;
 
-use App\Languages;
+use App\Models\Languages;
 
 class LangHelper
 {
@@ -13,8 +13,9 @@ class LangHelper
         }, Languages::all()->toArray());
 
         $firstSegment = strtolower(request()->segment(1));
-        if (in_array($firstSegment, $prefixes)) $segment++;
+        if (in_array($firstSegment, $prefixes))
+            $segment++;
 
-        return  request()->segment($segment) ?? '';
+        return request()->segment($segment) ?? '';
     }
 }
