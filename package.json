@@ -21,11 +21,11 @@
         "resolve-url-loader": "^2.3.1",
         "sass": "^1.20.1",
         "sass-loader": "^9.0.0",
-        "vue": "^3.3.4",
         "webpack-bundle-analyzer": "^4.7.0"
     },
     "dependencies": {
         "@tinymce/tinymce-vue": "^5.1.0",
+        "@vitejs/plugin-vue": "^4.2.3",
         "bootstrap-vue": "^2.23.1",
         "core-js": "^3.6.5",
         "css-loader": "^6.7.1",
@@ -35,7 +35,7 @@
         "portal-vue": "^3.0.0",
         "postcss-scss": "^4.0.5",
         "vite": "^4.4.2",
-        "vue-carousel": "^0.18.0",
+        "vue": "^3.3.4",
         "vue-cool-lightbox": "^2.7.4",
         "vue-functional-data-merge": "^3.1.0",
         "vue-loader": "^16.0.0",
@@ -43,6 +43,7 @@
         "vue-router": "^4.2.3",
         "vue-select": "^4.0.0-beta.6",
         "vue-summernote": "^1.0.3",
+        "vue3-carousel": "^0.3.1",
         "vuex": "^4.1.0"
     }
 }
