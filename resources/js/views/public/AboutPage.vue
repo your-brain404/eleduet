@@ -3,16 +3,17 @@
     <div class="content" v-html="aboutPage.description"></div>
 
     <div class="gallery">
-      <CoolLightBox
-        :items="
+      <vue-easy-lightbox
+        :visible="Number.isInteger(index)"
+        :imgs="
           gallery.map((photo) =>
             existingPhotoPath(`${origin}/storage/media/${photo.path}`)
           )
         "
         :index="index"
-        @close="index = null"
+        @hide="index = null"
       >
-      </CoolLightBox>
+      </vue-easy-lightbox>
       <div
         v-for="(photo, i) in gallery"
         :key="`photo-${photo.id}`"
@@ -33,17 +34,16 @@
 
 <script>
 import axios from "@/plugins/axios/axios";
-import CoolLightBox from "vue-cool-lightbox";
-import "vue-cool-lightbox/dist/vue-cool-lightbox.min.css";
 import Picture from "@/components/picture/Picture.vue";
 import adminTableComponent from "@/mixins/admin-table-component.js";
 import existingPhotoPath from "@/helpers/links/existing-photo-path.js";
 import aboutPageModule from "@/store/modules/aboutPage/aboutPageModule.js";
+import VueEasyLightbox from "vue-easy-lightbox";
 
 export default {
   components: {
-    CoolLightBox,
     Picture,
+    VueEasyLightbox,
   },
   mixins: [adminTableComponent],
 

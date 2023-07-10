@@ -36,7 +36,7 @@
         "postcss-scss": "^4.0.5",
         "vite": "^4.4.2",
         "vue": "^3.3.4",
-        "vue-cool-lightbox": "^2.7.4",
+        "vue-easy-lightbox": "^1.16.0",
         "vue-functional-data-merge": "^3.1.0",
         "vue-loader": "^16.0.0",
         "vue-recaptcha-v3": "^2.0.1",
