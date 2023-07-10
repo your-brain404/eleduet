@@ -118,8 +118,6 @@
 
 <script>
 import axios from "@/plugins/axios/axios";
-import Vue from "vue";
-import { VueReCaptcha } from "vue-recaptcha-v3";
 import Picture from "@/components/picture/Picture.vue";
 import contactLinksModule from "@/store/modules/contactLinks/contactLinksModule.js";
 import snackbarAlertsModule from "@/store/modules/snackbarAlerts/snackbarAlertsModule.js";
@@ -148,6 +146,9 @@ export default {
         rodo1: false,
         rodo2: false,
       },
+      recaptchaSiteKey: window.location.origin.includes("localhost")
+        ? "6Lf3c-AUAAAAAFZvqKdtC2NCcYG_wVDSBccSYJBP"
+        : "6LeyGAsiAAAAAKPkdvmjIaVmMc3VLtez7v4Exj_L",
     };
   },
   computed: {
@@ -215,37 +216,55 @@ export default {
         });
     },
 
-    async saveMail() {
+    saveMail() {
       if (!this.validation()) {
         return;
       }
 
       this.$store.commit("loading", true);
-      const response = !!this.$recaptcha && (await this.$recaptcha("login"));
-      if (this.$recaptcha && !response) {
-        this.$store.commit(
-          "toast",
-          this.$store.getters.snackbarAlerts.recaptcha_error
-        );
-        this.$store.commit("loading", false);
-        return;
-      }
-      await axios
-        .post("/api/mails/add", { ...this.formData, response })
-        .then((res) => {
-          console.log(res);
-          if (res.data.error != undefined) {
-            this.$store.commit("toast", res.data.error.message);
-            this.$store.commit("loading", false);
-            return;
-          } else this.sendMail(res.data);
-        })
-        .catch((err) => {
-          console.log(err);
-          this.$store.commit("loading", false);
-          this.$store.commit("toast", this.$store.getters.snackbarAlerts.error);
-        });
+      const response = false;
+      window.grecaptcha.ready(function () {
+        window.grecaptcha
+          .execute(this.recaptchaSiteKey, { action: "submit" })
+          .then(function (token) {
+            if (!token) {
+              this.$store.commit(
+                "toast",
+                this.$store.getters.snackbarAlerts.recaptcha_error
+              );
+              this.$store.commit("loading", false);
+              return;
+            }
+            axios
+              .post("/api/mails/add", { ...this.formData, response })
+              .then((res) => {
+                console.log(res);
+                if (res.data.error != undefined) {
+                  this.$store.commit("toast", res.data.error.message);
+                  this.$store.commit("loading", false);
+                  return;
+                } else this.sendMail(res.data);
+              })
+              .catch((err) => {
+                console.log(err);
+                this.$store.commit("loading", false);
+                this.$store.commit(
+                  "toast",
+                  this.$store.getters.snackbarAlerts.error
+                );
+              });
+          });
+      });
     },
+    appendRecaptchaScript() {
+      const recaptchaScript = document.createElement("script");
+      recaptchaScript.src = `https://www.google.com/recaptcha/api.js?render=${this.recaptchaSiteKey}`;
+
+      document.body.appendChild(recaptchaScript);
+    },
+  },
+  mounted() {
+    this.appendRecaptchaScript();
   },
   created() {
     if (!this.$store.hasModule("contactLinks"))
@@ -254,12 +273,6 @@ export default {
       this.$store.registerModule("snackbarAlerts", snackbarAlertsModule);
     if (this.contactLinks.length === 0)
       this.$store.dispatch("ContactLinks/contactLinks");
-    let siteKey = this.$route.path.includes("localhost")
-      ? "6Lf3c-AUAAAAAFZvqKdtC2NCcYG_wVDSBccSYJBP"
-      : "6LeyGAsiAAAAAKPkdvmjIaVmMc3VLtez7v4Exj_L";
-    Vue.use(VueReCaptcha, {
-      siteKey,
-    });
   },
 };
 </script>
