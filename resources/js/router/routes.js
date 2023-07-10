@@ -1,64 +1,25 @@
-import { createRouter as _createRouter, createWebHistory } from 'vue-router'
+import { createRouter as _createRouter, createWebHistory } from "vue-router";
 import storeBuilderRoutes from "@/router/cmsRoutes.js";
 
-const Home = () =>
-    import(
-        /* webpackPrefetch: true */ /* webpackChunkName: 'cms' */ "@/views/admin/Home"
-    );
+const Home = () => import("@/views/admin/Home.vue");
 
-const MailsForm = () =>
-    import(
-        /* webpackPrefetch: true */ /* webpackChunkName: 'cms' */ "@/views/admin/forms/Mails"
-    );
-const MailsAnswerForm = () =>
-    import(
-        /* webpackPrefetch: true */ /* webpackChunkName: 'cms' */ "@/views/admin/forms/MailsAnswer"
-    );
-const GalleryForm = () =>
-    import(
-        /* webpackPrefetch: true */ /* webpackChunkName: 'cms' */ "@/views/admin/forms/Gallery"
-    );
+const MailsForm = () => import("@/views/admin/forms/Mails.vue");
+const MailsAnswerForm = () => import("@/views/admin/forms/MailsAnswer.vue");
+const GalleryForm = () => import("@/views/admin/forms/Gallery.vue");
 
-const AdminLogin = () =>
-    import(
-        /* webpackPrefetch: true */ /* webpackChunkName: 'admin-login' */ "@/views/admin/auth/AdminLogin"
-    );
+const AdminLogin = () => import("@/views/admin/auth/AdminLogin.vue");
 
-const Main = () =>
-    import(
-        /* webpackPrefetch: true */ /* webpackChunkName: 'main-page' */ "@/views/public/Main"
-    );
-const Services = () =>
-    import(
-        /* webpackPrefetch: true */ /* webpackChunkName: 'services-page' */ "@/views/public/Services"
-    );
-const SolarSystems = () =>
-    import(
-        /* webpackPrefetch: true */ /* webpackChunkName: 'solar-systems-page' */ "@/views/public/SolarSystems"
-    );
-const Realizations = () =>
-    import(
-        /* webpackPrefetch: true */ /* webpackChunkName: 'realizations-page' */ "@/views/public/Realizations"
-    );
-const Contact = () =>
-    import(
-        /* webpackPrefetch: true */ /* webpackChunkName: 'contact-page' */ "@/views/public/Contact"
-    );
-const Service = () =>
-    import(
-        /* webpackPrefetch: true */ /* webpackChunkName: 'service-page' */ "@/views/public/Service"
-    );
-const AboutPage = () =>
-    import(
-        /* webpackPrefetch: true */ /* webpackChunkName: 'service-page' */ "@/views/public/AboutPage"
-    );
-const Elemele = () =>
-    import(
-        /* webpackPrefetch: true */ /* webpackChunkName: 'elemele' */ "@/views/public/Elemele"
-    );
+const Main = () => import("@/views/public/Main.vue");
+const Services = () => import("@/views/public/Services.vue");
+const SolarSystems = () => import("@/views/public/SolarSystems.vue");
+const Realizations = () => import("@/views/public/Realizations.vue");
+const Contact = () => import("@/views/public/Contact.vue");
+const Service = () => import("@/views/public/Service.vue");
+const AboutPage = () => import("@/views/public/AboutPage.vue");
+const Elemele = () => import("@/views/public/Elemele.vue");
 
-import getPrefixes from "@/helpers/languages/get-prefixes";
-import snakeToPascal from "@/helpers/string/snake-to-pascal";
+import getPrefixes from "@/helpers/languages/get-prefixes.js";
+import snakeToPascal from "@/helpers/string/snake-to-pascal.js";
 
 const newStoreBuilderRoutes = storeBuilderRoutes.map(route => ({
     path: route["component-path"],
@@ -100,9 +61,9 @@ const formsCmsRoutes = [
     const pascalRoute = snakeToPascal(route);
     const component = () =>
         import(
-            /* webpackPrefetch: true */ /* webpackChunkName: 'cms' */ `@/views/admin/forms/${pascalRoute}.vue`
+            /* @vite-ignore */
+            `@/views/admin/forms/${pascalRoute}.vue`
         );
-    // const component = {};
     total.push({
         path: `/admin-panel/${route}/form`,
         component,
