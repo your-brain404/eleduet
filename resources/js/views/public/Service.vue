@@ -30,16 +30,17 @@
       <div class="description" v-html="service.description"></div>
 
       <div v-if="gallery.length > 0" class="gallery">
-        <CoolLightBox
-          :items="
+        <VueEasyLightbox
+          :visible="Number.isInteger(index)"
+          :imgs="
             gallery.map((photo) =>
               existingPhotoPath(`/storage/media/${photo.path}`)
             )
           "
           :index="index"
-          @close="index = null"
+          @hide="index = null"
         >
-        </CoolLightBox>
+        </VueEasyLightbox>
         <div
           v-for="(photo, i) in gallery"
           :key="`photo-gallery-service-${i}`"
@@ -61,15 +62,14 @@
 
 <script>
 import axios from "@/plugins/axios/axios.js";
-import CoolLightBox from "vue-cool-lightbox";
-import "vue-cool-lightbox/dist/vue-cool-lightbox.min.css";
+import VueEasyLightbox from "vue-easy-lightbox";
 import Picture from "@/components/picture/Picture.vue";
 import serviceModule from "@/store/modules/service/serviceModule.js";
 import existingPhotoPath from "@/helpers/links/existing-photo-path.js";
 
 export default {
   components: {
-    CoolLightBox,
+    VueEasyLightbox,
     Picture,
   },
   data() {
