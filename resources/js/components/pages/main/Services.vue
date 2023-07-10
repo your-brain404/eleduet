@@ -17,14 +17,11 @@
       <carousel
         v-if="homeServices.length > 0"
         class="service-carousel"
-        :perPage="carouselItems"
-        :navigationEnabled="false"
-        :paginationEnabled="false"
+        :items-to-show="carouselItems"
+        snap-align="start"
       >
-        <slide>
+        <slide v-for="(service, i) in homeServices" :key="`home-service-${i}`">
           <router-link
-            v-for="(service, i) in homeServices"
-            :key="`home-service-${i}`"
             class="service"
             :to="{
               name: 'Service',
@@ -63,12 +60,13 @@
 </template>
 
 <script>
-import { Carousel, Slide } from "vue-carousel";
-import slug from "@/helpers/links/slug";
-import adminTableComponent from "@/mixins/admin-table-component";
-import Picture from "@/components/picture/Picture";
-import homeServicesModule from "@/store/modules/homeServices/homeServicesModule";
-import homeServicesDescModule from "@/store/modules/homeServicesDesc/homeServicesDescModule";
+import "vue3-carousel/dist/carousel.css";
+import { Carousel, Slide } from "vue3-carousel";
+import slug from "@/helpers/links/slug.js";
+import adminTableComponent from "@/mixins/admin-table-component.js";
+import Picture from "@/components/picture/Picture.vue";
+import homeServicesModule from "@/store/modules/homeServices/homeServicesModule.js";
+import homeServicesDescModule from "@/store/modules/homeServicesDesc/homeServicesDescModule.js";
 
 export default {
   mixins: [adminTableComponent],
