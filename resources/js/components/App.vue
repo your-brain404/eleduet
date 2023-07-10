@@ -25,11 +25,16 @@
 
 <script>
 import getCookie from "@/helpers/cookies/get-cookie";
-import lazyLoadComponent from "@/services/lazy-load-component";
 import FontFaceObserver from "fontfaceobserver";
 import authModule from "@/store/modules/auth/authModule";
 import toastModule from "@/store/modules/toast/toastModule";
 import subpagesModule from "@/store/modules/subpages/subpagesModule";
+import HeaderComponent from "./layouts/Header.vue";
+import FooterComponent from "./layouts/Footer.vue";
+import AdminHeader from "./layouts/AdminHeader.vue";
+import Toast from "./toast/Toast.vue";
+import Cookies from "@/components/cookies/Cookies.vue";
+import Banner from "./layouts/Banner.vue";
 
 function recaptcha() {
   let badge = document.getElementsByClassName("grecaptcha-badge")[0];
@@ -45,27 +50,12 @@ window.addEventListener("load", function () {
 
 export default {
   components: {
-    HeaderComponent: () =>
-      import(/* webpackChunkName: 'front-header' */ "./layouts/Header"),
-    FooterComponent: lazyLoadComponent({
-      componentFactory: () =>
-        import(/* webpackChunkName: 'front-footer' */ "./layouts/Footer"),
-      loading: {
-        template: "<div>loading...</div>",
-      },
-    }),
-    AdminHeader: () =>
-      import(/* webpackChunkName: 'cms-layout' */ "./layouts/AdminHeader"),
-    Toast: () => import(/* webpackChunkName: 'toast' */ "./toast/Toast"),
-    Cookies: () =>
-      import(/* webpackChunkName: 'cookies' */ "@/components/cookies/Cookies"),
-    Banner: lazyLoadComponent({
-      componentFactory: () =>
-        import(/* webpackChunkName: 'banner' */ "./layouts/Banner"),
-      loading: {
-        template: "<div>loading...</div>",
-      },
-    }),
+    HeaderComponent,
+    FooterComponent,
+    AdminHeader,
+    Toast,
+    Cookies,
+    Banner,
   },
   data() {
     return {
