@@ -27,4 +27,21 @@ export default defineConfig({
             },
         }),
     ],
+    resolve: {
+        alias: {
+            '@scss': '/resources/scss'
+        }
+    },
+    css: {
+        preprocessorOptions: {
+            scss: {
+                additionalData: `
+            @import "bootstrap/scss/_functions.scss";
+            @import "bootstrap/scss/_variables.scss";
+            @import "bootstrap/scss/_mixins.scss";
+            @import "@/plugins/bootstrap-vue/src/_variables";
+            `
+            }
+        }
+    },
 });
