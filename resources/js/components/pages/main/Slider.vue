@@ -1,15 +1,13 @@
 <template>
-  <section v-if="slider.length > 0" class="slider">
+  <section class="slider">
     <carousel
       v-if="carousel"
       class="slider-carousel"
-      :perPage="1"
-      :navigationEnabled="false"
-      :loop="true"
-      :autoplay="true"
-      :paginationEnabled="false"
-      :autoplayTimeout="5000"
-      :speed="500"
+      :items-to-show="1"
+      :wrap-around="true"
+      :autoplay="5000"
+      :transition="500"
+      snap-align="start"
     >
       <slide v-for="(slide, i) in slider" :key="`slide-${i}`" class="slide">
         <Picture
@@ -55,17 +53,16 @@
 </template>
  
 <script>
-import { Carousel, Slide } from "vue-carousel";
+import "vue3-carousel/dist/carousel.css";
+import { Carousel, Slide } from "vue3-carousel";
 import sliderModule from "@/store/modules/slider/sliderModule.js";
+import Picture from "@/components/picture/Picture.vue";
+import CustomLink from "@/components/custom-link/CustomLink.vue";
 
 export default {
   components: {
-    CustomLink: () =>
-      import(
-        /* webpackChunkName: 'custom-link' */ "@/components/custom-link/CustomLink"
-      ),
-    Picture: () =>
-      import(/* webpackChunkName: 'picture' */ "@/components/picture/Picture"),
+    CustomLink,
+    Picture,
     Carousel,
     Slide,
   },
@@ -96,5 +93,5 @@ export default {
 };
 </script>
 <style lang="scss">
-@import "~@scss/pages/main/slider";
+@import "@scss/pages/main/slider.scss";
 </style>
