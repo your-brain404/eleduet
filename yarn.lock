@@ -5161,11 +5161,6 @@ readdirp@~3.6.0:
   dependencies:
     picomatch "^2.2.1"
 
-recaptcha-v3@^1.8.0:
-  version "1.8.0"
-  resolved "https://registry.npmjs.org/recaptcha-v3/-/recaptcha-v3-1.8.0.tgz"
-  integrity sha512-ugtg4JHDZiYJwv3ZjWBBZntsTCVpRk2BD8AhVVpSw9jv71SSx+SS9H342VaE0D2XV78DpRdDuiMO9ZIgl4zI3A==
-
 rechoir@^0.7.0:
   version "0.7.1"
   resolved "https://registry.npmjs.org/rechoir/-/rechoir-0.7.1.tgz"
@@ -6170,13 +6165,6 @@ vue-loader@^16.0.0:
     hash-sum "^2.0.0"
     loader-utils "^2.0.0"
 
-vue-recaptcha-v3@^2.0.1:
-  version "2.0.1"
-  resolved "https://registry.npmjs.org/vue-recaptcha-v3/-/vue-recaptcha-v3-2.0.1.tgz"
-  integrity sha512-isEDtOfHU4wWRrZZuxciAELtQmPOeEEdicPNa0f1AOyLPy3sCcBEcpFt+FOcO3RQv5unJ3Yn5NlsWtXv9rXqjg==
-  dependencies:
-    recaptcha-v3 "^1.8.0"
-
 vue-router@^4.2.3:
   version "4.2.3"
   resolved "https://registry.npmjs.org/vue-router/-/vue-router-4.2.3.tgz"
@@ -6218,7 +6206,7 @@ vue@^2.5.18:
   resolved "https://registry.npmjs.org/vue/-/vue-2.6.12.tgz"
   integrity sha512-uhmLFETqPPNyuLLbsKz6ioJ4q7AZHzD8ZVFNATNyICSZouqP2Sz0rotWQC8UNBF6VGSCs5abnKJoStA6JbCbfg==
 
-vue@^3.0.0, vue@^3.0.11, vue@^3.0.4, vue@^3.2.0, vue@^3.2.25, vue@^3.3.4, vue@3.3.4, vue@3.x:
+vue@^3.0.0, vue@^3.0.4, vue@^3.2.0, vue@^3.2.25, vue@^3.3.4, vue@3.3.4, vue@3.x:
   version "3.3.4"
   resolved "https://registry.npmjs.org/vue/-/vue-3.3.4.tgz"
   integrity sha512-VTyEYn3yvIeY1Py0WaYGZsXnz3y5UnGi62GjVEqvEGPl6nxbOrCXbVOTQWBEJUqAyTUk2uJ5JLVnYJ6ZzGbrSw==
