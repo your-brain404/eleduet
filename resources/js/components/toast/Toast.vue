@@ -1,40 +1,27 @@
 <template>
-  <div>
-    <b-toast
-      v-for="toast in toasts"
-      :key="`toast-${toast.id}`"
-      :color="settings.first_color"
-      toaster="b-toaster-bottom-right"
-      :no-auto-hide="true"
-      :visible="true"
-      :append-toast="true"
-      :toast-class="`custom-toast${
-        toast.variant ? ` custom-toast--${toast.variant}` : ''
-      }`"
-      header-class="custom-toast__header"
-      body-class="custom-toast__body"
-    >
-      <div v-html="toast.message"></div>
-      <img
-        class="custom-toast__close"
-        width="20"
-        height="20"
-        src="/storage/img/layout/close.svg"
-        alt="close"
-        style="filter: invert(1)"
-        @click="$store.commit('closeToast', toast.id)"
-      />
-    </b-toast>
+  <div class="toasts">
+    <TransitionGroup name="fade" mode="out-in">
+      <div
+        v-for="toast in toasts"
+        :key="`toast-${toast.id}`"
+        :class="`toast${toast.variant ? ` toast--${toast.variant}` : ''}`"
+      >
+        <div class="toast__message" v-html="toast.message"></div>
+        <img
+          class="toast__close"
+          width="20"
+          height="20"
+          src="/storage/img/layout/close.svg"
+          alt="close"
+          @click="$store.commit('closeToast', toast.id)"
+        />
+      </div>
+    </TransitionGroup>
   </div>
 </template>
 
 <script>
-import { BToast } from "@/plugins/bootstrap-vue/src/components/toast/toast";
-
 export default {
-  components: {
-    BToast,
-  },
   data() {
     return {
       settings: window.global.config.settings,
@@ -50,26 +37,42 @@ export default {
 </script>
 
 <style lang="scss" >
-@import "bootstrap/scss/_toasts.scss";
-@import "~@/plugins/bootstrap-vue/src/components/toast/index.scss";
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.5s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
 .snackbar-button {
   color: white;
 }
-.custom-toast {
+.toasts {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+}
+.toast {
   background-color: var(--first-color) !important;
   color: white;
+  padding: 1rem;
+  display: flex !important;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 0.25rem;
+  max-width: 350px;
+  min-width: 250px;
+  margin-top: 0.5rem;
   &--danger {
     background-color: var(--danger) !important;
   }
-  &__header {
-    display: none;
+
+  &__message {
+    margin-right: 0.5rem;
   }
-  &__body {
-    padding: 1rem;
-    display: flex !important;
-    justify-content: space-between;
-    align-items: center;
-  }
+
   &__close {
     cursor: pointer;
   }
