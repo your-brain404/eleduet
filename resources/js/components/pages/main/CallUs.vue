@@ -48,8 +48,8 @@
 </template>
 
 <script>
-import adminTableComponent from "@/mixins/admin-table-component";
-import Picture from "@/components/picture/Picture";
+import adminTableComponent from "@/mixins/admin-table-component.js";
+import Picture from "@/components/picture/Picture.vue";
 import homeCallUsModule from "@/store/modules/homeCallUs/homeCallUsModule.js";
 
 export default {

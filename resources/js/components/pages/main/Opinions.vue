@@ -89,10 +89,10 @@
 </template>
 
 <script>
-import adminTableComponent from "@/mixins/admin-table-component";
+import adminTableComponent from "@/mixins/admin-table-component.js";
 import Picture from "@/components/picture/Picture.vue";
-import opinionsModule from "@/store/modules/opinions/opinionsModule";
-import opinionsDescModule from "@/store/modules/opinionsDesc/opinionsDescModule";
+import opinionsModule from "@/store/modules/opinions/opinionsModule.js";
+import opinionsDescModule from "@/store/modules/opinionsDesc/opinionsDescModule.js";
 
 export default {
   components: {

@@ -43,8 +43,8 @@
 </template>
 
 <script>
-import adminTableComponent from "@/mixins/admin-table-component";
-import Picture from "@/components/picture/Picture";
+import adminTableComponent from "@/mixins/admin-table-component.js";
+import Picture from "@/components/picture/Picture.vue";
 import attributesModule from "@/store/modules/attributes/attributesModule.js";
 import attributesDescModule from "@/store/modules/attributesDesc/attributesDescModule.js";
 

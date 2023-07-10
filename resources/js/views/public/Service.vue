@@ -60,12 +60,12 @@
 </template>
 
 <script>
-import axios from "@/plugins/axios/axios";
+import axios from "@/plugins/axios/axios.js";
 import CoolLightBox from "vue-cool-lightbox";
 import "vue-cool-lightbox/dist/vue-cool-lightbox.min.css";
-import Picture from "@/components/picture/Picture";
-import serviceModule from "@/store/modules/service/serviceModule";
-import existingPhotoPath from "@/helpers/links/existing-photo-path";
+import Picture from "@/components/picture/Picture.vue";
+import serviceModule from "@/store/modules/service/serviceModule.js";
+import existingPhotoPath from "@/helpers/links/existing-photo-path.js";
 
 export default {
   components: {

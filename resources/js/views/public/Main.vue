@@ -1,77 +1,37 @@
 <template>
   <section class="main">
-    <Slider v-if="slider" />
+    <Slider />
     <About v-if="about" />
     <Services v-if="services" />
     <SolarSystem v-if="solarSystem" />
     <ExecutionProcess v-if="executionProcess" />
     <Attributes v-if="attributes" />
-
     <CallUs v-if="callUs" />
     <Opinions v-if="opinions" />
   </section>
 </template>
 
 <script>
-import lazyLoadComponent from "@/services/lazy-load-component";
-import Loader from "@/components/loader/Loader";
-const Slider = () =>
-  import(/* webpackChunkName: 'slider' */ "@/components/pages/main/Slider");
-const About = () =>
-  import(/* webpackChunkName: 'about' */ "@/components/pages/main/About");
+import Slider from "@/components/pages/main/Slider.vue";
+import About from "@/components/pages/main/About.vue";
+import Attributes from "@/components/pages/main/Attributes.vue";
 
-const Services = () =>
-  import(/* webpackChunkName: 'services' */ "@/components/pages/main/Services");
-const SolarSystem = () =>
-  import(
-    /* webpackChunkName: 'solar-system' */ "@/components/pages/main/SolarSystem"
-  );
-const ExecutionProcess = () =>
-  import(
-    /* webpackChunkName: 'execution-process' */ "@/components/pages/main/ExecutionProcess"
-  );
-const Attributes = () =>
-  import(
-    /* webpackChunkName: 'attributes' */ "@/components/pages/main/Attributes"
-  );
-const CallUs = () =>
-  import(/* webpackChunkName: 'call-us' */ "@/components/pages/main/CallUs");
-const Opinions = () =>
-  import(
-    /* webpackChunkName: 'opinions' */ /* webpackMode: "lazy" */ "@/components/pages/main/Opinions"
-  );
+import Services from "@/components/pages/main/Services.vue";
+import SolarSystem from "@/components/pages/main/SolarSystem.vue";
+import ExecutionProcess from "@/components/pages/main/ExecutionProcess.vue";
+import CallUs from "@/components/pages/main/CallUs.vue";
+import Opinions from "@/components/pages/main/Opinions.vue";
 
 export default {
   components: {
     Slider,
-    About: lazyLoadComponent({
-      componentFactory: About,
-      loading: Loader,
-    }),
-    Attributes: lazyLoadComponent({
-      componentFactory: Attributes,
-      loading: Loader,
-    }),
-    CallUs: lazyLoadComponent({
-      componentFactory: CallUs,
-      loading: Loader,
-    }),
-    ExecutionProcess: lazyLoadComponent({
-      componentFactory: ExecutionProcess,
-      loading: Loader,
-    }),
-    SolarSystem: lazyLoadComponent({
-      componentFactory: SolarSystem,
-      loading: Loader,
-    }),
-    Services: lazyLoadComponent({
-      componentFactory: Services,
-      loading: Loader,
-    }),
-    Opinions: lazyLoadComponent({
-      componentFactory: Opinions,
-      loading: Loader,
-    }),
+    About,
+    Attributes,
+    CallUs,
+    ExecutionProcess,
+    SolarSystem,
+    Services,
+    Opinions,
   },
 
   computed: {

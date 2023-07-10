@@ -71,7 +71,7 @@
 </template>
 
 <script>
-import Picture from "@/components/picture/Picture";
+import Picture from "@/components/picture/Picture.vue";
 
 export default {
   components: {

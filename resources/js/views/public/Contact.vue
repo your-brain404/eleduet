@@ -120,9 +120,9 @@
 import axios from "@/plugins/axios/axios";
 import Vue from "vue";
 import { VueReCaptcha } from "vue-recaptcha-v3";
-import Picture from "@/components/picture/Picture";
-import contactLinksModule from "@/store/modules/contactLinks/contactLinksModule";
-import snackbarAlertsModule from "@/store/modules/snackbarAlerts/snackbarAlertsModule";
+import Picture from "@/components/picture/Picture.vue";
+import contactLinksModule from "@/store/modules/contactLinks/contactLinksModule.js";
+import snackbarAlertsModule from "@/store/modules/snackbarAlerts/snackbarAlertsModule.js";
 
 export default {
   components: {

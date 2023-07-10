@@ -43,9 +43,9 @@
 </template>
 
 <script>
-import adminTableComponent from "@/mixins/admin-table-component";
-import Picture from "@/components/picture/Picture";
-import homeSolarSystemDescModule from "@/store/modules/homeSolarSystemDesc/homeSolarSystemDescModule";
+import adminTableComponent from "@/mixins/admin-table-component.js";
+import Picture from "@/components/picture/Picture.vue";
+import homeSolarSystemDescModule from "@/store/modules/homeSolarSystemDesc/homeSolarSystemDescModule.js";
 
 export default {
   components: {

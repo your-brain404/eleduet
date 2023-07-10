@@ -53,7 +53,7 @@
 
 <script>
 import url from "@/helpers/photo/url.js";
-import Picture from "@/components/picture/Picture";
+import Picture from "@/components/picture/Picture.vue";
 
 export default {
   components: {
@@ -94,13 +94,14 @@ export default {
       this.windowWidth = window.innerWidth;
     },
   },
+
   mounted() {
     this.$nextTick(() => {
       window.addEventListener("resize", this.onResize);
     });
   },
 
-  beforeDestroy() {
+  beforeUnmount() {
     window.removeEventListener("resize", this.onResize);
   },
 };

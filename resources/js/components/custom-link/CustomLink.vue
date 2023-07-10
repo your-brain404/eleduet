@@ -11,7 +11,8 @@
 </template>
 
 <script>
-import CustomRouterLink from "@/components/custom-link/CustomRouterLink";
+import CustomRouterLink from "@/components/custom-link/CustomRouterLink.vue";
+
 export default {
   components: {
     CustomRouterLink,

@@ -45,9 +45,9 @@
 </template>
 
 <script>
-import webpExtensions from "@/helpers/files/webp-extensions";
-import existingPhotoPath from "@/helpers/links/existing-photo-path";
-import getExtensionFromPath from "@/helpers/files/get-extension-from-path";
+import webpExtensions from "@/helpers/files/webp-extensions.js";
+import existingPhotoPath from "@/helpers/links/existing-photo-path.js";
+import getExtensionFromPath from "@/helpers/files/get-extension-from-path.js";
 
 export default {
   data() {

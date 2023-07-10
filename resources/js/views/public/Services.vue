@@ -122,15 +122,15 @@
 </template>
 
 <script>
-import CallUs from "@/components/pages/services/CallUs";
-import slug from "@/helpers/links/slug";
-import Picture from "@/components/picture/Picture";
-import adminTableComponent from "@/mixins/admin-table-component";
-import servicesModule from "@/store/modules/services/servicesModule";
-import serviceCategoriesModule from "@/store/modules/serviceCategories/serviceCategoriesModule";
-import servicesServiceCategoriesModule from "@/store/modules/servicesServiceCategories/servicesServiceCategoriesModule";
-import servicesPageDescModule from "@/store/modules/servicesPageDesc/servicesPageDescModule";
-import servicesAttributesModule from "@/store/modules/servicesAttributes/servicesAttributesModule";
+import CallUs from "@/components/pages/services/CallUs.vue";
+import slug from "@/helpers/links/slug.js";
+import Picture from "@/components/picture/Picture.vue";
+import adminTableComponent from "@/mixins/admin-table-component.js";
+import servicesModule from "@/store/modules/services/servicesModule.js";
+import serviceCategoriesModule from "@/store/modules/serviceCategories/serviceCategoriesModule.js";
+import servicesServiceCategoriesModule from "@/store/modules/servicesServiceCategories/servicesServiceCategoriesModule.js";
+import servicesPageDescModule from "@/store/modules/servicesPageDesc/servicesPageDescModule.js";
+import servicesAttributesModule from "@/store/modules/servicesAttributes/servicesAttributesModule.js";
 
 export default {
   mixins: [adminTableComponent],

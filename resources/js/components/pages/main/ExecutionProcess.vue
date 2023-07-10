@@ -44,10 +44,10 @@
 </template>
 
 <script>
-import adminTableComponent from "@/mixins/admin-table-component";
-import Picture from "@/components/picture/Picture";
-import executionProcessDescModule from "@/store/modules/executionProcessDesc/executionProcessDescModule";
-import executionProcessModule from "@/store/modules/executionProcess/executionProcessModule";
+import adminTableComponent from "@/mixins/admin-table-component.js";
+import Picture from "@/components/picture/Picture.vue";
+import executionProcessDescModule from "@/store/modules/executionProcessDesc/executionProcessDescModule.js";
+import executionProcessModule from "@/store/modules/executionProcess/executionProcessModule.js";
 
 export default {
   components: {

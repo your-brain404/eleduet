@@ -58,9 +58,9 @@
 </template>
 
 <script>
-import Picture from "@/components/picture/Picture";
-import adminTableComponent from "@/mixins/admin-table-component";
-import servicesCallUsModule from "@/store/modules/servicesCallUs/servicesCallUsModule";
+import Picture from "@/components/picture/Picture.vue";
+import adminTableComponent from "@/mixins/admin-table-component.js";
+import servicesCallUsModule from "@/store/modules/servicesCallUs/servicesCallUsModule.js";
 
 export default {
   mixins: [adminTableComponent],

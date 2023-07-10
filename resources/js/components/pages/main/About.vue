@@ -59,8 +59,8 @@
 </template>
 
 <script>
-import adminTableComponent from "@/mixins/admin-table-component";
-import Picture from "@/components/picture/Picture";
+import adminTableComponent from "@/mixins/admin-table-component.js";
+import Picture from "@/components/picture/Picture.vue";
 import aboutModule from "@/store/modules/about/aboutModule.js";
 
 export default {
@@ -94,5 +94,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import "~@scss/pages/main/about";
+@import "@scss/pages/main/about.scss";
 </style>

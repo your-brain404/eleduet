@@ -35,10 +35,10 @@
 import axios from "@/plugins/axios/axios";
 import CoolLightBox from "vue-cool-lightbox";
 import "vue-cool-lightbox/dist/vue-cool-lightbox.min.css";
-import Picture from "@/components/picture/Picture";
-import adminTableComponent from "@/mixins/admin-table-component";
-import existingPhotoPath from "@/helpers/links/existing-photo-path";
-import aboutPageModule from "@/store/modules/aboutPage/aboutPageModule";
+import Picture from "@/components/picture/Picture.vue";
+import adminTableComponent from "@/mixins/admin-table-component.js";
+import existingPhotoPath from "@/helpers/links/existing-photo-path.js";
+import aboutPageModule from "@/store/modules/aboutPage/aboutPageModule.js";
 
 export default {
   components: {
