@@ -35,7 +35,7 @@ $breakpoints: (
   "-xl": 1904px,
 );
 @mixin getColumnWidth($columns) {
-  $percent: 100 / (12 / $columns) * 1%;
+  $percent: calc(100 / (12 / $columns)) * 1%;
   flex: 0 0 $percent;
   max-width: $percent;
 }
