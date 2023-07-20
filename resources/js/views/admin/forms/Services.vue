@@ -74,7 +74,7 @@
 
 <script>
 import FormServiceMixin from "@/mixins/FormService.js";
-import getModule from "@/helpers/store/get-module";
+import getModule from "@/helpers/store/get-module.js";
 
 export default {
   mixins: [FormServiceMixin],
@@ -126,7 +126,7 @@ export default {
       this.$route.params.id
     );
   },
-  destroyed() {
+  unmount() {
     this.$store.commit("CurrentServiceCategories/currentServiceCategories", []);
   },
 };
