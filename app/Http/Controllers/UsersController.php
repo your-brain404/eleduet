@@ -7,13 +7,13 @@ use App\Http\Services\CrudService;
 use App\Http\Helpers\RegisterHelper;
 use App\Http\Helpers\UsersHelper;
 use App\Http\Resources\CrudResource;
-use App\User;
+use App\Models\User;
 
 class UsersController extends CrudController
 {
     function __construct()
     {
-        parent::__construct();
+        parent::__construct(User::class);
     }
 
     public function getAll(Request $request)
