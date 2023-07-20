@@ -79,20 +79,18 @@
 <script>
 import axios from "@/plugins/axios/axios";
 import attachment from "../../../helpers/attachments/link.js";
-import Vue from "vue";
 import VForm from "@/components/elements/VForm.vue";
 import VTextarea from "@/components/elements/VTextarea.vue";
 import TextField from "@/components/elements/TextField.vue";
-import { VueReCaptcha } from "vue-recaptcha-v3";
 import VRow from "@/components/grid/VRow.vue";
 import VCol from "@/components/grid/VCol.vue";
 import VMain from "@/components/grid/VMain.vue";
 import VContainer from "@/components/grid/VContainer.vue";
-import VCard from "@/components/elements/VCard";
-import VCardActions from "@/components/elements/VCardActions";
-import VBtn from "@/components/elements/VBtn";
-import VDivider from "@/components/elements/VDivider";
-import VCardTitle from "@/components/elements/VCardTitle";
+import VCard from "@/components/elements/VCard.vue";
+import VCardActions from "@/components/elements/VCardActions.vue";
+import VBtn from "@/components/elements/VBtn.vue";
+import VDivider from "@/components/elements/VDivider.vue";
+import VCardTitle from "@/components/elements/VCardTitle.vue";
 import SvgVue from "svg-vue";
 
 export default {
@@ -189,9 +187,6 @@ export default {
   },
   created() {
     this.getMail();
-    Vue.use(VueReCaptcha, {
-      siteKey: "6Lfdvf0cAAAAAAMO211eYJE2wG8AlbWfQZQwbIS5",
-    });
   },
 };
 </script>
