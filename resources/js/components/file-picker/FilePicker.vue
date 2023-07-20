@@ -2,14 +2,7 @@
   <v-row justify="center" class="file-picker-component mt-5 mb-5 px-3">
     <v-col
       v-if="Boolean(chosenFile.id) || Boolean(value)"
-      class="
-        w-100
-        d-flex
-        flex-column
-        justify-content-between
-        align-items-center
-        px-0
-      "
+      class="w-100 d-flex flex-column justify-content-between align-items-center px-0"
     >
       <Picture
         v-if="isPhoto(chosenFile.type)"
@@ -94,12 +87,7 @@
                           class="d-flex align-items-center pa-5 files-container"
                         >
                           <v-col
-                            class="
-                              d-flex
-                              file-picker-col
-                              align-items-between
-                              flex-column
-                            "
+                            class="d-flex file-picker-col align-items-between flex-column"
                             lg="2"
                             md="3"
                             sm="4"
@@ -179,11 +167,7 @@
                           </v-btn>
 
                           <div
-                            class="
-                              d-flex
-                              justify-content-between
-                              align-items-center
-                            "
+                            class="d-flex justify-content-between align-items-center"
                           >
                             <h4>Wybrany plik:</h4>
                             <u
@@ -282,26 +266,26 @@
 </template>
 
 <script>
-import axios from "@/plugins/axios/axios";
+import axios from "@/plugins/axios/axios.js";
 import AddFiles from "./AddFiles.vue";
-import url from "@/helpers/photo/url";
-import isPhoto from "@/helpers/files/is-photo";
-import formatFileSize from "@/helpers/files/format-file-size";
-import copyToClipboard from "@/helpers/copy/copy-to-clipboard";
-import Picture from "@/components/picture/Picture";
-import existingPhotoPath from "@/helpers/links/existing-photo-path";
+import url from "@/helpers/photo/url.js";
+import isPhoto from "@/helpers/files/is-photo.js";
+import formatFileSize from "@/helpers/files/format-file-size.js";
+import copyToClipboard from "@/helpers/copy/copy-to-clipboard.js";
+import Picture from "@/components/picture/Picture.vue";
+import existingPhotoPath from "@/helpers/links/existing-photo-path.js";
 import TextField from "@/components/elements/TextField.vue";
 import VRow from "@/components/grid/VRow.vue";
 import VCol from "@/components/grid/VCol.vue";
-import VBtn from "@/components/elements/VBtn";
-import VCard from "@/components/elements/VCard";
-import VCardText from "@/components/elements/VCardText";
+import VBtn from "@/components/elements/VBtn.vue";
+import VCard from "@/components/elements/VCard.vue";
+import VCardText from "@/components/elements/VCardText.vue";
 import SvgVue from "svg-vue";
 import { BModal } from "@/plugins/bootstrap-vue/src/components/modal/modal.js";
 import { BTabs } from "@/plugins/bootstrap-vue/src/components/tabs/tabs.js";
 import { BTab } from "@/plugins/bootstrap-vue/src/components/tabs/tab.js";
 import { VBTooltip } from "@/plugins/bootstrap-vue/src/directives/tooltip/tooltip.js";
-import Pagination from "@/components/pagination/Pagination";
+import Pagination from "@/components/pagination/Pagination.vue";
 
 export default {
   directives: {
