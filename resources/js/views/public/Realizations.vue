@@ -1,15 +1,16 @@
 <template>
   <section class="realizations-page">
-    <CoolLightBox
-      :items="
+    <vue-easy-lightbox
+      :visible="Number.isInteger(index)"
+      :imgs="
         realizations.map((photo) =>
           existingPhotoPath(`${origin}/storage/media/${photo.path}`)
         )
       "
       :index="index"
-      @close="index = null"
+      @hide="index = null"
     >
-    </CoolLightBox>
+    </vue-easy-lightbox>
     <div class="content">
       <div
         v-for="(realization, i) in realizations"
@@ -33,17 +34,16 @@
 </template>
 
 <script>
-import CoolLightBox from "vue-cool-lightbox";
-import "vue-cool-lightbox/dist/vue-cool-lightbox.min.css";
-import adminTableComponent from "@/mixins/admin-table-component";
+import VueEasyLightbox from "vue-easy-lightbox";
+import adminTableComponent from "@/mixins/admin-table-component.js";
 import Picture from "../../components/picture/Picture.vue";
-import existingPhotoPath from "@/helpers/links/existing-photo-path";
-import realizationsModule from "@/store/modules/realizations/realizationsModule";
+import existingPhotoPath from "@/helpers/links/existing-photo-path.js";
+import realizationsModule from "@/store/modules/realizations/realizationsModule.js";
 
 export default {
   mixins: [adminTableComponent],
   components: {
-    CoolLightBox,
+    VueEasyLightbox,
     Picture,
   },
 
