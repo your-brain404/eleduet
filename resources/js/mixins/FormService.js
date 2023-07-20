@@ -1,10 +1,10 @@
-import axios from "@/plugins/axios/axios";
-import FilePicker from "@/components/file-picker/FilePicker";
+import axios from "@/plugins/axios/axios.js";
+import FilePicker from "@/components/file-picker/FilePicker.vue";
 import url from "@/helpers/photo/url.js";
 import TagsInput from "@/components/tagsinput/TagsInput.vue";
 import AdminPanelBlocks from "@/data/admin-panel-blocks.js";
-import VueEditor from "@/components/forms/TinyMCE";
-import FormFooter from "@/components/layouts/FormFooter";
+import VueEditor from "@/components/forms/TinyMCE.vue";
+import FormFooter from "@/components/layouts/FormFooter.vue";
 import FormService from "@/store/modules/formService/formServiceModule.js";
 
 import VForm from "@/components/elements/VForm.vue";
@@ -16,9 +16,9 @@ import TextField from "@/components/elements/TextField.vue";
 import VTextarea from "@/components/elements/VTextarea.vue";
 import Checkbox from "@/components/elements/Checkbox.vue";
 import VCardTitle from "@/components/elements/VCardTitle.vue";
-import VCard from "@/components/elements/VCard";
-import VDivider from "@/components/elements/VDivider";
-import loadingModule from "@/store/modules/loading/loadingModule";
+import VCard from "@/components/elements/VCard.vue";
+import VDivider from "@/components/elements/VDivider.vue";
+import loadingModule from "@/store/modules/loading/loadingModule.js";
 
 export default {
     components: {
@@ -161,8 +161,7 @@ export default {
         if (this.$route.params.id) {
             axios
                 .get(
-                    `/api/${this.$route.path.split("/")[2]}/get_one/${
-                        this.$route.params.id
+                    `/api/${this.$route.path.split("/")[2]}/get_one/${this.$route.params.id
                     }`
                 )
                 .then(res => {
