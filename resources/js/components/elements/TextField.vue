@@ -21,7 +21,7 @@
       />
       <input
         ref="input"
-        @input="$emit('input', $event.target.value)"
+        @input="$emit('update:modelValue', $event.target.value)"
         :value="valueToPlaceholder"
         class="text-field__input"
         :class="{ 'text-field__input--not-empty': value }"
@@ -51,16 +51,18 @@
 
 <script>
 import SvgVue from "svg-vue";
-import randomString from "@/helpers/string/random-string";
-import formValidation from "@/mixins/form-validation";
-import formatFileSize from "@/helpers/files/format-file-size";
+import randomString from "@/helpers/string/random-string.js";
+import formValidation from "@/mixins/form-validation.js";
+import formatFileSize from "@/helpers/files/format-file-size.js";
+
 export default {
+  name: "text-field",
   mixins: [formValidation],
   components: {
     SvgVue,
   },
   props: {
-    value: String,
+    modelValue: String,
     icon: String,
     label: String,
     disabled: Boolean,
@@ -83,6 +85,9 @@ export default {
     };
   },
   computed: {
+    value() {
+      return this.modelValue;
+    },
     filesSize() {
       if (this.value.constructor !== FileList) return 0;
       return [...this.value].reduce((total, file) => (total += file.size), 0);
@@ -105,7 +110,7 @@ export default {
   mounted() {
     window.addEventListener("click", (e) => {
       let textFieldClicked = Boolean(
-        e.path.find((el) => {
+        e.composedPath().find((el) => {
           return el?.id === `text-field-${this.id}`;
         })
       );
