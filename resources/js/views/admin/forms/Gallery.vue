@@ -97,7 +97,7 @@
 
 <script>
 import axios from "@/plugins/axios/axios";
-import GalleryPicker from "@/components/gallery-picker/GalleryPicker";
+import GalleryPicker from "@/components/gallery-picker/GalleryPicker.vue";
 import SnackbarAlerts from "@/data/snackbar-alerts.js";
 import url from "@/helpers/photo/url.js";
 import Picture from "@/components/picture/Picture.vue";
@@ -107,13 +107,13 @@ import VRow from "@/components/grid/VRow.vue";
 import VCol from "@/components/grid/VCol.vue";
 import VMain from "@/components/grid/VMain.vue";
 import VContainer from "@/components/grid/VContainer.vue";
-import VCard from "@/components/elements/VCard";
-import VBtn from "@/components/elements/VBtn";
-import VCardActions from "@/components/elements/VCardActions";
-import VDivider from "@/components/elements/VDivider";
-import VCardTitle from "@/components/elements/VCardTitle";
+import VCard from "@/components/elements/VCard.vue";
+import VBtn from "@/components/elements/VBtn.vue";
+import VCardActions from "@/components/elements/VCardActions.vue";
+import VDivider from "@/components/elements/VDivider.vue";
+import VCardTitle from "@/components/elements/VCardTitle.vue";
 import SvgVue from "svg-vue";
-import loadingModule from "@/store/modules/loading/loadingModule";
+import loadingModule from "@/store/modules/loading/loadingModule.js";
 
 export default {
   components: {

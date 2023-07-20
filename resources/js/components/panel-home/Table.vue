@@ -133,11 +133,11 @@
 
 <script>
 import axios from "@/plugins/axios/axios";
-import snackbarAlerts from "@/data/snackbar-alerts";
+import snackbarAlerts from "@/data/snackbar-alerts.js";
 import VBtn from "@/components/elements/VBtn.vue";
 import TextField from "@/components/elements/TextField.vue";
 import Checkbox from "@/components/elements/Checkbox.vue";
-import DataTable from "@/components/data-table/DataTable";
+import DataTable from "@/components/data-table/DataTable.vue";
 import SvgVue from "svg-vue";
 
 export default {

@@ -107,7 +107,7 @@
 <script>
 import SvgVue from "svg-vue";
 import VSelect from "@/components/elements/VSelect.vue";
-import VBtn from "@/components/elements/VBtn";
+import VBtn from "@/components/elements/VBtn.vue";
 
 export default {
   components: {

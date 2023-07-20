@@ -65,8 +65,8 @@
 <script>
 import avatar from "@/helpers/photo/avatar.js";
 import Picture from "@/components/picture/Picture.vue";
-import usersModule from "@/store/modules/users/usersModule";
-import loadingModule from "@/store/modules/loading/loadingModule";
+import usersModule from "@/store/modules/users/usersModule.js";
+import loadingModule from "@/store/modules/loading/loadingModule.js";
 
 export default {
   components: {

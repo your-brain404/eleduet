@@ -1,6 +1,6 @@
 <template></template>
 <script>
-import getModule from "@/helpers/store/get-module";
+import getModule from "@/helpers/store/get-module.js";
 export default {
   props: ["getFilesSize"],
   computed: {

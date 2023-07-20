@@ -1,8 +1,8 @@
 <template></template>
 
 <script>
-import axios from "@/plugins/axios/axios";
-import settingsModule from "@/store/modules/settings/settingsModule";
+import axios from "@/plugins/axios/axios.js";
+import settingsModule from "@/store/modules/settings/settingsModule.js";
 
 export default {
   props: ["reloadFlag"],

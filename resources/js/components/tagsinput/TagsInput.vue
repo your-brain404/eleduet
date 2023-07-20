@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import axios from "@/plugins/axios/axios";
+import axios from "@/plugins/axios/axios.js";
 
 export default {
   props: ["tags"],

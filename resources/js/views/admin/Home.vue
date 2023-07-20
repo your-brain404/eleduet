@@ -30,15 +30,15 @@
 </template>
 
 <script>
-import Table from "@/components/panel-home/Table";
-import Title from "@/components/panel-home/Title";
+import Table from "@/components/panel-home/Table.vue";
+import Title from "@/components/panel-home/Title.vue";
 import panelBlocks from "@/data/admin-panel-blocks.js";
 import fillBaseHeaders from "@/helpers/panel-table/fill-base-headers.js";
-import getModule from "@/helpers/store/get-module";
-import VCard from "@/components/elements/VCard";
-import VDivider from "@/components/elements/VDivider";
-import usersModule from "@/store/modules/users/usersModule";
-import loadingModule from "@/store/modules/loading/loadingModule";
+import getModule from "@/helpers/store/get-module.js";
+import VCard from "@/components/elements/VCard.vue";
+import VDivider from "@/components/elements/VDivider.vue";
+import usersModule from "@/store/modules/users/usersModule.js";
+import loadingModule from "@/store/modules/loading/loadingModule.js";
 
 export default {
   data() {

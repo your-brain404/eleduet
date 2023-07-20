@@ -1,4 +1,4 @@
-import store from "@/store/store";
+import store from "@/store/store.js";
 
 export default function rt(route) {
     const currentPrefix = store.getters.getPrefix;

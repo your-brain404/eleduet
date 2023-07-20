@@ -34,14 +34,14 @@
 </template>
 
 <script>
-import axios from "@/plugins/axios/axios";
-import isPhoto from "@/helpers/files/is-photo";
-import photoTypes from "@/helpers/files/photo-types";
+import axios from "@/plugins/axios/axios.js";
+import isPhoto from "@/helpers/files/is-photo.js";
+import photoTypes from "@/helpers/files/photo-types.js";
 import VRow from "@/components/grid/VRow.vue";
 import VCol from "@/components/grid/VCol.vue";
-import VCardText from "@/components/elements/VCardText";
-import VCard from "@/components/elements/VCard";
-import VBtn from "@/components/elements/VBtn";
+import VCardText from "@/components/elements/VCardText.vue";
+import VCard from "@/components/elements/VCard.vue";
+import VBtn from "@/components/elements/VBtn.vue";
 import SvgVue from "svg-vue";
 import VForm from "@/components/elements/VForm.vue";
 import TextField from "@/components/elements/TextField.vue";

@@ -3,8 +3,8 @@
 </template>
 
 <script>
-import axios from "@/plugins/axios/axios";
-import Reservations from "../pages/Reservations";
+import axios from "@/plugins/axios/axios.js";
+import Reservations from "../pages/Reservations.vue";
 
 export default {
   components: {

@@ -1,5 +1,5 @@
-import ucfirst from "@/helpers/string/ucfirst";
-import lcfirst from "@/helpers/string/lcfirst";
+import ucfirst from "@/helpers/string/ucfirst.js";
+import lcfirst from "@/helpers/string/lcfirst.js";
 
 export default {
     props: ["reloadFlag"],

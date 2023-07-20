@@ -24,8 +24,8 @@
 </template>
   
   <script>
-import randomString from "@/helpers/string/random-string";
-import formValidation from "@/mixins/form-validation";
+import randomString from "@/helpers/string/random-string.js";
+import formValidation from "@/mixins/form-validation.js";
 export default {
   mixins: [formValidation],
 

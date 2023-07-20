@@ -101,7 +101,7 @@
 
 <script>
 import DateFormatter from "../../helpers/date/format.js";
-import axios from "@/plugins/axios/axios";
+import axios from "@/plugins/axios/axios.js";
 
 export default {
   props: ["serviceEquipments", "services", "reloadFlag"],

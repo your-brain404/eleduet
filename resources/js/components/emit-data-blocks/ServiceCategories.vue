@@ -1,7 +1,7 @@
 <template></template>
 
 <script>
-import axios from "@/plugins/axios/axios";
+import axios from "@/plugins/axios/axios.js";
 import getModule from "@/helpers/store/get-module.js";
 
 export default {

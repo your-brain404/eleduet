@@ -1,5 +1,5 @@
-import webpExtensions from "@/helpers/files/webp-extensions";
-import getExtensionFromPath from "@/helpers/files/get-extension-from-path";
+import webpExtensions from "@/helpers/files/webp-extensions.js";
+import getExtensionFromPath from "@/helpers/files/get-extension-from-path.js";
 
 export default function existingPhotoPath(path) {
     const extension = getExtensionFromPath(path);

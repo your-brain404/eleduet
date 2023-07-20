@@ -133,22 +133,22 @@
 </template>
 
 <script>
-import axios from "@/plugins/axios/axios";
+import axios from "@/plugins/axios/axios.js";
 import AddPhotos from "@/components/gallery-picker/AddPhotos.vue";
 import url from "@/helpers/photo/url.js";
-import Picture from "@/components/picture/Picture";
+import Picture from "@/components/picture/Picture.vue";
 import TextField from "@/components/elements/TextField.vue";
 import VRow from "@/components/grid/VRow.vue";
 import VCol from "@/components/grid/VCol.vue";
-import VCard from "@/components/elements/VCard";
-import VCardText from "@/components/elements/VCardText";
-import VBtn from "@/components/elements/VBtn";
+import VCard from "@/components/elements/VCard.vue";
+import VCardText from "@/components/elements/VCardText.vue";
+import VBtn from "@/components/elements/VBtn.vue";
 import SvgVue from "svg-vue";
 import { BModal } from "@/plugins/bootstrap-vue/src/components/modal/modal.js";
 import { BTabs } from "@/plugins/bootstrap-vue/src/components/tabs/tabs.js";
 import { BTab } from "@/plugins/bootstrap-vue/src/components/tabs/tab.js";
 import { VBTooltip } from "@/plugins/bootstrap-vue/src/directives/tooltip/tooltip.js";
-import Pagination from "@/components/pagination/Pagination";
+import Pagination from "@/components/pagination/Pagination.vue";
 
 export default {
   directives: {

@@ -20,8 +20,8 @@
 </template>
 
 <script>
-import setCookie from "@/helpers/cookies/set-cookie";
-import getCookie from "@/helpers/cookies/get-cookie";
+import setCookie from "@/helpers/cookies/set-cookie.js";
+import getCookie from "@/helpers/cookies/get-cookie.js";
 
 export default {
   data() {

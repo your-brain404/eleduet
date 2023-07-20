@@ -58,13 +58,13 @@ import axios from "@/plugins/axios/axios";
 import VForm from "@/components/elements/VForm.vue";
 import TextField from "@/components/elements/TextField.vue";
 import VTextarea from "@/components/elements/VTextarea.vue";
-import VCard from "@/components/elements/VCard";
-import VBtn from "@/components/elements/VBtn";
-import VDivider from "@/components/elements/VDivider";
-import VCardTitle from "@/components/elements/VCardTitle";
-import VCardActions from "@/components/elements/VCardActions";
-import VMain from "@/components/grid/VMain";
-import VContainer from "@/components/grid/VContainer";
+import VCard from "@/components/elements/VCard.vue";
+import VBtn from "@/components/elements/VBtn.vue";
+import VDivider from "@/components/elements/VDivider.vue";
+import VCardTitle from "@/components/elements/VCardTitle.vue";
+import VCardActions from "@/components/elements/VCardActions.vue";
+import VMain from "@/components/grid/VMain.vue";
+import VContainer from "@/components/grid/VContainer.vue";
 import SvgVue from "svg-vue";
 
 export default {

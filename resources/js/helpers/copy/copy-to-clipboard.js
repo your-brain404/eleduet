@@ -1,4 +1,4 @@
-import { createStore } from "@/store/store";
+import { createStore } from "@/store/store.js";
 
 export default async function copyToClipboard(text) {
     try {

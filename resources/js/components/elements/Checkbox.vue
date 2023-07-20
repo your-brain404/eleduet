@@ -31,8 +31,9 @@
 </template>
 
 <script>
-import formValidation from "@/mixins/form-validation";
+import formValidation from "@/mixins/form-validation.js";
 export default {
+  name: "checkbox",
   mixins: [formValidation],
   props: {
     value: Boolean,

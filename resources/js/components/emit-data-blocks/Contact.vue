@@ -1,8 +1,8 @@
 <template></template>
 
 <script>
-import axios from "@/plugins/axios/axios";
-import contactModule from "@/store/modules/contact/contactModule";
+import axios from "@/plugins/axios/axios.js";
+import contactModule from "@/store/modules/contact/contactModule.js";
 
 export default {
   props: ["reloadFlag"],
