@@ -6,8 +6,8 @@ use App\Http\Services\CrudService;
 
 class CrudController extends Controller
 {
-    public function __construct()
+    public function __construct(string $crudServiceModel = null)
     {
-        CrudService::$model = getModelFromController(get_class($this));
+        CrudService::$model = $crudServiceModel ?? getModelFromController(get_class($this));
     }
 }
