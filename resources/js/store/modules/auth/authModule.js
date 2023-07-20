@@ -30,7 +30,7 @@ export default {
                 })
                 .catch(err => console.log(err));
         },
-        async authLogin({ commit, getters, state }, credentials) {
+        async authLogin({ commit, getters, rootState }, credentials) {
             await axios
                 .post("api/auth/login", credentials)
                 .then(res => {
@@ -44,7 +44,7 @@ export default {
                             "user",
                             JSON.stringify(res.data.data)
                         );
-                        state.router.push({ name: "AdminMain" });
+                        rootState.router.push({ name: "AdminMain" });
                     }
                 })
                 .catch(err => console.log(err));

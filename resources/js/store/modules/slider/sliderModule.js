@@ -12,10 +12,10 @@ export default {
         slider: state => state.slider
     },
     actions: {
-        slider: function ({ commit, state }) {
-            let endpoint = `/api/slider/${state.router.history.current.meta.adminRoute
-                    ? "get_all"
-                    : "get_where?active=1"
+        slider: function ({ commit, rootState }) {
+            let endpoint = `/api/slider/${rootState.router.history.current.meta.adminRoute
+                ? "get_all"
+                : "get_where?active=1"
                 }`;
             axios
                 .get(endpoint)

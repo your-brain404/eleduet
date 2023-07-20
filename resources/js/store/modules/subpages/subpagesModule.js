@@ -18,7 +18,7 @@ export default {
         currentSubpage: state => state.currentSubpage
     },
     actions: {
-        async fetchSubpages({ commit, state }) {
+        async fetchSubpages({ commit, rootState }) {
             await axios
                 .get("/api/subpages/get_where?active=1")
                 .then(res => {
@@ -28,7 +28,7 @@ export default {
                         "currentSubpage",
                         res.data.find(
                             subpage =>
-                                subpage.page == state.router.history.current.path
+                                subpage.page == rootState.router.history.current.path
                         )
                     );
                 })

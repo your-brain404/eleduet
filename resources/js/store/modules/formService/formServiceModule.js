@@ -25,33 +25,33 @@ export default {
         getCurrentObject: state => state.currentObject
     },
     actions: {
-        async redirect({ state }) {
+        async redirect({ rootState }) {
             let redirect = "";
             Object.entries(AdminPanelBlocks).forEach(block => {
                 block[1].forEach(table => {
                     if (
                         table.tablename ==
-                        state.router.history.current.path.split("/")[2]
+                        rootState.router.history.current.path.split("/")[2]
                     ) {
                         redirect = `/${block[0]}`;
-                        if (state.router.history.current.params.parent_id)
-                            redirect = `${redirect}/${state.router.history.current.params.parent_id}`;
+                        if (rootState.router.history.current.params.parent_id)
+                            redirect = `${redirect}/${rootState.router.history.current.params.parent_id}`;
                     }
                 });
             });
-            let hash = state.router.history.current.params.parent_id
+            let hash = rootState.router.history.current.params.parent_id
                 ? ""
-                : `#${state.router.history.current.path.split("/")[2]}`;
-            state.router.push(`/admin-panel${redirect}${hash}`);
+                : `#${rootState.router.history.current.path.split("/")[2]}`;
+            rootState.router.push(`/admin-panel${redirect}${hash}`);
         },
-        async add({ commit, dispatch, state }, formData) {
+        async add({ commit, dispatch, rootState }, formData) {
             if (Object.keys(formData).some(key => Number.isInteger(key))) {
                 console.error(`Obiekt formData ma numeryczne klucze!!!`);
                 this.$store.commit("toast", SnackbarAlerts.error);
                 return;
             }
             axios
-                .post(`/api/${state.router.history.current.path.split("/")[2]}/add`, {
+                .post(`/api/${rootState.router.history.current.path.split("/")[2]}/add`, {
                     ...formData.formData
                 })
                 .then(() => {
@@ -67,7 +67,7 @@ export default {
                 });
         },
         async edit(
-            { commit, dispatch, state },
+            { commit, dispatch, rootState },
             { formData, options = { redirect: true } }
         ) {
             if (Object.keys(formData).some(key => Number.isInteger(key))) {
@@ -77,7 +77,7 @@ export default {
             }
             axios
                 .put(
-                    `/api/${state.router.history.current.path.split("/")[2]}/edit`,
+                    `/api/${rootState.router.history.current.path.split("/")[2]}/edit`,
                     formData
                 )
                 .then(() => {
@@ -91,8 +91,8 @@ export default {
                     console.error(err);
                 });
         },
-        async updateDeletedFile({ dispatch, getters, state }) {
-            if (state.router.history.current.params.id)
+        async updateDeletedFile({ dispatch, getters, rootState }) {
+            if (rootState.router.history.current.params.id)
                 dispatch("edit", {
                     formData: getters.getCurrentObject,
                     options: { redirect: false }
