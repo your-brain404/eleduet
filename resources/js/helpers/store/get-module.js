@@ -1,3 +1,3 @@
-export default function getModule(name) {
-    return require(`@/store/modules/${name}/${name}Module.js`).default;
+export default async function getModule(name) {
+    return await import(/* @vite-ignore */ `@/store/modules/${name}/${name}Module.js`).default;
 }
