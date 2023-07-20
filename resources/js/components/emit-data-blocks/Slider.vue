@@ -3,13 +3,11 @@
     <carousel
       v-if="carousel"
       class="slider-carousel"
-      :perPage="1"
-      :navigationEnabled="false"
-      :loop="true"
-      :autoplay="true"
-      :paginationEnabled="false"
-      :autoplayTimeout="5000"
-      :speed="500"
+      :items-to-show="1"
+      :wrap-around="true"
+      :autoplay="5000"
+      :transition="500"
+      snap-align="start"
     >
       <slide v-for="(slide, i) in slider" :key="`slide-${i}`" class="slide">
         <Picture
@@ -55,20 +53,23 @@
 </template>
    
   <script>
-import adminTableComponent from "@/mixins/admin-table-component";
-import url from "@/helpers/photo/url";
-import { Carousel, Slide } from "vue-carousel";
-import existingPhotoPath from "@/helpers/links/existing-photo-path";
+import adminTableComponent from "@/mixins/admin-table-component.js";
+import url from "@/helpers/photo/url.js";
+import "vue3-carousel/dist/carousel.css";
+import { Carousel, Slide } from "vue3-carousel";
+import existingPhotoPath from "@/helpers/links/existing-photo-path.js";
 import sliderModule from "@/store/modules/slider/sliderModule.js";
 
 export default {
   components: {
     CustomLink: () =>
       import(
-        /* webpackChunkName: 'custom-link' */ "@/components/custom-link/CustomLink"
+        /* webpackChunkName: 'custom-link' */ "@/components/custom-link/CustomLink.vue"
       ),
     Picture: () =>
-      import(/* webpackChunkName: 'picture' */ "@/components/picture/Picture"),
+      import(
+        /* webpackChunkName: 'picture' */ "@/components/picture/Picture.vue"
+      ),
     Carousel,
     Slide,
   },
@@ -104,6 +105,6 @@ export default {
 };
 </script>
   <style lang="scss">
-@import "~@scss/pages/main/slider";
+@import "@scss/pages/main/slider.scss";
 </style>
   
