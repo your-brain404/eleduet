@@ -1,82 +1,26 @@
-const Subpages = () =>
-    import(
-        /* webpackPrefetch: true */ /* webpackChunkName: 'cms' */ "@/components/emit-data-blocks/Subpages"
-    );
+const Subpages = () => import("@/components/emit-data-blocks/Subpages.vue");
 
-const Mails = () =>
-    import(
-        /* webpackPrefetch: true */ /* webpackChunkName: 'cms' */ "@/components/emit-data-blocks/Mails"
-    );
-const Settings = () =>
-    import(
-        /* webpackPrefetch: true */ /* webpackChunkName: 'cms' */ "@/components/emit-data-blocks/Settings"
-    );
-const Contact = () =>
-    import(
-        /* webpackPrefetch: true */ /* webpackChunkName: 'cms' */ "@/components/emit-data-blocks/Contact"
-    );
-const SnackbarAlerts = () =>
-    import(
-        /* webpackPrefetch: true */ /* webpackChunkName: 'cms' */ "@/components/emit-data-blocks/SnackbarAlerts"
-    );
-const ServiceCategories = () =>
-    import(
-        /* webpackPrefetch: true */ /* webpackChunkName: 'cms' */ "@/components/emit-data-blocks/ServiceCategories"
-    );
-const ServicesAttributes = () =>
-    import(
-        /* webpackPrefetch: true */ /* webpackChunkName: 'cms' */ "@/components/emit-data-blocks/ServicesAttributes"
-    );
-const ContactLinks = () =>
-    import(
-        /* webpackPrefetch: true */ /* webpackChunkName: 'cms' */ "@/components/emit-data-blocks/ContactLinks"
-    );
-const Services = () =>
-    import(
-        /* webpackPrefetch: true */ /* webpackChunkName: 'cms' */ "@/components/emit-data-blocks/Services"
-    );
+const Mails = () => import("@/components/emit-data-blocks/Mails.vue");
+const Settings = () => import("@/components/emit-data-blocks/Settings.vue");
+const Contact = () => import("@/components/emit-data-blocks/Contact.vue");
+const SnackbarAlerts = () => import("@/components/emit-data-blocks/SnackbarAlerts.vue");
+const ServiceCategories = () => import("@/components/emit-data-blocks/ServiceCategories.vue");
+const ServicesAttributes = () => import("@/components/emit-data-blocks/ServicesAttributes.vue");
+const ContactLinks = () => import("@/components/emit-data-blocks/ContactLinks.vue");
+const Services = () => import("@/components/emit-data-blocks/Services.vue");
 
-const Slider = () =>
-    import(
-        /* webpackChunkName: 'slider-panel' */ "@/components/emit-data-blocks/Slider"
-    );
-const About = () =>
-    import(/* webpackChunkName: 'about' */ "@/components/pages/main/About");
-const HomeServices = () =>
-    import(
-        /* webpackChunkName: 'services' */ "@/components/pages/main/Services"
-    );
-const HomeSolarSystem = () =>
-    import(
-        /* webpackChunkName: 'solar-system' */ "@/components/pages/main/SolarSystem"
-    );
-const HomeCallUs = () =>
-    import(/* webpackChunkName: 'call-us' */ "@/components/pages/main/CallUs");
-const Attributes = () =>
-    import(
-        /* webpackChunkName: 'attributes' */ "@/components/pages/main/Attributes"
-    );
-const Opinions = () =>
-    import(
-        /* webpackChunkName: 'opinions' */ /* webpackMode: "lazy" */ "@/components/pages/main/Opinions"
-    );
-const ExecutionProcess = () =>
-    import(
-        /* webpackChunkName: 'execution-process' */ "@/components/pages/main/ExecutionProcess"
-    );
-const ServicesCallUs = () =>
-    import(
-        /* webpackPrefetch: true */ /* webpackChunkName: 'services-call-us' */ "@/components/pages/services/CallUs"
-    );
+const Slider = () => import("@/components/emit-data-blocks/Slider.vue");
+const About = () => import("@/components/pages/main/About.vue");
+const HomeServices = () => import("@/components/pages/main/Services.vue");
+const HomeSolarSystem = () => import("@/components/pages/main/SolarSystem.vue");
+const HomeCallUs = () => import("@/components/pages/main/CallUs.vue");
+const Attributes = () => import("@/components/pages/main/Attributes.vue");
+const Opinions = () => import("@/components/pages/main/Opinions.vue");
+const ExecutionProcess = () => import("@/components/pages/main/ExecutionProcess.vue");
+const ServicesCallUs = () => import("@/components/pages/services/CallUs.vue");
 
-const Realizations = () =>
-    import(
-        /* webpackPrefetch: true */ /* webpackChunkName: 'realizations-page' */ "@/views/public/Realizations"
-    );
-const AboutPage = () =>
-    import(
-        /* webpackPrefetch: true */ /* webpackChunkName: 'about-page' */ "@/views/public/AboutPage"
-    );
+const Realizations = () => import("@/views/public/Realizations.vue");
+const AboutPage = () => import("@/views/public/AboutPage.vue");
 
 export default {
     main: [
