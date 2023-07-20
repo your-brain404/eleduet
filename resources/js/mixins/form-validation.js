@@ -4,12 +4,4 @@ export default {
             error: ""
         };
     },
-    watch: {
-        value: {
-            deep: true,
-            handler() {
-                this.$parent.validate();
-            }
-        }
-    }
 };
