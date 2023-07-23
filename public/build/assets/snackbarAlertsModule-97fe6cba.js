@@ -1,0 +1,1 @@
+import{x as t}from"./app-7e0eada9.js";const e={state:{snackbarAlerts:window.global.config.snackbarAlerts||{}},mutations:{snackbarAlerts:(a,s)=>a.snackbarAlerts=s},getters:{snackbarAlerts:a=>a.snackbarAlerts},actions:{snackbarAlerts:async({commit:a})=>await t.get("api/snackbar_alerts/get_one/1").then(s=>a("snackbarAlerts",s.data))}};export{e as default};

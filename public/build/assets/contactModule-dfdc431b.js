@@ -1,0 +1,1 @@
+import{x as c}from"./app-7e0eada9.js";const n={state:{contact:window.global.config.contact||{}},mutations:{contact:(t,a)=>t.contact=a},getters:{contact:t=>t.contact},actions:{contact:async({commit:t})=>await c.get("/api/contact/get_one/1").then(a=>t("contact",a.data))}};export{n as default};

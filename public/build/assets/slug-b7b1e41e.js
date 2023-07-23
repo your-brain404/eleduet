@@ -1,0 +1,1 @@
+function o(r){let l=["ą","ć","ś","ó","ż","ź","ę","ł","ń"," ","?","!","(",")",".",",","/"],s=["a","c","s","o","z","z","e","l","n","-","","","","","","",""],t="";for(let e of r){if(l.includes(e)){let n=l.indexOf(e);e=s[n]}t+=e}return t.toLowerCase()}export{o as s};

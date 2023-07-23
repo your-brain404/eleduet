@@ -1,0 +1,1 @@
+import{x as i}from"./app-7e0eada9.js";const e={state:{validationRules:{}},mutations:{validationRules:(a,t)=>a.validationRules=t},getters:{validationRules:a=>a.validationRules},actions:{validationRules:async({commit:a})=>await i.get("api/validation_rules/get_one/1").then(t=>a("validationRules",t.data))}};export{e as default};

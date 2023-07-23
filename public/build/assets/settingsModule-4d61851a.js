@@ -1,0 +1,1 @@
+import{x as e}from"./app-7e0eada9.js";const i={state:{settings:window.global.config.settings||{}},mutations:{settings:(t,s)=>t.settings=s},getters:{settings:t=>t.settings},actions:{settings:async({commit:t})=>await e.get("/api/settings/get_one/1").then(s=>{t("settings",s.data)}).catch(s=>console.log(s))}};export{i as default};

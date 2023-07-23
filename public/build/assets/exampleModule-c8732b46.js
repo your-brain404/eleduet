@@ -1,0 +1,1 @@
+import{x as t}from"./app-7e0eada9.js";const o={state:{example:[]},getters:{example:a=>a.example},mutations:{example:(a,e)=>a.example=e},actions:{async example({commit:a}){await t.get("/api/table_name/get_all").then(e=>{a("example",e.data)}).catch(e=>{console.log(e),a("toast","Przepraszamy, nie udało się załadować danych...")})}}};export{o as default};
