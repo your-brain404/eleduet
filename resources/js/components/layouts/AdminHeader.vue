@@ -144,12 +144,12 @@ export default {
       this.innerWidth = window.innerWidth;
     });
     window.addEventListener("click", (e) => {
-      const drawerClicked = e.path.find((el) =>
-        el?.classList?.contains("drawer")
-      );
-      const drawerListItemClicked = e.path.find((el) =>
-        el?.classList?.contains("drawer__list-item")
-      );
+      const drawerClicked = e
+        .composedPath()
+        .find((el) => el?.classList?.contains("drawer"));
+      const drawerListItemClicked = e
+        .composedPath()
+        .find((el) => el?.classList?.contains("drawer__list-item"));
       this.drawer = drawerClicked && !drawerListItemClicked;
     });
     this.$store.dispatch("fetchSomeUsers");
