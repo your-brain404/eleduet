@@ -36,7 +36,7 @@
         "laravel-vite-plugin": "^0.7.8",
         "portal-vue": "^3.0.0",
         "postcss-scss": "^4.0.5",
-        "vite": "^4.4.2",
+        "vite": "^4.4.4",
         "vue": "^3.3.4",
         "vue-easy-lightbox": "^1.16.0",
         "vue-functional-data-merge": "^3.1.0",

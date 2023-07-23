@@ -5097,10 +5097,10 @@
   "resolved" "https://registry.npmjs.org/postcss-value-parser/-/postcss-value-parser-4.2.0.tgz"
   "version" "4.2.0"
 
-"postcss@^7.0.0 || ^8.0.1", "postcss@^8.0.9", "postcss@^8.1.0", "postcss@^8.1.10", "postcss@^8.2.15", "postcss@^8.2.2", "postcss@^8.3.11", "postcss@^8.4.14", "postcss@^8.4.19", "postcss@^8.4.21", "postcss@^8.4.25", "postcss@>=8.0.9":
-  "integrity" "sha512-7taJ/8t2av0Z+sQEvNzCkpDynl0tX3uJMCODi6nT3PfASC7dYCWV9aQ+uiCf+KBD4SEFcu+GvJdGdwzQ6OSjCw=="
-  "resolved" "https://registry.npmjs.org/postcss/-/postcss-8.4.25.tgz"
-  "version" "8.4.25"
+"postcss@^7.0.0 || ^8.0.1", "postcss@^8.0.9", "postcss@^8.1.0", "postcss@^8.1.10", "postcss@^8.2.15", "postcss@^8.2.2", "postcss@^8.3.11", "postcss@^8.4.14", "postcss@^8.4.19", "postcss@^8.4.21", "postcss@^8.4.26", "postcss@>=8.0.9":
+  "integrity" "sha512-jrXHFF8iTloAenySjM/ob3gSj7pCu0Ji49hnjqzsgSRa50hkWCKD0HQ+gMNJkW38jBI68MpAAg7ZWwHwX8NMMw=="
+  "resolved" "https://registry.npmjs.org/postcss/-/postcss-8.4.26.tgz"
+  "version" "8.4.26"
   dependencies:
     "nanoid" "^3.3.6"
     "picocolors" "^1.0.0"
@@ -6213,13 +6213,13 @@
     "picocolors" "^1.0.0"
     "picomatch" "^2.3.1"
 
-"vite@^2 || ^3 || ^4", "vite@^3.0.0 || ^4.0.0", "vite@^4.0.0", "vite@^4.4.2":
-  "integrity" "sha512-IMnXQXXWgLi5brBQx/4WzDxdzW0X3pjO4nqFJAuNvwKtxzAmPzFE1wszW3VDpAGQJm3RZkm/brzRdyGsnwgJIA=="
-  "resolved" "https://registry.npmjs.org/vite/-/vite-4.4.3.tgz"
-  "version" "4.4.3"
+"vite@^2 || ^3 || ^4", "vite@^3.0.0 || ^4.0.0", "vite@^4.0.0", "vite@^4.4.4":
+  "integrity" "sha512-EY6Mm8vJ++S3D4tNAckaZfw3JwG3wa794Vt70M6cNJ6NxT87yhq7EC8Rcap3ahyHdo8AhCmV9PTk+vG1HiYn1A=="
+  "resolved" "https://registry.npmjs.org/vite/-/vite-4.4.6.tgz"
+  "version" "4.4.6"
   dependencies:
     "esbuild" "^0.18.10"
-    "postcss" "^8.4.25"
+    "postcss" "^8.4.26"
     "rollup" "^3.25.2"
   optionalDependencies:
     "fsevents" "~2.3.2"
