@@ -59,17 +59,12 @@ import "vue3-carousel/dist/carousel.css";
 import { Carousel, Slide } from "vue3-carousel";
 import existingPhotoPath from "@/helpers/links/existing-photo-path.js";
 import sliderModule from "@/store/modules/slider/sliderModule.js";
-
+import CustomLink from "@/components/custom-link/CustomLink.vue";
+import Picture from "@/components/picture/Picture.vue";
 export default {
   components: {
-    CustomLink: () =>
-      import(
-        /* webpackChunkName: 'custom-link' */ "@/components/custom-link/CustomLink.vue"
-      ),
-    Picture: () =>
-      import(
-        /* webpackChunkName: 'picture' */ "@/components/picture/Picture.vue"
-      ),
+    CustomLink,
+    Picture,
     Carousel,
     Slide,
   },
