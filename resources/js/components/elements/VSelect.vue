@@ -24,7 +24,7 @@
 <script>
 import vSelect from "vue-select";
 import "vue-select/dist/vue-select.css";
-import SvgVue from "svg-vue";
+import SvgVue from "@/components/elements/SvgVue.vue";
 
 export default {
   props: {

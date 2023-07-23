@@ -91,7 +91,7 @@ import VCardActions from "@/components/elements/VCardActions.vue";
 import VBtn from "@/components/elements/VBtn.vue";
 import VDivider from "@/components/elements/VDivider.vue";
 import VCardTitle from "@/components/elements/VCardTitle.vue";
-import SvgVue from "svg-vue";
+import SvgVue from "@/components/elements/SvgVue.vue";
 
 export default {
   components: {

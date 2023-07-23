@@ -50,7 +50,7 @@
 </template>
 
 <script>
-import SvgVue from "svg-vue";
+import SvgVue from "@/components/elements/SvgVue.vue";
 import randomString from "@/helpers/string/random-string.js";
 import formValidation from "@/mixins/form-validation.js";
 import formatFileSize from "@/helpers/files/format-file-size.js";

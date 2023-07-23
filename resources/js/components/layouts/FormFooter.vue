@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import SvgVue from "svg-vue";
+import SvgVue from "@/components/elements/SvgVue.vue";
 import VBtn from "@/components/elements/VBtn.vue";
 export default {
   components: {
