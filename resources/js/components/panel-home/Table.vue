@@ -40,7 +40,7 @@
           <checkbox
             no-validation
             v-model="item[checkbox]"
-            @change="setCheckbox(block.tablename, item)"
+            @input="setCheckbox(block.tablename, item)"
           />
         </div>
       </template>
@@ -67,7 +67,7 @@
         <div class="d-flex justify-content-center">
           <checkbox
             :disabled="item.sent"
-            @change="setCheckbox(block.tablename, item)"
+            @input="setCheckbox(block.tablename, item)"
             v-model="item.sent"
           />
         </div>
@@ -138,9 +138,10 @@ import VBtn from "@/components/elements/VBtn.vue";
 import TextField from "@/components/elements/TextField.vue";
 import Checkbox from "@/components/elements/Checkbox.vue";
 import DataTable from "@/components/data-table/DataTable.vue";
-import SvgVue from "svg-vue";
+import SvgVue from "@/components/elements/SvgVue.vue";
 
 export default {
+  emits: ["reloadFlag"],
   components: {
     DataTable,
     VBtn,
@@ -249,7 +250,7 @@ export default {
 
       axios
         .put(`/api/${table}/edit`, item)
-        .then((res) => {
+        .then(() => {
           this.$emit("reloadFlag", true);
           setTimeout(() => this.$emit("reloadFlag", false), 200);
           this.$store.commit("toast", snackbarAlerts.edit);
