@@ -1,3 +1,4 @@
 export default async function getModule(name) {
-    return await import(/* @vite-ignore */ `@/store/modules/${name}/${name}Module.js`).default;
+    const module = await import(/* @vite-ignore */ `./../../store/modules/${name}/${name}Module.js`)
+    return module.default;
 }
