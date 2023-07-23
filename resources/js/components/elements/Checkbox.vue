@@ -2,7 +2,7 @@
   <div
     class="checkbox"
     :class="{
-      'checkbox--checked': value,
+      'checkbox--checked': modelValue,
       'checkbox--disabled': disabled,
     }"
   >
@@ -15,11 +15,12 @@
             disabled
               ? true
               : ($emit('input', $event.target.checked),
-                $emit('change', $event.target.checked))
+                $emit('change', $event.target.checked),
+                $emit('update:modelValue', $event.target.checked))
           "
           class="checkbox__input"
           type="checkbox"
-          :checked="value"
+          :checked="modelValue"
         />
         <div class="checkbox__square"></div>
       </div>
@@ -34,9 +35,10 @@
 import formValidation from "@/mixins/form-validation.js";
 export default {
   name: "checkbox",
+  emits: ["update:modelValue", "input", "change"],
   mixins: [formValidation],
   props: {
-    value: Boolean,
+    modelValue: Boolean,
     disabled: Boolean,
     label: String,
     noValidation: Boolean,
