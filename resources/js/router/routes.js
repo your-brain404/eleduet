@@ -1,25 +1,26 @@
 import { createRouter as _createRouter, createWebHistory } from "vue-router";
 import storeBuilderRoutes from "@/router/cmsRoutes.js";
 
-const Home = () => import("@/views/admin/Home.vue");
+import Home from "@/views/admin/Home.vue"
 
-const MailsForm = () => import("@/views/admin/forms/Mails.vue");
-const MailsAnswerForm = () => import("@/views/admin/forms/MailsAnswer.vue");
-const GalleryForm = () => import("@/views/admin/forms/Gallery.vue");
+import MailsForm from "@/views/admin/forms/Mails.vue"
+import MailsAnswerForm from "@/views/admin/forms/MailsAnswer.vue"
+import GalleryForm from "@/views/admin/forms/Gallery.vue"
 
-const AdminLogin = () => import("@/views/admin/auth/AdminLogin.vue");
+import AdminLogin from "@/views/admin/auth/AdminLogin.vue"
 
-const Main = () => import("@/views/public/Main.vue");
-const Services = () => import("@/views/public/Services.vue");
-const SolarSystems = () => import("@/views/public/SolarSystems.vue");
-const Realizations = () => import("@/views/public/Realizations.vue");
-const Contact = () => import("@/views/public/Contact.vue");
-const Service = () => import("@/views/public/Service.vue");
-const AboutPage = () => import("@/views/public/AboutPage.vue");
-const Elemele = () => import("@/views/public/Elemele.vue");
+import Main from "@/views/public/Main.vue"
+import Services from "@/views/public/Services.vue"
+import SolarSystems from "@/views/public/SolarSystems.vue"
+import Realizations from "@/views/public/Realizations.vue"
+import Contact from "@/views/public/Contact.vue"
+import Service from "@/views/public/Service.vue"
+import AboutPage from "@/views/public/AboutPage.vue"
+import Elemele from "@/views/public/Elemele.vue"
 
 import getPrefixes from "@/helpers/languages/get-prefixes.js";
 import snakeToPascal from "@/helpers/string/snake-to-pascal.js";
+import { defineAsyncComponent } from "vue";
 
 const newStoreBuilderRoutes = storeBuilderRoutes.map(route => ({
     path: route["component-path"],
@@ -58,12 +59,13 @@ const formsCmsRoutes = [
     "subpages",
     "about_page"
 ].reduce((total, route) => {
+
     const pascalRoute = snakeToPascal(route);
-    const component = () =>
-        import(
+    const component =
+        defineAsyncComponent(() => import(
             /* @vite-ignore */
-            `@/views/admin/forms/${pascalRoute}.vue`
-        );
+            `../views/admin/forms/${pascalRoute}.vue`
+        ));
     total.push({
         path: `/admin-panel/${route}/form`,
         component,
@@ -75,6 +77,7 @@ const formsCmsRoutes = [
         name: `${pascalRoute}FormEdit`
     });
 
+
     return total;
 }, []);
 
@@ -82,12 +85,14 @@ const cmsRoutes = [
     ...newStoreBuilderRoutes,
     ...tableCmsRoutes,
     ...formsCmsRoutes
-].map(route => ({
-    ...route,
-    meta: {
-        adminRoute: true
+].map(route => {
+    return {
+        ...route,
+        meta: {
+            adminRoute: true
+        }
     }
-}));
+});
 
 const prefixes = getPrefixes();
 let frontRoutes = [
