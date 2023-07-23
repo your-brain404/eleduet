@@ -53,6 +53,7 @@ export default {
   position: fixed;
   bottom: 1rem;
   right: 1rem;
+  z-index: 99999999999;
 }
 .toast {
   background-color: var(--first-color) !important;
