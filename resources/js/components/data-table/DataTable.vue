@@ -49,7 +49,7 @@
             </div>
             <div v-else class="data-table__custom-td">
               <slot :name="`item.${header.value}`" :item="item">{{
-                item[header.value] | truncate
+                truncate(item[header.value])
               }}</slot>
             </div>
           </td>
@@ -105,7 +105,7 @@
 </template>
 
 <script>
-import SvgVue from "svg-vue";
+import SvgVue from "@/components/elements/SvgVue.vue";
 import VSelect from "@/components/elements/VSelect.vue";
 import VBtn from "@/components/elements/VBtn.vue";
 
@@ -136,13 +136,11 @@ export default {
       page: 1,
     };
   },
-  filters: {
+  methods: {
     truncate(value) {
       if (!value) return value;
       return value.length > 70 ? value.slice(0, 70) + "..." : value;
     },
-  },
-  methods: {
     setSort(column) {
       if (this.sort.column !== column) {
         this.sort = {
@@ -337,12 +335,9 @@ export default {
     }
   }
   &__checkbox {
-    .checkbox {
-      &,
-      &__label {
-        margin: 0;
-        padding: 0;
-      }
+    :deep(:is(.checkbox, #{&}__label)) {
+      margin: 0;
+      padding: 0;
     }
   }
 }
