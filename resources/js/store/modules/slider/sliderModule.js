@@ -13,7 +13,7 @@ export default {
     },
     actions: {
         slider: function ({ commit, rootState }) {
-            let endpoint = `/api/slider/${rootState.router.history.current.meta.adminRoute
+            let endpoint = `/api/slider/${rootState.route.meta.adminRoute
                 ? "get_all"
                 : "get_where?active=1"
                 }`;

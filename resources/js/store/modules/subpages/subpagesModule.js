@@ -28,7 +28,7 @@ export default {
                         "currentSubpage",
                         res.data.find(
                             subpage =>
-                                subpage.page == rootState.router.history.current.path
+                                subpage.page == rootState.route.path
                         )
                     );
                 })

@@ -31,17 +31,17 @@ export default {
                 block[1].forEach(table => {
                     if (
                         table.tablename ==
-                        rootState.router.history.current.path.split("/")[2]
+                        rootState.route.path.split("/")[2]
                     ) {
                         redirect = `/${block[0]}`;
-                        if (rootState.router.history.current.params.parent_id)
-                            redirect = `${redirect}/${rootState.router.history.current.params.parent_id}`;
+                        if (rootState.route.params.parent_id)
+                            redirect = `${redirect}/${rootState.route.params.parent_id}`;
                     }
                 });
             });
-            let hash = rootState.router.history.current.params.parent_id
+            let hash = rootState.route.params.parent_id
                 ? ""
-                : `#${rootState.router.history.current.path.split("/")[2]}`;
+                : `#${rootState.route.path.split("/")[2]}`;
             rootState.router.push(`/admin-panel${redirect}${hash}`);
         },
         async add({ commit, dispatch, rootState }, formData) {
@@ -51,7 +51,7 @@ export default {
                 return;
             }
             axios
-                .post(`/api/${rootState.router.history.current.path.split("/")[2]}/add`, {
+                .post(`/api/${rootState.route.path.split("/")[2]}/add`, {
                     ...formData.formData
                 })
                 .then(() => {
@@ -77,7 +77,7 @@ export default {
             }
             axios
                 .put(
-                    `/api/${rootState.router.history.current.path.split("/")[2]}/edit`,
+                    `/api/${rootState.route.path.split("/")[2]}/edit`,
                     formData
                 )
                 .then(() => {
@@ -92,7 +92,7 @@ export default {
                 });
         },
         async updateDeletedFile({ dispatch, getters, rootState }) {
-            if (rootState.router.history.current.params.id)
+            if (rootState.route.params.id)
                 dispatch("edit", {
                     formData: getters.getCurrentObject,
                     options: { redirect: false }
