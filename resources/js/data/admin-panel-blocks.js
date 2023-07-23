@@ -1,26 +1,26 @@
-const Subpages = () => import("@/components/emit-data-blocks/Subpages.vue");
+import Subpages from "@/components/emit-data-blocks/Subpages.vue"
 
-const Mails = () => import("@/components/emit-data-blocks/Mails.vue");
-const Settings = () => import("@/components/emit-data-blocks/Settings.vue");
-const Contact = () => import("@/components/emit-data-blocks/Contact.vue");
-const SnackbarAlerts = () => import("@/components/emit-data-blocks/SnackbarAlerts.vue");
-const ServiceCategories = () => import("@/components/emit-data-blocks/ServiceCategories.vue");
-const ServicesAttributes = () => import("@/components/emit-data-blocks/ServicesAttributes.vue");
-const ContactLinks = () => import("@/components/emit-data-blocks/ContactLinks.vue");
-const Services = () => import("@/components/emit-data-blocks/Services.vue");
+import Mails from "@/components/emit-data-blocks/Mails.vue"
+import Settings from "@/components/emit-data-blocks/Settings.vue"
+import Contact from "@/components/emit-data-blocks/Contact.vue"
+import SnackbarAlerts from "@/components/emit-data-blocks/SnackbarAlerts.vue"
+import ServiceCategories from "@/components/emit-data-blocks/ServiceCategories.vue"
+import ServicesAttributes from "@/components/emit-data-blocks/ServicesAttributes.vue"
+import ContactLinks from "@/components/emit-data-blocks/ContactLinks.vue"
+import Services from "@/components/emit-data-blocks/Services.vue"
 
-const Slider = () => import("@/components/emit-data-blocks/Slider.vue");
-const About = () => import("@/components/pages/main/About.vue");
-const HomeServices = () => import("@/components/pages/main/Services.vue");
-const HomeSolarSystem = () => import("@/components/pages/main/SolarSystem.vue");
-const HomeCallUs = () => import("@/components/pages/main/CallUs.vue");
-const Attributes = () => import("@/components/pages/main/Attributes.vue");
-const Opinions = () => import("@/components/pages/main/Opinions.vue");
-const ExecutionProcess = () => import("@/components/pages/main/ExecutionProcess.vue");
-const ServicesCallUs = () => import("@/components/pages/services/CallUs.vue");
+import Slider from "@/components/emit-data-blocks/Slider.vue"
+import About from "@/components/pages/main/About.vue";
+import HomeServices from "@/components/pages/main/Services.vue"
+import HomeSolarSystem from "@/components/pages/main/SolarSystem.vue"
+import HomeCallUs from "@/components/pages/main/CallUs.vue"
+import Attributes from "@/components/pages/main/Attributes.vue"
+import Opinions from "@/components/pages/main/Opinions.vue"
+import ExecutionProcess from "@/components/pages/main/ExecutionProcess.vue"
+import ServicesCallUs from "@/components/pages/services/CallUs.vue"
 
-const Realizations = () => import("@/views/public/Realizations.vue");
-const AboutPage = () => import("@/views/public/AboutPage.vue");
+import Realizations from "@/views/public/Realizations.vue"
+import AboutPage from "@/views/public/AboutPage.vue"
 
 export default {
     main: [
