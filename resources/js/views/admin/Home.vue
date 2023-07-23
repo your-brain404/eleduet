@@ -81,7 +81,7 @@ export default {
       this.setBlocks();
     },
   },
-  created() {
+  async created() {
     this.secureRoutes();
     this.setBlocks();
     if (!this.$store.hasModule("users")) {
@@ -91,8 +91,10 @@ export default {
       this.$store.registerModule("loading", loadingModule);
     }
     this.$store.dispatch("fetchAllUsers");
-    if (!this.$store.hasModule("snackbarAlerts"))
-      this.$store.registerModule("snackbarAlerts", getModule("snackbarAlerts"));
+    if (!this.$store.hasModule("snackbarAlerts")) {
+      const snackbarAlerts = await getModule("snackbarAlerts");
+      this.$store.registerModule("snackbarAlerts", snackbarAlerts);
+    }
   },
 };
 </script>
