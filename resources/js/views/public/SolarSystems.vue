@@ -37,9 +37,9 @@
 </template>
 
 <script>
-import CallUs from "@/components/pages/solarSystems/CallUs";
-import adminTableComponent from "@/mixins/admin-table-component";
-import solarSystemModule from "@/store/modules/solarSystem/solarSystemModule";
+import CallUs from "@/components/pages/solarSystems/CallUs.vue";
+import adminTableComponent from "@/mixins/admin-table-component.js";
+import solarSystemModule from "@/store/modules/solarSystem/solarSystemModule.js";
 
 export default {
   mixins: [adminTableComponent],
