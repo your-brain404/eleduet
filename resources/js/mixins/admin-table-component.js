@@ -2,6 +2,7 @@ import ucfirst from "@/helpers/string/ucfirst.js";
 import lcfirst from "@/helpers/string/lcfirst.js";
 
 export default {
+    emits: ['blockDataEmit'],
     props: ["reloadFlag"],
     watch: {
         reloadFlag() {
@@ -42,7 +43,7 @@ export default {
         }
     },
 
-    async created() {
+    created() {
         this.table = lcfirst(this.table);
         this.registerModule();
     },
