@@ -85,14 +85,12 @@ const cmsRoutes = [
     ...newStoreBuilderRoutes,
     ...tableCmsRoutes,
     ...formsCmsRoutes
-].map(route => {
-    return {
-        ...route,
-        meta: {
-            adminRoute: true
-        }
+].map(route => ({
+    ...route,
+    meta: {
+        adminRoute: true
     }
-});
+}));
 
 const prefixes = getPrefixes();
 let frontRoutes = [
