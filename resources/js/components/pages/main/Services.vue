@@ -50,7 +50,10 @@
           </router-link>
         </slide>
       </carousel>
-      <router-link :to="{ path: homeServicesDesc.link }">
+      <router-link
+        v-if="homeServicesDesc.link"
+        :to="{ path: homeServicesDesc.link }"
+      >
         <button class="button first-button">
           {{ homeServicesDesc.button_name }}
         </button>
