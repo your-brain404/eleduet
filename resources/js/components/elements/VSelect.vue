@@ -1,5 +1,5 @@
 <template>
-  <v-select
+  <vue-select
     class="v-select--custom-settings"
     :options="options"
     :dropdownShouldOpen="dropdownShouldOpen"
@@ -14,16 +14,15 @@
         width="24"
         height="24"
         class="vs__open-indicator"
-        icon="menu-down"
+        icon="menuDown"
       ></svg-vue>
     </template>
-  </v-select>
+  </vue-select>
 </template>
 
 
 <script>
-import vSelect from "vue-select";
-import "vue-select/dist/vue-select.css";
+import VueSelect from "vue-select";
 import SvgVue from "@/components/elements/SvgVue.vue";
 
 export default {
@@ -47,12 +46,14 @@ export default {
     },
   },
   components: {
-    vSelect,
+    VueSelect,
     SvgVue,
   },
 };
 </script>
-
+<style>
+@import "vue-select/dist/vue-select.css";
+</style>
 <style lang="scss" scoped>
 .v-select--custom-settings {
   position: relative;
@@ -68,52 +69,47 @@ export default {
     background-color: var(--first-color);
     height: 2px;
   }
-  // tu powinien być v-deep no ale no nie wiem
-  .vs {
-    &__dropdown {
-      &-menu {
-        padding-left: 0;
-        min-width: unset;
-      }
-      &-option {
-        position: relative;
-        background: white !important;
-        z-index: 1;
-        font-weight: 200;
-        &::before {
-          content: unset;
-        }
-        &--highlight {
-          color: var(--first-color) !important;
-          &::after {
-            position: absolute;
-            content: "";
-            top: 0;
-            left: 0;
-            background-color: var(--first-color);
-            opacity: 0.16;
-            pointer-events: none;
-            z-index: -1;
-            width: 100%;
-            height: 100%;
-          }
-        }
-      }
-      &-toggle {
-        border: unset;
-      }
-    }
-    &__open {
-      &-indicator {
-        fill: rgba(0, 0, 0, 0.54);
-      }
-    }
-    &__clear {
-      display: none;
-    }
-    &__selected {
-      font-size: 0.75rem;
-    }
+  $vs: ".vs";
+  $dropdown-option: #{$vs}__dropdown-option;
+  :deep(#{$dropdown-option}) {
+    position: relative;
+    background: white !important;
+    z-index: 1;
+    font-weight: 200;
+  }
+  :deep(#{$dropdown-option}::before) {
+    content: unset;
+  }
+  :deep(#{$dropdown-option}--highlight) {
+    color: var(--first-color) !important;
+  }
+  :deep(#{$dropdown-option}--highlight::after) {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    background-color: var(--first-color);
+    opacity: 0.16;
+    pointer-events: none;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+  }
+  :deep(#{$vs}__dropdown-menu) {
+    padding-left: 0;
+    min-width: unset;
+  }
+  :deep(#{$vs}__dropdown-toggle) {
+    border: unset;
+  }
+  :deep(#{$vs}__open-indicator path) {
+    fill: rgba(0, 0, 0, 0.54);
+  }
+  :deep(#{$vs}__clear) {
+    display: none;
+  }
+  :deep(#{$vs}__selected) {
+    font-size: 0.75rem;
   }
 }
 </style>
