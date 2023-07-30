@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\CrudResource;
 use App\Http\Services\CrudService;
-use App\Media;
+use App\Models\Media;
 use App\Http\Helpers\FileHelper;
 use Illuminate\Http\Request;
 
