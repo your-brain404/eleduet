@@ -34,10 +34,9 @@
       :loading="loading"
       @click="$emit('click')"
       :class="classImg"
-      :style="styleImg"
+      :style="[styleImg, { width: width, height: height }]"
       :src="srcEncode"
       :alt="alt"
-      @error="imgError"
       :width="width"
       :height="height"
     />
@@ -50,11 +49,6 @@ import existingPhotoPath from "@/helpers/links/existing-photo-path.js";
 import getExtensionFromPath from "@/helpers/files/get-extension-from-path.js";
 
 export default {
-  data() {
-    return {
-      error: false,
-    };
-  },
   props: {
     mobileVersion: {
       type: [String, Number],
@@ -76,7 +70,7 @@ export default {
     classImg: String,
     styleImg: String,
     width: String,
-    height: String,
+    height: Number,
   },
   computed: {
     isWebpType() {
@@ -98,9 +92,7 @@ export default {
   methods: {
     existingPhotoPath,
     getExtensionFromPath,
-    imgError() {
-      if (this.error === false) this.error = true;
-    },
+
     srcEncodeCustomWidth(width) {
       let path = this.src.split("/");
       let name = path.slice(-1);
