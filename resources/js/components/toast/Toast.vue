@@ -1,6 +1,6 @@
 <template>
   <div class="toasts">
-    <TransitionGroup name="fade" mode="out-in">
+    <TransitionGroup name="toast-fade" mode="out-in">
       <div
         v-for="toast in toasts"
         :key="`toast-${toast.id}`"
@@ -37,12 +37,12 @@ export default {
 </script>
 
 <style lang="scss" >
-.fade-enter-active,
-.fade-leave-active {
+.toast-fade-enter-active,
+.toast-fade-leave-active {
   transition: all 0.5s ease;
 }
-.fade-enter-from,
-.fade-leave-to {
+.toast-fade-enter-from,
+.toast-fade-leave-to {
   opacity: 0;
   transform: translateX(30px);
 }
