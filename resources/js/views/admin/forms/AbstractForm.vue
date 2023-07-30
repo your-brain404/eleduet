@@ -1,0 +1,215 @@
+<template>
+  <v-main>
+    <v-container>
+      <v-card>
+        <v-card-title class="justify-content-center">
+          <h2 class="pt-4 font-weight-bold panel-title-header first-color">
+            {{ formTitle }}
+          </h2>
+        </v-card-title>
+        <v-divider class="mt-0"></v-divider>
+        <v-form ref="form" v-model="valid" :fields="fields">
+          <v-row>
+            <v-col
+              v-for="(col, colIndex) in formCols"
+              :key="`form-col-${colIndex}`"
+              v-bind="col.rwd"
+            >
+              <div class="pa-5">
+                <component
+                  v-for="(field, fieldIndex) in col.fields"
+                  :key="`field-${colIndex}-${fieldIndex}`"
+                  :is="field.component"
+                  v-bind="field.props"
+                  v-model="currentObject[field.currentObjectVModel]"
+                />
+              </div>
+            </v-col>
+          </v-row>
+          <v-divider class="mb-0"></v-divider>
+          <form-footer></form-footer>
+        </v-form>
+      </v-card>
+    </v-container>
+  </v-main>
+</template>
+
+<script>
+import axios from "@/plugins/axios/axios.js";
+import FilePicker from "@/components/file-picker/FilePicker.vue";
+import url from "@/helpers/photo/url.js";
+import TagsInput from "@/components/tagsinput/TagsInput.vue";
+import AdminPanelBlocks from "@/data/admin-panel-blocks.js";
+import VueEditor from "@/components/forms/TinyMCE.vue";
+import FormFooter from "@/components/layouts/FormFooter.vue";
+import FormService from "@/store/modules/formService/formServiceModule.js";
+
+import VForm from "@/components/elements/VForm.vue";
+import VRow from "@/components/grid/VRow.vue";
+import VCol from "@/components/grid/VCol.vue";
+import VMain from "@/components/grid/VMain.vue";
+import VContainer from "@/components/grid/VContainer.vue";
+import TextField from "@/components/elements/TextField.vue";
+import VTextarea from "@/components/elements/VTextarea.vue";
+import Checkbox from "@/components/elements/Checkbox.vue";
+import VCardTitle from "@/components/elements/VCardTitle.vue";
+import VCard from "@/components/elements/VCard.vue";
+import VDivider from "@/components/elements/VDivider.vue";
+import loadingModule from "@/store/modules/loading/loadingModule.js";
+import vFormFields from "@/mixins/v-form-fields.js";
+
+export default {
+  mixins: [vFormFields],
+  setup() {
+    const rules = {
+      titleRules: [(v) => !!v || "To pole jest wymagane!"],
+      positiveRules: [(v) => v > 0 || "To pole musi być większe od zera!"],
+      nonNegativeRules: [(v) => v > -1 || "To pole nie może być ujemne!"],
+      priceRules: [
+        (v) =>
+          (v * 1000) % 10 == 0 ||
+          "To pole musi mieć max. dwa miejsca po przecinku!",
+      ],
+      amountRules: [(v) => v % 1 == 0 || "To pole musi być liczbą całkowitą!"],
+    };
+
+    return { rules };
+  },
+  components: {
+    TagsInput,
+    VueEditor,
+    VTextarea,
+    FilePicker,
+    FormFooter,
+    VMain,
+    VCard,
+    VCardTitle,
+    VContainer,
+    VForm,
+    VCol,
+    VRow,
+    TextField,
+    Checkbox,
+    VDivider,
+  },
+  data() {
+    return {
+      title: "",
+
+      activeFile: "",
+      parent: {},
+    };
+  },
+  watch: {
+    validateFlag(newValue) {
+      if (newValue) this.validate();
+    },
+  },
+  computed: {
+    validateFlag() {
+      return this.$store.state.FormService?.validateFlag || false;
+    },
+    valid: {
+      get() {
+        return this.$store.state.FormService.valid;
+      },
+      set(newValue) {
+        this.$store.state.FormService.valid = newValue;
+      },
+    },
+
+    currentObject: {
+      get() {
+        return this.$store.state.FormService.currentObject;
+      },
+      set(newValue) {
+        this.$store.commit("FormService/setCurrentObject", newValue);
+      },
+    },
+    formTitle() {
+      return `${this.title} - ${
+        this.$route.params.id ? "Edycja" : "Dodawanie"
+      }`;
+    },
+    parentTable() {
+      let parentTable = "";
+      Object.entries(AdminPanelBlocks).forEach((block) => {
+        block[1].forEach((table) => {
+          if (table.tablename == this.$route.path.split("/")[2]) {
+            parentTable = block[1][0].parent ? block[1][0].parent : "";
+          }
+        });
+      });
+      return parentTable;
+    },
+  },
+  methods: {
+    getUrl: (src) => url(src),
+    getParent() {
+      axios
+        .get(`/api/${this.parentTable}/get_one/${this.$route.params.parent_id}`)
+        .then((res) => (this.parent = res.data))
+        .catch((err) => console.log(err));
+    },
+    getImageDefaultPlaceholder() {
+      return window.location.origin + "/storage/img/placeholder/250.png";
+    },
+
+    add(formData) {
+      this.$store.dispatch("FormService/add", { formData });
+    },
+    edit(formData, options) {
+      this.$store.dispatch("FormService/edit", { formData, options });
+    },
+    validate() {
+      if (!this.$refs.form.validate()) {
+        this.$store.commit("toast", "Formularz zawiera błędy!");
+        return;
+      }
+      this[this.$route.params.id ? "edit" : "add"](this.currentObject);
+    },
+    updateDeletedPhoto() {
+      if (this.$route.params.id)
+        this.edit(this.currentObject, { redirect: false });
+    },
+    secureRoutes() {
+      let user = JSON.parse(localStorage.getItem("user"));
+      let status = false;
+      if (user) {
+        if (user.type == "Admin" || user.type == "Moderator") {
+          status = true;
+        }
+      }
+      if (!status)
+        this.$router.push(`/admin-panel/${this.$route.path.split("/")[2]}`);
+    },
+  },
+
+  created() {
+    if (!this.$store.hasModule("loading")) {
+      this.$store.registerModule("loading", loadingModule);
+    }
+    if (!this.$store.hasModule("FormService")) {
+      this.$store.registerModule("FormService", FormService);
+    }
+    if (this.$route.params.id) {
+      axios
+        .get(
+          `/api/${this.$route.path.split("/")[2]}/get_one/${
+            this.$route.params.id
+          }`
+        )
+        .then((res) => {
+          this.activePhoto =
+            res.data.photo !== null ? url(res.data.photo) : this.activePhoto;
+          this.activeFile =
+            res.data.file !== null ? url(res.data.file) : this.activeFile;
+          this.currentObject = { ...this.currentObject, ...res.data };
+        });
+    }
+    if (this.$route.params.parent_id) this.getParent();
+
+    this.secureRoutes();
+  },
+};
+</script>
