@@ -22,15 +22,15 @@
           </template>
         </v-btn>
       </div>
-      <v-btn
-        @click="toggleModal"
-        :color="settings.first_color"
-        class="file-picker__modal-button"
-      >
-        {{ title ? title : "Dodaj plik" }}
-      </v-btn>
     </v-col>
-    <b-modal
+    <v-btn
+      @click="toggleModal"
+      :color="settings.first_color"
+      class="file-picker__modal-button"
+    >
+      {{ title || "Dodaj plik" }}
+    </v-btn>
+    <custom-modal
       v-model="modal"
       no-close-on-backdrop
       no-close-on-esc
@@ -61,18 +61,13 @@
               </template>
             </v-btn>
           </div>
-          <b-tabs
+          <custom-tabs
             class="file-picker__tabs"
             v-model="tab"
+            :tabs="tabs"
             background-color="primary"
-            dark
           >
-            <b-tab
-              v-for="(tab, i) in tabs"
-              :title="tab"
-              :active="i == 0"
-              :key="tab"
-            >
+            <custom-tab v-for="(tab, i) in tabs" :key="tab">
               <v-card v-if="i == 0">
                 <v-card-text>
                   <div class="mx-0">
@@ -102,7 +97,9 @@
                             >
                               <Transition name="fade">
                                 <div
-                                  v-if="chosenFile && chosenFile.id === file.id"
+                                  v-show="
+                                    chosenFile && chosenFile.id === file.id
+                                  "
                                   class="mask file-picker__photo-mask"
                                 ></div>
                               </Transition>
@@ -257,11 +254,11 @@
                 @loadFiles="loadFiles"
                 :images-only="imagesOnly"
               />
-            </b-tab>
-          </b-tabs>
+            </custom-tab>
+          </custom-tabs>
         </div>
       </v-card>
-    </b-modal>
+    </custom-modal>
   </v-row>
 </template>
 
@@ -280,26 +277,26 @@ import VCol from "@/components/grid/VCol.vue";
 import VBtn from "@/components/elements/VBtn.vue";
 import VCard from "@/components/elements/VCard.vue";
 import VCardText from "@/components/elements/VCardText.vue";
-import SvgVue from "svg-vue";
-import { BModal } from "@/plugins/bootstrap-vue/src/components/modal/modal.js";
-import { BTabs } from "@/plugins/bootstrap-vue/src/components/tabs/tabs.js";
-import { BTab } from "@/plugins/bootstrap-vue/src/components/tabs/tab.js";
-import { VBTooltip } from "@/plugins/bootstrap-vue/src/directives/tooltip/tooltip.js";
+import SvgVue from "@/components/elements/SvgVue.vue";
+import CustomModal from "@/components/custom-modal/CustomModal.vue";
+import CustomTabs from "@/components/custom-tabs/CustomTabs.vue";
+import CustomTab from "@/components/custom-tabs/CustomTab.vue";
+// import { VBTooltip } from "bootstrap-vue";
 import Pagination from "@/components/pagination/Pagination.vue";
 
 export default {
   directives: {
-    "b-tooltip": VBTooltip,
+    // "b-tooltip": VBTooltip,
   },
   components: {
-    BTabs,
-    BTab,
+    CustomTabs,
+    CustomTab,
     AddFiles,
     SvgVue,
     VCardText,
     Picture,
     VRow,
-    BModal,
+    CustomModal,
     TextField,
     VCard,
     VCol,
@@ -307,7 +304,7 @@ export default {
     Pagination,
   },
   props: {
-    value: {
+    modelValue: {
       type: String,
     },
     title: {
@@ -321,7 +318,7 @@ export default {
   data() {
     return {
       modal: false,
-      tab: null,
+      tab: 0,
       tabs: ["Wybierz plik", "Dodaj Nowe Pliki"],
       files: [],
       activeFile: 0,
@@ -335,6 +332,9 @@ export default {
   },
 
   computed: {
+    value() {
+      return this.modelValue;
+    },
     filteredFiles() {
       let filteredFiles = [];
       for (let file of this.files) {
@@ -372,7 +372,7 @@ export default {
     },
     clearActiveFile() {
       this.activeFile = 0;
-      this.$emit("input", "");
+      this.$emit("update:modelValue", "");
     },
 
     isActiveFileDeleted(id) {
@@ -382,7 +382,7 @@ export default {
       );
 
       if (activeFile) {
-        this.$emit("input", "");
+        this.$emit("update:modelValue", "");
         this.$store.dispatch("FormService/updateDeletedFile");
       }
     },
@@ -414,7 +414,7 @@ export default {
     sendFilePathToPlaceholder() {
       let data = this.chosenFile?.path;
 
-      if (data) this.$emit("input", data);
+      if (data) this.$emit("update:modelValue", data);
     },
     setFileClass(id) {
       this.activeFile = id;
@@ -511,6 +511,7 @@ export default {
   }
   &__modal-title {
     margin-right: 1.5rem;
+    font-weight: 400;
   }
   @media (min-width: 992px) {
     overflow-y: hidden !important;
@@ -669,8 +670,8 @@ export default {
 </style>
 
 <style lang="scss">
-@import "~@/plugins/bootstrap-vue/src/components/modal/modal.scss";
+@import "@/plugins/bootstrap-vue/src/components/modal/modal.scss";
 @import "bootstrap/scss/modal.scss";
 @import "bootstrap/scss/tooltip.scss";
-@import "~@/plugins/bootstrap-vue/src/components/tooltip/tooltip.scss";
+@import "@/plugins/bootstrap-vue/src/components/tooltip/tooltip.scss";
 </style>
