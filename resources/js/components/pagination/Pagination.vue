@@ -9,9 +9,9 @@
 </template>
 
 <script>
-import { BPagination } from "@/plugins/bootstrap-vue/src/components/pagination/pagination.js";
+// import { BPagination } from "bootstrap-vue";
 export default {
-  components: { BPagination },
+  // components: { BPagination },
   props: {
     value: Number,
     totalRows: Number,
