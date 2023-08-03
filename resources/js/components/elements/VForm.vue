@@ -8,7 +8,10 @@
 export default {
   props: {
     value: Boolean,
-    fields: Array,
+    fields: {
+      type: Array,
+      default: () => [],
+    },
   },
   computed: {
     valid() {
@@ -18,10 +21,6 @@ export default {
   watch: {
     valid(valid) {
       this.$emit("input", valid);
-    },
-    fields: {
-      deep: true,
-      handler: "validate",
     },
   },
   methods: {
