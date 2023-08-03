@@ -143,25 +143,25 @@ import VCol from "@/components/grid/VCol.vue";
 import VCard from "@/components/elements/VCard.vue";
 import VCardText from "@/components/elements/VCardText.vue";
 import VBtn from "@/components/elements/VBtn.vue";
-import SvgVue from "svg-vue";
-import { BModal } from "@/plugins/bootstrap-vue/src/components/modal/modal.js";
-import { BTabs } from "@/plugins/bootstrap-vue/src/components/tabs/tabs.js";
-import { BTab } from "@/plugins/bootstrap-vue/src/components/tabs/tab.js";
-import { VBTooltip } from "@/plugins/bootstrap-vue/src/directives/tooltip/tooltip.js";
+import SvgVue from "@/components/elements/SvgVue.vue";
+// import { BModal } from "bootstrap-vue";
+// import { BTabs } from "bootstrap-vue";
+// import { BTab } from "bootstrap-vue";
+// import { VBTooltip } from "bootstrap-vue";
 import Pagination from "@/components/pagination/Pagination.vue";
 
 export default {
   directives: {
-    "b-tooltip": VBTooltip,
+    // "b-tooltip": VBTooltip,
   },
   components: {
     VRow,
-    BModal,
+    // BModal,
     SvgVue,
     Pagination,
     VCard,
-    BTabs,
-    BTab,
+    // BTabs,
+    // BTab,
     TextField,
     VCardText,
     VCol,
@@ -439,8 +439,8 @@ export default {
 </style>
 
 <style lang="scss">
-@import "~@/plugins/bootstrap-vue/src/components/modal/modal.scss";
+@import "@/plugins/bootstrap-vue/src/components/modal/modal.scss";
 @import "bootstrap/scss/modal.scss";
 @import "bootstrap/scss/tooltip.scss";
-@import "~@/plugins/bootstrap-vue/src/components/tooltip/tooltip.scss";
+@import "@/plugins/bootstrap-vue/src/components/tooltip/tooltip.scss";
 </style>
