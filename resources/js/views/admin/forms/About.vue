@@ -1,59 +1,73 @@
-<template>
-  <v-main>
-    <v-container>
-      <v-card>
-        <v-card-title class="justify-content-center">
-          <h2 class="pt-4 font-weight-bold panel-title-header first-color">
-            Sekcja pod sliderem {{ formTitle }}
-          </h2>
-        </v-card-title>
-        <v-divider class="mt-0"></v-divider>
-        <v-form ref="form" v-model="valid">
-          <v-row>
-            <v-col cols="12" md="8">
-              <div class="pa-5">
-                <text-field
-                  v-model="currentObject.title"
-                  :rules="rules.titleRules"
-                  label="Tytuł *"
-                  required
-                ></text-field>
-                <text-field
-                  v-model="currentObject.button_name"
-                  label="Napis na przycisku"
-                ></text-field>
-
-                <div class="mt-3">
-                  <p class="mb-1">Krótki opis</p>
-                  <vue-editor
-                    v-model="currentObject.short_description"
-                  ></vue-editor>
-                </div>
-              </div>
-            </v-col>
-            <v-col cols="12" md="4">
-              <div class="pa-5">
-                <FilePicker v-model="currentObject.photo" images-only />
-
-                <text-field
-                  v-model="currentObject.photo_alt"
-                  label="Tekst alternatywny zdjęcia"
-                ></text-field>
-              </div>
-            </v-col>
-          </v-row>
-          <v-divider class="mb-0"></v-divider>
-          <form-footer></form-footer>
-        </v-form>
-      </v-card>
-    </v-container>
-  </v-main>
-</template>
-
 <script>
-import FormServiceMixin from "@/mixins/FormService.js";
+import TextField from "@/components/elements/TextField.vue";
+import VueEditor from "@/components/forms/TinyMCE.vue";
+import AbstractForm from "./AbstractForm.vue";
+import FilePicker from "@/components/file-picker/FilePicker.vue";
 
 export default {
-  mixins: [FormServiceMixin],
+  extends: AbstractForm,
+  setup(props, ctx) {
+    return {
+      ...AbstractForm.setup(props, ctx),
+    };
+  },
+  data() {
+    return {
+      title: "Sekcja pod sliderem",
+      formCols: [
+        {
+          rwd: {
+            cols: 12,
+            md: 8,
+          },
+          fields: [
+            {
+              component: TextField,
+              rules: this.rules.titleRules,
+              currentObjectVModel: "title",
+              props: {
+                label: "Tytuł *",
+                required: true,
+              },
+            },
+            {
+              component: TextField,
+              props: { label: "Napis na przycisku" },
+              currentObjectVModel: "button_name",
+            },
+            {
+              component: VueEditor,
+              props: { label: "Krótki opis" },
+              currentObjectVModel: "short_description",
+            },
+          ],
+        },
+        {
+          rwd: {
+            cols: 12,
+            md: 4,
+          },
+          fields: [
+            {
+              component: FilePicker,
+              currentObjectVModel: "photo",
+              props: {
+                "images-only": true,
+                label: "Zdjęcie",
+              },
+            },
+            {
+              component: TextField,
+              currentObjectVModel: "photo_alt",
+              props: {
+                "images-only": true,
+                label: "Tekst alternatywny zdjęcia",
+              },
+            },
+          ],
+        },
+      ],
+    };
+  },
 };
 </script>
