@@ -1,36 +1,29 @@
-<template>
-  <v-main>
-    <v-container>
-      <v-card>
-        <v-card-title class="justify-content-center">
-          <h2 class="pt-4 font-weight-bold panel-title-header first-color">
-            O nas {{ formTitle }}
-          </h2>
-        </v-card-title>
-        <v-divider class="mt-0"></v-divider>
-        <v-form ref="form" v-model="valid">
-          <v-row>
-            <v-col cols="12" md="12">
-              <div class="pa-5">
-                <div class="mt-3">
-                  <p class="mb-1">Opis</p>
-                  <vue-editor v-model="currentObject.description"></vue-editor>
-                </div>
-              </div>
-            </v-col>
-          </v-row>
-          <v-divider class="mb-0"></v-divider>
-          <form-footer></form-footer>
-        </v-form>
-      </v-card>
-    </v-container>
-  </v-main>
-</template>
-
 <script>
-import FormServiceMixin from "@/mixins/FormService.js";
+import AbstractForm from "./AbstractForm.vue";
+import VueEditor from "@/components/forms/TinyMCE.vue";
 
 export default {
-  mixins: [FormServiceMixin],
+  extends: AbstractForm,
+  data() {
+    return {
+      title: "O nas",
+      formCols: [
+        {
+          rwd: {
+            cols: 12,
+          },
+          fields: [
+            {
+              component: VueEditor,
+              currentObjectVModel: "description",
+              props: {
+                label: "Opis",
+              },
+            },
+          ],
+        },
+      ],
+    };
+  },
 };
 </script>
