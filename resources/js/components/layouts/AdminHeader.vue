@@ -342,6 +342,10 @@ export default {
 .admin-body {
   padding-left: 64px !important;
 }
+.px-0 {
+  padding-right: 0px !important;
+  padding-left: 0px !important;
+}
 .px-3 {
   padding-right: 12px !important;
   padding-left: 12px !important;
@@ -366,6 +370,9 @@ export default {
 }
 .mr-2 {
   margin-right: 8px !important;
+}
+.mt-2 {
+  margin-top: 8px !important;
 }
 .mt-5 {
   margin-top: 20px !important;
