@@ -92,6 +92,7 @@
                             @click="setFileClass(file.id)"
                           >
                             <div
+                              v-tooltip="{title: file.path.split('/')[1]}"
                               v-if="file.type.split('/')[0] == 'image'"
                               class="position-relative"
                             >
@@ -110,8 +111,7 @@
                             </div>
 
                             <div
-                              v-b-tooltip.hover
-                              :title="file.path.split('/')[1]"
+                              v-tooltip="{title: file.path.split('/')[1]}"
                               v-else
                               class="file-picker__set-file-button"
                             >
@@ -281,12 +281,12 @@ import SvgVue from "@/components/elements/SvgVue.vue";
 import CustomModal from "@/components/custom-modal/CustomModal.vue";
 import CustomTabs from "@/components/custom-tabs/CustomTabs.vue";
 import CustomTab from "@/components/custom-tabs/CustomTab.vue";
-// import { VBTooltip } from "bootstrap-vue";
+import  VTooltip  from "@/directives/tooltip/VTooltip.js";
 import Pagination from "@/components/pagination/Pagination.vue";
 
 export default {
   directives: {
-    // "b-tooltip": VBTooltip,
+    "tooltip": VTooltip,
   },
   components: {
     CustomTabs,
@@ -419,7 +419,6 @@ export default {
     setFileClass(id) {
       this.activeFile = id;
       this.chosenFileColumnShow = true;
-      console.log(this.chosenFileColumnShow);
 
       this.sendFilePathToPlaceholder();
     },
@@ -672,6 +671,4 @@ export default {
 <style lang="scss">
 @import "@/plugins/bootstrap-vue/src/components/modal/modal.scss";
 @import "bootstrap/scss/modal.scss";
-@import "bootstrap/scss/tooltip.scss";
-@import "@/plugins/bootstrap-vue/src/components/tooltip/tooltip.scss";
 </style>
