@@ -1,0 +1,21 @@
+.custom-tooltip {
+    background: var(--first-color);
+    position: fixed;
+    z-index: 9999;
+    color: white;
+    transform: translate(-50%, calc(-100% - 10px));
+    padding: 0.75rem;
+    border-radius: 9px;
+    &::after {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translate(-50%, -6%);
+        content: "";
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 8px 8px 0 8px;
+        border-color: var(--first-color) transparent transparent transparent;
+    }
+}
