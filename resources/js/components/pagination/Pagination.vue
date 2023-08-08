@@ -1,19 +1,19 @@
 <template>
-  <b-pagination
+  <custom-pagination
     class="custom-pagination"
-    :value="value"
-    @input="$emit('input', $event)"
+    :value="modelValue"
+    @input="$emit('update:modelValue', $event)"
     :total-rows="totalRows"
     :per-page="perPage"
   />
 </template>
 
 <script>
-// import { BPagination } from "bootstrap-vue";
+import  CustomPagination  from "@/components/custom-pagination/CustomPagination.vue";
 export default {
-  // components: { BPagination },
+  components: { CustomPagination },
   props: {
-    value: Number,
+    modelValue: Number,
     totalRows: Number,
     perPage: Number,
   },
