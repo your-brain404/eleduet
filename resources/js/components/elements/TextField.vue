@@ -11,7 +11,7 @@
   >
     <div class="text-field__input-container">
       <input
-        @change="$emit('input', $event.target.files)"
+        @change="$emit('update:modelValue', $event.target.files)"
         :multiple="multiple"
         v-if="type === 'file'"
         v-show="false"
@@ -42,8 +42,7 @@
     <div class="text-field__messages">
       <div v-if="!noValidation" class="text-field__error">{{ error }}</div>
       <div v-if="counter || showSize" class="text-field__counter-size">
-        <template>Liczba plików: {{ value.length }} </template
-        ><template>(łącznie {{ formatFileSize(filesSize) }}) </template>
+        Liczba plików: {{ value.length }} (łącznie {{ formatFileSize(filesSize) }}) 
       </div>
     </div>
   </div>
@@ -62,7 +61,7 @@ export default {
     SvgVue,
   },
   props: {
-    modelValue: String,
+    modelValue: [String, FileList],
     icon: String,
     label: String,
     disabled: Boolean,
