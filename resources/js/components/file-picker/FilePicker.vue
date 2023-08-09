@@ -87,7 +87,7 @@
                             md="3"
                             sm="4"
                             cols="6"
-                            v-for="file in filteredFiles"
+                            v-for="file in paginatedFiles"
                             :key="file.id"
                             @click="setFileClass(file.id)"
                           >
@@ -136,7 +136,7 @@
                             <Pagination
                               class="file-picker-pagination"
                               v-model="page"
-                              :total-rows="files.length"
+                              :total-rows="filteredFiles.length"
                               :per-page="12"
                             />
                           </v-col>
@@ -343,6 +343,10 @@ export default {
         }
       }
       return filteredFiles
+    },
+    paginatedFiles() {
+      
+      return this.filteredFiles.slice(0)
         .reverse()
         .slice((this.page - 1) * 12, (this.page - 1) * 12 + 12);
     },
