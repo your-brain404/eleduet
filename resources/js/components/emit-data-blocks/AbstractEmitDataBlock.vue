@@ -29,7 +29,7 @@ export default {
     },
     moduleCommitName() {
       return this.moduleNamespaced
-        ? `${this.moduleName}/${this.lcComponentName}`
+        ? `${this.componentName}/${this.lcComponentName}`
         : this.lcComponentName;
     },
     moduleFileName() {
