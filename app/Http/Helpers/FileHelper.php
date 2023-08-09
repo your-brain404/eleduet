@@ -88,7 +88,7 @@ class FileHelper
 			Storage::putFileAs($destination, new File($file), $name);
 
 		$primalPath = file_exists($storageDestinationPath) ? $storageDestinationPath : "$storageDestinationPath.webp";
-		$sizes = getimagesize($primalPath);
+		$sizes = @getimagesize($primalPath);
 
 		if ($sizes) {
 			$file_options['width'] = $sizes[0];
