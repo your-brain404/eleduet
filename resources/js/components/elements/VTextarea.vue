@@ -11,10 +11,10 @@
     <div class="textarea__input-container">
       <textarea
         ref="textarea"
-        @input="$emit('input', $event.target.value)"
-        :value="value"
+        @input="$emit('update:modelValue', $event.target.value)"
+        :value="modelValue"
         class="textarea__input"
-        :class="{ 'textarea__input--not-empty': value }"
+        :class="{ 'textarea__input--not-empty': modelValue }"
         :rows="rows"
       />
       <label v-if="label" class="textarea__label">{{ label }}</label>
@@ -30,7 +30,7 @@ export default {
   mixins: [formValidation],
 
   props: {
-    value: String,
+    modelValue: String,
     rows: { type: Number, default: 5 },
     label: String,
     disabled: Boolean,
@@ -56,7 +56,7 @@ export default {
   created() {
     window.addEventListener("click", (e) => {
       let textFieldClicked = Boolean(
-        e.path.find((el) => {
+        e.composedPath().find((el) => {
           return el?.id === `textarea-${this.id}`;
         })
       );
