@@ -160,7 +160,7 @@ export default {
         for (let key in item) {
           if (
             item[key]
-              .toString()
+              ?.toString()
               .toLowerCase()
               .includes(this.search.toLowerCase())
           ) {
