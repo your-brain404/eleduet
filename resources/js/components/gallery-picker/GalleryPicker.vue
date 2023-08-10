@@ -6,15 +6,8 @@
           {{ title || "Dodaj galerię" }}
         </v-btn>
       </v-col>
-      <b-modal
+      <custom-modal
         v-model="modal"
-        no-close-on-backdrop
-        no-close-on-esc
-        size="xl"
-        hide-footer
-        hide-header
-        modal-class="gallery-picker"
-        style="background-color: white !important"
       >
         <v-card>
           <div class="gallery-picker-menu">
@@ -42,21 +35,17 @@
                 </template>
               </v-btn>
             </div>
-            <b-tabs
+            <custom-tabs
               class="gallery-picker__tabs"
               v-model="tab"
-              background-color="primary"
-              dark
+              :tabs="tabs"
             >
-              <b-tab
+              <custom-tab
                 v-for="(tab, i) in tabs"
-                :title="tab"
-                :active="i == 0"
                 :key="tab"
               >
                 <v-card v-if="i === 0" flat>
                   <v-card-text>
-                    <v-container>
                       <v-row class="d-flex align-items-center">
                         <v-col
                           @mouseout="closeIcon = 0"
@@ -119,15 +108,14 @@
                           />
                         </v-col>
                       </v-row>
-                    </v-container>
                   </v-card-text>
                 </v-card>
                 <AddPhotos v-else-if="i === 1" @loadPhotos="loadPhotos" />
-              </b-tab>
-            </b-tabs>
+              </custom-tab>
+            </custom-tabs>
           </div>
         </v-card>
-      </b-modal>
+      </custom-modal>
     </v-row>
   </v-row>
 </template>
@@ -144,24 +132,24 @@ import VCard from "@/components/elements/VCard.vue";
 import VCardText from "@/components/elements/VCardText.vue";
 import VBtn from "@/components/elements/VBtn.vue";
 import SvgVue from "@/components/elements/SvgVue.vue";
-// import { BModal } from "bootstrap-vue";
-// import { BTabs } from "bootstrap-vue";
-// import { BTab } from "bootstrap-vue";
-// import { VBTooltip } from "bootstrap-vue";
+import CustomModal from "@/components/custom-modal/CustomModal.vue";
+import CustomTabs from "@/components/custom-tabs/CustomTabs.vue";
+import CustomTab from "@/components/custom-tabs/CustomTab.vue";
+import VTooltip from "@/directives/tooltip/VTooltip.js";
 import Pagination from "@/components/pagination/Pagination.vue";
 
 export default {
   directives: {
-    // "b-tooltip": VBTooltip,
+  "tooltip": VTooltip,
   },
   components: {
     VRow,
-    // BModal,
+    CustomModal,
     SvgVue,
     Pagination,
     VCard,
-    // BTabs,
-    // BTab,
+    CustomTabs,
+    CustomTab,
     TextField,
     VCardText,
     VCol,
@@ -173,7 +161,7 @@ export default {
   data() {
     return {
       modal: false,
-      tab: null,
+      tab: 0,
       tabs: ["Wybierz zdjęcia", "Dodaj Nowe Zdjęcie"],
       photos: [],
       activePhotos: [],
