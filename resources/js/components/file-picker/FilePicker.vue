@@ -32,12 +32,6 @@
     </v-btn>
     <custom-modal
       v-model="modal"
-      no-close-on-backdrop
-      no-close-on-esc
-      size="xl"
-      modal-class="file-picker"
-      hide-footer
-      hide-header
     >
       <v-card>
         <div class="file-picker-menu">
@@ -65,7 +59,6 @@
             class="file-picker__tabs"
             v-model="tab"
             :tabs="tabs"
-            background-color="primary"
           >
             <custom-tab v-for="(tab, i) in tabs" :key="tab">
               <v-card v-if="i == 0">
@@ -281,7 +274,7 @@ import SvgVue from "@/components/elements/SvgVue.vue";
 import CustomModal from "@/components/custom-modal/CustomModal.vue";
 import CustomTabs from "@/components/custom-tabs/CustomTabs.vue";
 import CustomTab from "@/components/custom-tabs/CustomTab.vue";
-import  VTooltip  from "@/directives/tooltip/VTooltip.js";
+import VTooltip from "@/directives/tooltip/VTooltip.js";
 import Pagination from "@/components/pagination/Pagination.vue";
 
 export default {
