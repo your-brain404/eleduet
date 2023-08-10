@@ -207,6 +207,12 @@ export default {
         });
     },
     edit(formData) {
+      const apiPhoto = this.apiGallery.find(photo => photo.id === formData.id)
+      const photoChanged = Object.entries(formData).some(([key, value]) => {
+        if(apiPhoto[key]?.constructor === Object) return false
+        return apiPhoto[key] != value
+      })
+      if(!photoChanged) return
       axios
         .put(`/api/gallery/edit`, formData, {
           headers: {
@@ -270,15 +276,15 @@ export default {
         )
         .then((res) => {
           this.apiGallery = res.data;
-          this.gallery = res.data;
+          this.gallery = JSON.parse(JSON.stringify(res.data));
           this.setLoading(false);
         });
     },
   },
 
   created() {
-    if (!this.$store.hasModule("Loading")) {
-      this.$store.registerModule("Loading", loadingModule);
+    if (!this.$store.hasModule("loading")) {
+      this.$store.registerModule("loading", loadingModule);
     }
     if (this.$route.path.split("/")[2] != "realizations")
       this.loadCurrentObject();
