@@ -18,6 +18,7 @@
         type="file"
         class="text-field__input-file"
         ref="input-file"
+        :accept="accept"
       />
       <input
         ref="input"
@@ -26,7 +27,6 @@
         class="text-field__input"
         :class="{ 'text-field__input--not-empty': value }"
         :type="type !== 'file' && type"
-        :accept="accept"
       />
 
       <label v-if="label" class="text-field__label">{{ label }}</label>
