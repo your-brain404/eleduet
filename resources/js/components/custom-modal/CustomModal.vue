@@ -22,6 +22,8 @@ export default {
   z-index: 100;
   transition: 0.2s;
   transform-origin: top left;
+  overflow-y: auto;
+  height: 100%;
   &--show {
     transform: scale(1) translate(-50%, -50%);
   }
