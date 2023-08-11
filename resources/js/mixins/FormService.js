@@ -150,6 +150,9 @@ export default {
                 );
         }
     },
+    beforeUnmount() {
+        this.$store.commit('FormService/resetCurrentObject')
+    },
 
     created() {
         if (!this.$store.hasModule("loading")) {
