@@ -32,8 +32,8 @@
                         .replace('{', '')
                         .replace('}', '')
                     "
-                    :value="setCheckboxState(category.id)"
-                    @input="serviceCategoryChange(category.id, $event)"
+                    :modelValue="getCheckboxState(category.id)"
+                    @update:modelValue="serviceCategoryChange(category.id, $event)"
                   ></checkbox>
                 </div>
 
@@ -87,37 +87,38 @@ export default {
       return (
         this.$store.state.CurrentServiceCategories?.currentServiceCategories ||
         []
-      ).map((row) => row.service_category_id);
+      );
     },
   },
 
   methods: {
     serviceCategoryChange(categoryId, state) {
-      let currentObject = this.currentObject;
+      let currentObject = JSON.parse(JSON.stringify(this.currentObject));
       state
         ? currentObject.service_categories.push(categoryId)
         : currentObject.service_categories.splice(
-            currentObject.service_categories.indexOf(categoryId),
+          currentObject.service_categories.indexOf(categoryId),
             1
           );
       this.$store.commit("FormService/setCurrentObject", currentObject);
+      this.$store.commit('CurrentServiceCategories/currentServiceCategories', currentObject.service_categories)
     },
-    setCheckboxState(categoryId) {
+    getCheckboxState(categoryId) {
       return this.currentServiceCategories.includes(categoryId);
     },
   },
 
-  created() {
+  async created() {
     if (!this.$store.hasModule("ServiceCategories")) {
       this.$store.registerModule(
         "ServiceCategories",
-        getModule("serviceCategories")
+        await getModule("serviceCategories")
       );
     }
     if (!this.$store.hasModule("CurrentServiceCategories")) {
       this.$store.registerModule(
         "CurrentServiceCategories",
-        getModule("currentServiceCategories")
+        await getModule("currentServiceCategories")
       );
     }
     this.$store.dispatch("ServiceCategories/serviceCategories");
@@ -126,7 +127,7 @@ export default {
       this.$route.params.id
     );
   },
-  unmount() {
+  unmounted() {
     this.$store.commit("CurrentServiceCategories/currentServiceCategories", []);
   },
 };
