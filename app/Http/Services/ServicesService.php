@@ -10,7 +10,7 @@ use App\Http\Services\CrudService;
 class ServicesService
 {
 
-	public static $model = 'App\Services';
+	public static $model = 'App\Models\Services';
 
 
 	public static function saveData(Request $request): Model
