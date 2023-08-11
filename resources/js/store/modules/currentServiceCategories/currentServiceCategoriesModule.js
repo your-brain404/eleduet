@@ -20,14 +20,15 @@ export default {
                     `/api/services_service_categories/get_where?service_id=${serviceId}`
                 )
                 .then(res => {
-                    commit("currentServiceCategories", res.data);
+                    const currentServiceCategories = res.data.map(
+                        row => row.service_category_id
+                    )
+                    commit("currentServiceCategories", currentServiceCategories);
                     commit(
                         "FormService/setCurrentObject",
                         {
                             ...rootGetters["FormService/getCurrentObject"],
-                            service_categories: res.data.map(
-                                row => row.service_category_id
-                            )
+                            service_categories: currentServiceCategories
                         },
                         { root: true }
                     );
