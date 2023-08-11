@@ -175,7 +175,7 @@ export function createRouter() {
         scrollBehavior: function (to) {
             if (to.hash) {
                 return {
-                    selector: to.hash
+                    el: to.hash
                 };
             } else return { x: 0, y: 0 };
         }
