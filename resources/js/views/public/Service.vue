@@ -204,6 +204,7 @@ section.service {
 
   .content {
     position: relative;
+    padding-right: 2rem;
     @include mircel-padding;
     @media (max-width: 992px) {
       order: 2;
