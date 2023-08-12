@@ -30,7 +30,7 @@
           <h4>Menu</h4>
           <ul>
             <li
-              v-for="(subpage, i) in subpages.filter(
+              v-for="(subpage, i) in activeSubpages.filter(
                 (page) => page.page !== '/'
               )"
               :key="`footer-subpage-${i}`"
@@ -84,8 +84,8 @@ export default {
     };
   },
   computed: {
-    subpages() {
-      return this.$store.getters.subpages;
+    activeSubpages() {
+      return this.$store.getters.activeSubpages;
     },
   },
 };

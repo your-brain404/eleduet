@@ -15,6 +15,7 @@ export default {
             state.subpages.sort((a, b) =>
                 a.order > b.order ? 1 : b.order > a.order ? -1 : 0
             ),
+        activeSubpages: (_, getters) => getters.subpages.filter(subpage => subpage.active),
         currentSubpage: state => state.currentSubpage
     },
     actions: {

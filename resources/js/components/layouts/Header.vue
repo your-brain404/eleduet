@@ -9,12 +9,13 @@
         :classImg="'logo'"
         :src="`/storage/media/${settings.photo}`"
         :webp="false"
+        :loading="'eager'"
       />
     </router-link>
     <ul v-show="showCollapseMenuClasses">
       <router-link
         :to="`${subpage.page}`"
-        v-for="(subpage, i) in subpages.filter((page) => page.page !== '/')"
+        v-for="(subpage, i) in activeSubpages.filter((page) => page.page !== '/')"
         :key="`subpage-${i}`"
       >
         <li @click="showMobileMenu = false">
@@ -47,6 +48,7 @@
       :class="'hamburger-menu'"
       :src="`/storage/img/layout/hamburger-menu.svg`"
       :webp="false"
+      :loading="'eager'"
     />
   </section>
 </template>
@@ -73,8 +75,8 @@ export default {
     },
   },
   computed: {
-    subpages() {
-      return this.$store.getters.subpages;
+    activeSubpages() {
+      return this.$store.getters.activeSubpages;
     },
 
     isScreenMobileDevice() {
