@@ -35,7 +35,7 @@ export default {
   computed: {
     currentSubpage() {
       return (
-        this.$store.getters.currentSubpage ||
+        this.$store.state.subpages.currentSubpage ||
         window.global.config.currentSubpage
       );
     },
