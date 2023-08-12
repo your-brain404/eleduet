@@ -8,6 +8,7 @@
         v-if="isPhoto(chosenFile.type)"
         width="100%"
         :src="value ? url(value) : placeholder"
+        :loading="'eager'"
       />
 
       <div class="file-picker__active-file-container">
