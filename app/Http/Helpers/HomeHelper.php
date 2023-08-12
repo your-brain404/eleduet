@@ -48,7 +48,7 @@ class HomeHelper
 		$data['settings'] = Settings::find(1);
 		$data['contact'] = Contact::find(1);
 		$data['snackbar_alerts'] = SnackbarAlerts::find(1);
-		$data['subpages'] = Subpages::where('active', 1)->get();
+		$data['subpages'] = Subpages::all();
 		$data['meta_title'] = 'Panel administracyjny - ' . $data['settings']->company;
 		$data['meta_description'] = 'Panel administracyjny';
 		$authUserId = @TokenDecoder::decode(@$_COOKIE['token'])->sub;
