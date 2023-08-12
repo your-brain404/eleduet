@@ -110,10 +110,16 @@ export default {
     window.addEventListener("click", (e) => {
       let textFieldClicked = Boolean(
         e.composedPath().find((el) => {
-          return el?.id === `text-field-${this.id}`;
+          return el?.id === `text-field-${this.id}`
         })
       );
-      this.isFocused = textFieldClicked;
+      let textFieldErrorClicked = Boolean(
+        e.composedPath().find((el) => {
+          return el?.classList?.contains('text-field__error');
+        })
+      );
+
+      this.isFocused = !textFieldErrorClicked && textFieldClicked;
     });
   },
 };
