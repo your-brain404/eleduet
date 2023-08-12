@@ -24,17 +24,18 @@
 </template>
 
 <script>
-import getCookie from "@/helpers/cookies/get-cookie";
+import getCookie from "@/helpers/cookies/get-cookie.js";
 import FontFaceObserver from "fontfaceobserver";
-import authModule from "@/store/modules/auth/authModule";
-import toastModule from "@/store/modules/toast/toastModule";
-import subpagesModule from "@/store/modules/subpages/subpagesModule";
+import authModule from "@/store/modules/auth/authModule.js";
+import toastModule from "@/store/modules/toast/toastModule.js";
+import subpagesModule from "@/store/modules/subpages/subpagesModule.js";
 import HeaderComponent from "./layouts/Header.vue";
 import FooterComponent from "./layouts/Footer.vue";
 import AdminHeader from "./layouts/AdminHeader.vue";
 import Toast from "./toast/Toast.vue";
 import Cookies from "@/components/cookies/Cookies.vue";
 import Banner from "./layouts/Banner.vue";
+import LoadingModule from "@/store/modules/loading/loadingModule.js";
 
 function recaptcha() {
   let badge = document.getElementsByClassName("grecaptcha-badge")[0];
@@ -74,16 +75,12 @@ export default {
       },
     },
     "$route.path"() {
-      if (!this.$store.hasModule("subpages")) {
-        this.$store.registerModule("subpages", subpagesModule);
-      }
+      
       recaptcha();
       this.checkSubpageEntry();
       this.setCurrentSubpage();
     },
-    subpages() {
-      if (this.subpages.length > 0) this.checkSubpageEntry();
-    },
+    
   },
   computed: {
     isPathAdmin() {
@@ -119,7 +116,7 @@ export default {
     checkSubpageEntry() {
       for (let subpage of this.subpages) {
         if (subpage.page == "/" + this.$route.path.split("/")[1]) {
-          if (!subpage.active && subpage.page != "/koszyk")
+          if (!subpage.active)
             this.$router.push("/");
         }
       }
@@ -130,20 +127,19 @@ export default {
       else this.title = this.currentSubpage ? this.currentSubpage.title : "";
     },
 
-    setCart() {
-      if (localStorage.getItem("cart") != null) {
-        this.$store.commit("cart", JSON.parse(localStorage.getItem("cart")));
-      }
-    },
+   
   },
   created() {
-    this.setCart();
     this.setMetaTitle();
     this.$store.registerModule("auth", authModule);
     this.$store.registerModule("toast", toastModule);
     if (!this.$store.hasModule("subpages")) {
       this.$store.registerModule("subpages", subpagesModule);
     }
+    if (!this.$store.hasModule("loading")) {
+      this.$store.registerModule("loading", LoadingModule);
+    }
+    
     this.$store.dispatch("authAutoLogin");
 
     if (window.location.hash && window.location.hash == "#_=_") {
