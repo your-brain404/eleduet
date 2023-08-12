@@ -32,7 +32,6 @@
     />
     <img
       :loading="loading"
-      @click="$emit('click')"
       :class="classImg"
       :style="[styleImg, { width: width, height: height }]"
       :src="srcEncode"
