@@ -267,7 +267,7 @@ export default {
     this.appendRecaptchaScript();
   },
   created() {
-    if (!this.$store.hasModule("contactLinks"))
+    if (!this.$store.hasModule("ContactLinks"))
       this.$store.registerModule("ContactLinks", contactLinksModule);
     if (!this.$store.hasModule("snackbarAlerts"))
       this.$store.registerModule("snackbarAlerts", snackbarAlertsModule);
