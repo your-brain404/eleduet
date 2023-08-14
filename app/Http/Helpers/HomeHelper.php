@@ -49,8 +49,6 @@ class HomeHelper
 		$data['contact'] = Contact::find(1);
 		$data['snackbar_alerts'] = SnackbarAlerts::find(1);
 		$data['subpages'] = Subpages::all();
-		$data['meta_title'] = 'Panel administracyjny - ' . $data['settings']->company;
-		$data['meta_description'] = 'Panel administracyjny';
 		$authUserId = @TokenDecoder::decode(@$_COOKIE['token'])->sub;
 		$data['auth'] = AutoLoginService::autoLogin($authUserId);
 		$data['lang'] = $_COOKIE['lang'] ?? config('app.locale');
@@ -113,9 +111,9 @@ class HomeHelper
 			$data['contact_links'] = ContactLinks::all() ?? [];
 		}
 
-
-		$data['meta_title'] = $data['meta_title'] . ' - ' . $data['settings']->company;
-		$data['meta_description'] = strip_tags($data['meta_description']);
+		$fallbackMeta = 'Panel Administracyjny';
+		$data['meta_title'] = ($data['current_subpage']->title ?? $fallbackMeta) . ' - ' . $data['settings']->company;
+		$data['meta_description'] = strip_tags($data['current_subpage']->meta_description ?? $fallbackMeta);
 		$data['admin_route'] = LangHelper::getRouteSegment(1) === 'admin-panel';
 
 		return $data;
