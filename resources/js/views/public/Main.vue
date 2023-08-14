@@ -21,8 +21,10 @@ import SolarSystem from "@/components/pages/main/SolarSystem.vue";
 import ExecutionProcess from "@/components/pages/main/ExecutionProcess.vue";
 import CallUs from "@/components/pages/main/CallUs.vue";
 import Opinions from "@/components/pages/main/Opinions.vue";
+import pageTitle from "@/mixins/page-title";
 
 export default {
+  mixins: [pageTitle],
   components: {
     Slider,
     About,
