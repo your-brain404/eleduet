@@ -60,20 +60,10 @@ export default {
   },
   data() {
     return {
-      title: "",
       settings: window.global.config.settings,
     };
   },
   watch: {
-    title() {
-      document.title = `${this.title} - ${this.settings.company}`;
-    },
-    currentSubpage: {
-      deep: true,
-      handler() {
-        if (this.currentSubpage?.id) this.title = this.currentSubpage.title;
-      },
-    },
     "$route.path"() {
       
       recaptcha();
@@ -89,9 +79,7 @@ export default {
     subpages() {
       return this.$store.state.subpages?.subpages || [];
     },
-    currentSubpage() {
-      return this.$store.getters.currentSubpage;
-    },
+    
 
     toasts() {
       return this.$store.state.toast?.toasts || [];
@@ -121,16 +109,11 @@ export default {
         }
       }
     },
-    setMetaTitle() {
-      if (this.$route.path.split("/").includes("admin-panel"))
-        this.title = "Panel Administracyjny";
-      else this.title = this.currentSubpage ? this.currentSubpage.title : "";
-    },
+   
 
    
   },
   created() {
-    this.setMetaTitle();
     this.$store.registerModule("auth", authModule);
     this.$store.registerModule("toast", toastModule);
     if (!this.$store.hasModule("subpages")) {
