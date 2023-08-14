@@ -1,7 +1,7 @@
 <template>
   <editor
-    :value="value"
-    @input="$emit('input', $event)"
+    :modelValue="modelValue"
+    @update:modelValue="$emit('update:modelValue', $event)"
     api-key="m22xj0x6h1pgqb681evsy9sxvg1fgl2qktcekp6e5ef3ni2z"
     :init="init"
   />
@@ -13,7 +13,7 @@ export default {
   components: {
     editor: Editor,
   },
-  props: ["value"],
+  props: ["modelValue"],
   data() {
     return {
       init: {
@@ -50,11 +50,6 @@ export default {
            bullist numlist checklist outdent indent | removeformat | a11ycheck code table help",
       },
     };
-  },
-  watch: {
-    value() {
-      this.$emit("input", this.value);
-    },
   },
 };
 </script>
