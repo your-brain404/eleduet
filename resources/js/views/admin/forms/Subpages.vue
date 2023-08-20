@@ -25,9 +25,7 @@
                 ></text-field>
                 <div class="mt-3">
                   <p class="mb-1">Opis Seo</p>
-                  <vue-editor
-                    v-model="currentObject.meta_description"
-                  ></vue-editor>
+                  <v-textarea v-model="currentObject.meta_description" />
                 </div>
               </div>
             </v-col>
