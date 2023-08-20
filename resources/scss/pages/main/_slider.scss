@@ -23,6 +23,7 @@ section.slider {
             z-index: 1;
             padding-left: var(--global-padding-x-desktop);
             width: 50%;
+            text-align: left;
 
             @media (max-width: 992px) {
                 width: 100%;

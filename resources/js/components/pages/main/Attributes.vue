@@ -1,5 +1,16 @@
 <template>
   <section class="attributes">
+    <VueEasyLightbox
+      :visible="Number.isInteger(lightboxIndex)"
+      :imgs="
+        attributes.map((attr) =>
+          existingPhotoPath(`/storage/media/${attr.photo}`)
+        )
+      "
+      :index="lightboxIndex"
+      @hide="lightboxIndex = null"
+    >
+    </VueEasyLightbox>
     <div class="content">
       <div class="section-content">
         <Picture
@@ -24,6 +35,7 @@
         >
           <div class="attribute-content">
             <Picture
+              @click="lightboxIndex = i"
               width="150"
               height="65"
               :alt="attribute.photo_alt"
@@ -47,11 +59,14 @@ import adminTableComponent from "@/mixins/admin-table-component.js";
 import Picture from "@/components/picture/Picture.vue";
 import attributesModule from "@/store/modules/attributes/attributesModule.js";
 import attributesDescModule from "@/store/modules/attributesDesc/attributesDescModule.js";
+import VueEasyLightbox from "vue-easy-lightbox";
+import existingPhotoPath from "@/helpers/links/existing-photo-path.js";
 
 export default {
   mixins: [adminTableComponent],
   components: {
     Picture,
+    VueEasyLightbox,
   },
 
   data() {
@@ -59,6 +74,7 @@ export default {
       table: "attributes",
       module: attributesModule,
       settings: window.global.config.settings,
+      lightboxIndex: null,
     };
   },
   computed: {
@@ -81,6 +97,7 @@ export default {
     },
   },
   methods: {
+    existingPhotoPath,
     prepareTitle: (title) =>
       title.replaceAll("{", "<span>").replaceAll("}", "</span>"),
   },
@@ -98,6 +115,7 @@ export default {
   height: 65px;
   padding-right: 1.5rem;
   width: auto;
+  cursor: pointer;
 }
 :deep(.bolt) {
   padding-right: 1.3rem;

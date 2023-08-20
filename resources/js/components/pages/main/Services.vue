@@ -169,6 +169,7 @@ section.services {
       box-shadow: 0px 10px 40px #0000000f;
       margin-right: 0.8rem;
       display: block;
+      text-align: left;
       &:hover {
         background-color: var(--first-color);
         transform: translateY(-10px);
